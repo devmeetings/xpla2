@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Props from 'react-immutable-proptypes';
 
-import * as SlideActions from '../actions/slide';
+import * as EditorActions from '../actions/editor';
 
 import {Editor} from '../components/Editor';
 
@@ -42,6 +42,7 @@ class EditorContainer extends React.Component {
 }
 
 EditorContainer.propTypes = {
+  editorId: React.PropTypes.string,
   editors: Props.map.isRequired,
   actions: React.PropTypes.shape({
     changeActiveTab: React.PropTypes.func.isRequired
@@ -53,13 +54,13 @@ EditorContainer.propTypes = {
     editors: state.get('editors')
   }),
   dispatch => ({
-    actions: bindActionCreators(SlideActions, dispatch)
+    actions: bindActionCreators(EditorActions, dispatch)
   })
 )
 export default class EditorContainerWrapper extends React.Component {
   render() {
     return (
-      <EditorContainer {...this.props} id={this.props.editorId}/>
+      <EditorContainer {...this.props} />
     )
   }
 }

@@ -1,3 +1,5 @@
+import {randomId} from './utils';
+
 function trim (val) {
   // Get initial tabulation size
   const lines = val.split('\n');
@@ -13,6 +15,9 @@ function trim (val) {
 
 // We will first read the configuration to use right components
 export function getEditorState (dom) {
+  const id = dom.id || randomId('editor');
+  dom.id = id;
+
   const files = [].map.call(
     dom.querySelectorAll('script'),
     (tpl) => {
@@ -24,7 +29,7 @@ export function getEditorState (dom) {
     }
   );
   return {
-    id: dom.id,
+    id: id,
     files: files,
     active: files[0]
   };
