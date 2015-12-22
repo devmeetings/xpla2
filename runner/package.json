@@ -1,0 +1,26 @@
+{
+  "name": "xpla-runner",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "good": "^6.4.0",
+    "good-console": "^5.2.0",
+    "hapi": "^11.1.2",
+    "inert": "^3.2.0",
+    "joi": "^7.0.1",
+    "lodash": "^3.10.1",
+    "lout": "^8.0.1",
+    "mime-types": "^2.1.8",
+    "vision": "^4.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.8.1"
+  }
+}
