@@ -33,7 +33,7 @@ export class Editor extends React.Component {
         <AceEditor
           mode={this.getType(this.props.active)}
           theme='github'
-          onChange={console.log.bind(console)}
+          onChange={this.props.onTabContentChange}
           name={`editor-${this.props.active.get('name')}`}
           editorProps={{$blockScrolling: true}}
           value={this.props.active.get('content')}
@@ -51,5 +51,6 @@ Editor.propTypes = {
     name: React.PropTypes.string.isRequired,
     content: React.PropTypes.string.isRequired
   }),
-  onTabChange: React.PropTypes.func.isRequired
+  onTabChange: React.PropTypes.func.isRequired,
+  onTabContentChange: React.PropTypes.func.isRequired
 };

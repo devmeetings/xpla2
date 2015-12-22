@@ -16,6 +16,13 @@ class Slide extends React.Component {
     });
   }
 
+  changeTabContent (editor, content) {
+    this.props.actions.modifyActiveTabContent({
+      editorId: editor.get('id'),
+      content: content
+    });
+  }
+
   renderEditors () {
     return this.props.editors.map((editor, id) => {
       return (
@@ -25,6 +32,7 @@ class Slide extends React.Component {
           files={editor.get('files')}
           active={editor.get('active')}
           onTabChange={this.changeTab.bind(this, editor)}
+          onTabContentChange={this.changeTabContent.bind(this, editor)}
           />
       );
     }).toIndexedSeq();
