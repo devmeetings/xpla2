@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Slide 1</title>
+    <% if (debug === false) { %>
+      <link type="text/css" rel="stylesheet" media="all" href="css/app.<%= version %>.css" />
+    <% } %>
+  </head>
+  <body>
+    <xp-editor id="e1">
+      <script id="index.html" type="text/html">
+        <html>
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width">
+            <title>Slide 1</title>
+          </head>
+          <body>
+            <h1>Hello World</h1>
+          </body>
+        </html>
+      </script>
+      <script id="main.js" type="application/javascript">
+        function helloWorld() {
+          console.log()
+        }
+      </script>
+    </xp-editor>
+    <xp-preview runner="html"></xp-preview>
+    <script src="js/app.<%= version %>.js"></script>
+  </body>
+</html>
