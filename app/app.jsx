@@ -8,7 +8,7 @@ import {Provider} from 'react-redux';
 
 import Store from './store';
 import {getEditorState} from './components/ReadEditorState';
-import Slide from './containers/Slide';
+import EditorWrapper from './containers/EditorWrapper';
 
 const editors = [].map.call(
   document.querySelectorAll('xp-editor'),
@@ -22,9 +22,15 @@ const store = Store({
   editors: editors
 });
 
-render(
-  <Provider store={store}>
-    <Slide />
-  </Provider>,
-  document.querySelector('body')
-);
+Object.keys(editors).map((editorId) => {
+
+  render(
+    <Provider store={store}>
+      <EditorWrapper
+        editorId={editorId}
+        />
+    </Provider>,
+    document.querySelector(`#${editorId}`)
+  );
+
+});

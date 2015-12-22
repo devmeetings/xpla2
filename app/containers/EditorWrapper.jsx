@@ -7,48 +7,41 @@ import * as SlideActions from '../actions/slide';
 
 import {Editor} from '../components/Editor';
 
-class Slide extends React.Component {
+class EditorContainer extends React.Component {
 
-  changeTab (editor, tab) {
+  changeTab = (tab) => {
     this.props.actions.changeActiveTab({
-      editorId: editor.get('id'),
+      editorId: this.props.editorId,
       tabName: tab.get('name')
     });
   }
 
-  changeTabContent (editor, content) {
+  changeTabContent = (content) => {
     this.props.actions.modifyActiveTabContent({
-      editorId: editor.get('id'),
+      editorId: this.props.editorId,
       content: content
     });
   }
 
-  renderEditors () {
-    return this.props.editors.map((editor, id) => {
-      return (
-        <Editor
-          key={id}
-          id={id}
-          files={editor.get('files')}
-          active={editor.get('active')}
-          onTabChange={this.changeTab.bind(this, editor)}
-          onTabContentChange={this.changeTabContent.bind(this, editor)}
-          />
-      );
-    }).toIndexedSeq();
-  }
-
   render () {
+    const id = this.props.editorId;
+    const editor = this.props.editors.get(id);
+
     return (
-      <div>
-        {this.renderEditors()}
-      </div>
+      <Editor
+        key={id}
+        id={id}
+        files={editor.get('files')}
+        active={editor.get('active')}
+        onTabChange={this.changeTab}
+        onTabContentChange={this.changeTabContent}
+        />
     );
   }
 
 }
 
-Slide.propTypes = {
+EditorContainer.propTypes = {
   editors: Props.map.isRequired,
   actions: React.PropTypes.shape({
     changeActiveTab: React.PropTypes.func.isRequired
@@ -63,11 +56,13 @@ Slide.propTypes = {
     actions: bindActionCreators(SlideActions, dispatch)
   })
 )
-export default class SlideContainer extends React.Component {
+export default class EditorContainerWrapper extends React.Component {
   render() {
     return (
-      <Slide {...this.props} />
+      <EditorContainer {...this.props} id={this.props.editorId}/>
     )
   }
 }
-SlideContainer.propTypes = {};
+EditorContainerWrapper.propTypes = {
+  editorId: React.PropTypes.string.isRequired
+};
