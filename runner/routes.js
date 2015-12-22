@@ -70,11 +70,11 @@ module.exports = [
   },
   {
     method: 'GET',
-    path: '/page/{commitId}/{fileName}',
+    path: '/page/{commitId}/{fileName?}',
     handler: (req, reply) => {
       pagesApi.getFile({
         commitId: req.params.commitId,
-        fileName: req.params.fileName
+        fileName: req.params.fileName || 'index.html'
       })
         .then((file) => {
           reply(file.content).type(file.mimetype);
