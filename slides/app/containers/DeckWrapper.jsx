@@ -19,7 +19,6 @@ class DeckContainer extends React.Component {
   render () {
     return (
       <div>
-        <h1>Deck</h1>
         <ActiveSlide
           runServerUrl={this.props.runServerUrl}
           slide={this.props.activeSlide.get('content')}

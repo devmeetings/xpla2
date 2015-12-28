@@ -10,6 +10,10 @@ export class FileTabs extends React.Component {
   }
 
   renderTabLinks () {
+    if (this.props.files.size < 2) {
+      return;
+    }
+
     return this.props.files.map((file) => {
       return (
         <a
