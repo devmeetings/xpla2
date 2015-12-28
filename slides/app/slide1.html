@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xp-run-server-url="http://localhost:3030">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Slide 2</title>
+    <% if (debug === false) { %>
+      <link type="text/css" rel="stylesheet" media="all" href="css/slide.<%= version %>.css" />
+    <% } %>
+  </head>
+  <body>
+    <div style="width:40%; float:left">
+      <xp-editor>
+        <script id="index.html" type="text/html">
+          <html>
+            <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width">
+              <title>Slide 2</title>
+            </head>
+            <body>
+              <h1>Slide 2</h1>
+            </body>
+          </html>
+        </script>
+      </xp-editor>
+    </div>
+    <div style="width:50%; float:right">
+      <xp-preview runner="html"></xp-preview>
+    </div>
+    <script src="js/slide.<%= version %>.js"></script>
+  </body>
+</html>

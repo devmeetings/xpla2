@@ -1,4 +1,5 @@
 import {CHANGE_ACTIVE_TAB, MODIFY_ACTIVE_TAB_CONTENT} from '../actions';
+
 import {createReducer} from 'redux-immutablejs';
 import {Map} from 'immutable';
 

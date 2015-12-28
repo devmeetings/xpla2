@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xp-run-server-url="http://localhost:3030">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Deck</title>
+    <% if (debug === false) { %>
+      <link type="text/css" rel="stylesheet" media="all" href="css/deck.<%= version %>.css" />
+    <% } %>
+  </head>
+  <body>
+
+    <xp-deck>
+      <link rel="import" href="slide.html" />
+      <link rel="import" href="slide1.html" />
+    </xp-deck>
+
+    <script src="js/deck.<%= version %>.js"></script>
+  </body>
+</html>

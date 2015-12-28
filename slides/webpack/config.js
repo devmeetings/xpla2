@@ -12,18 +12,21 @@ var TEST = process.env.NODE_ENV === 'test';
 var jsBundle = path.join('js', util.format('[name].%s.js', pkg.version));
 
 var entry = {
-  slide: ['./slide.jsx']
+  slide: ['./slide.jsx'],
+  deck: ['./deck.jsx']
 };
 
 if (DEBUG) {
-  entry.slide.push(
-    util.format(
-      'webpack-dev-server/client?http://%s:%d',
-      pkg.config.devHost,
-      pkg.config.devPort
-    )
-  );
-  entry.slide.push('webpack/hot/dev-server');
+  ['slide', 'deck'].map(function (e) {
+    entry[e].push(
+      util.format(
+        'webpack-dev-server/client?http://%s:%d',
+        pkg.config.devHost,
+        pkg.config.devPort
+      )
+    );
+    entry[e].push('webpack/hot/dev-server');
+  });
 }
 
 var config = {
