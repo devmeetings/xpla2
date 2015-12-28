@@ -1,6 +1,7 @@
 const _ = require('lodash');
-const commits = require('./commits');
-const runners = require('../../runners/runners');
+const commits = require('../storage/commits');
+const runs = require('../storage/runs');
+const runners = require('../runners/runners');
 const mimetypes = require('mime-types');
 
 function addMimetype (file) {
@@ -29,7 +30,11 @@ function runCode (data) {
   return commits.retrieve(commitId).then((commitData) => {
     const runner = runners.getRunner(runnerName);
     return runner(commitData);
-  });
+  }).then((runData) => {
+    return runs.store(runData);
+  }).then((runId) => ({
+    runId
+  }));
 }
 
 function commitAndRunCode (data) {

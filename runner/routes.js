@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const codeApi = require('./api/code');
-const pagesApi = require('./api/pages');
+const resultsApi = require('./api/results');
 
 function handleError (e, reply) {
   if (e.code === 404) {
@@ -51,7 +51,10 @@ module.exports = [
       },
       handler: (req, reply) => {
         codeApi.commitAndRunCode(req.payload)
-          .then(reply)
+          .then((d) => {
+            const runId = d.runId;
+            reply().redirect(`/api/results/${runId}/`);
+          })
           .catch((e) => handleError(e, reply));
       }
     }
@@ -64,17 +67,20 @@ module.exports = [
         commitId: req.params.commitId,
         runnerName: req.params.runnerName
       })
-        .then(reply)
+        .then((d) => {
+          const runId = d.runId;
+          reply().redirect(`/api/results/${runId}/`);
+        })
         .catch((e) => handleError(e, reply));
     }
   },
   {
     method: 'GET',
-    path: '/page/{commitId}/{fileName?}',
+    path: '/api/results/{runId}/{fileName?}',
     handler: (req, reply) => {
-      pagesApi.getFile({
-        commitId: req.params.commitId,
-        fileName: req.params.fileName || 'index.html'
+      resultsApi.getFile({
+        runId: req.params.runId,
+        fileName: req.params.fileName
       })
         .then((file) => {
           reply(file.content).type(file.mimetype);
