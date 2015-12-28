@@ -11,17 +11,17 @@ import EventEmitter from 'event-emitter';
 import Store from './store';
 import {getEditorState} from './components/read/EditorState';
 import {getPreviewState} from './components/read/PreviewState';
+import {getRunServerUrl} from './components/read/RunServerUrlState';
 
 import EditorWrapper from './containers/EditorWrapper';
 import PreviewWrapper from './containers/PreviewWrapper';
 
 const editors = getAsMap('xp-editor', getEditorState);
 const previews = getAsMap('xp-preview', getPreviewState);
+const runServerUrl = getRunServerUrl(document.querySelector('html'));
 
 const store = Store({
-  editors: editors,
-  previews: previews,
-  runServerUrl: 'http://localhost:3030'
+  editors, previews, runServerUrl
 });
 const globalEvents = new EventEmitter({});
 
