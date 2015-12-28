@@ -6,6 +6,7 @@ import _ from 'lodash';
 import React from 'react';
 import {render} from 'react-dom';
 import {Provider} from 'react-redux';
+import EventEmitter from 'event-emitter';
 
 import Store from './store';
 import {getEditorState} from './components/read/EditorState';
@@ -22,6 +23,7 @@ const store = Store({
   previews: previews,
   runServerUrl: 'http://localhost:3030'
 });
+const globalEvents = new EventEmitter({});
 
 renderComponents(editors, EditorWrapper, 'editorId');
 renderComponents(previews, PreviewWrapper, 'previewId');
@@ -39,7 +41,8 @@ function getAsMap (query, mapper) {
 function renderComponents (elems, Component, propName) {
   Object.keys(elems).map((id) => {
     const props = {
-      [propName]: id
+      [propName]: id,
+      globalEvents: globalEvents
     };
 
     render(

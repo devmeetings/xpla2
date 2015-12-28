@@ -58,6 +58,12 @@ export class AceEditor extends React.Component {
     this.editor.on('paste', this.onPaste.bind(this));
     this.editor.on('change', this.onChange.bind(this));
 
+    if (this.props.commands) {
+      this.props.commands.map((action) => {
+        this.editor.commands.addCommand(action);
+      });
+    }
+
     if (this.props.keyboardHandler) {
       this.editor.setKeyboardHandler('ace/keyboard/' + this.props.keyboardHandler);
     }
@@ -147,7 +153,8 @@ AceEditor.propTypes = {
   cursorStart: React.PropTypes.number,
   editorProps: React.PropTypes.object,
   keyboardHandler: React.PropTypes.string,
-  wrapEnabled: React.PropTypes.bool
+  wrapEnabled: React.PropTypes.bool,
+  commands: React.PropTypes.array
 };
 
 AceEditor.defaultProps = {

@@ -23,6 +23,10 @@ class EditorContainer extends React.Component {
     });
   }
 
+  saveCode = (data) => {
+    this.props.globalEvents.emit('preview.run', data);
+  }
+
   render () {
     const id = this.props.editorId;
     const editor = this.props.editors.get(id);
@@ -33,6 +37,7 @@ class EditorContainer extends React.Component {
         id={id}
         files={editor.get('files')}
         active={editor.get('active')}
+        onSaveAction={this.saveCode}
         onTabChange={this.changeTab}
         onTabContentChange={this.changeTabContent}
         />
@@ -45,8 +50,10 @@ EditorContainer.propTypes = {
   editorId: React.PropTypes.string,
   editors: Props.map.isRequired,
   actions: React.PropTypes.shape({
-    changeActiveTab: React.PropTypes.func.isRequired
-  }).isRequired
+    changeActiveTab: React.PropTypes.func.isRequired,
+    modifyActiveTabContent: React.PropTypes.func.isRequired
+  }).isRequired,
+  globalEvents: React.PropTypes.object.isRequired
 };
 
 @connect(
@@ -65,5 +72,6 @@ export default class EditorContainerWrapper extends React.Component {
   }
 }
 EditorContainerWrapper.propTypes = {
-  editorId: React.PropTypes.string.isRequired
+  editorId: React.PropTypes.string.isRequired,
+  globalEvents: React.PropTypes.object.isRequired
 };

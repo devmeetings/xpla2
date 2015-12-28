@@ -10,7 +10,7 @@ export class HtmlResult extends React.Component {
 
     return (
       <iframe
-        src={`${runServerUrl}/api/results/${runId}`}
+        src={`${runServerUrl}/api/results/${runId}/`}
         seamless
         ></iframe>
     );

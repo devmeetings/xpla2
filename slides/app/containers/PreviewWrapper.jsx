@@ -11,14 +11,34 @@ import * as PreviewActions from '../actions/preview';
 
 class PreviewContainer extends React.Component {
 
+  constructor (...args) {
+    super(...args);
+    this.onGlobalRun = this.onGlobalRun.bind(this);
+  }
+
+  componentDidMount () {
+    this.props.globalEvents.on('preview.run', this.onGlobalRun);
+  }
+
+  componentWillUnmount () {
+    this.props.globalEvents.off('preview.run', this.onGlobalRun);
+  }
+
+  onGlobalRun () {
+    this.runAction();
+  }
+
   getFilesFromEditors () {
     const files = this.props.editors.map(getFilesWithActive);
     return files.toSetSeq().flatten(1);
   }
 
-  runAction (runnerName) {
+  runAction () {
     const previewId = this.props.previewId;
+    const preview = this.props.previews.get(previewId);
     const runServerUrl = this.props.runServerUrl;
+
+    const runnerName = preview.get('runner');
     const files = this.getFilesFromEditors();
 
     this.props.actions.commitAndRunCode({
@@ -33,7 +53,6 @@ class PreviewContainer extends React.Component {
     const id = this.props.previewId;
     const runServerUrl = this.props.runServerUrl;
     const preview = this.props.previews.get(id);
-    const runnerName = preview.get('runner');
 
     return (
       <Preview
@@ -41,7 +60,7 @@ class PreviewContainer extends React.Component {
         isLoading={preview.get('isLoading')}
         runId={preview.get('runId')}
         runServerUrl={runServerUrl}
-        onRun={this.runAction.bind(this, runnerName)}
+        onRun={this.runAction.bind(this)}
         />
     );
   }
@@ -54,7 +73,8 @@ PreviewContainer.propTypes = {
   editors: Props.map.isRequired,
   actions: React.PropTypes.shape({
     commitAndRunCode: React.PropTypes.func.isRequired
-  }).isRequired
+  }).isRequired,
+  globalEvents: React.PropTypes.object.isRequired
 };
 
 @connect(
@@ -70,10 +90,11 @@ PreviewContainer.propTypes = {
 export default class PreviewContainerWrapper extends React.Component {
   render() {
     return (
-      <PreviewContainer {...this.props} previewId={this.props.previewId}/>
+      <PreviewContainer {...this.props} />
     )
   }
 }
 PreviewContainerWrapper.propTypes = {
-  previewId: React.PropTypes.string.isRequired
+  previewId: React.PropTypes.string.isRequired,
+  globalEvents: React.PropTypes.object.isRequired
 };

@@ -11,6 +11,38 @@ import 'brace/theme/github';
 
 export class Editor extends React.Component {
 
+  constructor (...args) {
+    super(...args);
+    this.commands = this.getCommands();
+  }
+
+  getCommands () {
+
+    return [
+      {
+        name: 'saveFile',
+        bindKey: {
+          win: 'Ctrl-s',
+          mac: 'Command-s',
+          sender: 'editor|cli'
+        },
+        exec: () => {
+          this.props.onSaveAction();
+        }
+      }, {
+        name: 'runAction',
+        bindKey: {
+          win: 'Ctrl-Enter',
+          mac: 'Command-Enter',
+          sender: 'editor|cli'
+        },
+        exec: () => {
+          this.props.onSaveAction();
+        }
+      }
+    ];
+  }
+
   getType (tab) {
     const typeMap = {
       js: 'javascript'
@@ -37,6 +69,7 @@ export class Editor extends React.Component {
           name={`editor-${this.props.active.get('name')}`}
           editorProps={{$blockScrolling: true}}
           value={this.props.active.get('content')}
+          commands={this.commands}
         />
       </div>
     );
@@ -51,6 +84,7 @@ Editor.propTypes = {
     name: React.PropTypes.string.isRequired,
     content: React.PropTypes.string.isRequired
   }),
+  onSaveAction: React.PropTypes.func.isRequired,
   onTabChange: React.PropTypes.func.isRequired,
   onTabContentChange: React.PropTypes.func.isRequired
 };
