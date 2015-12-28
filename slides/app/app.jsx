@@ -19,7 +19,8 @@ const previews = getAsMap('xp-preview', getPreviewState);
 
 const store = Store({
   editors: editors,
-  previews: previews
+  previews: previews,
+  runServerUrl: 'http://localhost:3030'
 });
 
 renderComponents(editors, EditorWrapper, 'editorId');

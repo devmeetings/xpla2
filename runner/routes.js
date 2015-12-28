@@ -51,10 +51,7 @@ module.exports = [
       },
       handler: (req, reply) => {
         codeApi.commitAndRunCode(req.payload)
-          .then((d) => {
-            const runId = d.runId;
-            reply().redirect(`/api/results/${runId}/`);
-          })
+          .then(reply)
           .catch((e) => handleError(e, reply));
       }
     }
@@ -67,10 +64,7 @@ module.exports = [
         commitId: req.params.commitId,
         runnerName: req.params.runnerName
       })
-        .then((d) => {
-          const runId = d.runId;
-          reply().redirect(`/api/results/${runId}/`);
-        })
+        .then(reply)
         .catch((e) => handleError(e, reply));
     }
   },

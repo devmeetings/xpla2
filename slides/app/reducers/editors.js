@@ -1,15 +1,10 @@
 import {CHANGE_ACTIVE_TAB, MODIFY_ACTIVE_TAB_CONTENT} from '../actions';
 import {createReducer} from 'redux-immutablejs';
-import {List} from 'immutable';
+import {Map} from 'immutable';
 
-function findEditorFileByName (editor, tabName) {
-  const activeFile = editor.get('files').findEntry((file) => {
-    return file.get('name') === tabName;
-  });
-  return activeFile;
-}
+import {findEditorFileByName, getFilesWithActive} from '../reducers.utils/editors';
 
-export default createReducer(List([]), {
+export default createReducer(Map({}), {
   [CHANGE_ACTIVE_TAB]: (editors, action) => {
     const editorId = action.payload.editorId;
     const tabName = action.payload.tabName;
@@ -17,14 +12,11 @@ export default createReducer(List([]), {
     const editor = editors.get(editorId);
     const activeFile = findEditorFileByName(editor, tabName)[1];
 
-    const previouslyActiveFile = editor.get('active');
-    const idx = findEditorFileByName(editor, previouslyActiveFile.get('name'))[0];
-
     const newEditor = editor
       // update active
       .set('active', activeFile)
       // resync files array
-      .set('files', editor.get('files').set(idx, previouslyActiveFile));
+      .set('files', getFilesWithActive(editor));
 
     return editors.set(editorId, newEditor);
   },
