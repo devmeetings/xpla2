@@ -8,8 +8,8 @@
       <link type="text/css" rel="stylesheet" media="all" href="css/slide.<%= version %>.css" />
     <% } %>
   </head>
-  <body>
-    <div style="width:40%; float:left">
+  <body class="xp-slide">
+    <div class="xp-column" style="width:50%">
       <xp-editor>
         <script id="index.html" type="text/html">
           <html>
@@ -30,7 +30,7 @@
         </script>
       </xp-editor>
     </div>
-    <div style="width:50%; float:right">
+    <div class="xp-column" style="width:50%">
       <xp-preview runner="html"></xp-preview>
     </div>
     <script src="js/slide.<%= version %>.js"></script>

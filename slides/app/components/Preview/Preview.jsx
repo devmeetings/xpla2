@@ -4,6 +4,8 @@ import Props from 'react-immutable-proptypes';
 
 import {HtmlResult} from '../HtmlResult/HtmlResult';
 
+import styles from './Preview.scss';
+
 export class Preview extends React.Component {
 
   renderResultWindow () {
@@ -24,8 +26,9 @@ export class Preview extends React.Component {
 
   render () {
     return (
-      <div>
-        {this.renderResultWindow()}
+      <div
+        className={styles.preview}
+        >
         <button
           disabled={this.props.isLoading}
           onClick={this.props.onRun}
@@ -33,6 +36,7 @@ export class Preview extends React.Component {
           Run
         </button>
         RunId {this.props.runId}
+        {this.renderResultWindow()}
       </div>
     );
   }

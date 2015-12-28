@@ -11,6 +11,8 @@ import {getPreviewState} from '../components/read/PreviewState';
 import EditorWrapper from '../containers/EditorWrapper';
 import PreviewWrapper from '../containers/PreviewWrapper';
 
+import './slide.scss';
+
 export function initializeSlide(dom, runServerUrl) {
   if (!dom) {
     throw new Error('Provide DOM element!');

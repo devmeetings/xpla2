@@ -8,6 +8,8 @@ import * as DeckActions from '../actions/deck';
 import {ActiveSlide} from '../components/ActiveSlide/ActiveSlide';
 import {SlidesList} from '../components/SlidesList/SlidesList';
 
+import styles from './DeckWrapper.scss';
+
 class DeckContainer extends React.Component {
 
   onSlideChange (slide) {
@@ -18,7 +20,9 @@ class DeckContainer extends React.Component {
 
   render () {
     return (
-      <div>
+      <div
+        className={styles.deck}
+        >
         <ActiveSlide
           runServerUrl={this.props.runServerUrl}
           slide={this.props.activeSlide.get('content')}

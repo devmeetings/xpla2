@@ -1,0 +1,20 @@
+:global {
+  .xp-slide {
+    height: 100%;
+    min-height: 90vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+
+
+    .xp-column {
+      float: left;
+      display: inline-block;
+      width: 50%;
+      height: 100%;
+      position: relative;
+    }
+  }
+}

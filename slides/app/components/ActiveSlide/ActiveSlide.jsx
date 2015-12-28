@@ -4,6 +4,8 @@ import Props from 'react-immutable-proptypes';
 
 import {initializeSlide} from '../../slide/slide';
 
+import styles from './ActiveSlide.scss';
+
 export class ActiveSlide extends React.Component {
 
   componentDidMount () {
@@ -23,10 +25,11 @@ export class ActiveSlide extends React.Component {
     const clone = props.slide.cloneNode(true);
     this._element.appendChild(clone);
     // Initialize slide content
-    initializeSlide(this._element, props.runServerUrl);
+    this._destroyPreviousSlide = initializeSlide(this._element, props.runServerUrl);
   }
 
   removeDomNode () {
+    this._destroyPreviousSlide();
     while (this._element.hasChildNodes()) {
       this._element.removeChild(this._element.childNodes[0]);
     }
@@ -34,7 +37,10 @@ export class ActiveSlide extends React.Component {
 
   render () {
     return (
-      <div ref={(c) => this._element = c}></div>
+      <div
+        className={styles.slide}
+        ref={(c) => this._element = c}>
+      </div>
     );
   }
 }

@@ -2,6 +2,8 @@ import React from 'react';
 import _ from 'lodash';
 import Props from 'react-immutable-proptypes';
 
+import styles from './HtmlResult.scss';
+
 export class HtmlResult extends React.Component {
 
   render () {
@@ -10,6 +12,7 @@ export class HtmlResult extends React.Component {
 
     return (
       <iframe
+        className={styles.result}
         src={`${runServerUrl}/api/results/${runId}/`}
         seamless
         ></iframe>

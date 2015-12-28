@@ -9,6 +9,8 @@ import 'brace/mode/html';
 import 'brace/mode/javascript';
 import 'brace/theme/github';
 
+import styles from './Editor.scss';
+
 export class Editor extends React.Component {
 
   constructor (...args) {
@@ -56,8 +58,14 @@ export class Editor extends React.Component {
   }
 
   render () {
+    if (!this.props.active) {
+      return;
+    }
+
     return (
-      <div>
+      <div
+        className={styles.editor}
+        >
         <FileTabs
           files={this.props.files}
           onChange={this.props.onTabChange}
@@ -70,6 +78,8 @@ export class Editor extends React.Component {
           editorProps={{$blockScrolling: true}}
           value={this.props.active.get('content')}
           commands={this.commands}
+          width='100%'
+          height='100%'
         />
       </div>
     );

@@ -2,15 +2,16 @@ import React from 'react';
 import _ from 'lodash';
 import Props from 'react-immutable-proptypes';
 
+import styles from './SlidesList.scss';
+
+
 export class SlidesList extends React.Component {
 
   renderSlides () {
     return this.props.slides.map((slide) => {
       return (
         <li
-          style={{
-            display: 'inline-block'
-          }}
+          className={styles.item}
           key={slide.get('id')}
         >
           <a onClick={this.props.onSlideChange.bind(this, slide)}>
@@ -23,12 +24,9 @@ export class SlidesList extends React.Component {
 
   render () {
     return (
-      <ul style={{
-        position: 'fixed',
-        bottom: 0,
-        left: 0,
-        right: 0
-      }}>
+      <ul
+        className={styles.list}
+      >
         {this.renderSlides()}
       </ul>
     );
