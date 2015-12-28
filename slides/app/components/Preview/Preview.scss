@@ -1,7 +1,22 @@
+@import '../vars';
+
 .preview {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+}
+.runButton {
+  box-sizing: border-box;
+  border: none;
+  background: $brand-primary;
+  color: $color-inverse;
+  padding: $padding;
+  height: $previewbar-height;
+  transition: background $transition;
+
+  &:hover {
+    background: $brand-primary-light;
+  }
 }

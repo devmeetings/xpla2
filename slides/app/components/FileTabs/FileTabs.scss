@@ -1,0 +1,25 @@
+@import '../vars.scss';
+
+.tabs {
+}
+.tab, .tabActive {
+  box-sizing: border-box;
+  display: inline-block;
+  height: $filetabs-height;
+  line-height: $filetabs-height - 2*$padding;
+
+  padding: $padding;
+  padding-bottom: $padding - $border;
+  border-bottom: $border solid transparent;
+
+  transition: border $transition;
+
+  cursor: pointer;
+  &:hover {
+    border-color: $brand-primary-light;
+  }
+}
+
+.tabActive {
+  border-color: $brand-primary;
+}

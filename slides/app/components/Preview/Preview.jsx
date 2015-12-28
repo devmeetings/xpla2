@@ -30,6 +30,7 @@ export class Preview extends React.Component {
         className={styles.preview}
         >
         <button
+          className={styles.runButton}
           disabled={this.props.isLoading}
           onClick={this.props.onRun}
           >

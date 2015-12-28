@@ -1,6 +1,10 @@
+@import '../vars.scss';
+
 .result {
+  box-sizing: border-box;
   width: 100%;
-  height: 100%;
+  height: calc(100% - $previewbar-height);
   border: none;
+  border-left: 1px solid $brand-primary-light;
   background: none;
 }

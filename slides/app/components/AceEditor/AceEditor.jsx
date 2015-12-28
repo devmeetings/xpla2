@@ -173,7 +173,7 @@ AceEditor.defaultProps = {
   maxLines: null,
   readOnly: false,
   highlightActiveLine: true,
-  showPrintMargin: true,
+  showPrintMargin: false,
   tabSize: 4,
   cursorStart: 1,
   editorProps: {},

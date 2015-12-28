@@ -1,7 +1,9 @@
+@import '../vars.scss';
+
 .slide {
   position: absolute;
   top: 0;
-  bottom: 0;
+  bottom: $slideslist-height;
   left: 0;
   right: 0;
   overflow: auto;

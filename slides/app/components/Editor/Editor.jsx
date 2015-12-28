@@ -67,6 +67,7 @@ export class Editor extends React.Component {
         className={styles.editor}
         >
         <FileTabs
+          active={this.props.active}
           files={this.props.files}
           onChange={this.props.onTabChange}
           />
@@ -79,7 +80,7 @@ export class Editor extends React.Component {
           value={this.props.active.get('content')}
           commands={this.commands}
           width='100%'
-          height='100%'
+          height='calc(100% - 30px)'
         />
       </div>
     );
