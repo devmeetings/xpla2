@@ -12,18 +12,18 @@ var TEST = process.env.NODE_ENV === 'test';
 var jsBundle = path.join('js', util.format('[name].%s.js', pkg.version));
 
 var entry = {
-  app: ['./app.jsx']
+  slide: ['./slide.jsx']
 };
 
 if (DEBUG) {
-  entry.app.push(
+  entry.slide.push(
     util.format(
       'webpack-dev-server/client?http://%s:%d',
       pkg.config.devHost,
       pkg.config.devPort
     )
   );
-  entry.app.push('webpack/hot/dev-server');
+  entry.slide.push('webpack/hot/dev-server');
 }
 
 var config = {
