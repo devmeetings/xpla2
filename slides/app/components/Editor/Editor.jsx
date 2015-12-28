@@ -2,8 +2,8 @@ import React from 'react';
 import _ from 'lodash';
 import Props from 'react-immutable-proptypes';
 
-import {AceEditor} from './AceEditor';
-import {FileTabs} from './FileTabs';
+import {AceEditor} from '../AceEditor/AceEditor';
+import {FileTabs} from '../FileTabs/FileTabs';
 
 import 'brace/mode/html';
 import 'brace/mode/javascript';

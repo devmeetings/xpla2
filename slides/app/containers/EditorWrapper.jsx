@@ -5,7 +5,7 @@ import Props from 'react-immutable-proptypes';
 
 import * as EditorActions from '../actions/editor';
 
-import {Editor} from '../components/Editor';
+import {Editor} from '../components/Editor/Editor';
 
 class EditorContainer extends React.Component {
 

@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import Props from 'react-immutable-proptypes';
 
-import {initializeSlide} from '../slide/slide';
+import {initializeSlide} from '../../slide/slide';
 
 export class ActiveSlide extends React.Component {
 

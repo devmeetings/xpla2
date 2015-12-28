@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Props from 'react-immutable-proptypes';
 
-import {Preview} from '../components/Preview';
+import {Preview} from '../components/Preview/Preview';
 
 import {getFilesWithActive} from '../reducers.utils/editors';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import Props from 'react-immutable-proptypes';
 
-import {HtmlResult} from './HtmlResult';
+import {HtmlResult} from '../HtmlResult/HtmlResult';
 
 export class Preview extends React.Component {
 
@@ -25,6 +25,7 @@ export class Preview extends React.Component {
   render () {
     return (
       <div>
+        {this.renderResultWindow()}
         <button
           disabled={this.props.isLoading}
           onClick={this.props.onRun}
@@ -32,7 +33,6 @@ export class Preview extends React.Component {
           Run
         </button>
         RunId {this.props.runId}
-        {this.renderResultWindow()}
       </div>
     );
   }

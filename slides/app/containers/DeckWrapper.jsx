@@ -5,8 +5,8 @@ import Props from 'react-immutable-proptypes';
 
 import * as DeckActions from '../actions/deck';
 
-import {ActiveSlide} from '../components/ActiveSlide';
-import {SlidesList} from '../components/SlidesList';
+import {ActiveSlide} from '../components/ActiveSlide/ActiveSlide';
+import {SlidesList} from '../components/SlidesList/SlidesList';
 
 class DeckContainer extends React.Component {
 
