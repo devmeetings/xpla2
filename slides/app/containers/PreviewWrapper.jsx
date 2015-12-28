@@ -18,10 +18,19 @@ class PreviewContainer extends React.Component {
 
   componentDidMount () {
     this.props.globalEvents.on('preview.run', this.onGlobalRun);
+    this.triggerRunOnStart();
   }
 
   componentWillUnmount () {
     this.props.globalEvents.off('preview.run', this.onGlobalRun);
+  }
+
+  triggerRunOnStart () {
+    const preview = this.props.previews.get(this.props.previewId);
+    if (!preview.get('runOnStart')) {
+      return;
+    }
+    this.onGlobalRun();
   }
 
   onGlobalRun () {
