@@ -11,22 +11,17 @@
   <body class="xp-slide">
     <div class="xp-column" style="width:40%">
       <xp-editor>
-        <script id="index.html" type="text/html">
-          <html>
-            <head>
-              <meta charset="utf-8">
-              <meta name="viewport" content="width=device-width">
-              <title>Slide 2</title>
-            </head>
-            <body>
-              <h1>Slide 2</h1>
-            </body>
-          </html>
+        <script id="main.java" type="application/java">
+          public class Main {
+            public static void main(String[] argv) {
+              System.out.println("Test!");
+            }
+          }
         </script>
       </xp-editor>
     </div>
     <div class="xp-column" style="width:50%; float:right">
-      <xp-preview runner="html"></xp-preview>
+      <xp-preview runner="java"></xp-preview>
     </div>
     <script src="js/slide.<%= version %>.js"></script>
   </body>

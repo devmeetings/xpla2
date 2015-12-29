@@ -7,6 +7,8 @@ import {FileTabs} from '../FileTabs/FileTabs';
 
 import 'brace/mode/html';
 import 'brace/mode/javascript';
+import 'brace/mode/java';
+import 'brace/mode/python';
 import 'brace/theme/github';
 
 import styles from './Editor.scss';

@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const commits = require('../storage/commits');
 const runs = require('../storage/runs');
-const runners = require('../runners/runners');
+const runners = require('../runners/workers');
 const mimetypes = require('mime-types');
 
 function addMimetype (file) {

@@ -6,6 +6,7 @@ function handleError (e, reply) {
   if (e.code === 404) {
     return reply(e.toString()).code(404);
   }
+  reply(e.toString).code(500);
   throw e;
 }
 
@@ -42,7 +43,7 @@ module.exports = [
     config: {
       validate: {
         payload: {
-          runnerName: Joi.string().required(),
+          runnerName: runnerSchema(),
           files: Joi.array().items(Joi.object({
             name: Joi.string().required(),
             content: Joi.string().required()
@@ -59,18 +60,26 @@ module.exports = [
   {
     method: 'POST',
     path: '/api/commits/{commitId}/run/{runnerName}',
-    handler: (req, reply) => {
-      codeApi.runCode({
-        commitId: req.params.commitId,
-        runnerName: req.params.runnerName
-      })
-        .then(reply)
-        .catch((e) => handleError(e, reply));
+    config: {
+      validate: {
+        params: {
+          commitId: Joi.string().required(),
+          runnerName: runnerSchema()
+        }
+      },
+      handler: (req, reply) => {
+        codeApi.runCode({
+          commitId: req.params.commitId,
+          runnerName: req.params.runnerName
+        })
+          .then(reply)
+          .catch((e) => handleError(e, reply));
+      }
     }
   },
   {
     method: 'GET',
-    path: '/api/results/{runId}/{fileName?}',
+    path: '/api/results/{runId}/{fileName*}',
     handler: (req, reply) => {
       resultsApi.getFile({
         runId: req.params.runId,
@@ -83,3 +92,7 @@ module.exports = [
     }
   }
 ];
+
+function runnerSchema () {
+  return Joi.any().valid('java', 'html').required()
+}
