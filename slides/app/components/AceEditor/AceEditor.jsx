@@ -180,7 +180,7 @@ AceEditor.defaultProps = {
   height: '500px',
   width: '500px',
   value: '',
-  fontSize: 12,
+  fontSize: 14,
   showGutter: true,
   onChange: null,
   onPaste: null,

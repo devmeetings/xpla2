@@ -3,7 +3,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Props from 'react-immutable-proptypes';
 
+import {WORK_MODE_DECK_EDIT} from '../reducers.utils/workMode';
+
 import * as EditorActions from '../actions/editor';
+import * as WorkModeActions from '../actions/workMode';
 
 import {Editor} from '../components/Editor/Editor';
 
@@ -23,8 +26,19 @@ class EditorContainer extends React.Component {
     });
   }
 
-  saveCode = (data) => {
+  saveAndRunOrSaveSlide = (data) => {
+    if (this.props.workMode === WORK_MODE_DECK_EDIT) {
+      this.props.actionsWorkMode.saveCurrentSlide();
+    }
+    this.saveAndRunCode(data);
+  }
+
+  saveAndRunCode = (data) => {
     this.props.globalEvents.emit('preview.run', data);
+  }
+
+  toggleWorkMode = () => {
+    this.props.actionsWorkMode.workModeDeckEditToggle();
   }
 
   render () {
@@ -35,9 +49,12 @@ class EditorContainer extends React.Component {
       <Editor
         key={id}
         id={id}
+        workMode={this.props.workMode}
         files={editor.get('files')}
         active={editor.get('active')}
-        onSaveAction={this.saveCode}
+        onSaveAction={this.saveAndRunOrSaveSlide}
+        onRunAction={this.saveAndRunCode}
+        onWorkModeToggle={this.toggleWorkMode}
         onTabChange={this.changeTab}
         onTabContentChange={this.changeTabContent}
         />
@@ -47,7 +64,8 @@ class EditorContainer extends React.Component {
 }
 
 EditorContainer.propTypes = {
-  editorId: React.PropTypes.string,
+  editorId: React.PropTypes.string.isRequired,
+  workMode: React.PropTypes.string.isRequired,
   editors: Props.map.isRequired,
   actions: React.PropTypes.shape({
     changeActiveTab: React.PropTypes.func.isRequired,
@@ -58,10 +76,12 @@ EditorContainer.propTypes = {
 
 @connect(
   state => ({
-    editors: state.get('editors')
+    editors: state.get('editors'),
+    workMode: state.get('workMode').get('current')
   }),
   dispatch => ({
-    actions: bindActionCreators(EditorActions, dispatch)
+    actions: bindActionCreators(EditorActions, dispatch),
+    actionsWorkMode: bindActionCreators(WorkModeActions, dispatch)
   })
 )
 export default class EditorContainerWrapper extends React.Component {

@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import {fromJS} from 'immutable';
 
 import reducers from './reducers';
+import globalReducer from './reducers/global/index';
 
 export default function (initialState) {
 
@@ -20,7 +21,10 @@ export default function (initialState) {
     )(
       createStore
     )(
-      reducer,
+      (state, action) => {
+        const newState = reducer(state, action);
+        return globalReducer(newState, action);
+      },
       fromJS(initialState)
     );
 }

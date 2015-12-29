@@ -43,7 +43,17 @@ export class Editor extends React.Component {
           sender: 'editor|cli'
         },
         exec: () => {
-          this.props.onSaveAction();
+          this.props.onRunAction();
+        }
+      }, {
+        name: 'toggleWorkModeAction',
+        bindKey: {
+          win: 'Ctrl-p',
+          mac: 'Command-p',
+          sender: 'editor|cli'
+        },
+        exec: () => {
+          this.props.onWorkModeToggle();
         }
       }
     ];
@@ -124,7 +134,10 @@ Editor.propTypes = {
     name: React.PropTypes.string.isRequired,
     content: React.PropTypes.string.isRequired
   }),
+  workMode: React.PropTypes.string,
+  onWorkModeToggle: React.PropTypes.func.isRequired,
   onSaveAction: React.PropTypes.func.isRequired,
+  onRunAction: React.PropTypes.func.isRequired,
   onTabChange: React.PropTypes.func.isRequired,
   onTabContentChange: React.PropTypes.func.isRequired
 };
