@@ -41,7 +41,8 @@ function generateSlide (state, slideName) {
       _.values(state.editors).map((editor, idx) => {
         const $editor = clone.querySelectorAll(`xp-editor`)[idx];
         $editor.innerHTML =  editor.files.map((file) => {
-          return `<script id="${file.name}" type="application/octetstream">\n${file.content}\n</script>`;
+          const content = fixPossibleScriptTags(file.content);
+          return `<script id="${file.name}" type="application/octetstream">\n${content}\n</script>`;
         }).join('\n');
       });
 
@@ -52,6 +53,10 @@ function generateSlide (state, slideName) {
     };
     document.head.appendChild(link);
   });
+}
+
+function fixPossibleScriptTags (val) {
+  return val.replace(/<\/script>/gi, '<+/script>');
 }
 
 function saveFile (content, fileName) {

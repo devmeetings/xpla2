@@ -13,18 +13,23 @@ function trim (val) {
     .replace(/\s+$/, '');
 }
 
+function fixPossibleScriptTags (val) {
+  return val
+    .replace(/<.\/script>/gi, '</script>');
+}
+
 // We will first read the configuration to use right components
 export function getEditorState (dom) {
   const id = dom.id || randomId('editor');
   dom.id = id;
 
   const files = [].map.call(
-    dom.querySelectorAll('script'),
+    dom.querySelectorAll('template,script'),
     (tpl) => {
       // TODO support lazy loading templates
       return {
         name: tpl.id,
-        content: trim(tpl.innerHTML)
+        content: fixPossibleScriptTags(trim(tpl.innerHTML))
       };
     }
   );
