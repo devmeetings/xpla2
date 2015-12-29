@@ -36,7 +36,13 @@ export class Preview extends React.Component {
           >
           Run
         </button>
-        RunId {this.props.runId}
+        <a
+          target={'_blank'}
+          className={styles.runButton}
+          href={this.props.runServerUrl + '/api/results/' + this.props.runId + '/'}
+        >
+          &gt;
+        </a>
         {this.renderResultWindow()}
       </div>
     );
