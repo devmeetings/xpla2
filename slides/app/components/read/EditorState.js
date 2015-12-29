@@ -1,4 +1,5 @@
 import {randomId} from './utils';
+import fetch from 'isomorphic-fetch';
 
 function trim (val) {
   // Get initial tabulation size
@@ -26,16 +27,26 @@ export function getEditorState (dom) {
   const files = [].map.call(
     dom.querySelectorAll('template,script'),
     (tpl) => {
-      // TODO support lazy loading templates
-      return {
-        name: tpl.id,
-        content: fixPossibleScriptTags(trim(tpl.innerHTML))
-      };
+      if (!tpl.src) {
+        return Promise.resolve({
+          name: tpl.id,
+          content: fixPossibleScriptTags(trim(tpl.innerHTML))
+        });
+      }
+      return fetch(tpl.src)
+        .then((response) => response.text())
+        .then((content) => ({
+          name: tpl.id,
+          content
+        }));
     }
   );
-  return {
-    id: id,
-    files: files,
-    active: files[0]
-  };
+
+  return Promise.all(files).then((filesResolved) => {
+    return {
+      id: id,
+      files: filesResolved,
+      active: filesResolved[0]
+    };
+  });
 }

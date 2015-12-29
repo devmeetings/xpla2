@@ -9,6 +9,7 @@ import styles from './ActiveSlide.scss';
 export class ActiveSlide extends React.Component {
 
   componentDidMount () {
+    this._destroyPreviousSlide = () => {};
     this.renderDomNode(this.props);
   }
 
@@ -25,7 +26,9 @@ export class ActiveSlide extends React.Component {
     const clone = props.slide.cloneNode(true);
     this._element.appendChild(clone);
     // Initialize slide content
-    this._destroyPreviousSlide = initializeSlide(this._element, props.runServerUrl);
+    initializeSlide(this._element, props.runServerUrl).then((destroy) => {
+      this._destroyPreviousSlide = destroy;
+    });
   }
 
   removeDomNode () {

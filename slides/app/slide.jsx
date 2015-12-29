@@ -8,7 +8,7 @@ import {initializeSlide} from './slide/slide';
 
 import {getRunServerUrl} from './components/read/RunServerUrlState';
 const runServerUrl = getRunServerUrl(document.querySelector('html'));
-initializeSlide(document.body, runServerUrl);
+initializeSlide(document.body, runServerUrl).catch((e) => console.error(e));
 
 if (!document.querySelector('xp-deck')) {
   // To support saving on slide and on deck we need to to this:

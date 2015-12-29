@@ -22,22 +22,29 @@ export function initializeSlide(dom, runServerUrl) {
     throw new Error('RunServerUrl is missing.');
   }
 
-  const editors = getAsMap(dom, 'xp-editor', getEditorState);
-  const previews = getAsMap(dom, 'xp-preview', getPreviewState);
+  const editorsP = getAsMap(dom, 'xp-editor', getEditorState);
+  const previewsP = getAsMap(dom, 'xp-preview', getPreviewState);
 
-  const store = Store({
-    editors, previews, runServerUrl
-  });
-  const globalEvents = new EventEmitter({});
+  return Promise.all([editorsP, previewsP])
+    .then((a) => {
+      const [editors, previews] = a;
 
-  const $editors = renderComponents(dom, globalEvents, store, editors, EditorWrapper, 'editorId');
-  const $previews = renderComponents(dom, globalEvents, store, previews, PreviewWrapper, 'previewId');
+      console.log(editors, previews);
+      const store = Store({
+        editors, previews, runServerUrl
+      });
 
-  return destroyFunction(
-    []
-    .concat($editors)
-    .concat($previews)
-  );
+      const globalEvents = new EventEmitter({});
+
+      const $editors = renderComponents(dom, globalEvents, store, editors, EditorWrapper, 'editorId');
+      const $previews = renderComponents(dom, globalEvents, store, previews, PreviewWrapper, 'previewId');
+
+      return destroyFunction(
+        []
+        .concat($editors)
+        .concat($previews)
+      );
+    });
 }
 
 function destroyFunction ($elems) {
@@ -50,10 +57,11 @@ function getAsMap (dom, query, mapper) {
   const elems = _
     .chain(dom.querySelectorAll(query))
     .map(mapper)
-    .indexBy('id')
     .value();
 
-  return elems;
+  return Promise.all(elems).then((elemsResolved) => {
+    return _.indexBy(elemsResolved, 'id');
+  });
 }
 
 function renderComponents (dom, globalEvents, store, elems, Component, propName) {
