@@ -6,6 +6,9 @@ export function saveSlide (state, action) {
   const currentNumber = lastNumber + 1;
 
   const slideName = window.prompt('Slide title');
+  if (!slideName) {
+    return state;
+  }
 
   generateSlide(state.toJS(), slideName)
     .then((slideContent) => {
@@ -35,10 +38,10 @@ function generateSlide (state, slideName) {
       const clone = link.import.querySelector('html').cloneNode(true);
 
       // Fill in the editors
-      _.values(state.editors).map((editor) => {
-        const $editor = clone.querySelector(`xp-editor`);
+      _.values(state.editors).map((editor, idx) => {
+        const $editor = clone.querySelectorAll(`xp-editor`)[idx];
         $editor.innerHTML =  editor.files.map((file) => {
-          return `<script id="${file.name}">\n${file.content}\n</script>`;
+          return `<script id="${file.name}" type="application/octetstream">\n${file.content}\n</script>`;
         }).join('\n');
       });
 

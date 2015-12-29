@@ -17,6 +17,7 @@ export function initializeSlide(dom, runServerUrl) {
   if (!dom) {
     throw new Error('Provide DOM element!');
   }
+
   if (!runServerUrl) {
     throw new Error('RunServerUrl is missing.');
   }
