@@ -2,6 +2,8 @@ import React from 'react';
 import _ from 'lodash';
 import Props from 'react-immutable-proptypes';
 
+import {EditSession} from 'brace';
+
 import {AceEditor} from '../AceEditor/AceEditor';
 import {FileTabs} from '../FileTabs/FileTabs';
 
@@ -18,10 +20,10 @@ export class Editor extends React.Component {
   constructor (...args) {
     super(...args);
     this.commands = this.getCommands();
+    this.state = {};
   }
 
   getCommands () {
-
     return [
       {
         name: 'saveFile',
@@ -59,11 +61,38 @@ export class Editor extends React.Component {
     return typeMap[type] || type;
   }
 
+  componentWillMount () {
+    this.createActiveEditorSession(this.props);
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.active === this.props.active) {
+      return;
+    }
+
+    const name = nextProps.active.get('name');
+    if (!this.state[name]) {
+      this.createActiveEditorSession(nextProps);
+    }
+  }
+
+  createActiveEditorSession (props) {
+    const mode = this.getType(props.active);
+    const name = props.active.get('name');
+    const content = props.active.get('content');
+
+    this.setState({
+      [name]: new EditSession(content, `ace/mode/${mode}`)
+    });
+  }
+
   render () {
     if (!this.props.active) {
       return;
     }
 
+    const name = this.props.active.get('name');
+    const session = this.state[name];
     return (
       <div
         className={styles.editor}
@@ -74,12 +103,10 @@ export class Editor extends React.Component {
           onChange={this.props.onTabChange}
           />
         <AceEditor
-          mode={this.getType(this.props.active)}
           theme='github'
           onChange={this.props.onTabContentChange}
-          name={`editor-${this.props.active.get('name')}`}
-          editorProps={{$blockScrolling: true}}
-          value={this.props.active.get('content')}
+          name={`editor-${name}`}
+          session={session}
           commands={this.commands}
           width='100%'
           height='calc(100% - 30px)'

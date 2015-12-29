@@ -41,13 +41,18 @@ export class AceEditor extends React.Component {
       this.editor[editorProps[i]] = this.props.editorProps[editorProps[i]];
     }
 
+    if (this.props.mode) {
+      this.editor.getSession().setMode('ace/mode/' + this.props.mode);
+    }
+
     this.editor.$blockScrolling = Infinity;
-    this.editor.getSession().setMode('ace/mode/' + this.props.mode);
     this.editor.setTheme('ace/theme/' + this.props.theme);
     this.editor.setFontSize(this.props.fontSize);
-    this.editor.setValue(this.props.value, this.props.cursorStart);
-    this.editor.renderer.setShowGutter(this.props.showGutter);
+    if (this.props.value !== undefined) {
+      this.editor.setValue(this.props.value, this.props.cursorStart);
+    }
     this.editor.getSession().setUseWrapMode(this.props.wrapEnabled);
+    this.editor.renderer.setShowGutter(this.props.showGutter);
     this.editor.setOption('maxLines', this.props.maxLines);
     this.editor.setOption('readOnly', this.props.readOnly);
     this.editor.setOption('highlightActiveLine', this.props.highlightActiveLine);
@@ -58,6 +63,10 @@ export class AceEditor extends React.Component {
     this.editor.on('copy', this.onCopy.bind(this));
     this.editor.on('paste', this.onPaste.bind(this));
     this.editor.on('change', this.onChange.bind(this));
+
+    if (this.props.session) {
+      this.editor.setSession(this.props.session);
+    }
 
     if (this.props.commands) {
       this.props.commands.map((action) => {
@@ -72,6 +81,7 @@ export class AceEditor extends React.Component {
     if (this.props.onLoad) {
       this.props.onLoad(this.editor);
     }
+    this.editor.focus();
   }
 
   componentWillUnmount () {
@@ -79,9 +89,6 @@ export class AceEditor extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.mode !== this.props.mode) {
-      this.editor.getSession().setMode('ace/mode/' + nextProps.mode);
-    }
     if (nextProps.theme !== this.props.theme) {
       this.editor.setTheme('ace/theme/' + nextProps.theme);
     }
@@ -106,11 +113,19 @@ export class AceEditor extends React.Component {
     if (nextProps.showGutter !== this.props.showGutter) {
       this.editor.renderer.setShowGutter(nextProps.showGutter);
     }
-    if (this.editor.getValue() !== nextProps.value) {
-      // editor.setValue is a synchronous function call, change event is emitted before setValue return.
-      this.silent = true;
-      this.editor.setValue(nextProps.value, nextProps.cursorStart);
-      this.silent = false;
+    if (!nextProps.session) {
+      if (nextProps.mode !== this.props.mode) {
+        this.editor.getSession().setMode('ace/mode/' + nextProps.mode);
+      }
+      if (this.editor.getValue() !== nextProps.value) {
+        // editor.setValue is a synchronous function call, change event is emitted before setValue return.
+        this.silent = true;
+        this.editor.setValue(nextProps.value, nextProps.cursorStart);
+        this.silent = false;
+      }
+    } else if (nextProps.session !== this.props.session) {
+      this.editor.setSession(nextProps.session);
+      this.editor.focus();
     }
   }
 
