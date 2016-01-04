@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import fetch from 'isomorphic-fetch';
 
+import logger from '../../components/logger';
+
 export function saveSlide (state, action) {
   const lastNumber = state.get('lastGeneratedSlideNumber') || 1;
   const currentNumber = lastNumber + 1;
@@ -15,7 +17,7 @@ export function saveSlide (state, action) {
       saveFile(slideContent, convertToFileName(slideName, currentNumber));
     })
     .catch((e) => {
-      console.error(e);
+      logger.error(e);
       alert('Unable to fetch & save slide');
     });
 

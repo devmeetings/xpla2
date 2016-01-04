@@ -4,6 +4,8 @@ import thunk from 'redux-thunk';
 
 import {fromJS} from 'immutable';
 
+import logger from './components/logger';
+
 import reducers from './reducers';
 import globalReducer from './reducers/global/index';
 
@@ -14,8 +16,8 @@ export default function (initialState) {
   return applyMiddleware(
       thunk,
       (store) => (next) => (action) => {
-        console.log(store.getState().toJS());
-        console.log(action);
+        logger.log(store.getState().toJS());
+        logger.log(action);
         next(action);
       }
     )(

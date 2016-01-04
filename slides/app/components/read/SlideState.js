@@ -1,11 +1,12 @@
 import {randomId} from './utils';
+import logger from '../logger';
 
 export function getSlideState (dom) {
   const id = randomId(dom.href);
   dom.id = `slide_${id}`;
 
   if (!dom.import) {
-    console.error(dom);
+    logger.error(dom);
     throw new Error(`Unable to read slide at ${dom.href}`)
   }
 

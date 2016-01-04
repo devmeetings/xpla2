@@ -29,7 +29,6 @@ export function initializeSlide(dom, runServerUrl) {
     .then((a) => {
       const [editors, previews] = a;
 
-      console.log(editors, previews);
       const store = Store({
         editors, previews, runServerUrl
       });

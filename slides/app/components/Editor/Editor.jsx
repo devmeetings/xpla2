@@ -6,6 +6,9 @@ import {EditSession} from 'brace';
 
 import {AceEditor} from '../AceEditor/AceEditor';
 import {FileTabs} from '../FileTabs/FileTabs';
+import {ModeMenu} from '../ModeMenu/ModeMenu';
+
+import {WORK_MODE_DECK_EDIT} from '../../reducers.utils/workMode';
 
 import 'brace/mode/html';
 import 'brace/mode/javascript';
@@ -59,6 +62,10 @@ export class Editor extends React.Component {
     ];
   }
 
+  _isEditMode () {
+    return this.props.workMode === WORK_MODE_DECK_EDIT;
+  }
+
   getType (tab) {
     const typeMap = {
       js: 'javascript'
@@ -105,8 +112,11 @@ export class Editor extends React.Component {
     const session = this.state[name];
     return (
       <div
-        className={styles.editor}
+        className={this._isEditMode() ? styles.editorEdit : styles.editor}
         >
+        <ModeMenu
+          isEditMode={this._isEditMode()}
+          />
         <FileTabs
           active={this.props.active}
           files={this.props.files}
