@@ -3,9 +3,12 @@ const _ = require('lodash');
 const html = require('./workers/html');
 const java = require('./workers/java');
 const htmlTs = require('./workers/html-ts');
+const burger = require('./workers/burger');
+const python = require('./workers/python');
+const node = require('./workers/node');
 
 const runners = {
-  html, java,
+  html, java, burger, python, node,
   'html-ts': htmlTs
 };
 
