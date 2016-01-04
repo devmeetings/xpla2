@@ -80,11 +80,7 @@ function compileTsFilesAndGetOutputs (workspace) {
       inlineSources: true
     }
   );
-  let files = nonTsFiles.map((fileName) => ({
-    name: fileName,
-    content: workspace[fileName].content,
-    mimetype: workspace[fileName].mimetype
-  }));
+  let files = nonTsFiles.map((fileName) => workspace[fileName]);
   // Assuming this runs synchronously!
   const emitResult = program.emit(undefined, function (_fileName, _content) {
     files.push({

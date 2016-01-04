@@ -15,9 +15,11 @@ const runners = {
 function getRunner (runnerName) {
   return (code) => {
     const r = runners[runnerName](code);
+
     const oldFiles = _.values(code.files).map((file) => {
-      file.name = 'src/' + file.name;
-      return file;
+      const newFile = _.clone(file);
+      newFile.name = 'src/' + file.name;
+      return newFile;
     });
 
     // Add original files to result
