@@ -70,7 +70,8 @@ export class Editor extends React.Component {
   getType (tab) {
     const typeMap = {
       js: 'javascript',
-      ts: 'typescript'
+      ts: 'typescript',
+      py: 'python'
     };
 
     const name = tab.get('name');
