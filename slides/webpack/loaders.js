@@ -8,7 +8,7 @@ var TEST = process.env.NODE_ENV === 'test';
 var jsxLoader;
 var sassLoader;
 var cssLoader;
-var fileLoader = 'file-loader?name=[path][name].[ext]';
+var urlLoader = 'url-loader?name=[path][name].[ext]';
 var htmlLoader = [
   'file-loader?name=[path][name].[ext]',
   'template-html-loader?' + [
@@ -70,7 +70,7 @@ var loaders = [
   },
   {
     test: /\.jpe?g$|\.gif$|\.png$|\.ico|\.svg$|\.woff$|\.ttf$/,
-    loader: fileLoader
+    loader: urlLoader
   },
   {
     test: /\.json$/,

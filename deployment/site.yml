@@ -1,0 +1,10 @@
+---
+- hosts: xpla-runner
+  vars:
+    server_name: xpla.org
+    server_id: xpla
+    server_port: 3030
+    xplarunner_version: 'lastSuccessfulBuild'
+  roles:
+    - xpla-runner
+
