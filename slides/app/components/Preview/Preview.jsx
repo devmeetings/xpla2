@@ -6,6 +6,9 @@ import {HtmlResult} from '../HtmlResult/HtmlResult';
 
 import styles from './Preview.scss';
 
+import playIcon from './play2.svg';
+import newTabIcon from './new-tab.svg';
+
 export class Preview extends React.Component {
 
   renderResultWindow () {
@@ -37,14 +40,15 @@ export class Preview extends React.Component {
             disabled={this.props.isLoading}
             onClick={this.props.onRun}
             >
-            Run
+            <img src={playIcon} />
+            Run Code
           </button>
           <a
             target={'_blank'}
-            className={styles.runButton}
+            className={styles.newTabButton}
             href={this.props.runServerUrl + '/api/results/' + this.props.runId + '/'}
           >
-            &gt;
+            <img src={newTabIcon} />
           </a>
         </div>
         {this.renderResultWindow()}

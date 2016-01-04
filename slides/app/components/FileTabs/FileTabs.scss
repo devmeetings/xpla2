@@ -1,11 +1,13 @@
 @import '../vars.scss';
 
 .tabs {
+  border-bottom: $border-small solid $brand-primary;
 }
+
 .tab, .tabActive {
   box-sizing: border-box;
   display: inline-block;
-  height: $filetabs-height;
+  height: $filetabs-height - $border-small;
   line-height: $filetabs-height - 2*$padding;
 
   padding: $padding;

@@ -11,8 +11,10 @@
   position: absolute;
   top: 0;
   height: $previewbar-height;
+  left: 0;
+  right: 0;
 }
-.runButton {
+.runButton, .newTabButton {
   box-sizing: border-box;
   border: none;
   background: $brand-primary;
@@ -20,8 +22,22 @@
   padding: $padding;
   height: $previewbar-height;
   transition: background $transition;
+  display: inline-block;
+  text-decoration: none;
+  margin: 0;
+  vertical-align: top;
 
   &:hover {
     background: $brand-primary-light;
   }
+
+  img {
+    max-height: 100%;
+    max-width: 100%;
+    vertical-align: middle;
+    padding: 0 $padding;
+  }
+}
+.newTabButton {
+  float: right;
 }

@@ -70,6 +70,7 @@
     "opn": "^3.0.2",
     "phantomjs": "^1.9.17",
     "postcss-loader": "^0.5.1",
+    "raw-loader": "^0.5.1",
     "react-hot-loader": "^1.2.8",
     "rimraf": "^2.4.1",
     "sass-loader": "^1.0.2",

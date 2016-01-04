@@ -7,6 +7,6 @@
   width: 100%;
   height: calc(100% - #{$previewbar-height});
   border: none;
-  border-left: 1px solid $brand-primary-light;
+  border-left: $border-small solid $brand-primary-light;
   background: none;
 }
