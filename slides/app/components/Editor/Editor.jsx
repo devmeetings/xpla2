@@ -12,6 +12,7 @@ import {WORK_MODE_DECK_EDIT} from '../../reducers.utils/workMode';
 
 import 'brace/mode/html';
 import 'brace/mode/javascript';
+import 'brace/mode/typescript';
 import 'brace/mode/java';
 import 'brace/mode/python';
 import 'brace/theme/github';
@@ -68,7 +69,8 @@ export class Editor extends React.Component {
 
   getType (tab) {
     const typeMap = {
-      js: 'javascript'
+      js: 'javascript',
+      ts: 'typescript'
     };
 
     const name = tab.get('name');

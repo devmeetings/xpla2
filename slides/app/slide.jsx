@@ -3,6 +3,7 @@ import 'normalize.css/normalize.css';
 import './index.html';
 import './slide.html';
 import './slide1.html';
+import './slide-ts.html';
 
 import {initializeSlide} from './slide/slide';
 

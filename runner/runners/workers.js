@@ -1,12 +1,34 @@
+const _ = require('lodash');
+
 const html = require('./workers/html');
 const java = require('./workers/java');
+const htmlTs = require('./workers/html-ts');
+
+const runners = {
+  html, java,
+  'html-ts': htmlTs
+};
 
 function getRunner (runnerName) {
-  return {
-    html, java
-  }[runnerName];
+  return (code) => {
+    const r = runners[runnerName](code);
+    const oldFiles = _.values(code.files).map((file) => {
+      file.name = 'src/' + file.name;
+      return file;
+    });
+
+    // Add original files to result
+    return Promise.resolve(r).then((output) => {
+      output.files = _.indexBy(
+        output.files.concat(oldFiles),
+        'name'
+      );
+      return output;
+    });
+  };
 }
 
 module.exports = {
-  getRunner
+  getRunner,
+  runners
 };

@@ -29,20 +29,24 @@ export class Preview extends React.Component {
       <div
         className={styles.preview}
         >
-        <button
-          className={styles.runButton}
-          disabled={this.props.isLoading}
-          onClick={this.props.onRun}
+        <div
+          className={styles.previewBar}
           >
-          Run
-        </button>
-        <a
-          target={'_blank'}
-          className={styles.runButton}
-          href={this.props.runServerUrl + '/api/results/' + this.props.runId + '/'}
-        >
-          &gt;
-        </a>
+          <button
+            className={styles.runButton}
+            disabled={this.props.isLoading}
+            onClick={this.props.onRun}
+            >
+            Run
+          </button>
+          <a
+            target={'_blank'}
+            className={styles.runButton}
+            href={this.props.runServerUrl + '/api/results/' + this.props.runId + '/'}
+          >
+            &gt;
+          </a>
+        </div>
         {this.renderResultWindow()}
       </div>
     );

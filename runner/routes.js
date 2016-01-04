@@ -2,12 +2,16 @@ const Joi = require('joi');
 const codeApi = require('./api/code');
 const resultsApi = require('./api/results');
 
+const runners = Object.keys(require('./runners/workers').runners);
+
 function handleError (e, reply) {
   if (e.code === 404) {
     return reply(e.toString()).code(404);
   }
   reply(e.toString).code(500);
-  throw e;
+  setTimeout(() => {
+    throw e
+  });
 }
 
 module.exports = [
@@ -79,6 +83,20 @@ module.exports = [
   },
   {
     method: 'GET',
+    path: '/api/results/{runId}.json/{field?}',
+    handler: (req, reply) => {
+      resultsApi.getRaw({
+        runId: req.params.runId,
+        field: req.params.field
+      })
+        .then((file) => {
+          reply(file);
+        })
+        .catch((e) => handleError(e, reply));
+    }
+  },
+  {
+    method: 'GET',
     path: '/api/results/{runId}/{fileName*}',
     handler: (req, reply) => {
       resultsApi.getFile({
@@ -94,5 +112,5 @@ module.exports = [
 ];
 
 function runnerSchema () {
-  return Joi.any().valid('java', 'html').required()
+  return Joi.any().valid(runners).required()
 }

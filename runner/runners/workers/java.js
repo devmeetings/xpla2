@@ -14,22 +14,14 @@ module.exports = function (data) {
             ${getResultsAsHtml(outputData)}
             </body>
           </html>
-        `
+        `,
+        mimetype: 'text/html'
       }
     ];
 
-    const oldFiles = _.values(data.files).map((file) => {
-      file.name = 'src/' + file.name;
-      return file;
-    });
-
     return {
       success: outputData.success,
-      files: _.chain(
-          newFiles.concat(oldFiles)
-        )
-        .indexBy('name')
-        .value()
+      files: newFiles
     };
   });
 };

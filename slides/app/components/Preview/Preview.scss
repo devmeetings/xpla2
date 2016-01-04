@@ -7,6 +7,11 @@
   left: 0;
   right: 0;
 }
+.previewBar {
+  position: absolute;
+  top: 0;
+  height: $previewbar-height;
+}
 .runButton {
   box-sizing: border-box;
   border: none;
