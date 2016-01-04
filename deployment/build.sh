@@ -19,6 +19,6 @@ cd -
 echo '----------------------Molding----------------------------------'
 rm -rf runner/node_modules
 rm -rf static || true
-cp slides/build static
+cp slides/build static -r
 tar cvzf xplarunner.tar.gz runner static
 
