@@ -26,6 +26,12 @@ class EditorContainer extends React.Component {
     });
   }
 
+  saveWorkspaceAsZip = () => {
+    this.props.actions.saveWorkspaceAsZip({
+      editorId: this.props.editorId
+    });
+  }
+
   saveAndRunOrSaveSlide = (data) => {
     if (this.props.workMode === WORK_MODE_DECK_EDIT) {
       this.props.actionsWorkMode.saveCurrentSlide();
@@ -57,6 +63,7 @@ class EditorContainer extends React.Component {
         onWorkModeToggle={this.toggleWorkMode}
         onTabChange={this.changeTab}
         onTabContentChange={this.changeTabContent}
+        onSaveWorkspaceAsZipAction={this.saveWorkspaceAsZip}
         />
     );
   }

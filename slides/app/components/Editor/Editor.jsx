@@ -30,6 +30,17 @@ export class Editor extends React.Component {
   getCommands () {
     return [
       {
+        name: 'saveWorkspace',
+        bindKey: {
+          win: 'Ctrl-Shift-s',
+          mac: 'Command-Shift-s',
+          sender: 'editor|cli'
+        },
+        exec: () => {
+          this.props.onSaveWorkspaceAsZipAction();
+        }
+      },
+      {
         name: 'saveFile',
         bindKey: {
           win: 'Ctrl-s',
@@ -152,5 +163,6 @@ Editor.propTypes = {
   onSaveAction: React.PropTypes.func.isRequired,
   onRunAction: React.PropTypes.func.isRequired,
   onTabChange: React.PropTypes.func.isRequired,
-  onTabContentChange: React.PropTypes.func.isRequired
+  onTabContentChange: React.PropTypes.func.isRequired,
+  onSaveWorkspaceAsZipAction: React.PropTypes.func.isRequired
 };

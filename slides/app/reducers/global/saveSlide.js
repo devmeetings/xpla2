@@ -3,6 +3,8 @@ import fetch from 'isomorphic-fetch';
 
 import logger from '../../components/logger';
 
+import {saveFile} from './saveFile';
+
 export function saveSlide (state, action) {
   let lastNumber = state.get('lastGeneratedSlideNumber');
   if (!lastNumber) {
@@ -75,22 +77,6 @@ function generateSlide (state, slideName) {
 
 function fixPossibleScriptTags (val) {
   return val.replace(/<\/script>/gi, '<+/script>');
-}
-
-function saveFile (content, fileName) {
-  const blob = new Blob([content], {
-    type: 'application/html'
-  });
-  const url = window.URL.createObjectURL(blob);
-
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = fileName;
-
-  document.body.appendChild(a);
-  a.click();
-  window.URL.revokeObjectURL(url);
-  document.body.removeChild(a);
 }
 
 function convertToFileName (slideName, number) {
