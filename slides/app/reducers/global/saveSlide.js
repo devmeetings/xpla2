@@ -4,10 +4,18 @@ import fetch from 'isomorphic-fetch';
 import logger from '../../components/logger';
 
 export function saveSlide (state, action) {
-  const lastNumber = state.get('lastGeneratedSlideNumber') || 1;
+  let lastNumber = state.get('lastGeneratedSlideNumber');
+  if (!lastNumber) {
+    lastNumber = window.prompt('Slide number [default: 1]', 1);
+    lastNumber = parseInt(lastNumber, 10);
+    lastNumber -= 1;
+    if (isNaN(lastNumber) || lastNumber < 0) {
+      return state;
+    }
+  }
   const currentNumber = lastNumber + 1;
 
-  const slideName = window.prompt('Slide title');
+  const slideName = window.prompt('Slide title', `Slide ${currentNumber}`);
   if (!slideName) {
     return state;
   }
@@ -43,7 +51,14 @@ function generateSlide (state, slideName) {
       _.values(state.editors).map((editor, idx) => {
         const $editor = clone.querySelectorAll(`xp-editor`)[idx];
         $editor.setAttribute('active', editor.active.name);
-        $editor.innerHTML =  '\n' + editor.files.map((file) => {
+        const files = editor.files.map((file) => {
+          if (file.name === editor.active.name) {
+            return editor.active;
+          }
+          return file;
+        });
+
+        $editor.innerHTML =  '\n' + files.map((file) => {
           const content = fixPossibleScriptTags(file.content);
           return `\t<script id="${file.name}" type="application/octetstream">\n${content}\n</script>`;
         }).join('\n') + '\n';
