@@ -1,4 +1,6 @@
 const Joi = require('joi');
+
+const getHelp = require('./api/help');
 const codeApi = require('./api/code');
 const resultsApi = require('./api/results');
 
@@ -19,7 +21,23 @@ module.exports = [
     method: 'GET',
     path: '/',
     handler: (req, reply) => {
-      reply('Hello World');
+      reply.redirect('http://devmeetings.pl');
+    }
+  },
+  {
+    method: 'GET',
+    path: '/help',
+    handler: (req, reply) => {
+      reply(getHelp());
+    }
+  },
+  {
+    method: 'GET',
+    path: '/cdn/{param*}',
+    handler: {
+      directory: {
+        path: 'cdn'
+      }
     }
   },
   {

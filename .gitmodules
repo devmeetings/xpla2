@@ -1,0 +1,3 @@
+[submodule "runner/cdn"]
+	path = runner/cdn
+	url = git@github.com:devmeetings/xplatform-cdn.git

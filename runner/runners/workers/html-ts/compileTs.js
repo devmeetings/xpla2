@@ -72,10 +72,11 @@ function compileTsFilesAndGetOutputs (workspace) {
     tsFiles,
     {
       diagnostics: true,
-      target: 1, // es5
-      module: 4, // system
+      target: ts.ScriptTarget.ES5,
+      module: ts.ModuleKind.System,
       experimentalDecorators: true,
       emitDecoratorMetadata: true,
+      moduleResolution: ts.ModuleResolutionKind.NodeJs,
       inlineSourceMap: true,
       inlineSources: true
     }
@@ -108,21 +109,21 @@ function tsSysForWorkspace (workspace) {
   return {
     newLine: '\n',
     readFile: function (fileName, encoding) {
-      fileName = fileName.replace(/\.ts\.ts$/, '.ts');
       const f = workspace[fileName];
       if (f) {
         return f.content;
       }
 
+      // for lib.d.ts
       if (fs.existsSync(fileName)) {
         const c = fs.readFileSync(fileName, encoding);
         return c.toString();
       }
 
-      fileName = __dirname + '/node_modules/' + fileName;
+      fileName = __dirname + '/' + fileName;
       if (fs.existsSync(fileName)) {
-        const d = fs.readFileSync(fileName, encoding);
-        return d.toString();
+        const c = fs.readFileSync(fileName, encoding);
+        return c.toString();
       }
 
       return '';
@@ -133,12 +134,11 @@ function tsSysForWorkspace (workspace) {
       return path;
     },
     fileExists: function (path) {
-      path = path.replace(/\.ts\.ts$/, '.ts');
       const existsInWorkspace = !!workspace[path];
       if (existsInWorkspace) {
         return true;
       }
-      path = __dirname + '/node_modules/' + path;
+      path = __dirname + '/' + path;
       return fs.existsSync(path);
     },
     directoryExists: function (path) {

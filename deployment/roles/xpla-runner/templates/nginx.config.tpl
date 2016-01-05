@@ -11,6 +11,14 @@ server {
     root /srv/{{ server_name }}/;
   }
 
+  location /cdn {
+    root /srv/{{ server_name }}/runner/;
+    gzip on;
+    gzip_types text/plain application/x-javascript application/javascript text/css application/octet-stream;
+
+    expires 365d;
+  }
+
   location / {
     proxy_pass http://{{ server_id }};
     proxy_set_header Host      $host;
