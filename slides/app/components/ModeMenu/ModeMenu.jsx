@@ -12,11 +12,18 @@ export class ModeMenu extends React.Component {
   renderTooltip () {
     if (this.props.isEditMode) {
       return (
-        <span>You are now in edit mode. Use CTRL+S to save new slide.</span>
+        <span>
+          You are now in edit mode. Use <kbd>CTRL+S</kbd> to save new slide. <br />
+          Press <kbd>CTRL+P</kbd> again to go back to view mode.
+        </span>
       );
     }
     return (
-      <span>Press CTRL+P While focusing editor to switch to edit mode.</span>
+      <span>
+        Press <kbd>CTRL+P</kbd> While focusing editor to switch to edit mode.<br />
+        Use <kbd>CTRL+S</kbd> or CTRL+Enter to execute your code. <br />
+        Press <kbd>CTRL+Shift+S</kbd> to save your workspace to local disk.
+      </span>
     );
   }
 
