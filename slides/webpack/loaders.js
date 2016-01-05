@@ -42,7 +42,7 @@ if (DEBUG || TEST) {
   ].join('!');
   cssLoader = [
     'style-loader',
-    'css-loader?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]',
+    'css-loader?sourceMap',
     'postcss-loader'
   ].join('!');
 } else {
@@ -53,7 +53,7 @@ if (DEBUG || TEST) {
     'sass-loader?' + sassParams.join('&')
   ].join('!'));
   cssLoader = ExtractTextPlugin.extract('style-loader', [
-    'css-loader?modules&localIdentName=[hash:base64:5]',
+    'css-loader',
     'postcss-loader'
   ].join('!'));
 }

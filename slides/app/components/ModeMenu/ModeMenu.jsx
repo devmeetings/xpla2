@@ -1,29 +1,44 @@
 import React from 'react';
 import Props from 'react-immutable-proptypes';
 
+import Tooltip from 'rc-tooltip';
+import 'rc-tooltip/assets/bootstrap.css';
+
+import {Icon} from '../Icon/Icon';
+
 import styles from './ModeMenu.scss';
-import pencil from './pencil2.svg';
 
 export class ModeMenu extends React.Component {
 
-  renderIcon () {
-    if (!this.props.isEditMode) {
-      return;
+  renderTooltip () {
+    if (this.props.isEditMode) {
+      return (
+        <span>You are now in edit mode. Use CTRL+S to save new slide.</span>
+      );
     }
     return (
-      <img
-        title={'You are now in edit mode. Use CTRL+S to save new slide.'}
-        className={styles.icon}
-        src={pencil}
-        />
+      <span>Press CTRL+P While focusing editor to switch to edit mode.</span>
+    );
+  }
+
+  renderIcon () {
+    return (
+      <div className={this.props.isEditMode ? styles.mode : styles.modeLight}>
+        <Tooltip
+          placement={'left'}
+          overlay={this.renderTooltip()}
+          >
+          <div>
+            <Icon icon={this.props.isEditMode ? 'mode-edit' : 'visibility'} />
+          </div>
+        </Tooltip>
+      </div>
     );
   }
 
   render () {
     return (
-      <div
-        className={styles.mode}
-        >
+      <div>
         {this.renderIcon()}
       </div>
     );

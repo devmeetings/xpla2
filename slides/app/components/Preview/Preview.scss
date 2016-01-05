@@ -30,13 +30,6 @@
   &:hover {
     background: $brand-primary-light;
   }
-
-  img {
-    max-height: 100%;
-    max-width: 100%;
-    vertical-align: middle;
-    padding: 0 $padding;
-  }
 }
 .newTabButton {
   float: right;

@@ -1,5 +1,6 @@
 import {randomId} from './utils';
 import fetch from 'isomorphic-fetch';
+import _ from 'lodash';
 
 function trim (val) {
   // Get initial tabulation size
@@ -24,6 +25,8 @@ export function getEditorState (dom) {
   const id = dom.id || randomId('editor');
   dom.id = id;
 
+  const active = dom.getAttribute('active');
+
   const files = [].map.call(
     dom.querySelectorAll('template,script'),
     (tpl) => {
@@ -46,7 +49,7 @@ export function getEditorState (dom) {
     return {
       id: id,
       files: filesResolved,
-      active: filesResolved[0]
+      active: _.find(filesResolved, (file) => file.name === active) || filesResolved[0]
     };
   });
 }

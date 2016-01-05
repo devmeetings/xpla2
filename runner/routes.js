@@ -7,9 +7,15 @@ const resultsApi = require('./api/results');
 const runners = Object.keys(require('./runners/workers').runners);
 
 function handleError (e, reply) {
+  // Not found
   if (e.code === 404) {
     return reply(e.toString()).code(404);
   }
+  // Service Unavailable
+  if (e.code === 503) {
+    return reply(e.toString()).code(503);
+  }
+  // Internal Server Error
   reply(e.toString).code(500);
   setTimeout(() => {
     throw e

@@ -1,12 +1,17 @@
 @import '../vars.scss';
 
-.mode {
+.mode, .modeLight {
   float: right;
   height: $filetabs-height;
   line-height: $filetabs-height;
-}
-.icon {
-  width: $filetabs-height / 2;
-  height: $filetabs-height / 2;
   padding: 0 $padding;
+}
+
+.modeLight {
+  opacity: 0.1;
+  transition: opacity $transition;
+
+  &:hover {
+    opacity: 1.0;
+  }
 }

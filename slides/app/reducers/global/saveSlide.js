@@ -42,10 +42,11 @@ function generateSlide (state, slideName) {
       // Fill in the editors
       _.values(state.editors).map((editor, idx) => {
         const $editor = clone.querySelectorAll(`xp-editor`)[idx];
-        $editor.innerHTML =  editor.files.map((file) => {
+        $editor.setAttribute('active', editor.active.name);
+        $editor.innerHTML =  '\n' + editor.files.map((file) => {
           const content = fixPossibleScriptTags(file.content);
-          return `<script id="${file.name}" type="application/octetstream">\n${content}\n</script>`;
-        }).join('\n');
+          return `\t<script id="${file.name}" type="application/octetstream">\n${content}\n</script>`;
+        }).join('\n') + '\n';
       });
 
       // Fill the title

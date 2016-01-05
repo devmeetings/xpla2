@@ -25,6 +25,11 @@ module.exports = function createWorker(queueName) {
         success: outputData.success,
         files: newFiles
       };
+    }, (err) => {
+      if (err.isTimeout) {
+        err.code = 503;
+      }
+      throw err;
     });
   };
 };

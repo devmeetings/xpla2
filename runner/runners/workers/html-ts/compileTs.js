@@ -33,6 +33,7 @@ function buildErrorsPage(errors) {
     '<style>',
     '.error { color: #a44; }',
     '.error strong { color: #f44; }',
+    '.error .message { font-family: monospace; }',
     '</style>',
     '</head><body>',
     '<div>',
@@ -40,12 +41,12 @@ function buildErrorsPage(errors) {
       return [
         '<div class="error">',
         '<strong>' + err.filePath + ':' + (err.startPos.line + 1) + ':' + (err.startPos.col + 1) + '</strong>',
-        '<pre>' + err.message
+        '<div class="message">' + err.message
           .replace(/</g, '&lt;')
           .replace(/>/g, '&gt;')
           .replace(err.preview, function (x) {
             return '<strong>' + x + '</strong>';
-          }) + '</pre>',
+          }) + '</div>',
         '</div>'
       ];
     }),

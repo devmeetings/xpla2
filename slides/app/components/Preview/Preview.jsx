@@ -3,11 +3,9 @@ import _ from 'lodash';
 import Props from 'react-immutable-proptypes';
 
 import {HtmlResult} from '../HtmlResult/HtmlResult';
+import {Icon} from '../Icon/Icon';
 
 import styles from './Preview.scss';
-
-import playIcon from './play2.svg';
-import newTabIcon from './new-tab.svg';
 
 export class Preview extends React.Component {
 
@@ -40,7 +38,7 @@ export class Preview extends React.Component {
             disabled={this.props.isLoading}
             onClick={this.props.onRun}
             >
-            <img src={playIcon} />
+            <Icon icon={'play'} />
             Run Code
           </button>
           <a
@@ -48,7 +46,7 @@ export class Preview extends React.Component {
             className={styles.newTabButton}
             href={this.props.runServerUrl + '/api/results/' + this.props.runId + '/'}
           >
-            <img src={newTabIcon} />
+            <Icon icon={'launch'} />
           </a>
         </div>
         {this.renderResultWindow()}

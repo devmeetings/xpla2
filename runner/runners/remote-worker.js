@@ -51,7 +51,9 @@ const Workers = (function () {
 
         const promiseTimeout = setTimeout(() => {
           l('Rejecting message due to timeout.');
-          reject(new Error('timeout'));
+          const e = new Error('Timeout error');
+          e.isTimeout = true;
+          reject(e);
         }, PROMISE_TIMEOUT);
 
         answers[corrId] = {

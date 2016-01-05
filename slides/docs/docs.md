@@ -7,6 +7,7 @@ Represents a simple IDE.
 `script` - *Required*. Single file in editor.
 
 ### Params
+`active` - Active tab name. Defaults to first tab
 `script[id]` - *Required*. Name of the file
 
 ### Example
