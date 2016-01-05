@@ -1,5 +1,7 @@
 import React from 'react';
 
+import cssStyles from './Icon.scss';
+
 export class Icon extends React.Component {
 
   _mergeStyles (...args) {
@@ -12,14 +14,19 @@ export class Icon extends React.Component {
   }
 
   render () {
+    const isSpinning = this.props.spin;
     const styles = {
       fill: "currentcolor",
       verticalAlign: "middle",
-      width: this.props.size, // CSS instead of the width attr to support non-pixel units
-      height: this.props.size // Prevents scaling issue in IE
+      width: this.props.size,
+      height: this.props.size
     };
     return (
-      <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" fit
+      <svg
+        className={isSpinning ? cssStyles.spinning : cssStyles.normal}
+        viewBox="0 0 24 24"
+        preserveAspectRatio="xMidYMid meet"
+        fit
         style={this._mergeStyles(
           styles,
           this.props.style
@@ -33,11 +40,13 @@ export class Icon extends React.Component {
 
 Icon.defaultProps = {
   size: '1em',
+  spin: false,
   style: {}
 };
 
 Icon.propTypes = {
   size: React.PropTypes.string,
+  spin: React.PropTypes.bool,
   icon: React.PropTypes.string.isRequired,
   style: React.PropTypes.object,
 };

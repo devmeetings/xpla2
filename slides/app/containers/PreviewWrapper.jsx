@@ -67,6 +67,9 @@ class PreviewContainer extends React.Component {
       <Preview
         previewId={id}
         isLoading={preview.get('isLoading')}
+        isFresh={preview.get('isFresh')}
+        isTakingLong={preview.get('isTakingLong')}
+        isError={preview.get('isError')}
         runId={preview.get('runId')}
         runServerUrl={runServerUrl}
         onRun={this.runAction.bind(this)}

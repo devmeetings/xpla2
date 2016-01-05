@@ -9,10 +9,11 @@ export class HtmlResult extends React.Component {
   render () {
     const runId = this.props.runId;
     const runServerUrl = this.props.runServerUrl;
+    const isLoading = this.props.isLoading;
 
     return (
       <iframe
-        className={styles.result}
+        className={isLoading ? styles.resultLoading : styles.result}
         src={`${runServerUrl}/api/results/${runId}/`}
         seamless
         ></iframe>
@@ -23,5 +24,6 @@ export class HtmlResult extends React.Component {
 
 HtmlResult.propTypes = {
   runId: React.PropTypes.string.isRequired,
+  isLoading: React.PropTypes.bool.isRequired,
   runServerUrl: React.PropTypes.string.isRequired
 }

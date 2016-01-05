@@ -1,7 +1,10 @@
 @import '../vars.scss';
 
 .mode, .modeLight {
-  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
   height: $filetabs-height;
   line-height: $filetabs-height;
   padding: 0 $padding;

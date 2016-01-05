@@ -1,8 +1,7 @@
 import React from 'react';
 import Props from 'react-immutable-proptypes';
 
-import Tooltip from 'rc-tooltip';
-import 'rc-tooltip/assets/bootstrap.css';
+import Tooltip from '../Tooltip';
 
 import {Icon} from '../Icon/Icon';
 
@@ -21,7 +20,7 @@ export class ModeMenu extends React.Component {
     );
   }
 
-  renderIcon () {
+  render () {
     return (
       <div className={this.props.isEditMode ? styles.mode : styles.modeLight}>
         <Tooltip
@@ -32,14 +31,6 @@ export class ModeMenu extends React.Component {
             <Icon icon={this.props.isEditMode ? 'mode-edit' : 'visibility'} />
           </div>
         </Tooltip>
-      </div>
-    );
-  }
-
-  render () {
-    return (
-      <div>
-        {this.renderIcon()}
       </div>
     );
   }

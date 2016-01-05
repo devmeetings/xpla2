@@ -1,12 +1,14 @@
 @import '../vars.scss';
 
-.result {
-  position: absolute;
-  top: $previewbar-height;
+.result, .resultLoading {
   box-sizing: border-box;
   width: 100%;
-  height: calc(100% - #{$previewbar-height});
+  height: 100%;
   border: none;
   border-left: $border-small solid $brand-primary-light;
   background: none;
+  transition: opacity $transition;
+}
+.resultLoading {
+  opacity: 0.3;
 }

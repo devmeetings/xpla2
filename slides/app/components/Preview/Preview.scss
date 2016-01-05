@@ -14,11 +14,25 @@
   left: 0;
   right: 0;
 }
-.runButton, .newTabButton {
+.previewWindow {
+  position: absolute;
+  top: $previewbar-height;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.previewAlert {
+  position: absolute;
+  top: $previewbar-height;
+  padding: $padding;
+  color: $brand-danger;
+  border: $border-small solid $brand-danger;
+  background: $brand-danger-light-bg;
+}
+
+@mixin button {
   box-sizing: border-box;
   border: none;
-  background: $brand-primary;
-  color: $color-inverse;
   padding: $padding;
   height: $previewbar-height;
   transition: background $transition;
@@ -26,11 +40,39 @@
   text-decoration: none;
   margin: 0;
   vertical-align: top;
+}
+@mixin colorButton($textColor, $baseColor, $hoverText, $hoverColor) {
+  background: $baseColor;
+  color: $textColor;
 
   &:hover {
-    background: $brand-primary-light;
+    background: $hoverColor;
+    color: $hoverText;
+  }
+
+  &[disabled], &.disabled {
+    background: $color-disabled;
+    color: $color-text;
+    cursor: auto;
+    &:hover {
+      background: $color-disabled;
+    }
   }
 }
+.runButton {
+  @include button;
+  @include colorButton($color-inverse, $brand-primary, $color-inverse, $brand-primary-light);
+}
 .newTabButton {
+  @include button;
   float: right;
+
+  color: $brand-primary;
+  &:hover {
+    color: $brand-primary-light;
+  }
+}
+.loadingIcon {
+  text-align: center;
+  margin: 20%;
 }

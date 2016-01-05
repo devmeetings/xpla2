@@ -8,7 +8,10 @@ export function getPreviewState (dom) {
 
   return {
     id, runner, runOnStart,
+    isFresh: false,
     isLoading: false,
+    isError: false,
+    isTakingLong: false,
     runId: null,
   };
 }

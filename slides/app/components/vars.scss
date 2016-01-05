@@ -6,10 +6,14 @@ $padding: 5px;
 $border: 3px;
 $border-small: 1px;
 
+$color-text: #444;
 $color-inverse: #fff;
+$color-disabled: #ddd;
+
 $brand-primary: #086E9D;
 $brand-primary-light: lighten($brand-primary, 10%);
 
 $brand-danger: #F44336;
+$brand-danger-light-bg: lighten($brand-danger, 30%);
 
 $transition: ease-in-out 0.2s;
