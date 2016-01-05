@@ -2,6 +2,12 @@
 
 .tabs {
   border-bottom: $border-small solid $brand-primary;
+  height: $filetabs-height - $border-small;
+  white-space: nowrap;
+  overflow: hidden;
+  &:hover {
+    overflow-x: auto;
+  }
 }
 
 .tab, .tabActive {

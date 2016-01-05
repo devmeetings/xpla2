@@ -19,11 +19,12 @@
   top: $previewbar-height;
   left: 0;
   right: 0;
-  bottom: 2px;
+  bottom: 5px;
 }
 .previewAlert {
   position: absolute;
   top: $previewbar-height;
+  z-index: 2;
   padding: $padding;
   color: $brand-danger;
   border: $border-small solid $brand-danger;
