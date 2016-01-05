@@ -2,35 +2,97 @@ import React from 'react';
 import _ from 'lodash';
 import Props from 'react-immutable-proptypes';
 
+import {Icon} from '../Icon/Icon';
+
 import styles from './SlidesList.scss';
+
+const DEFAULT_NO_OF_SLIDES = 3;
 
 export class SlidesList extends React.Component {
 
-  renderSlides () {
-    const activeId = this.props.active.get('id');
+  constructor (...args) {
+    super(...args);
+    this.state = {
+      noOfSlidesToShow: DEFAULT_NO_OF_SLIDES
+    };
+  }
 
-    return this.props.slides.map((slide) => {
-      const id = slide.get('id');
-      return (
-        <li
-          className={id === activeId ? styles.itemActive : styles.item}
-          key={id}
-        >
-          <a
-            onClick={this.props.onSlideChange.bind(this, slide)}>
-            {slide.get('title')}
-          </a>
-        </li>
-      );
+  showMore = () => {
+    this.setState({
+      noOfSlidesToShow: this.state.noOfSlidesToShow + DEFAULT_NO_OF_SLIDES
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.active != this.props.active) {
+      this.setState({
+        noOfSlidesToShow: DEFAULT_NO_OF_SLIDES
+      });
+    }
+  }
+
+  getSplittedSlides() {
+    const noOfSlidesBeforeActive = this.state.noOfSlidesToShow;
+    const slides = this.props.slides;
+    const activeId = this.props.active.get('id');
+    const isActiveSlide = (slide) => slide.get('id') === activeId;
+
+    const beforeAll = slides.takeUntil(isActiveSlide);
+    const before = beforeAll.takeLast(noOfSlidesBeforeActive);
+
+    const after = slides.skipUntil(isActiveSlide);
+    const hasMore = before.size !== beforeAll.size;
+
+    return {
+      before, after, hasMore
+    };
+  }
+
+  renderMoreSlidesButton (hasMore) {
+    if (!hasMore) {
+      return;
+    }
+
+    return (
+      <li className={styles.item} key={'button'}>
+        <a onClick={this.showMore}>
+          <Icon icon="more-horiz" size="1em" />
+        </a>
+      </li>
+    );
+  }
+
+  renderSlide (slide) {
+    const activeId = this.props.active.get('id');
+    const id = slide.get('id');
+
+    return (
+      <li
+        className={id === activeId ? styles.itemActive : styles.item}
+        key={id}
+      >
+        <a
+          onClick={this.props.onSlideChange.bind(this, slide)}>
+          {slide.get('title')}
+        </a>
+      </li>
+    );
+  }
+
+  renderSlides (slides) {
+    return slides.map((slide) => this.renderSlide(slide));
+  }
+
   render () {
+    const slides = this.getSplittedSlides();
+
     return (
       <ul
         className={styles.list}
-      >
-        {this.renderSlides()}
+        >
+        {this.renderMoreSlidesButton(slides.hasMore)}
+        {this.renderSlides(slides.before)}
+        {this.renderSlides(slides.after)}
       </ul>
     );
   }
