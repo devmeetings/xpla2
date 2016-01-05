@@ -1,4 +1,4 @@
-#XPla Slide Docs
+# XPla Slide Docs
 
 ##`xp-editor`
 Represents a simple IDE.
