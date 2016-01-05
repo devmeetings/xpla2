@@ -3,6 +3,7 @@ import _ from 'lodash';
 import Props from 'react-immutable-proptypes';
 
 import {Icon} from '../Icon/Icon';
+import Tooltip from '../Tooltip';
 
 import styles from './SlidesList.scss';
 
@@ -56,7 +57,14 @@ export class SlidesList extends React.Component {
     return (
       <li className={styles.item} key={'button'}>
         <a onClick={this.showMore}>
-          <Icon icon="more-horiz" size="1em" />
+          <Tooltip
+            placement={'top'}
+            overlay={<span>Show more slides</span>}
+            >
+            <div>
+              <Icon icon={'more-horiz'} size={'1em'} />
+            </div>
+          </Tooltip>
         </a>
       </li>
     );

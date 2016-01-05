@@ -6,6 +6,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+  border-left: $border-small solid $brand-primary-light;
 }
 .previewBar {
   position: absolute;
@@ -19,7 +20,7 @@
   top: $previewbar-height;
   left: 0;
   right: 0;
-  bottom: 5px;
+  bottom: 0;
 }
 .previewAlert {
   position: absolute;

@@ -12,6 +12,7 @@
   overflow-y: hidden;
   height: $slideslist-height;
   white-space: nowrap;
+  border-top: $border-small solid $brand-primary;
 
   &:hover {
     overflow-x: auto;
@@ -26,10 +27,10 @@
     display: inline-block;
     cursor: pointer;
     padding: $padding;
-    padding-bottom: $padding - $border;
+    padding-top: $padding - $border;
     height: $slideslist-height;
     line-height: $slideslist-height - 2*$padding;
-    border-bottom: $border solid transparent;
+    border-top: $border solid transparent;
 
     transition: border $transition;
 

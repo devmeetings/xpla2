@@ -3,6 +3,7 @@
 .tabs {
   border-bottom: $border-small solid $brand-primary;
   height: $filetabs-height - $border-small;
+  box-sizing: border-box;
   white-space: nowrap;
   overflow: hidden;
   &:hover {
