@@ -1,13 +1,15 @@
 import JSZip from 'jszip';
 import _ from 'lodash';
 
+import {getFilesWithActiveAsJsArray} from '../../reducers.utils/editors';
 import {saveBlob} from './saveFile';
 
 export function saveWorkspaceAsZip (imState, action) {
   const state = imState.toJS();
 
   const files = _.values(state.editors).reduce((files, editor) => {
-    return files.concat(_.values(editor.files));
+    const editorFiles = getFilesWithActiveAsJsArray(editor);
+    return files.concat(editorFiles);
   }, []);
 
   const zip = files.reduce((zip, file) => {

@@ -2,6 +2,7 @@ import _ from 'lodash';
 import fetch from 'isomorphic-fetch';
 
 import logger from '../../components/logger';
+import {getFilesWithActiveAsJsArray} from '../../reducers.utils/editors';
 
 import {saveFile} from './saveFile';
 
@@ -53,13 +54,7 @@ function generateSlide (state, slideName) {
       _.values(state.editors).map((editor, idx) => {
         const $editor = clone.querySelectorAll(`xp-editor`)[idx];
         $editor.setAttribute('active', editor.active.name);
-        const files = editor.files.map((file) => {
-          if (file.name === editor.active.name) {
-            return editor.active;
-          }
-          return file;
-        });
-
+        const files = getFilesWithActiveAsJsArray(editor);
         $editor.innerHTML =  '\n' + files.map((file) => {
           const content = fixPossibleScriptTags(file.content);
           return `\t<script id="${file.name}" type="application/octetstream">\n${content}\n</script>`;
