@@ -10,6 +10,7 @@ import {Provider} from 'react-redux';
 
 import {getRunServerUrl} from './components/read/RunServerUrlState';
 import {getSlideState} from './components/read/SlideState';
+import {getActiveSlideState} from './components/read/ActiveSlideState';
 
 import DeckContainerWrapper from './containers/DeckWrapper';
 
@@ -22,11 +23,12 @@ const slides = _
     .chain($xpDeck.querySelectorAll('link'))
     .map(getSlideState)
     .value();
+const activeSlide = getActiveSlideState(slides);
 
 const store = Store({
   runServerUrl,
   deck: {
-    active: slides[0],
+    active: activeSlide,
     slides: slides
   }
 });

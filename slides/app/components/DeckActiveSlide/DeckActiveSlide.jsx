@@ -4,9 +4,9 @@ import Props from 'react-immutable-proptypes';
 
 import {initializeSlide} from '../../slide/slide';
 
-import styles from './ActiveSlide.scss';
+import styles from './DeckActiveSlide.scss';
 
-export class ActiveSlide extends React.Component {
+export class DeckActiveSlide extends React.Component {
 
   componentDidMount () {
     this._destroyPreviousSlide = () => {};
@@ -48,7 +48,7 @@ export class ActiveSlide extends React.Component {
   }
 }
 
-ActiveSlide.propTypes = {
+DeckActiveSlide.propTypes = {
   slide: React.PropTypes.object.isRequired,
   runServerUrl: React.PropTypes.string.isRequired
 };

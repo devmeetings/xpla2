@@ -10,12 +10,14 @@ export function getSlideState (dom) {
     throw new Error(`Unable to read slide at ${dom.href}`)
   }
 
+  const title = dom.import.querySelector('title').innerHTML;
   const body = dom.import.querySelector('body');
   body.setAttribute('xp-slide', dom.href);
 
   return {
     id: dom.id,
-    title: dom.import.querySelector('title').innerHTML,
+    shortName: title,
+    title: title,
     content: body
   };
 }

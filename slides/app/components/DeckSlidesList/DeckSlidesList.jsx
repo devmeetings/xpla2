@@ -5,11 +5,11 @@ import Props from 'react-immutable-proptypes';
 import {Icon} from '../Icon/Icon';
 import Tooltip from '../Tooltip';
 
-import styles from './SlidesList.scss';
+import styles from './DeckSlidesList.scss';
 
 const DEFAULT_NO_OF_SLIDES = 3;
 
-export class SlidesList extends React.Component {
+export class DeckSlidesList extends React.Component {
 
   constructor (...args) {
     super(...args);
@@ -106,7 +106,7 @@ export class SlidesList extends React.Component {
   }
 }
 
-SlidesList.propTypes = {
+DeckSlidesList.propTypes = {
   active: Props.contains({
     id: React.PropTypes.string.isRequired,
   }),

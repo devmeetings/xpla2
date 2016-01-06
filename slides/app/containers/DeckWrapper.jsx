@@ -5,8 +5,9 @@ import Props from 'react-immutable-proptypes';
 
 import * as DeckActions from '../actions/deck';
 
-import {ActiveSlide} from '../components/ActiveSlide/ActiveSlide';
-import {SlidesList} from '../components/SlidesList/SlidesList';
+import {DeckActiveSlide} from '../components/DeckActiveSlide/DeckActiveSlide';
+import {DeckSlidesList} from '../components/DeckSlidesList/DeckSlidesList';
+import {DeckLocationUpdater} from '../components/DeckLocationUpdater/DeckLocationUpdater';
 
 import styles from './DeckWrapper.scss';
 
@@ -18,16 +19,26 @@ class DeckContainer extends React.Component {
     });
   }
 
+  onSlideUrlChange (slideId) {
+    this.props.actions.deckSlideChange({
+      newSlideId: slideId
+    });
+  }
+
   render () {
     return (
       <div
         className={styles.deck}
         >
-        <ActiveSlide
+        <DeckLocationUpdater
+          active={this.props.activeSlide}
+          onUrlChange={this.onSlideUrlChange.bind(this)}
+          />
+        <DeckActiveSlide
           runServerUrl={this.props.runServerUrl}
           slide={this.props.activeSlide.get('content')}
           />
-        <SlidesList
+        <DeckSlidesList
           active={this.props.activeSlide}
           slides={this.props.slides}
           onSlideChange={this.onSlideChange.bind(this)}
