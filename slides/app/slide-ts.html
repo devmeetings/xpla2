@@ -9,31 +9,37 @@
     <% } %>
   </head>
   <body class="xp-slide">
-    <div class="xp-column" style="width:50%">
-      <xp-editor>
-        <script id="index.html" type="text/html">
-          <html>
-            <head>
-              <meta charset="utf-8">
-              <meta name="viewport" content="width=device-width">
-              <title>Slide Typescript</title>
-            </head>
-            <body>
-              <h1>Hello World</h1>
-              <script src="index.js"><+/script>
-            </body>
-          </html>
-        </script>
-        <script id="index.ts" type="application/typescript">
-          function helloWorld(name: string) {
-            console.log('Hello ' + name + '!');
-          }
-          helloWorld('test');
-          helloWorld(5);
-        </script>
-      </xp-editor>
+    <div class="xp-row">
+      <div class="xp-column">
+        <xp-editor>
+          <script id="index.html" type="text/html">
+            <html>
+              <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width">
+                <title>Slide Typescript</title>
+              </head>
+              <body>
+                <h1>Hello World</h1>
+                <script src="index.js"><+/script>
+              </body>
+            </html>
+          </script>
+        </xp-editor>
+      </div>
+      <div class="xp-column">
+        <xp-editor>
+          <script id="index.ts" type="application/typescript">
+            function helloWorld(name: string) {
+              console.log('Hello ' + name + '!');
+            }
+            helloWorld('test');
+            helloWorld(5);
+          </script>
+        </xp-editor>
+      </div>
     </div>
-    <div class="xp-column" style="width:50%">
+    <div class="xp-row">
       <xp-preview runner="html-ts"></xp-preview>
     </div>
     <script src="js/slide.<%= version %>.js"></script>

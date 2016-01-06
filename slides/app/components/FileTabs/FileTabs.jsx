@@ -26,7 +26,14 @@ export class FileTabs extends React.Component {
 
   renderTabLinks () {
     if (this.props.files.size < 2) {
-      return;
+      const file = this.props.files.get(0);
+      return (
+        <a
+          className={styles.tabActive}
+          >
+          {file.get('name')}
+        </a>
+      );
     }
 
     const activeName = this.props.active.get('name');
