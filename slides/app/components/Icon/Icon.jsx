@@ -16,21 +16,22 @@ export class Icon extends React.Component {
   render () {
     const isSpinning = this.props.spin;
     const styles = {
-      fill: "currentcolor",
-      verticalAlign: "middle",
+      fill: 'currentcolor',
+      verticalAlign: 'middle',
       width: this.props.size,
       height: this.props.size
     };
     return (
       <svg
         className={isSpinning ? cssStyles.spinning : cssStyles.normal}
-        viewBox="0 0 24 24"
-        preserveAspectRatio="xMidYMid meet"
         fit
+        preserveAspectRatio="xMidYMid meet"
         style={this._mergeStyles(
           styles,
           this.props.style
-        )}>
+        )}
+        viewBox="0 0 24 24"
+        >
         {this.renderGraphic()}
       </svg>
     );

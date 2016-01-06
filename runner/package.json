@@ -16,7 +16,7 @@
         "npm test"
       ],
       "post-commit": "git st",
-      "post-merge": "npm instal"
+      "post-merge": "npm install"
     }
   },
   "semistandard": {

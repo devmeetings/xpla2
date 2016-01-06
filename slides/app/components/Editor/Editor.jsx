@@ -138,13 +138,13 @@ export class Editor extends React.Component {
           onChange={this.props.onTabChange}
           />
         <AceEditor
-          theme='github'
-          onChange={this.props.onTabContentChange}
-          name={`editor-${name}`}
-          session={session}
           commands={this.commands}
-          width='100%'
           height='calc(100% - 30px)'
+          name={`editor-${name}`}
+          onChange={this.props.onTabContentChange}
+          session={session}
+          theme='github'
+          width='100%'
         />
       </div>
     );

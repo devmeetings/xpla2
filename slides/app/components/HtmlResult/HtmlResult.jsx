@@ -14,8 +14,8 @@ export class HtmlResult extends React.Component {
     return (
       <iframe
         className={isLoading ? styles.resultLoading : styles.result}
-        src={`${runServerUrl}/api/results/${runId}/`}
         seamless
+        src={`${runServerUrl}/api/results/${runId}/`}
         ></iframe>
     );
   }

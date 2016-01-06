@@ -40,8 +40,8 @@ class DeckContainer extends React.Component {
           />
         <DeckSlidesList
           active={this.props.activeSlide}
-          slides={this.props.slides}
           onSlideChange={this.onSlideChange.bind(this)}
+          slides={this.props.slides}
         />
       </div>
     );

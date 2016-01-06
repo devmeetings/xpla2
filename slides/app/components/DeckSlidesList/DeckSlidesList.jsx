@@ -58,8 +58,8 @@ export class DeckSlidesList extends React.Component {
       <li className={styles.item} key={'button'}>
         <a onClick={this.showMore}>
           <Tooltip
-            placement={'top'}
             overlay={<span>Show more slides</span>}
+            placement={'top'}
             >
             <div>
               <Icon icon={'more-horiz'} size={'1em'} />

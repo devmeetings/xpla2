@@ -53,17 +53,17 @@ class EditorContainer extends React.Component {
 
     return (
       <Editor
-        key={id}
-        id={id}
-        workMode={this.props.workMode}
-        files={editor.get('files')}
         active={editor.get('active')}
-        onSaveAction={this.saveAndRunOrSaveSlide}
+        files={editor.get('files')}
+        id={id}
+        key={id}
         onRunAction={this.saveAndRunCode}
-        onWorkModeToggle={this.toggleWorkMode}
+        onSaveAction={this.saveAndRunOrSaveSlide}
+        onSaveWorkspaceAsZipAction={this.saveWorkspaceAsZip}
         onTabChange={this.changeTab}
         onTabContentChange={this.changeTabContent}
-        onSaveWorkspaceAsZipAction={this.saveWorkspaceAsZip}
+        onWorkModeToggle={this.toggleWorkMode}
+        workMode={this.props.workMode}
         />
     );
   }

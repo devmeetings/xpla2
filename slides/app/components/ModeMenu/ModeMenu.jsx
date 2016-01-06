@@ -31,8 +31,8 @@ export class ModeMenu extends React.Component {
     return (
       <div className={this.props.isEditMode ? styles.mode : styles.modeLight}>
         <Tooltip
-          placement={'left'}
           overlay={this.renderTooltip()}
+          placement={'left'}
           >
           <div>
             <Icon icon={this.props.isEditMode ? 'mode-edit' : 'visibility'} />

@@ -153,8 +153,9 @@ export class AceEditor extends React.Component {
     };
     var className = this.props.className;
     return (
-      <div id={this.props.name}
+      <div
         className={className}
+        id={this.props.name}
         style={divStyle}>
       </div>
     );

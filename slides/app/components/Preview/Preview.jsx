@@ -43,12 +43,13 @@ export class Preview extends React.Component {
     if (!runId) {
       return (
         <Tooltip
+          overlay={<span>Your preview is being loaded.</span>}
           placement={'top'}
-          overlay={<span>Your preview is being loaded.</span>}>
+          >
           <div>
             {this.renderAlert()}
             <div className={styles.loadingIcon}>
-              <Icon icon={'refresh'} spin={true} size={'5em'} />
+              <Icon icon={'refresh'} size={'5em'} spin={true} />
             </div>
           </div>
         </Tooltip>
@@ -114,9 +115,9 @@ export class Preview extends React.Component {
   renderNewWindowButton () {
     return (
       <a
-        target={'_blank'}
         className={styles.newTabButton}
         href={this.props.runServerUrl + '/api/results/' + this.props.runId + '/'}
+        target={'_blank'}
         >
           <Icon icon={'launch'} />
       </a>
