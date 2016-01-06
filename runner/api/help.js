@@ -4,8 +4,8 @@ const highlight = require('highlight.js');
 
 marked.setOptions({
   highlight: function (code) {
-      return highlight.highlightAuto(code).value;
-    }
+    return highlight.highlightAuto(code).value;
+  }
 });
 
 module.exports = function getHelp () {

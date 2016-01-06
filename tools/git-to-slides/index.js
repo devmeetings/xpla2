@@ -1,0 +1,1 @@
+const Git = require('nodegit');

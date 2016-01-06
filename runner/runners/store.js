@@ -69,7 +69,7 @@ module.exports = {
   }
 };
 
-function ninvoke(obj, method /* args */) {
+function ninvoke (obj, method /* args */) {
   const args = [].slice.call(arguments, 2);
   // invoke method and return a promise
   return new Promise((resolve, reject) => {
@@ -77,7 +77,7 @@ function ninvoke(obj, method /* args */) {
       // add callback method
       const args = [].slice.call(arguments, 1);
       if (err) {
-        return reject(errr);
+        return reject(err);
       }
       resolve.apply(null, args);
     });

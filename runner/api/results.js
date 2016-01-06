@@ -30,7 +30,7 @@ function getFile (data) {
   });
 }
 
-function getRaw(data) {
+function getRaw (data) {
   const field = data.field;
 
   return runs.retrieve(data.runId).then((runData) => {

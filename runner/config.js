@@ -1,3 +1,3 @@
 module.exports = {
-  redis: 'redis://localhost:6379',
+  redis: 'redis://localhost:6379'
 };

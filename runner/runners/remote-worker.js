@@ -48,7 +48,6 @@ const Workers = (function () {
       const corrId = uuid();
 
       return new Promise((resolve, reject) => {
-
         const promiseTimeout = setTimeout(() => {
           l('Rejecting message due to timeout.');
           const e = new Error('Timeout error');
@@ -73,7 +72,6 @@ const Workers = (function () {
         };
 
         store.publish(Queue, JSON.stringify(storeMessage));
-
       });
     }
   };

@@ -27,7 +27,7 @@ module.exports = function compileTsAndReturnSemanticErrors (code) {
   };
 };
 
-function buildErrorsPage(errors) {
+function buildErrorsPage (errors) {
   return flatten([
     '<html><head>',
     '<style>',
@@ -52,11 +52,10 @@ function buildErrorsPage(errors) {
     }),
     '</div>',
     '</body></html>'
-  ]).join('\n')
+  ]).join('\n');
 }
 
 function compileTsFilesAndGetOutputs (workspace) {
-
   // Extract tsFiles
   const tsFiles = Object.keys(workspace).filter(function (fileName) {
     return /\.ts$/i.test(fileName);

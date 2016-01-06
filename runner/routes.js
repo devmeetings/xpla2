@@ -18,7 +18,7 @@ function handleError (e, reply) {
   // Internal Server Error
   reply(e.toString).code(500);
   setTimeout(() => {
-    throw e
+    throw e;
   });
 }
 
@@ -136,5 +136,5 @@ module.exports = [
 ];
 
 function runnerSchema () {
-  return Joi.any().valid(runners).required()
+  return Joi.any().valid(runners).required();
 }

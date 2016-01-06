@@ -1,8 +1,6 @@
 const worker = require('./remote-worker');
-const _ = require('lodash');
 
-
-module.exports = function createWorker(queueName) {
+module.exports = function createWorker (queueName) {
   return function (data) {
     return worker.send(queueName, data).then((outputData) => {
       const newFiles = [
@@ -42,5 +40,4 @@ function getResultsAsHtml (data) {
     <pre>${data.errors.join('\n')}</pre>
   </div>`;
 }
-
 
