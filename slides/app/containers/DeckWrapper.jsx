@@ -7,7 +7,7 @@ import * as DeckActions from '../actions/deck';
 
 import {DeckActiveSlide} from '../components/DeckActiveSlide/DeckActiveSlide';
 import {DeckSlidesList} from '../components/DeckSlidesList/DeckSlidesList';
-import {DeckLocationUpdater} from '../components/DeckLocationUpdater/DeckLocationUpdater';
+import {DeckLocationUpdater, getSlideId} from '../components/DeckLocationUpdater/DeckLocationUpdater';
 
 import styles from './DeckWrapper.scss';
 
@@ -19,9 +19,13 @@ class DeckContainer extends React.Component {
     });
   }
 
-  onSlideUrlChange (slideId) {
+  onSlideUrlChange (slideUrlId) {
+    const slide = this.props.slides.find((slide) => getSlideId(slide) === slideUrlId);
+    if (!slide) {
+      return;
+    }
     this.props.actions.deckSlideChange({
-      newSlideId: slideId
+      newSlideId: slide.get('id')
     });
   }
 
