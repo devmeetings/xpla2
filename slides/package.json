@@ -22,15 +22,6 @@
     "test-ci": "NODE_ENV=test karma start --single-run",
     "webpack": "webpack --colors --progress --config ./webpack/config"
   },
-  "config": {
-    "pre-git": {
-      "pre-push": [
-        "npm run lint"
-      ],
-      "post-commit": "git st",
-      "post-merge": "npm install"
-    }
-  },
   "dependencies": {
     "brace": "^0.7.0",
     "event-emitter": "^0.3.4",
@@ -82,7 +73,6 @@
     "opn": "^3.0.2",
     "phantomjs": "^1.9.17",
     "postcss-loader": "^0.5.1",
-    "pre-git": "^3.1.2",
     "raw-loader": "^0.5.1",
     "react-hot-loader": "^1.2.8",
     "rimraf": "^2.4.1",

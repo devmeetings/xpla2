@@ -10,15 +10,6 @@
     "semistandard": "semistandard",
     "lint": "semistandard --verbose | snazzy"
   },
-  "config": {
-    "pre-git": {
-      "pre-push": [
-        "npm test"
-      ],
-      "post-commit": "git st",
-      "post-merge": "npm install"
-    }
-  },
   "semistandard": {
     "ignore": [
       "**/node_modules/**",
@@ -45,7 +36,6 @@
   },
   "devDependencies": {
     "nodemon": "^1.8.1",
-    "pre-git": "^3.1.2",
     "semistandard": "^7.0.4",
     "snazzy": "^2.0.1"
   }
