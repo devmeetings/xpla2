@@ -20,6 +20,30 @@ function fixPossibleScriptTags (val) {
     .replace(/<.\/script>/gi, '</script>');
 }
 
+function parseHighlight (dom) {
+  if (!dom.hasAttribute('highlight')) {
+    return [];
+  }
+  const highlightString = dom.getAttribute('highlight');
+  return highlightString.split(',').map((pattern) => {
+    const parts = pattern
+      .split('-')
+      .map((no) => parseInt(no, 10))
+      .map((no) => no - 1);
+    // Validation
+    parts.forEach((no) => {
+      if (isNaN(no) || no < 0) {
+        throw new Error(`Unable to parse highlights for ${dom.id}. Problem with: ${pattern}`);
+      }
+    });
+
+    return {
+      from: parts[0],
+      to: parts[1] || parts[0]
+    };
+  });
+}
+
 // We will first read the configuration to use right components
 export function getEditorState (dom) {
   const id = dom.id || randomId('editor');
@@ -30,17 +54,21 @@ export function getEditorState (dom) {
   const files = [].map.call(
     dom.querySelectorAll('template,script'),
     (tpl) => {
+      const highlight = parseHighlight(tpl);
+
       if (!tpl.src) {
         return Promise.resolve({
           name: tpl.id,
-          content: fixPossibleScriptTags(trim(tpl.innerHTML))
+          content: fixPossibleScriptTags(trim(tpl.innerHTML)),
+          highlight
         });
       }
       return fetch(tpl.src)
         .then((response) => response.text())
         .then((content) => ({
           name: tpl.id,
-          content
+          content,
+          highlight
         }));
     }
   );

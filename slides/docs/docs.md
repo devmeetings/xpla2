@@ -9,6 +9,7 @@ Represents a simple IDE.
 ### Params
 `active` - Active tab name. Defaults to first tab
 `script[id]` - *Required*. Name of the file
+`script[highlight]` - Lines that should be highlighted in editor
 
 ### Example
 ```html
@@ -25,7 +26,7 @@ Represents a simple IDE.
       </body>
     </html>
   </script>
-  <script id="main.js" type="application/javascript">
+  <script id="main.js" type="application/octetstream" highlight="1-2,3">
     function helloWorld() {
       console.log()
     }

@@ -38,7 +38,10 @@ export const commitAndRunCode = (payload) => {
       },
       body: JSON.stringify({
         runnerName: payload.runnerName,
-        files: payload.files
+        files: payload.files.map((file) => ({
+          name: file.name,
+          content: file.content
+        }))
       })
     })
       .then(checkStatus)

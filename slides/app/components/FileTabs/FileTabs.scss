@@ -12,6 +12,7 @@
 }
 
 .tab, .tabActive {
+  position: relative;
   box-sizing: border-box;
   display: inline-block;
   height: $filetabs-height - $border-small;
@@ -19,6 +20,7 @@
 
   padding: $padding;
   padding-bottom: $padding - $border;
+  padding-right: $padding + $padding;
   border-bottom: $border solid transparent;
 
   transition: border $transition;
@@ -31,4 +33,12 @@
 
 .tabActive {
   border-color: $brand-primary;
+}
+
+.badge {
+  position: absolute;
+  color: $brand-danger;
+  top: 0;
+  right: 0;
+  font-size: $padding;
 }

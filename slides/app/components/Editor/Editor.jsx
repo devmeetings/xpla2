@@ -2,9 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import Props from 'react-immutable-proptypes';
 
-import {EditSession} from 'brace';
-
-import {AceEditor} from '../AceEditor/AceEditor';
+import {AceEditor, createEditSession} from '../AceEditor/AceEditor';
 import {FileTabs} from '../FileTabs/FileTabs';
 import {ModeMenu} from '../ModeMenu/ModeMenu';
 
@@ -111,9 +109,12 @@ export class Editor extends React.Component {
     const mode = this.getType(props.active);
     const name = props.active.get('name');
     const content = props.active.get('content');
+    const highlight = props.active.get('highlight');
+
+    const editSession = new createEditSession(content, mode, highlight.toJS());
 
     this.setState({
-      [name]: new EditSession(content, `ace/mode/${mode}`)
+      [name]: editSession
     });
   }
 

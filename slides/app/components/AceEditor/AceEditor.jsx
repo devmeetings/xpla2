@@ -1,6 +1,22 @@
 import ace from 'brace';
 import React from 'react';
 
+const Range = ace.acequire('ace/range').Range;
+
+export function createEditSession (content, mode, highlight) {
+  const editSession = ace.createEditSession(content, `ace/mode/${mode}`);
+
+  if (highlight.length) {
+    // add markers
+    highlight.map((pattern) => {
+      const range = new Range(pattern.from, 0, pattern.to, Infinity);
+      editSession.addMarker(range, 'ace_active-line', 'xp-highlight');
+    });
+  }
+
+  return editSession;
+}
+
 export class AceEditor extends React.Component {
   onChange () {
     if (this.props.onChange && !this.silent) {
