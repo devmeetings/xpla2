@@ -53,7 +53,7 @@ function convertCommitsToSlidesContent (commits) {
       }));
     }
 
-    const active = editors[0];
+    const active = editors[0].id;
     slidesContent.push({
       filesToSave,
       active,
