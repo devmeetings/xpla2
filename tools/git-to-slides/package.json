@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "lodash": "^3.10.1",
     "nodegit": "^0.6.3"
   }
 }
