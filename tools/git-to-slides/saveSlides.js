@@ -17,6 +17,11 @@ function saveDeck (slides) {
   fs.writeFileSync(path.join(DIR, 'index.html'), deckToHtml(slides));
 }
 
+function slideFileName (slide) {
+  const title = trim(slide.title).replace(/[^a-z0-9\-_\.\s]/ig, '').replace(/\s/g, '_');
+  return `${slide.slideName}-${title}.html`;
+}
+
 function saveSlide (slide) {
   console.log('Saving slide', slide.slideName);
   mkdirp.sync(DIR);
@@ -30,7 +35,7 @@ function saveSlide (slide) {
     fs.writeFileSync(filePath, file.content);
   });
   // Write slides
-  fs.writeFileSync(path.join(DIR, `${slide.slideName}.html`), slideToHtml(slide));
+  fs.writeFileSync(path.join(DIR, slideFileName(slide)), slideToHtml(slide));
 }
 
 function deckToHtml (slides) {
@@ -56,7 +61,7 @@ function deckToHtml (slides) {
 }
 
 function slideToHtmlDeck (slide) {
-  return `\t<link rel="import" href="${slide.slideName}.html" />`;
+  return `\t<link rel="import" href="${slideFileName(slide)}" />`;
 }
 
 function slideToHtml (slide) {

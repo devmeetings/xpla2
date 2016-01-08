@@ -30,7 +30,7 @@ function convertCommitsToSlidesContent (commits) {
     });
 
     const editors = commit.newFiles.map((file) => {
-      const highlights = hasOldFiles ? linesToHighlights(file.lines) : [];
+      const highlights = hasOldFiles ? linesToHighlights(file.lines) : '';
       return {
         id: file.path,
         highlight: highlights,
