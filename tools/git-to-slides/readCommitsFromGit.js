@@ -1,12 +1,13 @@
 const Git = require('nodegit');
 const _ = require('lodash');
 
-const ignore = [
+const IGNORE = [
   '.editorconfig',
   '.gitignore'
 ];
 
-module.exports = function readCommitsFromGit(dir) {
+module.exports = function readCommitsFromGit(dir, ignore) {
+  const ignored = ignore.concat(IGNORE);
   return new Promise((resolve, reject) => {
      Git.Repository.open(dir)
       .then((repo) => repo.getHeadCommit())
@@ -17,7 +18,7 @@ module.exports = function readCommitsFromGit(dir) {
         const commits = [];
         history.on('commit', (commit) => {
           commits.push(
-            readCommit(commit).catch(reject)
+            readCommit(commit, ignored).catch(reject)
           );
         });
 
@@ -31,7 +32,7 @@ module.exports = function readCommitsFromGit(dir) {
   });
 };
 
-function readCommit (commit) {
+function readCommit (commit, ignore) {
   console.log('Reading commit', commit.message());
   const treePromise = commit.getTree();
   const diffPromise = commit.getDiff();
@@ -49,15 +50,15 @@ function readCommit (commit) {
 
     return getOldFiles(tree, newFiles).then((oldFiles) => {
       return {
-        newFiles: removeIgnoredFiles(newFiles),
-        oldFiles: removeIgnoredFiles(oldFiles),
+        newFiles: removeIgnoredFiles(newFiles, ignore),
+        oldFiles: removeIgnoredFiles(oldFiles, ignore),
         message: commit.message()
       };
     });
   });
 }
 
-function removeIgnoredFiles (files) {
+function removeIgnoredFiles (files, ignore) {
   return files.filter((file) => !_.contains(ignore, file.path));
 }
 
