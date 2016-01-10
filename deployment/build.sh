@@ -17,7 +17,6 @@ cd -
 
 
 echo '----------------------Molding----------------------------------'
-cd runner
 npm run clean_modules
 rm -rf static || true
 cp slides/build static -r
