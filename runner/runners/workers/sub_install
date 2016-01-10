@@ -1,3 +1,3 @@
 #!/bin/sh
 cd ./html-ts && npm install && cd -
-cd ./html-jsx && npm install && cd -
+cd ./html-babel && npm install && cd -
