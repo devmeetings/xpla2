@@ -17,7 +17,9 @@ cd -
 
 
 echo '----------------------Molding----------------------------------'
+cd runner
 npm run clean_modules
+cd -
 rm -rf static || true
 cp slides/build static -r
 tar cvzf xplarunner.tar.gz runner static
