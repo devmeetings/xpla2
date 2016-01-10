@@ -28,8 +28,7 @@
         height: calc(100% - #{$commentSize});
       }
 
-      &.comments {
-        height: $commentSize;
+      &.center, &.comments {
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -39,6 +38,10 @@
           content: '';
           flex: 1;
         }
+      }
+
+      &.comments {
+        height: $commentSize;
 
         h1,h2,h3,h4,h5,h6 {
           margin: 0;
