@@ -9,7 +9,7 @@
     "postinstall": "cd ./runners/workers/ && ./sub_install",
     "semistandard": "semistandard",
     "lint": "semistandard --verbose | snazzy",
-    "clean_modules": "rm node_modules && cd ./runners/workers && ./sub_clean"
+    "clean_modules": "rm node_modules -Rf && cd ./runners/workers && ./sub_clean"
   },
   "semistandard": {
     "ignore": [
