@@ -55,7 +55,7 @@ export class DeckSlidesList extends React.Component {
     }
 
     return (
-      <li className={styles.item} key={'button'}>
+      <li className={styles.itemMore} key={'button'}>
         <a onClick={this.showMore}>
           <Tooltip
             overlay={<span>Show more slides</span>}

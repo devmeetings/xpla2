@@ -24,12 +24,25 @@
       width: 100%;
       position: relative;
 
-      &.with-comment {
+      &.with-comments {
         height: calc(100% - #{$commentSize});
       }
 
-      &.comment {
+      &.comments {
         height: $commentSize;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+
+        &::after, &::before {
+          display: block;
+          content: '';
+          flex: 1;
+        }
+
+        h1,h2,h3,h4,h5,h6 {
+          margin: 0;
+        }
       }
     }
 

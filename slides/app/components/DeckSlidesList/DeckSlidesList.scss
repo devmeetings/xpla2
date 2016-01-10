@@ -18,8 +18,7 @@
     overflow-x: auto;
   }
 }
-
-.item, .itemActive {
+.item, .itemActive, .itemMore {
   display: inline-block;
 
   a {
@@ -31,6 +30,8 @@
     height: $slideslist-height;
     line-height: $slideslist-height - 2*$padding;
     border-top: $border solid transparent;
+    width: 13vw;
+    overflow: hidden;
 
     transition: border $transition;
 
@@ -39,7 +40,13 @@
     }
   }
 }
-
+.itemMore {
+  a {
+    min-width: 5vw;
+    width: auto;
+    text-align: center;
+  }
+}
 .itemActive {
   a {
     cursor: default;
