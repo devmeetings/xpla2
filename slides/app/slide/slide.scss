@@ -1,5 +1,6 @@
 :global {
   @import '../components/scrollbars.scss';
+  $commentSize: 50px;
 
   .xp-slide {
     height: 100%;
@@ -22,6 +23,14 @@
       height: 50%;
       width: 100%;
       position: relative;
+
+      &.with-comment {
+        height: calc(100% - #{$commentSize});
+      }
+
+      &.comment {
+        height: $commentSize;
+      }
     }
 
     @include scrollbars;

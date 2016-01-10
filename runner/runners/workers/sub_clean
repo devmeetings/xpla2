@@ -1,0 +1,3 @@
+#!/bin/sh
+rm html-ts/node_modules -R
+rm html-jsx/node_modules -R

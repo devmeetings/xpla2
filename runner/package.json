@@ -6,9 +6,10 @@
   "scripts": {
     "start": "nodemon index.js",
     "test": "npm run lint",
-    "postinstall": "cd ./runners/workers/html-ts && npm install",
+    "postinstall": "cd ./runners/workers/ && ./sub_install",
     "semistandard": "semistandard",
-    "lint": "semistandard --verbose | snazzy"
+    "lint": "semistandard --verbose | snazzy",
+    "clean_modules": "rm node_modules && cd ./runners/workers && ./sub_clean"
   },
   "semistandard": {
     "ignore": [

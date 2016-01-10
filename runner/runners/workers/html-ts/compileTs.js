@@ -4,6 +4,8 @@ const ts = require('typescript');
 const fs = require('fs');
 const _ = require('lodash');
 
+const buildErrorsPage = require('./buildErrorsPage');
+
 module.exports = function compileTsAndReturnSemanticErrors (code) {
   const output = compileTsFilesAndGetOutputs(code.files);
   const files = _.values(code.files).concat(output.files);
@@ -27,38 +29,10 @@ module.exports = function compileTsAndReturnSemanticErrors (code) {
   };
 };
 
-function buildErrorsPage (errors) {
-  return flatten([
-    '<html><head>',
-    '<style>',
-    '.error { color: #a44; }',
-    '.error strong { color: #f44; }',
-    '.error .message { font-family: monospace; }',
-    '</style>',
-    '</head><body>',
-    '<div>',
-    errors.map(function (err) {
-      return [
-        '<div class="error">',
-        '<strong>' + err.filePath + ':' + (err.startPos.line + 1) + ':' + (err.startPos.col + 1) + '</strong>',
-        '<div class="message">' + err.message
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(err.preview, function (x) {
-            return '<strong>' + x + '</strong>';
-          }) + '</div>',
-        '</div>'
-      ];
-    }),
-    '</div>',
-    '</body></html>'
-  ]).join('\n');
-}
-
 function compileTsFilesAndGetOutputs (workspace) {
   // Extract tsFiles
   const tsFiles = Object.keys(workspace).filter(function (fileName) {
-    return /\.ts$/i.test(fileName);
+    return /\.tsx?$/i.test(fileName);
   });
   const nonTsFiles = Object.keys(workspace).filter((fileName) => {
     return tsFiles.indexOf(fileName) === -1;
@@ -145,16 +119,6 @@ function tsSysForWorkspace (workspace) {
       return true;
     }
   };
-}
-
-function flatten (arr) {
-  if (!arr || !arr.reduce) {
-    return [arr];
-  }
-
-  return arr.reduce(function (memo, v) {
-    return memo.concat(flatten(v));
-  }, []);
 }
 
 function extend (a, b) {

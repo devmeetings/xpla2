@@ -207,7 +207,7 @@ AceEditor.defaultProps = {
   readOnly: false,
   highlightActiveLine: true,
   showPrintMargin: false,
-  tabSize: 4,
+  tabSize: 2,
   cursorStart: 1,
   editorProps: {},
   wrapEnabled: false
