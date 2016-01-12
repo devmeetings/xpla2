@@ -79,11 +79,14 @@ function compileTsFilesAndGetOutputs (workspace) {
   };
 }
 
+const cwd = process.cwd();
+
 function tsSysForWorkspace (workspace) {
   return {
     newLine: '\n',
     readFile: function (fileName, encoding) {
-      const f = workspace[fileName];
+      const workspacePath = fileName.replace(cwd + '/', '');
+      const f = workspace[workspacePath];
       if (f) {
         return f.content;
       }
@@ -108,7 +111,8 @@ function tsSysForWorkspace (workspace) {
       return path;
     },
     fileExists: function (path) {
-      const existsInWorkspace = !!workspace[path];
+      const workspacePath = path.replace(cwd + '/', '');
+      const existsInWorkspace = !!workspace[workspacePath];
       if (existsInWorkspace) {
         return true;
       }
