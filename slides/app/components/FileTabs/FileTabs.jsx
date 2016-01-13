@@ -3,9 +3,23 @@ import Props from 'react-immutable-proptypes';
 
 import styles from './FileTabs.scss';
 
+import Tooltip from '../Tooltip';
 import {Icon} from '../Icon/Icon';
 
 export class FileTabs extends React.Component {
+
+  constructor (...args) {
+    super(...args);
+    this.state = {
+      showAll: false
+    };
+  }
+
+  showAll () {
+    this.setState({
+      showAll: !this.state.showAll
+    });
+  }
 
   clickTab (file, ev) {
     ev.preventDefault();
@@ -36,8 +50,32 @@ export class FileTabs extends React.Component {
       );
     }
 
+    const highlighted = this.props.files.filter((file) => {
+      return file.get('highlight').size;
+    });
+
+    if (highlighted.size && !this.state.showAll) {
+      return this.renderTabs(highlighted).concat([(
+        <Tooltip
+          overlay={<span>Show other files</span>}
+          placement={'bottom'}
+          >
+          <a
+            className={styles.tab}
+            key={'more'}
+            onClick={this.showAll.bind(this)}
+            >
+            <Icon icon={'more-horiz'} size={'1em'} />
+          </a>
+        </Tooltip>
+      )]);
+    }
+    return this.renderTabs(this.props.files);
+  }
+
+  renderTabs (files) {
     const activeName = this.props.active.get('name');
-    return this.props.files.map((file) => {
+    return files.map((file) => {
       const isActive = activeName === file.get('name');
       return (
         <a

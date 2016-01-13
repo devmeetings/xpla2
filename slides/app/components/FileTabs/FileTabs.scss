@@ -1,10 +1,15 @@
 @import '../vars.scss';
 
 .tabs {
+	$shadow: $border-small * 2;
+
   border-bottom: $border-small solid $brand-primary;
   height: $filetabs-height - $border-small;
   box-sizing: border-box;
   white-space: nowrap;
+	box-shadow: 0 $shadow $shadow (-$shadow) $brand-primary;
+	position: relative;
+	z-index: 5;
   overflow: hidden;
   &:hover {
     overflow-x: auto;

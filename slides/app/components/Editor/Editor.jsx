@@ -14,7 +14,7 @@ import 'brace/mode/jsx';
 import 'brace/mode/typescript';
 import 'brace/mode/java';
 import 'brace/mode/python';
-import 'brace/theme/github';
+import 'brace/theme/chrome';
 
 import styles from './Editor.scss';
 
@@ -140,11 +140,11 @@ export class Editor extends React.Component {
           />
         <AceEditor
           commands={this.commands}
-          height='calc(100% - 30px)'
+          height='calc(100% - 38px)'
           name={`editor-${name}`}
           onChange={this.props.onTabContentChange}
           session={session}
-          theme='github'
+          theme='chrome'
           width='100%'
         />
       </div>

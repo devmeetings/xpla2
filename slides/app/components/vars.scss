@@ -1,9 +1,9 @@
-$filetabs-height: 30px;
-$slideslist-height: 40px;
-$previewbar-height: 30px;
+$filetabs-height: 35px;
+$slideslist-height: 45px;
+$previewbar-height: 34px;
 
-$padding: 5px;
-$border: 3px;
+$padding: 7px;
+$border: 4px;
 $border-small: 1px;
 
 $color-text: #444;
@@ -15,5 +15,7 @@ $brand-primary-light: lighten($brand-primary, 10%);
 
 $brand-danger: #F44336;
 $brand-danger-light-bg: lighten($brand-danger, 30%);
+
+$brand-light-bg: #F3F5F6;
 
 $transition: ease-in-out 0.2s;

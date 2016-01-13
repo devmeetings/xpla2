@@ -1,6 +1,7 @@
 @import '../vars.scss';
 
 .list {
+	$shadow: $border-small * 2;
   list-style-type: none;
   position: absolute;
   bottom: 0;
@@ -13,6 +14,7 @@
   height: $slideslist-height;
   white-space: nowrap;
   border-top: $border-small solid $brand-primary;
+	box-shadow: 0 (-$shadow) $shadow (-$shadow) $brand-primary;
 
   &:hover {
     overflow-x: auto;

@@ -6,15 +6,18 @@
   bottom: 0;
   left: 0;
   right: 0;
-  border-left: $border-small solid $brand-primary-light;
   overflow-y: auto;
 }
 .previewBar {
+	$shadow: $border-small * 2;
   position: absolute;
   top: 0;
   height: $previewbar-height;
   left: 0;
   right: 0;
+	box-sizing: border-box;
+	border-bottom: $border-small solid $brand-primary;
+	box-shadow: 0 $shadow $shadow (-$shadow) $brand-primary;
 }
 .previewWindow {
   position: absolute;
@@ -37,7 +40,7 @@
   box-sizing: border-box;
   border: none;
   padding: $padding;
-  height: $previewbar-height;
+  height: $previewbar-height - $border-small;
   transition: background $transition;
   display: inline-block;
   text-decoration: none;
