@@ -27,6 +27,11 @@ export class FileTabs extends React.Component {
     this.props.onChange(file);
   }
 
+  getFileName (path) {
+    const parts = path.split('/');
+    return parts[parts.length - 1];
+  }
+
   renderBadge (file) {
     if (!file.get('highlight').size) {
       return;
@@ -41,13 +46,8 @@ export class FileTabs extends React.Component {
   renderTabLinks () {
     if (this.props.files.size < 2) {
       const file = this.props.files.get(0);
-      return (
-        <a
-          className={styles.tabActive}
-          >
-          {file.get('name')}
-        </a>
-      );
+
+      return this.renderFileLink(file, file.get('name'), true);
     }
 
     const highlighted = this.props.files.filter((file) => {
@@ -73,20 +73,39 @@ export class FileTabs extends React.Component {
     return this.renderTabs(this.props.files);
   }
 
+  renderFileLink (file, fileName, isActive) {
+    return (
+      <a
+        className={isActive ? styles.tabActive : styles.tab}
+        key={file.get('name')}
+        onClick={!isActive ? this.clickTab.bind(this, file) : null}
+        >
+        {fileName}
+        {this.renderBadge(file)}
+      </a>
+    );
+  }
+
   renderTabs (files) {
     const activeName = this.props.active.get('name');
     return files.map((file) => {
       const isActive = activeName === file.get('name');
-      return (
-        <a
-          className={isActive ? styles.tabActive : styles.tab}
-          key={file.get('name')}
-          onClick={this.clickTab.bind(this, file)}
-          >
-          {file.get('name')}
-          {this.renderBadge(file)}
-        </a>
-      );
+      const path = file.get('name');
+      const fileName = this.getFileName(file.get('name'));
+
+      const link = this.renderFileLink(file, fileName, isActive);
+
+      if (path !== fileName) {
+        return (
+          <Tooltip
+            overlay={<span>{path}</span>}
+            placement={'bottom'}
+            >
+            {link}
+          </Tooltip>
+        );
+      }
+      return link;
     });
   }
 

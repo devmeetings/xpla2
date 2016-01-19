@@ -3,6 +3,7 @@
 .tabs {
 	$shadow: $border-small * 2;
 
+  padding-right: $filetabs-height;
   border-bottom: $border-small solid $brand-primary;
   height: $filetabs-height - $border-small;
   box-sizing: border-box;
