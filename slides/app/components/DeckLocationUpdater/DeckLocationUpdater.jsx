@@ -46,18 +46,16 @@ export class DeckLocationUpdater extends React.Component {
     if (hash === activeId) {
       return;
     }
-    // Set current hash back and wait for update (if any!)
-    this.writeHash(activeId);
     // Notify changed
     this.props.onUrlChange(hash);
   }
 
   componentWillReceiveProps (newProps) {
     // update Active
-    if (newProps.active === this.props.active) {
-      return;
+    const activeId = this.getActiveId(newProps);
+    if (this.readHash() != activeId) {
+      this.writeHash(activeId);
     }
-    this.writeHash(this.getActiveId(newProps));
   }
 
   render () {
