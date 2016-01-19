@@ -57,9 +57,9 @@ export class FileTabs extends React.Component {
     if (highlighted.size && !this.state.showAll && highlighted.size !== this.props.files.size) {
       return this.renderTabs(highlighted).concat([(
         <Tooltip
+          key={'more'}
           overlay={<span>Show other files</span>}
           placement={'bottom'}
-          key={'more'}
           >
           <a
             className={styles.tab}
@@ -98,9 +98,9 @@ export class FileTabs extends React.Component {
       if (path !== fileName) {
         return (
           <Tooltip
+            key={path}
             overlay={<span>{path}</span>}
             placement={'bottom'}
-            key={path}
             >
             {link}
           </Tooltip>
