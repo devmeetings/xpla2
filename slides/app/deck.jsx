@@ -23,19 +23,22 @@ const slides = _
     .chain($xpDeck.querySelectorAll('link'))
     .map(getSlideState)
     .value();
-const activeSlide = getActiveSlideState(slides);
 
-const store = Store({
-  runServerUrl,
-  deck: {
-    active: activeSlide,
-    slides: slides
-  }
-});
+Promise.all(slides).then((slides) => {
+  const activeSlide = getActiveSlideState(slides);
 
-render(
-  <Provider store={store}>
-    <DeckContainerWrapper />
-  </Provider>,
-  $xpDeck
-);
+  const store = Store({
+    runServerUrl,
+    deck: {
+      active: activeSlide,
+      slides: slides
+    }
+  });
+
+  render(
+    <Provider store={store}>
+      <DeckContainerWrapper />
+    </Provider>,
+    $xpDeck
+  );
+}).catch((err) => alert(err));

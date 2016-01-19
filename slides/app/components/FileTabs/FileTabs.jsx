@@ -59,10 +59,10 @@ export class FileTabs extends React.Component {
         <Tooltip
           overlay={<span>Show other files</span>}
           placement={'bottom'}
+          key={'more'}
           >
           <a
             className={styles.tab}
-            key={'more'}
             onClick={this.showAll.bind(this)}
             >
             <Icon icon={'more-horiz'} size={'1em'} />

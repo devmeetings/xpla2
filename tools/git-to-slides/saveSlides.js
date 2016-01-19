@@ -48,14 +48,14 @@ function deckToHtml (options, slides) {
           ${slides.map(slideToHtmlDeck).join('\n')}
         </xp-deck>
 
-        <script src="${options.resourceUrl}/js/deck.${options.version}.js"></script>
+        <script async src="${options.resourceUrl}/js/deck.${options.version}.js"></script>
       </body>
     </html>
   `;
 }
 
 function slideToHtmlDeck (slide) {
-  return `\t<link rel="import" href="${slideFileName(slide)}" />`;
+  return `\t<link async rel="import" href="${slideFileName(slide)}" />`;
 }
 
 function slideToHtml (options, slide) {
