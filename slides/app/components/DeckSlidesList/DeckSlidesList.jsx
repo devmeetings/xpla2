@@ -29,6 +29,7 @@ export class DeckSlidesList extends React.Component {
       this.setState({
         noOfSlidesToShow: DEFAULT_NO_OF_SLIDES
       });
+      this._list.scrollLeft = 0;
     }
   }
 
@@ -116,6 +117,7 @@ export class DeckSlidesList extends React.Component {
     return (
       <ul
         className={styles.list}
+        ref={(ul) => this._list = ul}
         >
         {this.renderMoreSlidesButton(slides.hasMore)}
         {this.renderSlides(slides.before)}
