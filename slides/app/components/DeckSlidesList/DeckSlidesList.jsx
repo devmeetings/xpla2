@@ -79,11 +79,30 @@ export class DeckSlidesList extends React.Component {
         className={id === activeId ? styles.itemActive : styles.item}
         key={id}
       >
+        {this.renderSlideLink(slide)}
+      </li>
+    );
+  }
+
+  renderSlideLink (slide) {
+    const link = (
         <a
           onClick={this.props.onSlideChange.bind(this, slide)}>
-          {slide.get('title')}
+          {slide.get('name')}
         </a>
-      </li>
+    );
+
+    if (slide.get('name').length < 20) {
+      return link;
+    }
+
+    return (
+        <Tooltip
+          overlay={<span>{slide.get('title')}</span>}
+          placement={'top'}
+          >
+          {link}
+        </Tooltip>
     );
   }
 

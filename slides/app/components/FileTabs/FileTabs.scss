@@ -7,9 +7,10 @@
   height: $filetabs-height - $border-small;
   box-sizing: border-box;
   white-space: nowrap;
-	box-shadow: 0 $shadow $shadow (-$shadow) $brand-primary;
-	position: relative;
-	z-index: 5;
+
+  box-shadow: 0 $shadow $shadow (-$shadow) $brand-primary;
+  position: relative;
+  z-index: 5;
   overflow: hidden;
   &:hover {
     overflow-x: auto;
@@ -22,6 +23,7 @@
   display: inline-block;
   height: $filetabs-height - $border-small;
   line-height: $filetabs-height - 2*$padding;
+  text-align: center;
 
   padding: $padding;
   padding-bottom: $padding - $border;

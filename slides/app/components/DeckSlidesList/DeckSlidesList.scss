@@ -22,24 +22,25 @@
 }
 .item, .itemActive, .itemMore {
   display: inline-block;
+  padding: $padding;
+  padding-top: $padding - $border;
+  border-top: $border solid transparent;
+  border-left: $border-small solid $color-disabled;
+  transition: border $transition;
 
   a {
     box-sizing: border-box;
     display: inline-block;
     cursor: pointer;
-    padding: $padding;
-    padding-top: $padding - $border;
     height: $slideslist-height;
     line-height: $slideslist-height - 2*$padding;
-    border-top: $border solid transparent;
     width: 13vw;
     overflow: hidden;
+    text-align: center;
+  }
 
-    transition: border $transition;
-
-    &:hover {
-      border-color: $brand-primary-light;
-    }
+  &:hover {
+    border-top-color: $brand-primary-light;
   }
 }
 .itemMore {
@@ -50,8 +51,8 @@
   }
 }
 .itemActive {
+  border-top-color: $brand-primary;
   a {
     cursor: default;
-    border-color: $brand-primary;
   }
 }

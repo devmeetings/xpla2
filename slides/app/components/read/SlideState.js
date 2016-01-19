@@ -12,11 +12,13 @@ export function getSlideState (dom) {
 
   const title = dom.import.querySelector('title').innerHTML;
   const body = dom.import.querySelector('body');
+  const name = dom.hasAttribute('title') ? dom.getAttribute('title') : title;
   body.setAttribute('xp-slide', dom.href);
 
   return {
     id: dom.id,
-    shortName: title,
+    shortName: name,
+    name: name,
     title: title,
     content: body
   };
