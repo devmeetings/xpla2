@@ -4,9 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Slide JSX</title>
-    <% if (debug === false) { %>
-      <link type="text/css" rel="stylesheet" media="all" href="css/slide.<%= version %>.css" />
-    <% } %>
+    <script src="js/slide_loader.<%= version %>.js"></script>
   </head>
   <body class="xp-slide">
     <div class="xp-column">
@@ -59,6 +57,5 @@
     <div class="xp-column">
       <xp-preview runner="html-jsx"></xp-preview>
     </div>
-    <script src="js/slide.<%= version %>.js"></script>
   </body>
 </html>

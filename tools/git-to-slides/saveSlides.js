@@ -66,7 +66,7 @@ function slideToHtml (options, slide) {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>${trim(slide.title)}</title>
-        <link type="text/css" rel="stylesheet" media="all" href="${options.resourceUrl}/css/slide.${options.version}.css" />
+        <script src="${options.resourceUrl}/js/slide_loader.${options.version}.js"></script>
       </head>
       <body class="xp-slide">
         <div class="xp-column">
@@ -77,7 +77,6 @@ function slideToHtml (options, slide) {
         <div class="xp-column">
           <xp-preview runner="${options.runner}"></xp-preview>
         </div>
-        <script src="${options.resourceUrl}/js/slide.${options.version}.js"></script>
       </body>
     </html>
   `;

@@ -13,7 +13,8 @@ var jsBundle = path.join('js', util.format('[name].%s.js', pkg.version));
 
 var entry = {
   slide: ['./slide.jsx'],
-  deck: ['./deck.jsx']
+  deck: ['./deck.jsx'],
+  slide_loader: ['./slide_loader.js']
 };
 
 if (DEBUG) {
