@@ -18,6 +18,12 @@ export function createEditSession (content, mode, highlight) {
 }
 
 export class AceEditor extends React.Component {
+
+  constructor (...props) {
+    super(...props);
+    this.name = Math.random();
+  }
+
   onChange () {
     if (this.props.onChange && !this.silent) {
       var value = this.editor.getValue();
@@ -47,7 +53,7 @@ export class AceEditor extends React.Component {
     }
   }
   componentDidMount () {
-    this.editor = ace.edit(this.props.name);
+    this.editor = ace.edit(this.props.name + this.name);
     if (this.props.onBeforeLoad) {
       this.props.onBeforeLoad(ace);
     }
@@ -155,7 +161,7 @@ export class AceEditor extends React.Component {
     return (
       <div
         className={className}
-        id={this.props.name}
+        id={this.props.name + this.name}
         style={divStyle}>
       </div>
     );

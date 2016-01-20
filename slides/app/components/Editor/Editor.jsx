@@ -10,6 +10,7 @@ import {WORK_MODE_DECK_EDIT} from '../../reducers.utils/workMode';
 
 import 'brace/mode/html';
 import 'brace/mode/javascript';
+import 'brace/mode/json';
 import 'brace/mode/jsx';
 import 'brace/mode/typescript';
 import 'brace/mode/java';

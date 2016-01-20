@@ -68,7 +68,7 @@
   </head>
   <body>
     <xp-deck>
-      <link rel="import" href="slide.html" />
+      <link rel="import" href="slide.html" title="Short Title" />
     </xp-deck>
     <script src="http://xpla.org/static/js/deck.3.0.0.js"></script>
   </body>
