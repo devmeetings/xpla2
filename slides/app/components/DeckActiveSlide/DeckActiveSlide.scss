@@ -7,9 +7,8 @@
   left: 0;
   right: 0;
   overflow: auto;
-  transform: translate(0, 0);
-  transition: transform $transition-long, opacity $transition-long;
-  transition-delay: 0.2s, 0.4s;
+  transition: opacity $transition-long;
+  transition-delay: 0.3s;
 
   body {
     height: 100%;
@@ -17,7 +16,6 @@
 }
 
 .hidenow {
-  transform: translate(0, -100%);
   transition: none;
   opacity: 0;
 }
