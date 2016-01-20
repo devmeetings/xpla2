@@ -25,7 +25,7 @@ if (DEBUG) {
     new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        VERSION: pkg.version,
+        VERSION: JSON.stringify(pkg.version),
         NODE_ENV: JSON.stringify('production')
       }
     }),

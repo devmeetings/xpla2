@@ -30,5 +30,5 @@ function findResourcesUrl(document, res) {
     if (src.indexOf('js/slide_loader') !== -1) {
       return src.replace(/js\/slide_loader\.(.+)\.js/, res);
     }
-  }, false) || 'http://xpla.org/static/' + res.replace('$1', process.env.VERSION);
+  }, false) || ('http://xpla.org/static/' + res.replace('$1', process.env.VERSION));
 }
