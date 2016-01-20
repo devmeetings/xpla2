@@ -1,4 +1,4 @@
-// import 'babel-core/polyfill';
+import 'babel-core/polyfill';
 import 'normalize.css/normalize.css';
 import './index.html';
 import './deck.html';
