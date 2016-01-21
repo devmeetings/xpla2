@@ -20,7 +20,7 @@ export function getSlideState (dom) {
 
     return {
       id: dom.id,
-      shortName: name,
+      shortName: name.replace(/[^a-zA-Z.0-9_\-]+/g, '_'),
       name: name,
       title: title,
       content: body
