@@ -6,7 +6,7 @@ export function getSlideState (dom) {
   dom.id = `slide_${id}`;
 
 
-  if (!dom.import) {
+  if (!('import' in dom)) {
     logger.error(dom);
     throw new Error(`Unable to read slide at ${dom.href}`)
   }
