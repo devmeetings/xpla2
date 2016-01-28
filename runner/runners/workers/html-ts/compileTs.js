@@ -3,6 +3,7 @@
 const ts = require('typescript');
 const fs = require('fs');
 const _ = require('lodash');
+const cwd = process.cwd() + '/';
 
 const buildErrorsPage = require('./buildErrorsPage');
 
@@ -59,7 +60,7 @@ function compileTsFilesAndGetOutputs (workspace) {
   // Assuming this runs synchronously!
   const emitResult = program.emit(undefined, function (_fileName, _content) {
     files.push({
-      name: _fileName,
+      name: _fileName.replace(cwd, ''),
       content: _content,
       mimetype: 'application/javascript'
     });
@@ -79,13 +80,11 @@ function compileTsFilesAndGetOutputs (workspace) {
   };
 }
 
-const cwd = process.cwd();
-
 function tsSysForWorkspace (workspace) {
   return {
     newLine: '\n',
     readFile: function (fileName, encoding) {
-      const workspacePath = fileName.replace(cwd + '/', '');
+      const workspacePath = fileName.replace(cwd, '');
       const f = workspace[workspacePath];
       if (f) {
         return f.content;
@@ -111,7 +110,7 @@ function tsSysForWorkspace (workspace) {
       return path;
     },
     fileExists: function (path) {
-      const workspacePath = path.replace(cwd + '/', '');
+      const workspacePath = path.replace(cwd, '');
       const existsInWorkspace = !!workspace[workspacePath];
       if (existsInWorkspace) {
         return true;
