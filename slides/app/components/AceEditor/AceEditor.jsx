@@ -9,7 +9,7 @@ export function createEditSession (content, mode, highlight) {
   if (highlight.length) {
     // add markers
     highlight.map((pattern) => {
-      const range = new Range(pattern.from, 0, pattern.to, Infinity);
+      const range = new Range(pattern.from, 0, pattern.to + 1, 0);
       editSession.addMarker(range, 'ace_highlight-line', 'xp-highlight');
     });
   }
