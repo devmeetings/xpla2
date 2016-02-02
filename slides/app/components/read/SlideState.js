@@ -27,7 +27,7 @@ export function getSlideState (dom) {
     };
   };
 
-  if (!dom.import.querySelector('body')) {
+  if (!dom.import || !dom.import.querySelector('body')) {
     // Add event listener
     return new Promise((resolve, reject) => {
       dom.addEventListener('load', () => {
