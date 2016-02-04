@@ -1,5 +1,9 @@
 @import '../vars.scss';
 
+.muted {
+  color: darken($color-disabled, 10%);
+}
+
 .tabs {
 	$shadow: $border-small * 2;
 

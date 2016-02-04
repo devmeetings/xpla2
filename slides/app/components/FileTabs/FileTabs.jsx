@@ -29,7 +29,13 @@ export class FileTabs extends React.Component {
 
   getFileName (path) {
     const parts = path.split('/');
-    return parts[parts.length - 1];
+    const fileName = parts[parts.length - 1];
+    if (fileName !== path) {
+      return (
+        <span><span className={styles.muted}>.../</span>{fileName}</span>
+      );
+    }
+    return fileName;
   }
 
   renderBadge (file) {
@@ -46,8 +52,9 @@ export class FileTabs extends React.Component {
   renderTabLinks () {
     if (this.props.files.size < 2) {
       const file = this.props.files.get(0);
+      const fileName = this.getFileName(file.get('name'));
 
-      return this.renderFileLink(file, file.get('name'), true);
+      return this.renderFileLink(file, fileName, true);
     }
 
     const highlighted = this.props.files.filter((file) => {
