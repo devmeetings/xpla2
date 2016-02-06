@@ -13,6 +13,53 @@ import styles from './DeckWrapper.scss';
 
 class DeckContainer extends React.Component {
 
+  constructor (...args) {
+    super(...args);
+    this.onKey = this.onKey.bind(this);
+  }
+
+  componentDidMount () {
+    window.addEventListener('keyup', this.onKey);
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('keyup', this.onKey);
+  }
+
+  onKey (ev) {
+    const left = [33/* PGUP */, 37/* LEFT */, 38/* UP */];
+    const right = [34/* PGDOWN */, 39/* RIGHT */ , 40/* DOWN */, 32/* SPACE*/];
+    const code = ev.keyCode;
+
+    if (left.indexOf(code) !== -1) {
+      this.prevSlide();
+      return;
+    }
+
+    if (right.indexOf(code) !== -1) {
+      this.nextSlide();
+      return;
+    }
+  }
+
+  nextSlide () {
+    let active = this.props.activeSlide;
+    let idx = this.props.slides.indexOf(active);
+    if (idx + 1 >= this.props.slides.length) {
+      return;
+    }
+    this.onSlideChange(this.props.slides.get(idx + 1));
+  }
+
+  prevSlide () {
+    let active = this.props.activeSlide;
+    let idx = this.props.slides.indexOf(active);
+    if (idx - 1 < 0) {
+      return;
+    }
+    this.onSlideChange(this.props.slides.get(idx - 1));
+  }
+
   onSlideChange (slide) {
     this.props.actions.deckSlideChange({
       newSlideId: slide.get('id')
