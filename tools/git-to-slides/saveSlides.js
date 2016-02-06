@@ -69,13 +69,18 @@ function slideToHtml (options, slide) {
         <script src="${options.resourceUrl}/js/slide_loader.${options.version}.js"></script>
       </head>
       <body class="xp-slide">
-        <div class="xp-column">
-          <xp-editor active="${slide.active}">
-            ${slide.editors.map(editorToHtml).join('\n')}
-          </xp-editor>
+        <div class="xp-row with-comments">
+          <div class="xp-column">
+            <xp-editor active="${slide.active}">
+              ${slide.editors.map(editorToHtml).join('\n')}
+            </xp-editor>
+          </div>
+          <div class="xp-column">
+            <xp-preview runner="${options.runner}"></xp-preview>
+          </div>
         </div>
-        <div class="xp-column">
-          <xp-preview runner="${options.runner}"></xp-preview>
+        <div class="xp-row comments">
+          <h1>${trim(slide.title)}</h1>
         </div>
       </body>
     </html>

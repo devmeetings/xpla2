@@ -62,20 +62,37 @@ function removeIgnoredFiles (files, ignore) {
   return files.filter((file) => !_.contains(ignore, file.path));
 }
 
+function getAllFileEntries(tree) {
+  const entries = tree.entries()
+    .filter((entry) => entry.isFile());
+
+  const p = Promise.all(
+    tree.entries()
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.getTree().then((tree) => getAllFileEntries(tree)))
+  );
+  return p.then((direntries) => {
+    return direntries.reduce((memo, direntry) => {
+      return memo.concat(direntry);
+    }, entries);
+  });
+}
+
 function getOldFiles (tree, newFiles) {
-  const oldFiles = tree.entries()
-    .filter((entry) => entry.isFile())
-    .filter((entry) => !_.find(newFiles, (file) => file.path === entry.path()))
-    .map((entry) => {
-      return entry.getBlob().then((blob) => {
-        return {
-          path: entry.path(),
-          lines: [],
-          content: blob.content().toString()
-        };
+  return getAllFileEntries(tree).then((entries) => {
+    const oldFiles = entries
+      .filter((entry) => !_.find(newFiles, (file) => file.path === entry.path()))
+      .map((entry) => {
+        return entry.getBlob().then((blob) => {
+          return {
+            path: entry.path(),
+            lines: [],
+            content: blob.content().toString()
+          };
+        });
       });
-    });
-  return Promise.all(oldFiles);
+    return Promise.all(oldFiles);
+  });
 }
 
 function parseDiffsToFiles (commit, diffs, tree) {
@@ -94,20 +111,12 @@ function parseDiffsToFiles (commit, diffs, tree) {
 }
 
 function convertHunksToLines (hunks) {
-  return Promise.all(hunks.map((hunk) => hunk.lines()))
-    .then((hunkLines) => {
-      const lines = _.flatten(hunkLines);
-      return lines
-        .filter((line) => line.numLines() !== 0) // ?
-        .filter((line) => line.newLineno() > -1) // removed lines
-        .map((line) => {
-          return {
-            lineNo: line.newLineno(),
-            numLines: line.numLines()
-          };
-        })
-        .reduce(convertLinesToRanges, []);
-    });
+  return Promise.all(hunks.map((hunk) => {
+    return {
+      lineNo: hunk.hunk.newStart(),
+      numLines: hunk.hunk.newLines()
+    };
+  }).reduce(convertLinesToRanges, []));
 }
 
 function convertLinesToRanges (memo, line) {

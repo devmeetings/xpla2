@@ -41,7 +41,7 @@ function transpileJsxFiles (files) {
     try {
       const trans = babel.transform(file.content, {
         filename: file.name,
-        presets: [preset('react'), preset('es2015')],
+        presets: [preset('react'), preset('es2015'), preset('stage-0')],
         sourceRoot: __dirname,
         sourceMaps: 'inline'
       });
