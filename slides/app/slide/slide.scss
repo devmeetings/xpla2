@@ -2,10 +2,6 @@
   @import '../components/scrollbars.scss';
   $commentSize: 50px;
 
-  html,body {
-    min-height: 100vh;
-  }
-
   .xp-slide {
     height: 100%;
     position: absolute;
