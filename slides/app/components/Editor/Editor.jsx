@@ -168,13 +168,18 @@ export class Editor extends React.Component {
     }
     return (
       <div className={styles.treeEditor}>
-        <FileTree
-          active={this.props.active}
-          files={this.props.files}
-          onChange={this.props.onTabChange}
-          />
-        <div className={styles.treeEditorAce}>
-          {aceEditor}
+        <div className={'xp-column'} style={{width: '175px'}}>
+          <FileTree
+            active={this.props.active}
+            files={this.props.files}
+            onChange={this.props.onTabChange}
+            />
+        </div>
+        <div className={'xp-resize-column'}></div>
+        <div className={'xp-column'} style={{width: 'calc(100% - 175px)'}}>
+          <div className={styles.treeEditorAce}>
+            {aceEditor}
+          </div>
         </div>
       </div>
     );

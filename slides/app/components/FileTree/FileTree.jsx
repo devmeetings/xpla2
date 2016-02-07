@@ -115,9 +115,9 @@ export class FileTree extends React.Component {
       if (elem.children) {
         return (
           <TreeView
+            defaultCollapsed={false}
             key={elem.name}
             nodeLabel={this.renderTreeNodeLabel(elem)}
-            defaultCollapsed={false}
             >
             {this.renderSubtree(elem.children)}
             </TreeView>

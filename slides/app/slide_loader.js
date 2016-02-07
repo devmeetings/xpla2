@@ -26,7 +26,6 @@ function findResourcesUrl(document, res) {
       return found;
     }
     var src = script.getAttribute('src');
-    console.log(src);
     if (src.indexOf('js/slide_loader') !== -1) {
       return src.replace(/js\/slide_loader\.(.+)\.js/, res);
     }

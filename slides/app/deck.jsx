@@ -8,6 +8,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import {Provider} from 'react-redux';
 
+import {resizer} from './components/Resizer/Resizer';
 import {getRunServerUrl} from './components/read/RunServerUrlState';
 import {getSlideState} from './components/read/SlideState';
 import {getActiveSlideState} from './components/read/ActiveSlideState';
@@ -42,3 +43,5 @@ Promise.all(slides).then((slides) => {
     $xpDeck
   );
 }).catch((err) => alert(err));
+
+resizer($xpDeck);

@@ -48,6 +48,7 @@
         </script>
       </xp-editor>
     </div>
+    <div class="xp-resize-column"></div>
     <div class="xp-column" style="width:50%">
       <xp-preview runner="html-ts"></xp-preview>
     </div>

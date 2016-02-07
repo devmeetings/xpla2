@@ -1,0 +1,40 @@
+@import '../vars.scss';
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999999;
+}
+.overlayH {
+  cursor: ns-resize;
+}
+.overlayV {
+  cursor: ew-resize;
+}
+
+:global {
+  $size: 2px;
+  .xp-resize-column, .xp-resize-row {
+    float: left;
+    display: inline-block;
+    z-index: 1000;
+    position: relative;
+  }
+  .xp-resize-column {
+    margin-left: -$size/2;
+    margin-right: -$size/2;
+    width: $size;
+    height: 100%;
+    cursor: ew-resize;
+  }
+  .xp-resize-row {
+    margin-top: -$size/2;
+    margin-bottom: -$size/2;
+    height: $size;
+    width: 100%;
+    cursor: ns-resize;
+  }
+}

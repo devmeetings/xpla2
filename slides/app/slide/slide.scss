@@ -16,6 +16,7 @@
       width: 50%;
       height: 100%;
       position: relative;
+      overflow-x: hidden;
     }
 
     .xp-row {
@@ -23,6 +24,7 @@
       height: 50%;
       width: 100%;
       position: relative;
+      overflow-y: hidden;
 
       &.with-comments {
         height: calc(100% - #{$commentSize});

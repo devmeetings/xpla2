@@ -75,10 +75,12 @@ function slideToHtml (options, slide) {
               ${slide.editors.map(editorToHtml).join('\n')}
             </xp-editor>
           </div>
+          <div class="xp-resize-column"></div>
           <div class="xp-column">
             <xp-preview runner="${options.runner}"></xp-preview>
           </div>
         </div>
+        <div class="xp-resize-row"></div>
         <div class="xp-row comments">
           <h1>${trim(slide.title)}</h1>
         </div>
