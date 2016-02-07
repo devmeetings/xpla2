@@ -2,9 +2,22 @@
 
 .treeEditor, .aceEditor {
   position: absolute;
-  top: 38px;
-  bottom: 0;
+  top: $filetabs-height;
+  bottom: $border-small;
   left: 0;
+  right: 0;
+  background: $brand-light-bg;
+  border-top: $border solid $brand-light-bg;
+}
+.treeEditor {
+  border-top: $border solid $color-disabled;
+}
+
+.treeEditorAce {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: $filetree-width;
   right: 0;
 }
 
@@ -18,7 +31,6 @@
 	:global {
 		.ace_editor {
 			background: $brand-light-bg;
-			border-top: $border solid $brand-light-bg;
 		}
 		.ace_highlight-line {
 			background: #eaffea;

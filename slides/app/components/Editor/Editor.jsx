@@ -147,7 +147,7 @@ export class Editor extends React.Component {
         />
     );
 
-    const isFileTree = false;
+    const isFileTree = true;
     if (!isFileTree) {
       return (
         <div className={styles.aceEditor}>
@@ -162,7 +162,9 @@ export class Editor extends React.Component {
           files={this.props.files}
           onChange={this.props.onTabChange}
           />
-        {aceEditor}
+        <div className={styles.treeEditorAce}>
+          {aceEditor}
+        </div>
       </div>
     );
   }

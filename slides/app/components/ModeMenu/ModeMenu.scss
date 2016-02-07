@@ -5,16 +5,19 @@
   top: 0;
   right: 0;
   z-index: 100;
-  height: $filetabs-height;
+  height: $filetabs-height - $border-small * 2;
   line-height: $filetabs-height;
   padding: 0 $padding;
 }
 
 .modeLight {
-  opacity: 0.1;
-  transition: opacity $transition;
+  background: #fff;
+  > div {
+    opacity: 0.1;
+    transition: opacity $transition;
+  }
 
-  &:hover {
+  &:hover > div {
     opacity: 1.0;
   }
 }
