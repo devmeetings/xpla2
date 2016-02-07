@@ -53,7 +53,10 @@ export class DeckActiveSlide extends React.Component {
     initializeSlide(this._element, props.runServerUrl).then((destroy) => {
       this._element.classList.remove(styles.hidenow);
       this._destroyPreviousSlide = destroy;
-    }, () => console.error('Error while loading slide.'));
+    }, (e) => {
+      console.error('Error while loading slide.');
+      console.error(e);
+    });
   }
 
   render () {

@@ -36,6 +36,7 @@
     "react-immutable-proptypes": "^1.5.0",
     "react-menu": "0.0.7",
     "react-redux": "^4.0.6",
+    "react-treeview": "^0.4.2",
     "redux": "^3.0.4",
     "redux-actions": "^0.8.0",
     "redux-immutablejs": "0.0.8",

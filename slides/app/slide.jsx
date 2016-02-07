@@ -4,6 +4,7 @@ import './index.html';
 import './slide.html';
 import './slide1.html';
 import './slide-ts.html';
+import './slide-ts2.html';
 import './slide-jsx.html';
 
 import {initializeSlide} from './slide/slide';

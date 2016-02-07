@@ -4,6 +4,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var DEBUG = process.env.NODE_ENV === 'development';
 var TEST = process.env.NODE_ENV === 'test';
+var RUN_SERVER = DEBUG ? 'http://localhost:3030' : 'http://xpla.org';
 
 var jsxLoader;
 var sassLoader;
@@ -15,6 +16,7 @@ var htmlLoader = [
     'raw=true',
     'engine=lodash',
     'version=' + pkg.version,
+    'run_server_url=' + RUN_SERVER,
     'title=' + pkg.name,
     'debug=' + DEBUG
   ].join('&')

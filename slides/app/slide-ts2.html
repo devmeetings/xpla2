@@ -1,0 +1,182 @@
+
+<html xp-run-server-url="<%= run_server_url %>">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Slide TS2</title>
+    <script src="js/slide_loader.<%= version %>.js"></script>
+</head>
+<body class="xp-slide">
+    <div class="xp-column">
+        <xp-editor active="app/ListComponent.ts">
+	<script id="app/ListComponent.ts" type="application/octetstream">
+export default class ListComponent {
+    private element;
+
+    constructor (private components) {
+        this.element = this.createElement();
+    }
+
+    get domElement () {
+        return this.element;
+    }
+
+    createElement () {
+        const ul = document.createElement('ul');
+
+        this.components.forEach(component => {
+            const li = document.createElement('li');
+
+            li.appendChild(component.domElement);
+            ul.appendChild(li);
+        });
+
+        return ul;
+    }
+}
+
+</script>
+	<script id="app/ProductComponent.ts" type="application/octetstream">
+export default class ProductComponent {
+    private element;
+
+    constructor (private product) {
+        this.element = this.createElement();
+    }
+
+    get domElement () {
+        return this.element;
+    }
+
+    createElement () {
+        const div = document.createElement('div');
+
+        const title = document.createElement('header');
+        title.textContent = this.product.name;
+
+        const price = document.createElement('span');
+        price.className = 'price';
+        price.textContent = this.product.price;
+
+        div.appendChild(title);
+        div.appendChild(price);
+
+        return div;
+    }
+}
+
+
+
+</script>
+	<script id="app/ProductListComponent.ts" type="application/octetstream">
+import ProductComponent from "./ProductComponent";
+import ListComponent from "./ListComponent";
+
+export default class ProductListComponent {
+    private element;
+
+    constructor (private products) {
+        this.element = this.createElement();
+    }
+
+    get domElement () {
+        return this.element;
+    }
+
+    createElement () {
+        const productComponents = this.products.map(product => new ProductComponent(product));
+        const listComponent = new ListComponent(productComponents);
+
+        return listComponent.domElement;
+    }
+}
+
+</script>
+	<script id="app/main.ts" type="application/octetstream">
+import ProductListComponent from "./ProductListComponent";
+
+const promotedProducts = [
+    {name: 'Latte', price: '$10'},
+    {name: 'Green Tea', price: '$7'}
+];
+
+const products = [
+    {name: 'Coffee', price: '$5'},
+    {name: 'Tea', price: '$4'},
+    {name: 'Yerba', price: '$6'}
+];
+
+[promotedProducts, products].forEach(list => {
+    const productList = new ProductListComponent(list);
+    document.body.appendChild(productList.domElement);
+});
+
+</script>
+	<script id="index.html" type="application/octetstream">
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop</title>
+    <script src="node_modules/systemjs/dist/system-polyfills.js" defer><+/script>
+    <script src="node_modules/systemjs/dist/system.js" defer><+/script>
+    <script src="system.config.js" defer><+/script>
+    <script>
+        window.addEventListener('load', function () {
+            System.import('app/main.js');
+        });
+    <+/script>
+</head>
+<body>
+</body>
+</html>
+
+</script>
+	<script id="package.json" type="application/octetstream">
+{
+  "name": "angular2-shop",
+  "version": "0.0.1",
+  "description": "Example process of learning Angular2",
+  "main": "index.html",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^1.7.5"
+  },
+  "dependencies": {
+    "systemjs": "^0.19.9"
+  }
+}
+
+</script>
+	<script id="system.config.js" type="application/octetstream">
+System.config({
+    baseURL: "./",
+    defaultJSExtensions: true
+});
+
+</script>
+	<script id="tsconfig.json" type="application/octetstream">
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "system",
+        "sourceMap": true
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
+
+</script>
+</xp-editor>
+    </div>
+    <div class="xp-column">
+        <xp-preview runner="html-ts"></xp-preview>
+    </div>
+
+</body></html>

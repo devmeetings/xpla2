@@ -1,5 +1,13 @@
 @import '../vars.scss';
 
+.treeEditor, .aceEditor {
+  position: absolute;
+  top: 38px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 .editor,.editorEdit {
   position: absolute;
   top: 0;

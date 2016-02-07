@@ -4,6 +4,7 @@ import Props from 'react-immutable-proptypes';
 
 import {AceEditor, createEditSession} from '../AceEditor/AceEditor';
 import {FileTabs} from '../FileTabs/FileTabs';
+import {FileTree} from '../FileTree/FileTree';
 import {ModeMenu} from '../ModeMenu/ModeMenu';
 
 import {WORK_MODE_DECK_EDIT} from '../../reducers.utils/workMode';
@@ -92,6 +93,19 @@ export class Editor extends React.Component {
     return typeMap[type] || type;
   }
 
+  componentDidMount () {
+    this._listener = (ev) => {
+      // Don't forward keyups when focused on editor
+      ev.stopPropagation();
+    };
+
+    React.findDOMNode(this).addEventListener('keyup', this._listener);
+  }
+
+  componentWillUnmount () {
+    React.findDOMNode(this).removeEventListener('keyup', this._listener);
+  }
+
   componentWillMount () {
     this.createActiveEditorSession(this.props);
   }
@@ -120,6 +134,39 @@ export class Editor extends React.Component {
     });
   }
 
+  renderEditor (session) {
+    const aceEditor = (
+        <AceEditor
+          commands={this.commands}
+          height='100%'
+          name={`editor-${name}`}
+          onChange={this.props.onTabContentChange}
+          session={session}
+          theme='chrome'
+          width='100%'
+        />
+    );
+
+    const isFileTree = false;
+    if (!isFileTree) {
+      return (
+        <div className={styles.aceEditor}>
+          {aceEditor}
+        </div>
+      );
+    }
+    return (
+      <div className={styles.treeEditor}>
+        <FileTree
+          active={this.props.active}
+          files={this.props.files}
+          onChange={this.props.onTabChange}
+          />
+        {aceEditor}
+      </div>
+    );
+  }
+
   render () {
     if (!this.props.active) {
       return;
@@ -127,6 +174,7 @@ export class Editor extends React.Component {
 
     const name = this.props.active.get('name');
     const session = this.state[name];
+
     return (
       <div
         className={this._isEditMode() ? styles.editorEdit : styles.editor}
@@ -139,15 +187,7 @@ export class Editor extends React.Component {
           files={this.props.files}
           onChange={this.props.onTabChange}
           />
-        <AceEditor
-          commands={this.commands}
-          height='calc(100% - 38px)'
-          name={`editor-${name}`}
-          onChange={this.props.onTabContentChange}
-          session={session}
-          theme='chrome'
-          width='100%'
-        />
+        {this.renderEditor(session)}
       </div>
     );
   }
