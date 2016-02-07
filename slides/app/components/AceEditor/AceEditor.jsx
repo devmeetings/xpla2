@@ -103,8 +103,9 @@ export class AceEditor extends React.Component {
     if (this.props.onLoad) {
       this.props.onLoad(this.editor);
     }
-    this.editor.resize();
-    this.editor.focus();
+    setTimeout(() => {
+      this.editor.resize();
+    });
   }
 
   componentWillUnmount () {
