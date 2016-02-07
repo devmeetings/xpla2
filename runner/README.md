@@ -12,7 +12,7 @@
   </head>
   <body class="xp-slide">
     <div class="xp-column" style="width:50%">
-      <xp-editor>
+      <xp-editor tree>
         <script id="index.html" type="application/octetstream">
           <html>
             <head>
@@ -68,9 +68,9 @@
   </head>
   <body>
     <xp-deck>
-      <link rel="import" href="slide.html" title="Short Title" />
+      <link async rel="import" href="slide.html" title="Short Title" />
     </xp-deck>
-    <script src="http://xpla.org/static/js/deck.3.0.0.js"></script>
+    <script async src="http://xpla.org/static/js/deck.3.0.0.js"></script>
   </body>
 </html>
 ```

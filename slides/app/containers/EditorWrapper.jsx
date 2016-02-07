@@ -63,6 +63,7 @@ class EditorContainer extends React.Component {
         onTabChange={this.changeTab}
         onTabContentChange={this.changeTabContent}
         onWorkModeToggle={this.toggleWorkMode}
+        showFileTree={editor.get('showFileTree')}
         workMode={this.props.workMode}
         />
     );

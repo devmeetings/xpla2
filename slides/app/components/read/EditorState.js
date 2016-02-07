@@ -50,6 +50,7 @@ export function getEditorState (dom) {
   dom.id = id;
 
   const active = dom.getAttribute('active');
+  const showFileTree = dom.hasAttribute('tree');
 
   const files = [].map.call(
     dom.querySelectorAll('template,script'),
@@ -76,6 +77,7 @@ export function getEditorState (dom) {
   return Promise.all(files).then((filesResolved) => {
     return {
       id: id,
+      showFileTree: showFileTree,
       files: filesResolved,
       active: _.find(filesResolved, (file) => file.name === active) || filesResolved[0]
     };

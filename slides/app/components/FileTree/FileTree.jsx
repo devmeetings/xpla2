@@ -14,22 +14,23 @@ export class FileTree extends React.Component {
 
   constructor (...args) {
     super(...args);
-    const tree = this.buildTree(this.props.files, this.props.active);
+    const tree = this.buildTree(this.props.files);
     this.state = {
       tree: tree
     };
   }
 
   componentWillReceiveProps (newProps) {
-    if (newProps.files === this.props.files && newProps.active === this.props.active) {
-      return;
+    if (newProps.files === this.props.files) {
+      return true;
     }
+
     this.setState({
-      tree: this.buildTree(newProps.files, newProps.active)
+      tree: this.buildTree(newProps.files)
     });
   }
 
-  buildTree (files, active) {
+  buildTree (files) {
     // Convert the structure
     const tree = files
       .map((file) => {
@@ -84,11 +85,26 @@ export class FileTree extends React.Component {
     );
   }
 
+  renderBadge (file) {
+    if (!file.get('highlight').size) {
+      return;
+    }
+    return (
+      <span className={styles.badge}>
+        <Icon icon={'dot'} size={'1em'} />
+      </span>
+    );
+  }
+
   renderTreeLeaf (node) {
+    const isActive = node.file.get('name') === this.props.active.get('name');
     return (
       <div key={node.name}>
-        <a className={styles.leaf} onClick={this.onFileChange.bind(this, node)}>
+        <a
+          className={isActive ? `${styles.leaf} ${styles.active}` : styles.leaf}
+          onClick={this.onFileChange.bind(this, node)}>
           {node.name}
+          {this.renderBadge(node.file)}
         </a>
       </div>
     );

@@ -1,4 +1,5 @@
 import React from 'react';
+import {findDOMNode} from 'react-dom';
 import _ from 'lodash';
 import Props from 'react-immutable-proptypes';
 
@@ -99,11 +100,11 @@ export class Editor extends React.Component {
       ev.stopPropagation();
     };
 
-    React.findDOMNode(this).addEventListener('keyup', this._listener);
+    findDOMNode(this).addEventListener('keyup', this._listener);
   }
 
   componentWillUnmount () {
-    React.findDOMNode(this).removeEventListener('keyup', this._listener);
+    findDOMNode(this).removeEventListener('keyup', this._listener);
   }
 
   componentWillMount () {
@@ -147,11 +148,21 @@ export class Editor extends React.Component {
         />
     );
 
-    const isFileTree = true;
+    const isFileTree = this.props.showFileTree;
     if (!isFileTree) {
       return (
-        <div className={styles.aceEditor}>
-          {aceEditor}
+        <div>
+          <ModeMenu
+            isEditMode={this._isEditMode()}
+            />
+          <FileTabs
+            active={this.props.active}
+            files={this.props.files}
+            onChange={this.props.onTabChange}
+            />
+          <div className={styles.aceEditor}>
+            {aceEditor}
+          </div>
         </div>
       );
     }
@@ -181,14 +192,6 @@ export class Editor extends React.Component {
       <div
         className={this._isEditMode() ? styles.editorEdit : styles.editor}
         >
-        <ModeMenu
-          isEditMode={this._isEditMode()}
-          />
-        <FileTabs
-          active={this.props.active}
-          files={this.props.files}
-          onChange={this.props.onTabChange}
-          />
         {this.renderEditor(session)}
       </div>
     );
@@ -203,6 +206,7 @@ Editor.propTypes = {
     name: React.PropTypes.string.isRequired,
     content: React.PropTypes.string.isRequired
   }),
+  showFileTree: React.PropTypes.bool.isRequired,
   workMode: React.PropTypes.string,
   onWorkModeToggle: React.PropTypes.func.isRequired,
   onSaveAction: React.PropTypes.func.isRequired,

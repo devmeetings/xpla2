@@ -24,6 +24,8 @@ module.exports = function getHelp () {
   </head>
   <body>
   ${marked(fs.readFileSync(__dirname + '/../README.md', 'utf8'))}
+  <h1>Detailed docs</h1>
+  ${marked(fs.readFileSync(__dirname + '/../docs.md', 'utf8'))}
   </body>
   </html>`;
 };

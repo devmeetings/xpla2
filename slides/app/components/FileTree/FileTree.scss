@@ -6,6 +6,7 @@
   bottom: 0;
   left: 0;
 
+  font-size: 0.8rem;
   box-sizing: border-box;
   padding: 0 $padding;
   width: $filetree-width;
@@ -13,34 +14,61 @@
   overflow-x: auto;
   border-right: $border-small solid $color-disabled;
 
+
   :global {
+    .tree-view_arrow {
+      transition: transform 0.1s;
+    }
+
+    .tree-view_arrow-empty {
+      color: yellow;
+    }
+
+    .tree-view_children {
+      margin-left: 12px;
+    }
+
+    .tree-view_children-collapsed {
+      overflow: hidden;
+    }
+
     .tree-view {
       overflow-y: visible;
     }
   }
 }
 
-.node, .leaf {
-  transition: all 0.5s;
-  border-radius: 3px;
-  &:hover {
-    background-color: rgb(220, 245, 243);
-    cursor: pointer;
-  }
+.badge {
+  color: $brand-danger;
+  font-size: $padding / 2;
+  vertical-align: middle;
+  padding: 0 $padding / 2;
 }
 
-.node {
-  padding: 2px 10px 2px 5px;
-  user-select: none;
-}
+.leaf {
+  display: block;
+  position: relative;
+  transition: border 0.5s;
+  cursor: pointer;
+  padding-right: $padding;
 
-
-:global {
-  .tree-view_arrow {
-    transition: all 0.1s;
+  a {
+    display: inline-block;
+    white-space: nowrap;
   }
 
-  .tree-view_arrow-empty {
-    color: yellow;
+  > span {
+    display: inline-block;
+    border-bottom: $border-small solid transparent;
+    border-color: $brand-light-bg;
+  }
+
+  &.active > span:first-child {
+    font-weight: bold;
+    border-bottom: $border-small solid $color-text;
+  }
+
+  &:hover > span:first-child {
+    border-bottom: $border-small solid $color-text;
   }
 }
