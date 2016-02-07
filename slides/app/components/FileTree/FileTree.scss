@@ -51,11 +51,8 @@
   transition: border 0.5s;
   cursor: pointer;
   padding-right: $padding;
-
-  a {
-    display: inline-block;
-    white-space: nowrap;
-  }
+  display: inline-block;
+  white-space: nowrap;
 
   > span {
     display: inline-block;
