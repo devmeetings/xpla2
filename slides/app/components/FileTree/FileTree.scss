@@ -10,8 +10,7 @@
   box-sizing: border-box;
   padding: 0 $padding;
   width: $filetree-width;
-  overflow: hidden;
-  overflow-x: auto;
+  overflow: auto;
   border-right: $border-small solid $color-disabled;
 
 
