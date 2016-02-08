@@ -2,6 +2,92 @@ import {randomId} from './utils';
 import fetch from 'isomorphic-fetch';
 import _ from 'lodash';
 
+// We will first read the configuration to use right components
+export function getEditorState (dom) {
+  const id = dom.id || randomId('editor');
+  dom.id = id;
+
+  const active = dom.getAttribute('active');
+  const showFileTree = dom.hasAttribute('tree');
+
+  const files = [].map.call(
+    dom.querySelectorAll('template,script'),
+    (tpl) => {
+      const highlight = parseHighlight(tpl);
+      const extension = getExtension(tpl.id);
+
+      if (!tpl.src) {
+        const content = fixPossibleScriptTags(trim(tpl.innerHTML));
+        const annotations = parseAnnotations(content, extension);
+        return Promise.resolve({
+          name: tpl.id,
+          content,
+          annotations,
+          highlight
+        });
+      }
+
+      return fetch(tpl.src)
+        .then((response) => response.text())
+        .then((content) => {
+          const annotations = parseAnnotations(content, extension);
+          return {
+            name: tpl.id,
+            content,
+            annotations,
+            highlight
+          };
+        });
+    }
+  );
+
+  return Promise.all(files).then((filesResolved) => {
+    return {
+      id: id,
+      showFileTree: showFileTree,
+      files: filesResolved,
+      active: _.find(filesResolved, (file) => file.name === active) || filesResolved[0]
+    };
+  });
+}
+
+function getExtension (name) {
+  const p = name.split('.');
+  return p[p.length - 1];
+}
+
+function parseAnnotations (content, ext) {
+  const LINE_PATTERNS = {
+    'js': /\/\/(([0-9]+)\/)?( ([0-9\.]+)\.)? (.+)/
+  };
+  const PATTERN = LINE_PATTERNS[ext];
+  if (!PATTERN) {
+    return [];
+  }
+
+  const lines = content.split('\n');
+  const annotations = [];
+  for (let i = 0; i < lines.length; ++i) {
+    let line = lines[i];
+    let match = line.match(PATTERN);
+    if (match) {
+      // get next lines
+      let noOfLines = parseInt(match[2], 10) || 1;
+      let order = parseInt(match[4], 10) || annotations.length + 1;
+      let title = match[5];
+      annotations.push({
+        order,
+        title,
+        code: lines.slice(i + 1, i + 1 + noOfLines).join('\n') // TODO trim?
+      });
+      i += noOfLines;
+    }
+  }
+  console.log(annotations);
+  return annotations;
+}
+
+
 function trim (val) {
   // Get initial tabulation size
   const lines = val.split('\n');
@@ -40,46 +126,6 @@ function parseHighlight (dom) {
     return {
       from: parts[0],
       to: parts[1] || parts[0]
-    };
-  });
-}
-
-// We will first read the configuration to use right components
-export function getEditorState (dom) {
-  const id = dom.id || randomId('editor');
-  dom.id = id;
-
-  const active = dom.getAttribute('active');
-  const showFileTree = dom.hasAttribute('tree');
-
-  const files = [].map.call(
-    dom.querySelectorAll('template,script'),
-    (tpl) => {
-      const highlight = parseHighlight(tpl);
-
-      if (!tpl.src) {
-        return Promise.resolve({
-          name: tpl.id,
-          content: fixPossibleScriptTags(trim(tpl.innerHTML)),
-          highlight
-        });
-      }
-      return fetch(tpl.src)
-        .then((response) => response.text())
-        .then((content) => ({
-          name: tpl.id,
-          content,
-          highlight
-        }));
-    }
-  );
-
-  return Promise.all(files).then((filesResolved) => {
-    return {
-      id: id,
-      showFileTree: showFileTree,
-      files: filesResolved,
-      active: _.find(filesResolved, (file) => file.name === active) || filesResolved[0]
     };
   });
 }
