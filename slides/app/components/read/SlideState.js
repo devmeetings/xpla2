@@ -2,8 +2,12 @@ import {randomId} from './utils';
 import logger from '../logger';
 
 export function readTitle(dom) {
-  const title = dom.querySelector('title').innerHTML;
-  return title;
+  const elem = dom.querySelector('title');
+  if (!elem) {
+    return '';
+  }
+
+  return elem.innerHTML;
 }
 
 export function getSlideState (dom) {

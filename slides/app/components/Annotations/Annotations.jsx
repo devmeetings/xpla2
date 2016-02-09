@@ -15,8 +15,12 @@ export class Annotations extends React.Component {
     super(...args);
     this.state = {
       isOpen: this.props.annotations.size > 0,
-      currentAnnotation: 0
+      currentAnnotation: this.minAnno()
     };
+  }
+
+  minAnno() {
+    return this.props.hasIntro ? -1 : 0;
   }
 
   closeModal () {
@@ -53,7 +57,7 @@ export class Annotations extends React.Component {
   };
 
   changeAnnotation (anno) {
-    if (anno < 0 || anno > this.props.annotations.size) {
+    if (anno < this.minAnno() || anno > this.props.annotations.size) {
       return;
     }
 
@@ -91,7 +95,7 @@ export class Annotations extends React.Component {
 
     return (
       <div className={styles.buttonBar}>
-        {anno > 0 ? prevButton : ''}
+        {anno > this.minAnno() ? prevButton : ''}
         {anno < maxAnno ? nextButton : closeButton}
       </div>
     );
@@ -99,6 +103,16 @@ export class Annotations extends React.Component {
 
   renderAnnotation (anno) {
     const title = this.props.title;
+
+    if (anno === -1 && this.props.hasIntro) {
+      return (
+        <div className={styles.annotation}>
+          <h2 className={styles.slideTitle}>{title}</h2>
+          {this.props.children}
+        </div>
+      );
+    }
+
     const annotation = this.props.annotations.get(anno).toJS();
     const mode = getModeForFilename(annotation.fileName);
 
@@ -123,6 +137,7 @@ export class Annotations extends React.Component {
           value={annotation.code}
           width={'100%'}
           />
+        <div dangerouslySetInnerHTML={{__html: annotation.description || ''}}></div>
       </div>
     );
   }
@@ -158,7 +173,8 @@ export class Annotations extends React.Component {
 }
 
 Annotations.propTypes = {
-  title: React.PropTypes.string,
+  hasIntro: React.PropTypes.bool.isRequired,
+  title: React.PropTypes.string.isRequired,
   annotations: Props.listOf(Props.contains({
     order: React.PropTypes.number.isRequired,
     line: React.PropTypes.number.isRequired,

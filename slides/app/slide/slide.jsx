@@ -7,14 +7,16 @@ import EventEmitter from 'event-emitter';
 import Store from '../store';
 import {getEditorState} from '../components/read/EditorState';
 import {getPreviewState} from '../components/read/PreviewState';
+import {getAnnotationState} from '../components/read/AnnotationsMetaState';
 import {readTitle} from '../components/read/SlideState';
 
 import EditorWrapper from '../containers/EditorWrapper';
 import PreviewWrapper from '../containers/PreviewWrapper';
+import AnnotationsWrapper from '../containers/AnnotationsWrapper';
 
 import './slide.scss';
 
-export function initializeSlide(dom, runServerUrl) {
+export function initializeSlide(dom, runServerUrl, defaultTitle) {
   if (!dom) {
     throw new Error('Provide DOM element!');
   }
@@ -22,7 +24,10 @@ export function initializeSlide(dom, runServerUrl) {
   if (!runServerUrl) {
     throw new Error('RunServerUrl is missing.');
   }
-  const title = readTitle(dom.parentNode);
+  const title = readTitle(dom.parentNode) || defaultTitle;
+  const annotations = getIfExists(dom, 'xp-annotations', getAnnotationState)
+  annotations.title = title;
+
   const editorsP = getAsMap(dom, 'xp-editor', getEditorState);
   const previewsP = getAsMap(dom, 'xp-preview', getPreviewState);
 
@@ -31,16 +36,17 @@ export function initializeSlide(dom, runServerUrl) {
       const [editors, previews] = a;
 
       const store = Store({
-        editors, previews, runServerUrl, title
+        editors, previews, runServerUrl, annotations
       });
 
       const globalEvents = new EventEmitter({});
 
+      const $annotations = renderComponent(dom.querySelector('xp-annotations'), globalEvents, store, annotations, AnnotationsWrapper);
       const $editors = renderComponents(dom, globalEvents, store, editors, EditorWrapper, 'editorId');
       const $previews = renderComponents(dom, globalEvents, store, previews, PreviewWrapper, 'previewId');
 
       return destroyFunction(
-        []
+        [$annotations]
         .concat($editors)
         .concat($previews)
       );
@@ -53,6 +59,11 @@ function destroyFunction ($elems) {
   };
 }
 
+function getIfExists (dom, query, mapper) {
+  const elem = dom.querySelector(query);
+  return mapper(elem || dom);
+}
+
 function getAsMap (dom, query, mapper) {
   const elems = _
     .chain(dom.querySelectorAll(query))
@@ -62,6 +73,23 @@ function getAsMap (dom, query, mapper) {
   return Promise.all(elems).then((elemsResolved) => {
     return _.indexBy(elemsResolved, 'id');
   });
+}
+
+function renderComponent($target, globalEvents, store, elem, Component) {
+  if (!$target) {
+    return;
+  }
+
+  const props = {globalEvents};
+
+  render(
+    <Provider store={store}>
+      <Component {...props} />
+    </Provider>,
+    $target
+  );
+
+  return $target;
 }
 
 function renderComponents (dom, globalEvents, store, elems, Component, propName) {

@@ -42,6 +42,9 @@ Promise.all(slides).then((slides) => {
     </Provider>,
     $xpDeck
   );
-}).catch((err) => alert(err));
+}).catch((err) => {
+  console.error(err);
+  alert(err)
+});
 
 resizer($xpDeck);

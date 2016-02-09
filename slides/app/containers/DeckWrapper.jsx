@@ -88,6 +88,7 @@ class DeckContainer extends React.Component {
         <DeckActiveSlide
           runServerUrl={this.props.runServerUrl}
           slide={this.props.activeSlide.get('content')}
+          title={this.props.activeSlide.get('title')}
           />
         <DeckSlidesList
           active={this.props.activeSlide}

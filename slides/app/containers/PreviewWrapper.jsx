@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import Props from 'react-immutable-proptypes';
 
 import {Preview} from '../components/Preview/Preview';
-import {Annotations} from '../components/Annotations/Annotations';
 
 import {getFilesWithActive} from '../reducers.utils/editors';
 
@@ -59,21 +58,10 @@ class PreviewContainer extends React.Component {
     });
   }
 
-  getAnnotations () {
-    const annotations = this.getFilesFromEditors()
-      .filter((file) => file.get('highlight').size)
-      .map((file) => file.get('annotations'))
-      .flatten(1)
-      .toList();
-    return annotations;
-  }
-
   render () {
     const id = this.props.previewId;
     const runServerUrl = this.props.runServerUrl;
     const preview = this.props.previews.get(id);
-    const title = this.props.slideTitle;
-    const annotations = this.getAnnotations();
 
     return (
       <div>
@@ -87,10 +75,6 @@ class PreviewContainer extends React.Component {
           runId={preview.get('runId')}
           runServerUrl={runServerUrl}
           />
-        <Annotations
-          annotations={annotations}
-          title={title}
-          />
       </div>
     );
   }
@@ -99,7 +83,6 @@ class PreviewContainer extends React.Component {
 
 PreviewContainer.propTypes = {
   previewId: React.PropTypes.string.isRequired,
-  slideTitle: React.PropTypes.string.isRequired,
   previews: Props.map.isRequired,
   editors: Props.map.isRequired,
   actions: React.PropTypes.shape({
@@ -110,7 +93,6 @@ PreviewContainer.propTypes = {
 
 @connect(
   state => ({
-    slideTitle: state.get('title'),
     previews: state.get('previews'),
     editors: state.get('editors'),
     runServerUrl: state.get('runServerUrl')

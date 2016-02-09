@@ -68,3 +68,31 @@ None
 ```html
 <xp-preview runner="html"></xp-preview>
 ```
+
+## `xp-annotations`
+Represents slide metadata and additional content to annotations.
+
+### Children
+`header` - *Required*. Short HTML content describing current slide.
+`details` - Additional info about slide (rendered as first step in annotations-wizard)
+`aside` - Additional details for code annotations.
+
+### Params
+- `aside[file]` - *Required*. Name of the file
+- `aside[order]` - *Required*. Additional content to display below code snippet.
+
+### Example
+```html
+<xp-annotations>
+  <header><h1>Hello Slide!</h1></header>
+  <details>
+    <h2>This is very important slide</h2>
+    <h3>Look at this pic:</h3>
+    <img src="./image.svg">
+  </details>
+  <aside file="index.html" order="1">
+    This is additional <code>info</code> for first annotation in file <code>index.html</code>
+  </aside>
+</xp-annotations>
+```
+

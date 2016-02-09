@@ -51,6 +51,12 @@
       }
     }
 
+    xp-annotations {
+      details, aside {
+        display: none;
+      }
+    }
+
     @include scrollbars;
 
   }

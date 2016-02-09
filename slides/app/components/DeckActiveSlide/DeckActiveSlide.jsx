@@ -49,8 +49,8 @@ export class DeckActiveSlide extends React.Component {
     this._element.appendChild(clone);
     // Initialize slide content
 
-    this._element.classList.add(styles.hidenow);
-    initializeSlide(this._element, props.runServerUrl).then((destroy) => {
+    this._element.classList.add(styles.hidenow)
+    initializeSlide(this._element, props.runServerUrl, props.title).then((destroy) => {
       this._element.classList.remove(styles.hidenow);
       this._destroyPreviousSlide = destroy;
     }, (e) => {
@@ -77,6 +77,7 @@ export class DeckActiveSlide extends React.Component {
 }
 
 DeckActiveSlide.propTypes = {
+  title: React.PropTypes.string.isRequired,
   slide: React.PropTypes.object.isRequired,
   runServerUrl: React.PropTypes.string.isRequired
 };
