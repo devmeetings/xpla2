@@ -7,6 +7,7 @@ import EventEmitter from 'event-emitter';
 import Store from '../store';
 import {getEditorState} from '../components/read/EditorState';
 import {getPreviewState} from '../components/read/PreviewState';
+import {readTitle} from '../components/read/SlideState';
 
 import EditorWrapper from '../containers/EditorWrapper';
 import PreviewWrapper from '../containers/PreviewWrapper';
@@ -21,7 +22,7 @@ export function initializeSlide(dom, runServerUrl) {
   if (!runServerUrl) {
     throw new Error('RunServerUrl is missing.');
   }
-
+  const title = readTitle(dom.parentNode);
   const editorsP = getAsMap(dom, 'xp-editor', getEditorState);
   const previewsP = getAsMap(dom, 'xp-preview', getPreviewState);
 
@@ -30,7 +31,7 @@ export function initializeSlide(dom, runServerUrl) {
       const [editors, previews] = a;
 
       const store = Store({
-        editors, previews, runServerUrl
+        editors, previews, runServerUrl, title
       });
 
       const globalEvents = new EventEmitter({});

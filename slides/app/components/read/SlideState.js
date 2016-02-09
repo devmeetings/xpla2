@@ -1,6 +1,11 @@
 import {randomId} from './utils';
 import logger from '../logger';
 
+export function readTitle(dom) {
+  const title = dom.querySelector('title').innerHTML;
+  return title;
+}
+
 export function getSlideState (dom) {
   const id = randomId(dom.href);
   dom.id = `slide_${id}`;
@@ -12,7 +17,7 @@ export function getSlideState (dom) {
   }
 
   const onload = () => {
-    const title = dom.import.querySelector('title').innerHTML;
+    const title = readTitle(dom.import);
     const body = dom.import.querySelector('body');
     const name = dom.hasAttribute('title') ? dom.getAttribute('title') : title;
     body.setAttribute('xp-slide', dom.href);

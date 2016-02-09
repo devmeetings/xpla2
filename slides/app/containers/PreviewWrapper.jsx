@@ -72,6 +72,7 @@ class PreviewContainer extends React.Component {
     const id = this.props.previewId;
     const runServerUrl = this.props.runServerUrl;
     const preview = this.props.previews.get(id);
+    const title = this.props.slideTitle;
     const annotations = this.getAnnotations();
 
     return (
@@ -88,6 +89,7 @@ class PreviewContainer extends React.Component {
           />
         <Annotations
           annotations={annotations}
+          title={title}
           />
       </div>
     );
@@ -97,6 +99,7 @@ class PreviewContainer extends React.Component {
 
 PreviewContainer.propTypes = {
   previewId: React.PropTypes.string.isRequired,
+  slideTitle: React.PropTypes.string.isRequired,
   previews: Props.map.isRequired,
   editors: Props.map.isRequired,
   actions: React.PropTypes.shape({
@@ -107,6 +110,7 @@ PreviewContainer.propTypes = {
 
 @connect(
   state => ({
+    slideTitle: state.get('title'),
     previews: state.get('previews'),
     editors: state.get('editors'),
     runServerUrl: state.get('runServerUrl')

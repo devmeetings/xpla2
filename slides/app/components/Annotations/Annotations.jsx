@@ -4,6 +4,8 @@ import Props from 'react-immutable-proptypes';
 
 import Modal from 'react-modal';
 import {Icon} from '../Icon/Icon';
+import {AceEditor} from '../AceEditor/AceEditor';
+import {getModeForFilename} from '../Editor/Editor';
 
 import styles from './Annotations.scss';
 
@@ -35,10 +37,10 @@ export class Annotations extends React.Component {
     },
     content : {
       position                   : 'absolute',
-      top                        : '10%',
+      top                        : '15%',
       left                       : '20%',
       right                      : '20%',
-      height                     : '30%',
+      height                     : '240px',
       bottom                     : 'auto',
       border                     : '1px solid #ccc',
       background                 : '#fff',
@@ -96,11 +98,31 @@ export class Annotations extends React.Component {
   }
 
   renderAnnotation (anno) {
+    const title = this.props.title;
     const annotation = this.props.annotations.get(anno).toJS();
+    const mode = getModeForFilename(annotation.fileName);
+
     return (
       <div className={styles.annotation}>
-        <h1>{annotation.title}</h1>
-        <pre><code>{annotation.code}</code></pre>
+        <h2 className={styles.slideTitle}>{title}</h2>
+        <h2>
+          {annotation.title}
+        </h2>
+        <pre className={styles.fileName}>
+          {annotation.fileName}
+        </pre>
+        <AceEditor
+          height={'100px'}
+          highlightActiveLine={false}
+          mode={mode}
+          name={`editor-annotations-${annotation.line}`}
+          readOnly={true}
+          showGutter={false}
+          showPrintMargin={false}
+          theme={'chrome'}
+          value={annotation.code}
+          width={'100%'}
+          />
       </div>
     );
   }
@@ -136,9 +158,13 @@ export class Annotations extends React.Component {
 }
 
 Annotations.propTypes = {
+  title: React.PropTypes.string.isRequired,
   annotations: Props.listOf(Props.contains({
     order: React.PropTypes.number.isRequired,
+    line: React.PropTypes.number.isRequired,
+    noOfLines: React.PropTypes.number.isRequired,
     title: React.PropTypes.string.isRequired,
+    fileName: React.PropTypes.string.isRequired,
     code: React.PropTypes.string.isRequired
   })).isRequired
 };

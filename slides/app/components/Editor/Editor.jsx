@@ -21,6 +21,19 @@ import 'brace/theme/chrome';
 
 import styles from './Editor.scss';
 
+export function getModeForFilename(name) {
+  const typeMap = {
+    js: 'javascript',
+    ts: 'typescript',
+    py: 'python'
+  };
+
+  const parts = name.split('.');
+  const type = _.last(parts);
+
+  return typeMap[type] || type;
+}
+
 export class Editor extends React.Component {
 
   constructor (...args) {
@@ -81,17 +94,7 @@ export class Editor extends React.Component {
   }
 
   getType (tab) {
-    const typeMap = {
-      js: 'javascript',
-      ts: 'typescript',
-      py: 'python'
-    };
-
-    const name = tab.get('name');
-    const parts = name.split('.');
-    const type = _.last(parts);
-
-    return typeMap[type] || type;
+    return getModeForFilename(tab.get('name'));
   }
 
   componentDidMount () {

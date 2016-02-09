@@ -17,7 +17,7 @@ export function getEditorState (dom) {
 
       if (!tpl.src) {
         const content = fixPossibleScriptTags(trim(tpl.innerHTML));
-        const annotations = parseAnnotations(content, extension);
+        const annotations = parseAnnotations(content, extension, tpl.id);
         const highlight = parseHighlight(tpl, annotations);
 
         return Promise.resolve({
@@ -31,7 +31,7 @@ export function getEditorState (dom) {
       return fetch(tpl.src)
         .then((response) => response.text())
         .then((content) => {
-          const annotations = parseAnnotations(content, extension);
+          const annotations = parseAnnotations(content, extension, tpl.id);
           const highlight = parseHighlight(tpl, annotations);
 
           return {
@@ -59,8 +59,8 @@ function getExtension (name) {
   return p[p.length - 1];
 }
 
-function parseAnnotations (content, ext) {
-  const COMMENT = "\\s*(([0-9]+)\\/)?( ([0-9\\.]+)\\.)? (.+)"
+function parseAnnotations (content, ext, fileName) {
+  const COMMENT = '\\s*(([0-9]+)\\/)?( ([0-9\\.]+)\\.)? (.+)'
   const C_LIKE_PATTERN = new RegExp(`(//${COMMENT})||/*${COMMENT}*/`);
 
   const LINE_PATTERNS = {
@@ -91,6 +91,8 @@ function parseAnnotations (content, ext) {
         noOfLines,
         order,
         title,
+        ext,
+        fileName,
         code: lines.slice(i + 1, i + 1 + noOfLines).join('\n') // TODO trim?
       });
       i += noOfLines;
