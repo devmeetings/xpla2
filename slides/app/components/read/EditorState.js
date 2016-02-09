@@ -13,12 +13,13 @@ export function getEditorState (dom) {
   const files = [].map.call(
     dom.querySelectorAll('template,script'),
     (tpl) => {
-      const highlight = parseHighlight(tpl);
       const extension = getExtension(tpl.id);
 
       if (!tpl.src) {
         const content = fixPossibleScriptTags(trim(tpl.innerHTML));
         const annotations = parseAnnotations(content, extension);
+        const highlight = parseHighlight(tpl, annotations);
+
         return Promise.resolve({
           name: tpl.id,
           content,
@@ -31,6 +32,8 @@ export function getEditorState (dom) {
         .then((response) => response.text())
         .then((content) => {
           const annotations = parseAnnotations(content, extension);
+          const highlight = parseHighlight(tpl, annotations);
+
           return {
             name: tpl.id,
             content,
@@ -57,11 +60,15 @@ function getExtension (name) {
 }
 
 function parseAnnotations (content, ext) {
-  const C_LIKE_PATTERN = /\/\/(([0-9]+)\/)?( ([0-9\.]+)\.)? (.+)/;
+  const COMMENT = "\\s*(([0-9]+)\\/)?( ([0-9\\.]+)\\.)? (.+)"
+  const C_LIKE_PATTERN = new RegExp(`(//${COMMENT})||/*${COMMENT}*/`);
+
   const LINE_PATTERNS = {
     'js': C_LIKE_PATTERN,
     'java': C_LIKE_PATTERN,
-    'jsx': C_LIKE_PATTERN
+    'jsx': C_LIKE_PATTERN,
+    'py': new RegExp(`#${COMMENT}`),
+    'html': new RegExp(`<!--${COMMENT}-->`)
   };
   const PATTERN = LINE_PATTERNS[ext];
   if (!PATTERN) {
@@ -73,12 +80,15 @@ function parseAnnotations (content, ext) {
   for (let i = 0; i < lines.length; ++i) {
     let line = lines[i];
     let match = line.match(PATTERN);
+
     if (match) {
       // get next lines
-      let noOfLines = parseInt(match[2], 10) || 1;
-      let order = parseInt(match[4], 10) || annotations.length + 1;
-      let title = match[5];
+      let noOfLines = parseInt(match[3], 10) || 1;
+      let order = parseInt(match[5], 10) || annotations.length + 1;
+      let title = match[6];
       annotations.push({
+        line: i,
+        noOfLines,
         order,
         title,
         code: lines.slice(i + 1, i + 1 + noOfLines).join('\n') // TODO trim?
@@ -108,26 +118,13 @@ function fixPossibleScriptTags (val) {
     .replace(/<.\/script>/gi, '</script>');
 }
 
-function parseHighlight (dom) {
+function parseHighlight (dom, annotations) {
   if (!dom.hasAttribute('highlight')) {
     return [];
   }
-  const highlightString = dom.getAttribute('highlight');
-  return highlightString.split(',').map((pattern) => {
-    const parts = pattern
-      .split('-')
-      .map((no) => parseInt(no, 10))
-      .map((no) => no - 1);
-    // Validation
-    parts.forEach((no) => {
-      if (isNaN(no) || no < 0) {
-        throw new Error(`Unable to parse highlights for ${dom.id}. Problem with: ${pattern}`);
-      }
-    });
 
-    return {
-      from: parts[0],
-      to: parts[1] || parts[0]
-    };
-  });
+  return annotations.map((anno) => ({
+    from: anno.line + 1,
+    to: anno.line + anno.noOfLines
+  }));
 }

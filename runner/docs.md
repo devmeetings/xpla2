@@ -28,7 +28,7 @@ Represents a simple IDE.
 - `tree` - Should show tree instead of file tabs.
 - `script[id]` - *Required*. Name of the file
 - `script[src]` - Source of file to fetch (use instead of inlining content)
-- `script[highlight]` - Lines that should be highlighted in editor
+- `script[highlight]` - Should parse comments in this file. File should be marked.
 
 ### Example
 ```html
@@ -45,7 +45,8 @@ Represents a simple IDE.
       </body>
     </html>
   </script>
-  <script id="main.js" type="application/octetstream" highlight="1-2,3">
+  <script id="main.js" type="application/octetstream" highlight>
+    //3/ 1. Hello World Function
     function helloWorld() {
       console.log()
     }
