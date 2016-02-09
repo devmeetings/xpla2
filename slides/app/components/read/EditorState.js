@@ -57,8 +57,11 @@ function getExtension (name) {
 }
 
 function parseAnnotations (content, ext) {
+  const C_LIKE_PATTERN = /\/\/(([0-9]+)\/)?( ([0-9\.]+)\.)? (.+)/;
   const LINE_PATTERNS = {
-    'js': /\/\/(([0-9]+)\/)?( ([0-9\.]+)\.)? (.+)/
+    'js': C_LIKE_PATTERN,
+    'java': C_LIKE_PATTERN,
+    'jsx': C_LIKE_PATTERN
   };
   const PATTERN = LINE_PATTERNS[ext];
   if (!PATTERN) {
