@@ -83,8 +83,7 @@ function parseAnnotations (content, ext) {
       i += noOfLines;
     }
   }
-  console.log(annotations);
-  return annotations;
+  return annotations.sort((a, b) => a.order - b.order);
 }
 
 

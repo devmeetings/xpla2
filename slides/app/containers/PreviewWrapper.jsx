@@ -61,10 +61,10 @@ class PreviewContainer extends React.Component {
 
   getAnnotations () {
     const annotations = this.getFilesFromEditors()
+      .filter((file) => file.get('highlight').size)
       .map((file) => file.get('annotations'))
-      .toSetSeq()
-      .flatten(1);
-    console.log(annotations.toJS());
+      .flatten(1)
+      .toList();
     return annotations;
   }
 

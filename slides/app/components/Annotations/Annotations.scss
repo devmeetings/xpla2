@@ -1,0 +1,29 @@
+@import "../vars";
+
+.button {
+  border: none;
+  outline: none;
+  padding: $padding;
+  color: $color-inverse;
+  background: $brand-primary-light;
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}
+
+.buttonBar {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  left: 2rem;
+  right: 2rem;
+  bottom: 2rem;
+
+  .button {
+    flex: 0 0 8rem;
+  }
+}
