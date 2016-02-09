@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import Props from 'react-immutable-proptypes';
 
 import {Preview} from '../components/Preview/Preview';
+import {Annotations} from '../components/Annotations/Annotations';
 
 import {getFilesWithActive} from '../reducers.utils/editors';
 
@@ -58,22 +59,37 @@ class PreviewContainer extends React.Component {
     });
   }
 
+  getAnnotations () {
+    const annotations = this.getFilesFromEditors()
+      .map((file) => file.get('annotations'))
+      .toSetSeq()
+      .flatten(1);
+    console.log(annotations.toJS());
+    return annotations;
+  }
+
   render () {
     const id = this.props.previewId;
     const runServerUrl = this.props.runServerUrl;
     const preview = this.props.previews.get(id);
+    const annotations = this.getAnnotations();
 
     return (
-      <Preview
-        isError={preview.get('isError')}
-        isFresh={preview.get('isFresh')}
-        isLoading={preview.get('isLoading')}
-        isTakingLong={preview.get('isTakingLong')}
-        onRun={this.runAction.bind(this)}
-        previewId={id}
-        runId={preview.get('runId')}
-        runServerUrl={runServerUrl}
-        />
+      <div>
+        <Preview
+          isError={preview.get('isError')}
+          isFresh={preview.get('isFresh')}
+          isLoading={preview.get('isLoading')}
+          isTakingLong={preview.get('isTakingLong')}
+          onRun={this.runAction.bind(this)}
+          previewId={id}
+          runId={preview.get('runId')}
+          runServerUrl={runServerUrl}
+          />
+        <Annotations
+          annotations={annotations}
+          />
+      </div>
     );
   }
 
