@@ -158,7 +158,7 @@ export class Annotations extends React.Component {
 }
 
 Annotations.propTypes = {
-  title: React.PropTypes.string.isRequired,
+  title: React.PropTypes.string,
   annotations: Props.listOf(Props.contains({
     order: React.PropTypes.number.isRequired,
     line: React.PropTypes.number.isRequired,

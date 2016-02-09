@@ -60,15 +60,15 @@ function getExtension (name) {
 }
 
 function parseAnnotations (content, ext, fileName) {
-  const COMMENT = '\\s*(([0-9]+)\\/)?( ([0-9\\.]+)\\.)? (.+)'
-  const C_LIKE_PATTERN = new RegExp(`(//${COMMENT})||/*${COMMENT}*/`);
+  const COMMENT = '\\s*(([0-9]+)\\/ )?(([0-9\\.]+)\\.)?\\s*(.+)'
+  const C_LIKE_PATTERN = new RegExp(`(//${COMMENT})|(/*${COMMENT}*/)`);
 
   const LINE_PATTERNS = {
     'js': C_LIKE_PATTERN,
     'java': C_LIKE_PATTERN,
     'jsx': C_LIKE_PATTERN,
-    'py': new RegExp(`#${COMMENT}`),
-    'html': new RegExp(`<!--${COMMENT}-->`)
+    'py': new RegExp(`#(${COMMENT})`),
+    'html': new RegExp(`<!--(${COMMENT})-->`)
   };
   const PATTERN = LINE_PATTERNS[ext];
   if (!PATTERN) {
@@ -80,7 +80,6 @@ function parseAnnotations (content, ext, fileName) {
   for (let i = 0; i < lines.length; ++i) {
     let line = lines[i];
     let match = line.match(PATTERN);
-
     if (match) {
       // get next lines
       let noOfLines = parseInt(match[3], 10) || 1;
@@ -123,6 +122,13 @@ function fixPossibleScriptTags (val) {
 function parseHighlight (dom, annotations) {
   if (!dom.hasAttribute('highlight')) {
     return [];
+  }
+
+  if (!annotations.length) {
+    return [{
+      from: 1,
+      to: Infinity
+    }];
   }
 
   return annotations.map((anno) => ({
