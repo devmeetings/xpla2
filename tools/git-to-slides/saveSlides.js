@@ -82,7 +82,9 @@ function slideToHtml (options, slide) {
         </div>
         <div class="xp-resize-row"></div>
         <div class="xp-row comments">
-          <h1>${trim(slide.title)}</h1>
+          <xp-annotations>
+            <header><h1>${trim(slide.title)}</h1></header>
+          </xp-annotations>
         </div>
       </body>
     </html>
