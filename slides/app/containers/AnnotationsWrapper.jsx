@@ -52,8 +52,8 @@ class AnnotationsContainer extends React.Component {
       <div>
         {asHtml(header)}
         <Annotations
-          hasIntro={!!details}
           annotations={editorAnnotations}
+          hasIntro={!!details}
           title={title}
           >
           {asHtml(details)}
