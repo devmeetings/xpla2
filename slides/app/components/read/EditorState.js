@@ -61,14 +61,16 @@ function getExtension (name) {
 
 function parseAnnotations (content, ext, fileName) {
   const COMMENT = '\\s*(([0-9]+)\\/ )?(([0-9\\.]+)\\.)?\\s*(.+)'
-  const C_LIKE_PATTERN = new RegExp(`(//${COMMENT})|(/*${COMMENT}*/)`);
+  const C_LIKE_PATTERN = new RegExp(`//(${COMMENT})`);
+  const C_LIKE_PATTERN2 = new RegExp(`\\/\\*(${COMMENT})\\*\\/`);
+  const C_LIKE_PATTERNS = [C_LIKE_PATTERN, C_LIKE_PATTERN2];
 
   const LINE_PATTERNS = {
-    'js': C_LIKE_PATTERN,
-    'java': C_LIKE_PATTERN,
-    'jsx': C_LIKE_PATTERN,
-    'py': new RegExp(`#(${COMMENT})`),
-    'html': new RegExp(`<!--(${COMMENT})-->`)
+    'js': C_LIKE_PATTERNS,
+    'java': C_LIKE_PATTERNS,
+    'jsx': C_LIKE_PATTERNS,
+    'py': [new RegExp(`#(${COMMENT})`)],
+    'html': [new RegExp(`<!--(${COMMENT})-->`)]
   };
   const PATTERN = LINE_PATTERNS[ext];
   if (!PATTERN) {
@@ -79,7 +81,7 @@ function parseAnnotations (content, ext, fileName) {
   const annotations = [];
   for (let i = 0; i < lines.length; ++i) {
     let line = lines[i];
-    let match = line.match(PATTERN);
+    let match = PATTERN.reduce((match, pattern) => match || line.match(pattern), false);
     if (match) {
       // get next lines
       let noOfLines = parseInt(match[3], 10) || 1;
@@ -94,7 +96,7 @@ function parseAnnotations (content, ext, fileName) {
         fileName,
         code: lines.slice(i + 1, i + 1 + noOfLines).join('\n') // TODO trim?
       });
-      i += noOfLines;
+      i += Math.max(noOfLines, 0);
     }
   }
   return annotations.sort((a, b) => a.order - b.order);
