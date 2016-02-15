@@ -67,6 +67,7 @@ function parseAnnotations (content, ext, fileName) {
 
   const LINE_PATTERNS = {
     'js': C_LIKE_PATTERNS,
+    'ts': C_LIKE_PATTERNS,
     'java': C_LIKE_PATTERNS,
     'jsx': C_LIKE_PATTERNS,
     'py': [new RegExp(`#(${COMMENT})`)],
