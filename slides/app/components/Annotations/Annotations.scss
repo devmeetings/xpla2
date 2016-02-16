@@ -16,6 +16,13 @@
   > div {
     position: absolute;
   }
+  :global .ace_cursor-layer {
+    opacity: 0.1;
+    transition: opacity $transition;
+    &:hover {
+      opacity: 0.9;
+    }
+  }
 }
 
 .button {

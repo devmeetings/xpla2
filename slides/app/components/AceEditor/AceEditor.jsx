@@ -175,6 +175,7 @@ export class AceEditor extends React.Component {
     const r2 = new Range(to, 0, lines, 0);
     session.addMarker(r1, 'ace_fadeout-line', 'xp-fadeout', true);
     session.addMarker(r2, 'ace_fadeout-line', 'xp-fadeout', true);
+    this.editor.scrollToLine(from, true, true);
   }
 
   render () {

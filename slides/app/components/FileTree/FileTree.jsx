@@ -69,7 +69,6 @@ export class FileTree extends React.Component {
         return tree;
       }, []);
 
-    console.log(tree);
     return tree;
   }
 

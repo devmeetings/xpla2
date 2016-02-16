@@ -117,7 +117,6 @@ export class Annotations extends React.Component {
     const annotation = this.props.annotations.get(anno).toJS();
     const mode = getModeForFilename(annotation.fileName);
 
-    console.log(annotation);
     return (
       <div className={styles.annotation}>
         <h2 className={styles.slideTitle}>{title}</h2>
