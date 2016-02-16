@@ -8,7 +8,7 @@ server {
   server_name {{ server_name }};
 
   location /slides/react-redux/ {
-    proxy_pass https://wkwiatek.github.io/devmeeting-react-todoapp;
+    proxy_pass https://wkwiatek.github.io/devmeeting-react-todoapp/;
     proxy_set_header Host      $host;
     proxy_set_header X-Real-IP $remote_addr;
     # react-redux / 7843
