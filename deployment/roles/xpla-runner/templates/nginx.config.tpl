@@ -11,6 +11,9 @@ server {
     proxy_pass https://wkwiatek.github.io/devmeeting-react-todoapp;
     proxy_set_header Host      $host;
     proxy_set_header X-Real-IP $remote_addr;
+    # react-redux / 7843
+    auth_basic "Restricted";
+    auth_basic_user_file /etc/nginx/{{ server_name }}-htpasswd;
   }
 
   location /static {
