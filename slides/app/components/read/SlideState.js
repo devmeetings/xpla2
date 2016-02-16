@@ -16,8 +16,7 @@ export function getSlideState (dom) {
 
 
   if (!('import' in dom)) {
-    logger.error(dom);
-    throw new Error(`Unable to read slide at ${dom.href}`)
+    logger.warn('Using HTMLImports polyfill. Fingers crossed.');
   }
 
   const onload = () => {

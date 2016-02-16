@@ -1,5 +1,6 @@
 import 'babel-core/polyfill';
 import 'normalize.css/normalize.css';
+import 'webcomponents.js/HTMLImports.js';
 import './index.html';
 import './deck.html';
 
