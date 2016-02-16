@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const ANNOTATIONS_FILE = '_annotations.html';
 
 module.exports = convertCommitsToSlidesContent;
 
@@ -15,14 +16,18 @@ function convertCommitsToSlidesContent (commits) {
 
     const hasOldFiles = commit.oldFiles.length;
 
-    const filesToSave = commit.newFiles.map((file) => {
-      return {
-        path: editorFilePath(slideName, file),
-        content: file.content
-      };
-    });
+    const newFiles = commit.newFiles
+      .filter((file) => file.path !== ANNOTATIONS_FILE);
 
-    const editors = commit.newFiles.map((file) => {
+    const filesToSave = newFiles
+      .map((file) => {
+        return {
+          path: editorFilePath(slideName, file),
+          content: file.content
+        };
+      });
+
+    const editors = newFiles.map((file) => {
       const highlights = hasOldFiles ? linesToHighlights(file.lines) : '';
       return {
         id: file.path,
@@ -46,17 +51,44 @@ function convertCommitsToSlidesContent (commits) {
       }));
     }
 
+    const msg = splitToTitleAndComment(commit.message);
+    const annotations = getAnnotations(commit.newFiles);
     const active = editors[0].id;
     slidesContent.push({
       filesToSave,
       active,
       editors,
       slideName,
-      title: commit.message
+      annotations,
+      title: msg.title,
+      comment: msg.comment
     });
 
     return slidesContent;
   }, []);
+}
+
+function getAnnotations(newFiles) {
+  const anno = newFiles.filter((file) => file.path === ANNOTATIONS_FILE)[0];
+  if (!anno) {
+    return '';
+  }
+  return anno.content;
+}
+
+function splitToTitleAndComment(message) {
+  const PATTERN = /(.+) \[(.+)\]/;
+  const match = message.match(PATTERN);
+  if (match) {
+    return {
+      title: match[2],
+      comment: match[1]
+    };
+  }
+  return {
+    title: message,
+    comment: message
+  };
 }
 
 function withLeadingZeros (num) {
