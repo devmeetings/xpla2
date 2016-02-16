@@ -36,16 +36,17 @@ export class Annotations extends React.Component {
       left              : 0,
       right             : 0,
       bottom            : 0,
-      backgroundColor   : 'rgba(0, 0, 0, 0.50)',
+      backgroundColor   : 'rgba(0, 0, 0, 0.40)',
       zIndex            : 1000
     },
     content : {
       position                   : 'absolute',
       top                        : '15%',
-      left                       : '20%',
-      right                      : '20%',
-      height                     : '240px',
-      bottom                     : 'auto',
+      left                       : '25%',
+      right                      : '25%',
+      minHeight                  : '300px',
+      maxHeight                  : '90%',
+      bottom                     : '25%',
       border                     : '1px solid #ccc',
       background                 : '#fff',
       overflow                   : 'auto',
@@ -116,29 +117,32 @@ export class Annotations extends React.Component {
     const annotation = this.props.annotations.get(anno).toJS();
     const mode = getModeForFilename(annotation.fileName);
 
+    console.log(annotation);
     return (
       <div className={styles.annotation}>
         <h2 className={styles.slideTitle}>{title}</h2>
-        <h2>
-          {annotation.title}
-        </h2>
         <pre className={styles.fileName}>
           {annotation.fileName}
         </pre>
-        <AceEditor
-          height={'100px'}
-          highlightActiveLine={false}
-          mode={mode}
-          name={`editor-annotations-${annotation.line}`}
-          readOnly={true}
-          showGutter={false}
-          showPrintMargin={false}
-          theme={'chrome'}
-          value={annotation.code}
-          width={'100%'}
-          />
-        <div dangerouslySetInnerHTML={{__html: annotation.description || ''}}></div>
-      </div>
+        <div className={styles.editor}>
+          <AceEditor
+            height={'100%'}
+            highlight={annotation.highlight}
+            highlightActiveLine={false}
+            mode={mode}
+            name={`editor-annotations-${annotation.line}`}
+            readOnly={true}
+            showGutter={false}
+            showPrintMargin={false}
+            theme={'chrome'}
+            value={annotation.code}
+            width={'100%'}
+            />
+        </div>
+        <div
+          className={annotation.description ? styles.slideDescription: ''}
+          dangerouslySetInnerHTML={{__html: annotation.description || ''}}></div>
+    </div>
     );
   }
 

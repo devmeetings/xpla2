@@ -94,9 +94,9 @@ function parseAnnotations (content, ext, fileName) {
         title,
         ext,
         fileName,
-        code: lines.slice(i + 1, i + 1 + noOfLines).join('\n') // TODO trim?
+        code: content,
+        highlight: [i + 1, i + 1 + noOfLines]
       });
-      i += Math.max(noOfLines, 0);
     }
   }
   return annotations.sort((a, b) => a.order - b.order);

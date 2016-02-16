@@ -1,5 +1,6 @@
 import ace from 'brace';
 import React from 'react';
+import './AceEditor.scss';
 
 const Range = ace.acequire('ace/range').Range;
 
@@ -100,9 +101,14 @@ export class AceEditor extends React.Component {
       this.editor.setKeyboardHandler('ace/keyboard/' + this.props.keyboardHandler);
     }
 
+    if (this.props.highlight) {
+      this.highlight(this.props.highlight);
+    }
+
     if (this.props.onLoad) {
       this.props.onLoad(this.editor);
     }
+
 
     setTimeout(() => {
       this.editor.resize();
@@ -148,10 +154,27 @@ export class AceEditor extends React.Component {
         this.editor.setValue(nextProps.value, nextProps.cursorStart);
         this.silent = false;
       }
+      if (nextProps.highlight !== this.props.highlight) {
+        this.highlight(nextProps.highlight);
+      }
     } else if (nextProps.session !== this.props.session) {
       this.editor.setSession(nextProps.session);
       this.editor.focus();
     }
+  }
+
+  highlight (d) {
+    const [from, to] = d;
+    const session = this.editor.getSession();
+    Object.keys(session.$frontMarkers).map((marker) => {
+      session.removeMarker(marker);
+    });
+    const lines = session.getLength();
+    // Adding class to everything except those lines
+    const r1 = new Range(0, 0, from-1, 0);
+    const r2 = new Range(to, 0, lines, 0);
+    session.addMarker(r1, 'ace_fadeout-line', 'xp-fadeout', true);
+    session.addMarker(r2, 'ace_fadeout-line', 'xp-fadeout', true);
   }
 
   render () {
@@ -196,7 +219,8 @@ AceEditor.propTypes = {
   editorProps: React.PropTypes.object,
   keyboardHandler: React.PropTypes.string,
   wrapEnabled: React.PropTypes.bool,
-  commands: React.PropTypes.array
+  commands: React.PropTypes.array,
+  highlight: React.PropTypes.array
 };
 
 AceEditor.defaultProps = {
@@ -218,5 +242,6 @@ AceEditor.defaultProps = {
   tabSize: 2,
   cursorStart: 1,
   editorProps: {},
-  wrapEnabled: false
+  wrapEnabled: false,
+  highlight: null
 };

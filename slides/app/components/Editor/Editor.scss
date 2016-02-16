@@ -28,16 +28,6 @@
   bottom: 0;
   left: 0;
   right: 0;
-
-	:global {
-		.ace_editor {
-			background: $brand-light-bg;
-		}
-		.ace_highlight-line {
-			background: #eaffea;
-			position: absolute;
-		}
-	}
 }
 .editorEdit {
   background: $brand-danger;

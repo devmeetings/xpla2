@@ -1,0 +1,16 @@
+@import '../vars.scss';
+
+:global {
+  .ace_editor {
+    background: $brand-light-bg;
+  }
+  .ace_highlight-line {
+    background: #eaffea;
+    position: absolute;
+  }
+  .ace_fadeout-line {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    color: #bbb !important;
+  }
+}
