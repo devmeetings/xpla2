@@ -1,5 +1,11 @@
 const _ = require('lodash');
+
 const ANNOTATIONS_FILE = '_annotations.html';
+const XP_TREE_FILE = '_xp-tree';
+
+const SPECIAL_FILES = [
+  ANNOTATIONS_FILE, XP_TREE_FILE
+];
 
 module.exports = convertCommitsToSlidesContent;
 
@@ -17,7 +23,7 @@ function convertCommitsToSlidesContent (commits) {
     const hasOldFiles = commit.oldFiles.length;
 
     const newFiles = commit.newFiles
-      .filter((file) => file.path !== ANNOTATIONS_FILE);
+      .filter((file) => SPECIAL_FILES.indexOf(file.path) === -1);
 
     const filesToSave = newFiles
       .map((file) => {
@@ -52,7 +58,9 @@ function convertCommitsToSlidesContent (commits) {
     }
 
     const msg = splitToTitleAndComment(commit.message);
-    const annotations = getAnnotations(commit.newFiles);
+    const annotations = getFile(commit.newFiles, ANNOTATIONS_FILE, '');
+    const displayTree = hasFile(commit.newFiles, XP_TREE_FILE);
+
     const active = editors[0].id;
     slidesContent.push({
       filesToSave,
@@ -60,6 +68,7 @@ function convertCommitsToSlidesContent (commits) {
       editors,
       slideName,
       annotations,
+      displayTree,
       title: msg.title,
       comment: msg.comment
     });
@@ -68,12 +77,17 @@ function convertCommitsToSlidesContent (commits) {
   }, []);
 }
 
-function getAnnotations(newFiles) {
-  const anno = newFiles.filter((file) => file.path === ANNOTATIONS_FILE)[0];
-  if (!anno) {
-    return '';
+function getFile(newFiles, fileName, defaultVal) {
+  const file = newFiles.filter((file) => file.path === fileName)[0];
+  if (!file) {
+    return defaultVal;
   }
-  return anno.content;
+  return file.content;
+}
+
+function hasFile(newFiles, fileName) {
+  const file = newFiles.filter((file) => file.path === fileName)[0];
+  return !!file;
 }
 
 function splitToTitleAndComment(message) {

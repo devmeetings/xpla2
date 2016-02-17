@@ -71,7 +71,7 @@ function slideToHtml (options, slide) {
       <body class="xp-slide">
         <div class="xp-row with-comments">
           <div class="xp-column">
-            <xp-editor active="${slide.active}">
+            <xp-editor active="${slide.active}" ${slide.displayTree ? 'tree' : ''}>
               ${slide.editors.map(editorToHtml).join('\n')}
             </xp-editor>
           </div>
