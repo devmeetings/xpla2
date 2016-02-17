@@ -20,7 +20,10 @@ function convertCommitsToSlidesContent (commits) {
     const slideNo = idx + 1;
     const slideName = withLeadingZeros(slideNo);
 
-    const hasOldFiles = commit.oldFiles.length;
+    const oldFiles = commit.oldFiles
+      .filter((file) => SPECIAL_FILES.indexOf(file.path) === -1);
+
+    const hasOldFiles = oldFiles.length;
 
     const newFiles = commit.newFiles
       .filter((file) => SPECIAL_FILES.indexOf(file.path) === -1);
@@ -45,10 +48,11 @@ function convertCommitsToSlidesContent (commits) {
     if (hasOldFiles) {
       // reuse old editors
       const lastSlide = _.last(slidesContent);
-      editors.push.apply(editors, commit.oldFiles.map((file) => {
+      editors.push.apply(editors, oldFiles.map((file) => {
         const oldEditor = lastSlide.editors.find((editor) => {
           return editor.id === file.path;
         });
+
         return {
           id: file.path,
           highlight: '',
