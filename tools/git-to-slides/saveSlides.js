@@ -77,7 +77,6 @@ function slideToHtml (options, slide) {
           </div>
           <div class="xp-resize-column"></div>
           <div class="xp-column"${slide.displayTree ? ' style="width: 35%"' : ''}>
-:w
             <xp-preview runner="${options.runner}"></xp-preview>
           </div>
         </div>
