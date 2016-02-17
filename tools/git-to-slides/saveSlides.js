@@ -70,13 +70,14 @@ function slideToHtml (options, slide) {
       </head>
       <body class="xp-slide">
         <div class="xp-row with-comments">
-          <div class="xp-column">
+          <div class="xp-column"${slide.displayTree ? ' style="width: 65%"' : ''}>
             <xp-editor active="${slide.active}" ${slide.displayTree ? 'tree' : ''}>
               ${slide.editors.map(editorToHtml).join('\n')}
             </xp-editor>
           </div>
           <div class="xp-resize-column"></div>
-          <div class="xp-column">
+          <div class="xp-column"${slide.displayTree ? ' style="width: 35%"' : ''}>
+:w
             <xp-preview runner="${options.runner}"></xp-preview>
           </div>
         </div>

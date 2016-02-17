@@ -66,7 +66,7 @@ function convertCommitsToSlidesContent (commits) {
 
     const msg = splitToTitleAndComment(commit.message);
     const annotations = getFile(commit.newFiles, ANNOTATIONS_FILE, '');
-    const displayTree = hasFile(commit.newFiles, XP_TREE_FILE);
+    const displayTree = hasFile(commit.newFiles, XP_TREE_FILE) || hasFile(commit.oldFiles, XP_TREE_FILE);
 
     const active = editors[0].id;
     slidesContent.push({
