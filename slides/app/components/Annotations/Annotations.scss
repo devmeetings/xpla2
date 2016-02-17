@@ -1,10 +1,11 @@
 @import "../vars";
 
 .annotation {
-  height: 100%;
-  padding-top: 1rem;
-  padding-bottom: 30px;
+  height: calc(100% - 3.5rem);
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
   box-sizing: border-box;
+  overflow: auto;
 
   display: flex;
   flex-direction: column;

@@ -2,9 +2,10 @@ const _ = require('lodash');
 
 const ANNOTATIONS_FILE = '_annotations.html';
 const XP_TREE_FILE = '_xp-tree';
+const XP_NO_HIGHLIGHT_FILE = '_xp-no-highlight';
 
 const SPECIAL_FILES = [
-  ANNOTATIONS_FILE, XP_TREE_FILE
+  ANNOTATIONS_FILE, XP_TREE_FILE, XP_NO_HIGHLIGHT_FILE
 ];
 
 module.exports = convertCommitsToSlidesContent;
@@ -36,8 +37,10 @@ function convertCommitsToSlidesContent (commits) {
         };
       });
 
+    const noHighlight = getFile(commit.newFiles, XP_NO_HIGHLIGHT_FILE, '').split('\n');
     const editors = newFiles.map((file) => {
-      const highlights = linesToHighlights(file.lines);
+      const highlights = noHighlight.indexOf(file.path) === -1 ? linesToHighlights(file.lines) : '';
+
       return {
         id: file.path,
         highlight: highlights,
