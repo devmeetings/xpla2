@@ -29,7 +29,7 @@
 .editor {
   flex: 1;
   position: relative;
-  > div {
+  :global .ace_editor {
     position: absolute;
   }
   :global .ace_cursor-layer {

@@ -139,7 +139,7 @@ export class FileTree extends React.Component {
 FileTree.propTypes = {
   files: Props.listOf(Props.contains({
     name: React.PropTypes.string.isRequired,
-    content: React.PropTypes.string.isRequired
+    highlight: Props.listOf(React.PropTypes.string).isRequired,
   })),
   active: Props.contains({
     name: React.PropTypes.string.isRequired

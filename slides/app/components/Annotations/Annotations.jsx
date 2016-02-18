@@ -2,9 +2,13 @@ import React from 'react';
 import _ from 'lodash';
 import Props from 'react-immutable-proptypes';
 
+// TODO [todr] This is very temporary!
+import {fromJS} from 'immutable';
+
 import Modal from 'react-modal';
 import {Icon} from '../Icon/Icon';
 import {AceEditor} from '../AceEditor/AceEditor';
+import {FileTree} from '../FileTree/FileTree';
 import {getModeForFilename} from '../Editor/Editor';
 
 import styles from './Annotations.scss';
@@ -86,7 +90,7 @@ export class Annotations extends React.Component {
     const dots = _.range(maxAnno).map((dot) => {
       const active = anno === dot;
       return (
-        <span className={active ? styles.activeDot : styles.dot}>
+        <span key={dot} className={active ? styles.activeDot : styles.dot}>
           <Icon icon={'dot'} />
         </span>
       );
@@ -97,6 +101,19 @@ export class Annotations extends React.Component {
         {dots}
       </div>
     );
+  }
+
+  getEditors () {
+    return fromJS(this.props.annotations.map((elem) => elem.get('fileName')).reduce((acc, name) => {
+
+      if (acc.indexOf(name) === -1) {
+        return acc.concat(name);
+      }
+      return acc;
+    }, []).map((name) => ({
+      name,
+      highlight: []
+    })));
   }
 
   renderAnnotation (anno) {
@@ -118,6 +135,10 @@ export class Annotations extends React.Component {
     const annotation = this.props.annotations.get(anno).toJS();
     const mode = getModeForFilename(annotation.fileName);
 
+    const editors = this.getEditors();
+    const editorActive = fromJS({
+      name: annotation.fileName
+    });
     return (
       <div className={styles.annotation}>
         <h2 className={styles.slideTitle}>{title}</h2>
@@ -125,19 +146,31 @@ export class Annotations extends React.Component {
           {annotation.fileName}
         </pre>
         <div className={styles.editor}>
-          <AceEditor
-            height={'100%'}
-            highlight={annotation.highlight}
-            highlightActiveLine={false}
-            mode={mode}
-            name={`editor-annotations-${annotation.line}`}
-            readOnly={true}
-            showGutter={false}
-            showPrintMargin={false}
-            theme={'chrome'}
-            value={annotation.code}
-            width={'100%'}
-            />
+          <div className={'xp-slide'}>
+            <div className={'xp-column'} style={{width: '135px'}}>
+              <FileTree
+                active={editorActive}
+                files={editors}
+                onChange={() => {}}
+                />
+            </div>
+            <div className={'xp-resize-column'}></div>
+            <div className={'xp-column'} style={{width: 'calc(100% - 135px)'}}>
+              <AceEditor
+                height={'100%'}
+                highlight={annotation.highlight}
+                highlightActiveLine={false}
+                mode={mode}
+                name={`editor-annotations-${annotation.line}`}
+                readOnly={true}
+                showGutter={false}
+                showPrintMargin={false}
+                theme={'chrome'}
+                value={annotation.code}
+                width={'100%'}
+                />
+            </div>
+          </div>
         </div>
         <div
           className={annotation.description ? styles.slideDescription: ''}
