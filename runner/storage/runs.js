@@ -1,16 +1,18 @@
-const uuid = require('node-uuid');
+'use strict';
 
-const mem = {};
+const uuid = require('node-uuid');
+const db = require('./db');
+
+const mem = db();
 
 function store (runData) {
   const runId = uuid.v1();
-  mem[runId] = runData;
-
+  mem.store(runId, runData);
   return Promise.resolve(runId);
 }
 
 function retrieve (runId) {
-  const runData = mem[runId];
+  const runData = mem.retrieve(runId);
   if (runData) {
     return Promise.resolve(runData);
   }

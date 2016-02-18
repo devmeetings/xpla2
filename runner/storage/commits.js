@@ -1,16 +1,19 @@
-const uuid = require('node-uuid');
+'use strict';
 
-const mem = {};
+const uuid = require('node-uuid');
+const db = require('./db');
+
+const mem = db();
 
 function store (code) {
   const commitId = uuid.v1();
-  mem[commitId] = code;
+  mem.store(commitId, code);
 
   return Promise.resolve(commitId);
 }
 
 function retrieve (commitId) {
-  const commitData = mem[commitId];
+  const commitData = mem.retrieve(commitId);
   if (commitData) {
     return Promise.resolve(commitData);
   }
