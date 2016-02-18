@@ -27,16 +27,16 @@ class DeckContainer extends React.Component {
   }
 
   onKey (ev) {
-    const left = [33/* PGUP */, 37/* LEFT */, 38/* UP */];
-    const right = [34/* PGDOWN */, 39/* RIGHT */ , 40/* DOWN */, 32/* SPACE*/];
+    const prevPage = [33/* PGUP */, 38/* UP */];
+    const nextPage = [34/* PGDOWN */, 40/* DOWN */];
     const code = ev.keyCode;
 
-    if (left.indexOf(code) !== -1) {
+    if (prevPage.indexOf(code) !== -1) {
       this.prevSlide();
       return;
     }
 
-    if (right.indexOf(code) !== -1) {
+    if (nextPage.indexOf(code) !== -1) {
       this.nextSlide();
       return;
     }
@@ -45,7 +45,7 @@ class DeckContainer extends React.Component {
   nextSlide () {
     let active = this.props.activeSlide;
     let idx = this.props.slides.indexOf(active);
-    if (idx + 1 >= this.props.slides.length) {
+    if (idx + 1 >= this.props.slides.size) {
       return;
     }
     this.onSlideChange(this.props.slides.get(idx + 1));
@@ -89,6 +89,8 @@ class DeckContainer extends React.Component {
           runServerUrl={this.props.runServerUrl}
           slide={this.props.activeSlide.get('content')}
           title={this.props.activeSlide.get('title')}
+          onNextSlide={this.nextSlide.bind(this)}
+          onPrevSlide={this.prevSlide.bind(this)}
           />
         <DeckSlidesList
           active={this.props.activeSlide}

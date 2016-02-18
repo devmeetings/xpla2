@@ -13,20 +13,6 @@ export class Annotations extends React.Component {
 
   constructor (...args) {
     super(...args);
-    this.state = {
-      isOpen: this.props.annotations.size > 0,
-      currentAnnotation: this.minAnno()
-    };
-  }
-
-  minAnno() {
-    return this.props.hasIntro ? -1 : 0;
-  }
-
-  closeModal () {
-    this.setState({
-      isOpen: false
-    });
   }
 
   modalStyles = {
@@ -57,21 +43,11 @@ export class Annotations extends React.Component {
     }
   };
 
-  changeAnnotation (anno) {
-    if (anno < this.minAnno() || anno > this.props.annotations.size) {
-      return;
-    }
-
-    this.setState({
-      currentAnnotation: anno
-    });
-  }
-
   renderButtons (anno) {
     const prevButton = (
       <button
         className={styles.button}
-        onClick={this.changeAnnotation.bind(this, anno - 1)}
+        onClick={this.props.onPrev}
         >
         <Icon icon={'chevron-left'} />
       </button>
@@ -79,7 +55,7 @@ export class Annotations extends React.Component {
     const nextButton = (
       <button
         className={styles.button}
-        onClick={this.changeAnnotation.bind(this, anno + 1)}
+        onClick={this.props.onNext}
         >
         <Icon icon={'chevron-right'} /> Next
       </button>
@@ -87,7 +63,7 @@ export class Annotations extends React.Component {
     const closeButton = (
        <button
         className={styles.button}
-        onClick={this.closeModal.bind(this)}
+        onClick={this.props.onRequestClose}
         >
         <Icon icon={'chevron-right'} /> Ok. I get it
       </button>
@@ -96,7 +72,7 @@ export class Annotations extends React.Component {
 
     return (
       <div className={styles.buttonBar}>
-        {anno > this.minAnno() ? prevButton : ''}
+        {anno > this.props.minAnno ? prevButton : ''}
         {anno < maxAnno ? nextButton : closeButton}
       </div>
     );
@@ -112,6 +88,10 @@ export class Annotations extends React.Component {
           {this.props.children}
         </div>
       );
+    }
+
+    if (this.props.annotations.size <= anno) {
+      return (<div></div>);
     }
 
     const annotation = this.props.annotations.get(anno).toJS();
@@ -149,7 +129,7 @@ export class Annotations extends React.Component {
     return (
       <a
         className={styles.close}
-        onClick={this.closeModal.bind(this)}>
+        onClick={this.props.onRequestClose}>
         <Icon icon="clear" />
       </a>
     );
@@ -160,11 +140,11 @@ export class Annotations extends React.Component {
       return (<div></div>);
     }
 
-    const anno = this.state.currentAnnotation;
+    const anno = this.props.currentAnnotation;
     return (
       <Modal
-        isOpen={this.state.isOpen}
-        onRequestClose={this.closeModal.bind(this)}
+        isOpen={this.props.isOpen}
+        onRequestClose={this.props.onRequestClose}
         style={this.modalStyles}
         >
         {this.renderClose()}
@@ -185,6 +165,10 @@ Annotations.propTypes = {
     title: React.PropTypes.string.isRequired,
     fileName: React.PropTypes.string.isRequired,
     code: React.PropTypes.string.isRequired
-  })).isRequired
+  })).isRequired,
+  minAnno: React.PropTypes.number.isRequired,
+  onRequestClose: React.PropTypes.func.isRequired,
+  onNext: React.PropTypes.func.isRequired,
+  onPrev: React.PropTypes.func.isRequired,
 };
 

@@ -47,12 +47,15 @@ export class DeckActiveSlide extends React.Component {
   renderDomNode (props) {
     const clone = props.slide.cloneNode(true);
     this._element.appendChild(clone);
-    // Initialize slide content
 
+    // Initialize slide content
     this._element.classList.add(styles.hidenow)
     initializeSlide(this._element, props.runServerUrl, props.title).then((destroy) => {
       this._element.classList.remove(styles.hidenow);
-      this._destroyPreviousSlide = destroy;
+      // TODO [todr] Not sure if this might be mem leak?
+      destroy.events.on('slide.next', this.props.onNextSlide);
+      destroy.events.on('slide.prev', this.props.onPrevSlide);
+      this._destroyPreviousSlide = destroy.destroy;
     }, (e) => {
       console.error('Error while loading slide.');
       console.error(e);
@@ -79,7 +82,9 @@ export class DeckActiveSlide extends React.Component {
 DeckActiveSlide.propTypes = {
   title: React.PropTypes.string.isRequired,
   slide: React.PropTypes.object.isRequired,
-  runServerUrl: React.PropTypes.string.isRequired
+  runServerUrl: React.PropTypes.string.isRequired,
+  onNextSlide: React.PropTypes.func.isRequired,
+  onPrevSlide: React.PropTypes.func.isRequired
 };
 
 

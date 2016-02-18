@@ -9,6 +9,84 @@ import {Annotations} from '../components/Annotations/Annotations';
 import {getFilesWithActive} from '../reducers.utils/editors';
 
 class AnnotationsContainer extends React.Component {
+  constructor (...args) {
+    super(...args);
+    this.onKey = this.onKey.bind(this);
+
+    const annotations = this.props.annotations.get('annotations');
+    const editorAnnotations = this.getEditorAnnotations(annotations);
+
+    this.state = {
+      isOpen: editorAnnotations.size > 0 || this.minAnno() === -1,
+      annotations: editorAnnotations,
+      currentAnnotation: this.minAnno()
+    };
+  }
+
+  minAnno() {
+    const meta = this.props.annotations;
+    const details = meta.get('details');
+    return !!details ? -1 : 0;
+  }
+
+  changeAnnotation (anno) {
+    const editorAnnotations = this.state.annotations;
+    if (anno < this.minAnno()) {
+      this.prevSlide();
+      return;
+    }
+
+    if (anno > editorAnnotations.size) {
+      this.nextSlide();
+      return;
+    }
+
+    if (anno == editorAnnotations.size) {
+        this.setState({
+          isOpen: false,
+          currentAnnotation: anno
+        });
+        return;
+    }
+
+    this.setState({
+      isOpen: true,
+      currentAnnotation: anno
+    });
+  }
+
+  componentDidMount () {
+    window.addEventListener('keyup', this.onKey);
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('keyup', this.onKey);
+  }
+
+  onKey (ev) {
+    const prev = [37/* LEFT */];
+    const next = [39/* RIGHT */, 32/* SPACE*/];
+    const code = ev.keyCode;
+
+    const anno = this.state.currentAnnotation;
+    if (next.indexOf(code) !== -1) {
+      this.changeAnnotation(anno + 1);
+      return;
+    }
+
+    if (prev.indexOf(code) !== -1) {
+      this.changeAnnotation(anno - 1);
+      return;
+    }
+  }
+
+  nextSlide () {
+    this.props.globalEvents.emit('slide.next');
+  }
+
+  prevSlide () {
+    this.props.globalEvents.emit('slide.prev');
+  }
 
   getFilesFromEditors () {
     const files = this.props.editors.map(getFilesWithActive);
@@ -47,13 +125,20 @@ class AnnotationsContainer extends React.Component {
     const details = meta.get('details');
     const annotations = meta.get('annotations');
     const editorAnnotations = this.getEditorAnnotations(annotations);
+    const anno = this.state.currentAnnotation;
 
     return (
       <div>
         {asHtml(header)}
         <Annotations
           annotations={editorAnnotations}
+          currentAnnotation={anno}
           hasIntro={!!details}
+          minAnno={this.minAnno()}
+          isOpen={this.state.isOpen}
+          onNext={() => this.changeAnnotation(anno + 1)}
+          onPrev={() => this.changeAnnotation(anno - 1)}
+          onRequestClose={() => this.setState({isOpen: false})}
           title={title}
           >
           {asHtml(details)}

@@ -45,11 +45,14 @@ export function initializeSlide(dom, runServerUrl, defaultTitle) {
       const $editors = renderComponents(dom, globalEvents, store, editors, EditorWrapper, 'editorId');
       const $previews = renderComponents(dom, globalEvents, store, previews, PreviewWrapper, 'previewId');
 
-      return destroyFunction(
-        [$annotations]
-        .concat($editors)
-        .concat($previews)
-      );
+      return {
+        events: globalEvents,
+        destroy: destroyFunction(
+          [$annotations]
+          .concat($editors)
+          .concat($previews)
+        )
+      };
     });
 }
 
