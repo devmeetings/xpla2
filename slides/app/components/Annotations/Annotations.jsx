@@ -46,7 +46,7 @@ export class Annotations extends React.Component {
   renderButtons (anno) {
     const prevButton = (
       <button
-        className={styles.button}
+        className={styles.button + ' ' + (anno > this.props.minAnno ? '' : styles.invisible)}
         onClick={this.props.onPrev}
         >
         <Icon icon={'chevron-left'} />
@@ -72,8 +72,29 @@ export class Annotations extends React.Component {
 
     return (
       <div className={styles.buttonBar}>
-        {anno > this.props.minAnno ? prevButton : ''}
+        {prevButton}
+        {this.renderDots()}
         {anno < maxAnno ? nextButton : closeButton}
+      </div>
+    );
+  }
+
+  renderDots () {
+    const maxAnno = this.props.annotations.size;
+    const anno = this.props.currentAnnotation;
+
+    const dots = _.range(maxAnno).map((dot) => {
+      const active = anno === dot;
+      return (
+        <span className={active ? styles.activeDot : styles.dot}>
+          <Icon icon={'dot'} />
+        </span>
+      );
+    });
+
+    return (
+      <div className={styles.dots}>
+        {dots}
       </div>
     );
   }

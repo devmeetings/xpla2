@@ -11,6 +11,21 @@
   flex-direction: column;
 }
 
+.dots {
+  font-size: 0.5rem;
+  line-height: 2rem;
+  .dot {
+    color: #ddd;
+  }
+  .activeDot {
+    color: #666;
+  }
+}
+
+.invisible {
+  visibility: hidden;
+}
+
 .editor {
   flex: 1;
   position: relative;
