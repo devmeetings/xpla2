@@ -59,6 +59,7 @@ function slideToHtmlDeck (slide) {
 }
 
 function slideToHtml (options, slide) {
+  const runner = slide.runner ? trim(slide.runner) : options.runner;
   return `
     <!DOCTYPE html>
     <html xp-run-server-url="${options.runServer}">
@@ -77,7 +78,7 @@ function slideToHtml (options, slide) {
           </div>
           <div class="xp-resize-column"></div>
           <div class="xp-column"${slide.displayTree ? ' style="width: 35%"' : ''}>
-            <xp-preview runner="${options.runner}"></xp-preview>
+            <xp-preview runner="${runner}"></xp-preview>
           </div>
         </div>
         <div class="xp-resize-row"></div>

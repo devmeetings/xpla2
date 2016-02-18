@@ -3,9 +3,10 @@ const _ = require('lodash');
 const ANNOTATIONS_FILE = '_annotations.html';
 const XP_TREE_FILE = '_xp-tree';
 const XP_NO_HIGHLIGHT_FILE = '_xp-no-highlight';
+const XP_RUNNER_FILE = '_xp-runner';
 
 const SPECIAL_FILES = [
-  ANNOTATIONS_FILE, XP_TREE_FILE, XP_NO_HIGHLIGHT_FILE
+  ANNOTATIONS_FILE, XP_TREE_FILE, XP_NO_HIGHLIGHT_FILE, XP_RUNNER_FILE
 ];
 
 module.exports = convertCommitsToSlidesContent;
@@ -65,8 +66,10 @@ function convertCommitsToSlidesContent (commits) {
     }
 
     const msg = splitToTitleAndComment(commit.message);
+    const allFiles = commit.newFiles.concat(commit.oldFiles);
     const annotations = getFile(commit.newFiles, ANNOTATIONS_FILE, '');
-    const displayTree = hasFile(commit.newFiles, XP_TREE_FILE) || hasFile(commit.oldFiles, XP_TREE_FILE);
+    const displayTree = hasFile(allFiles, XP_TREE_FILE);
+    const runner = getFile(allFiles, XP_RUNNER_FILE, false);
 
     const active = editors[0].id;
     slidesContent.push({
@@ -76,6 +79,7 @@ function convertCommitsToSlidesContent (commits) {
       slideName,
       annotations,
       displayTree,
+      runner,
       title: msg.title,
       comment: msg.comment
     });
