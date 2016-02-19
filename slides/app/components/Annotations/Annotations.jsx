@@ -124,7 +124,7 @@ export class Annotations extends React.Component {
         highlight={annotation.highlight}
         highlightActiveLine={false}
         mode={mode}
-        name={`editor-annotations-${annotation.line}`}
+        name={`editor-annotations-${annotation.fileName}`}
         readOnly={true}
         showGutter={false}
         showPrintMargin={false}
