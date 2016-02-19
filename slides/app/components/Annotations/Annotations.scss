@@ -1,5 +1,13 @@
 @import "../vars";
 
+:global .ReactModal__Overlay {
+  animation: fadein 0.4s ease-in;
+  @keyframes :global(fadein) {
+    from {opacity: 0.0;}
+    to {opacity:1.0;}
+  }
+}
+
 .annotation {
   height: calc(100% - 3.5rem);
   margin-top: 1rem;
