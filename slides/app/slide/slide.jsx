@@ -8,11 +8,13 @@ import Store from '../store';
 import {getEditorState} from '../components/read/EditorState';
 import {getPreviewState} from '../components/read/PreviewState';
 import {getAnnotationState} from '../components/read/AnnotationsMetaState';
+import {getTimerState} from '../components/read/TimerState';
 import {readTitle} from '../components/read/SlideState';
 
 import EditorWrapper from '../containers/EditorWrapper';
 import PreviewWrapper from '../containers/PreviewWrapper';
 import AnnotationsWrapper from '../containers/AnnotationsWrapper';
+import TimerWrapper from '../containers/TimerWrapper';
 
 import './slide.scss';
 
@@ -28,6 +30,7 @@ export function initializeSlide(dom, runServerUrl, defaultTitle) {
   const annotations = getIfExists(dom, 'xp-annotations', getAnnotationState)
   annotations.title = title;
 
+  const timer = getIfExists(dom, 'xp-timer', getTimerState);
   const editorsP = getAsMap(dom, 'xp-editor', getEditorState);
   const previewsP = getAsMap(dom, 'xp-preview', getPreviewState);
 
@@ -36,12 +39,13 @@ export function initializeSlide(dom, runServerUrl, defaultTitle) {
       const [editors, previews] = a;
 
       const store = Store({
-        editors, previews, runServerUrl, annotations
+        editors, previews, runServerUrl, annotations, timer
       });
 
       const globalEvents = new EventEmitter({});
 
       const $annotations = renderComponent(dom.querySelector('xp-annotations'), globalEvents, store, annotations, AnnotationsWrapper);
+      const $timer = renderComponent(dom.querySelector('xp-timer'), globalEvents, store, timer, TimerWrapper);
       const $editors = renderComponents(dom, globalEvents, store, editors, EditorWrapper, 'editorId');
       const $previews = renderComponents(dom, globalEvents, store, previews, PreviewWrapper, 'previewId');
 
