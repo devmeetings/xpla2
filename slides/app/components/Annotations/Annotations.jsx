@@ -185,7 +185,9 @@ export class Annotations extends React.Component {
       return (
         <div className={styles.annotation}>
           <h2 className={styles.slideTitle}>{title}</h2>
-          {this.props.children}
+          <div className={styles.annotationText}>
+            {this.props.children}
+          </div>
         </div>
       );
     }

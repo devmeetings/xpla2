@@ -10,6 +10,23 @@
   display: flex;
   flex-direction: column;
 }
+.annotationText {
+  height: 100%;
+  font-size: 1.2rem;
+}
+.annotationText > div {
+  height: 100%;
+  overflow: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &::after, &::before {
+    display: block;
+    content: '';
+    flex: 1;
+  }
+}
 
 .dots {
   font-size: 0.5rem;
