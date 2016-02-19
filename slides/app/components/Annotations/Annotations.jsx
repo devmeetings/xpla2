@@ -116,6 +116,68 @@ export class Annotations extends React.Component {
     })));
   }
 
+  renderAce (annotation) {
+    const mode = getModeForFilename(annotation.fileName);
+    return (
+      <AceEditor
+        height={'100%'}
+        highlight={annotation.highlight}
+        highlightActiveLine={false}
+        mode={mode}
+        name={`editor-annotations-${annotation.line}`}
+        readOnly={true}
+        showGutter={false}
+        showPrintMargin={false}
+        theme={'chrome'}
+        value={annotation.code}
+        width={'100%'}
+        />
+    );
+  }
+
+  renderWithTree(editors, editorActive, annotation) {
+    return (
+      <div className={'xp-slide'}>
+        <div className={'xp-column'} style={{width: '135px'}}>
+          <FileTree
+            active={editorActive}
+            files={editors}
+            onChange={() => {}}
+            />
+        </div>
+        <div className={'xp-resize-column'}></div>
+        <div className={'xp-column'} style={{width: 'calc(100% - 135px)'}}>
+          {this.renderAce(annotation)}
+        </div>
+      </div>
+    );
+  }
+
+  renderAnnotationsEditor (annotation) {
+    const editors = this.getEditors();
+    const editorActive = fromJS({
+      name: annotation.fileName
+    });
+
+    if (editors.size > 1) {
+      return (
+        <div className={styles.editor}>
+          {this.renderWithTree(editors, editorActive, annotation)}
+        </div>
+      );
+    }
+
+    return [(
+      <pre className={styles.fileName}>
+        {annotation.fileName}
+      </pre>
+    ), (
+      <div className={styles.editor}>
+        {this.renderAce(annotation)}
+      </div>
+    )];
+  }
+
   renderAnnotation (anno) {
     const title = this.props.title;
 
@@ -133,45 +195,11 @@ export class Annotations extends React.Component {
     }
 
     const annotation = this.props.annotations.get(anno).toJS();
-    const mode = getModeForFilename(annotation.fileName);
 
-    const editors = this.getEditors();
-    const editorActive = fromJS({
-      name: annotation.fileName
-    });
     return (
       <div className={styles.annotation}>
         <h2 className={styles.slideTitle}>{title}</h2>
-        <pre className={styles.fileName}>
-          {annotation.fileName}
-        </pre>
-        <div className={styles.editor}>
-          <div className={'xp-slide'}>
-            <div className={'xp-column'} style={{width: '135px'}}>
-              <FileTree
-                active={editorActive}
-                files={editors}
-                onChange={() => {}}
-                />
-            </div>
-            <div className={'xp-resize-column'}></div>
-            <div className={'xp-column'} style={{width: 'calc(100% - 135px)'}}>
-              <AceEditor
-                height={'100%'}
-                highlight={annotation.highlight}
-                highlightActiveLine={false}
-                mode={mode}
-                name={`editor-annotations-${annotation.line}`}
-                readOnly={true}
-                showGutter={false}
-                showPrintMargin={false}
-                theme={'chrome'}
-                value={annotation.code}
-                width={'100%'}
-                />
-            </div>
-          </div>
-        </div>
+        {this.renderAnnotationsEditor(annotation)}
         <div
           className={annotation.description ? styles.slideDescription: ''}
           dangerouslySetInnerHTML={{__html: annotation.description || ''}}></div>
