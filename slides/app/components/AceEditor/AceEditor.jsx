@@ -22,7 +22,6 @@ export class AceEditor extends React.Component {
 
   constructor (...props) {
     super(...props);
-    this.name = Math.random();
   }
 
   onChange () {
@@ -54,7 +53,7 @@ export class AceEditor extends React.Component {
     }
   }
   componentDidMount () {
-    this.editor = ace.edit(this.props.name + this.name);
+    this.editor = ace.edit(this.props.name);
     if (this.props.onBeforeLoad) {
       this.props.onBeforeLoad(ace);
     }
@@ -187,7 +186,7 @@ export class AceEditor extends React.Component {
     return (
       <div
         className={className}
-        id={this.props.name + this.name}
+        id={this.props.name}
         style={divStyle}>
       </div>
     );

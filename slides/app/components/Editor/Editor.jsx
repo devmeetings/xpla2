@@ -40,6 +40,7 @@ export class Editor extends React.Component {
     super(...args);
     this.commands = this.getCommands();
     this.state = {};
+    this.editorName = Math.random();
   }
 
   getCommands () {
@@ -143,7 +144,7 @@ export class Editor extends React.Component {
         <AceEditor
           commands={this.commands}
           height='100%'
-          name={`editor-${name}`}
+          name={`editor-${name}-${this.editorName}`}
           onChange={this.props.onTabContentChange}
           session={session}
           theme='chrome'
