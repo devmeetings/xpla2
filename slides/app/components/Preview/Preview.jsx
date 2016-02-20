@@ -116,7 +116,7 @@ export class Preview extends React.Component {
     return (
       <a
         className={styles.newTabButton}
-        href={this.props.runServerUrl + '/api/results/' + this.props.runId + '/'}
+        href={this.props.runServerUrl + '/api/results/' + this.props.runId + '/' + this.props.file}
         target={'_blank'}
         >
           <Icon icon={'launch'} />
@@ -143,6 +143,7 @@ Preview.propTypes = {
   isTakingLong: React.PropTypes.bool.isRequired,
   isError: React.PropTypes.bool.isRequired,
   runId: React.PropTypes.string,
+  file: React.PropTypes.string.isRequired,
   runServerUrl: React.PropTypes.string.isRequired,
   onRun: React.PropTypes.func.isRequired
 };

@@ -4,9 +4,10 @@ const ANNOTATIONS_FILE = '_annotations.html';
 const XP_TREE_FILE = '_xp-tree';
 const XP_NO_HIGHLIGHT_FILE = '_xp-no-highlight';
 const XP_RUNNER_FILE = '_xp-runner';
+const XP_PREVIEW_FILE = '_xp-preview-file';
 
 const SPECIAL_FILES = [
-  ANNOTATIONS_FILE, XP_TREE_FILE, XP_NO_HIGHLIGHT_FILE, XP_RUNNER_FILE
+  ANNOTATIONS_FILE, XP_TREE_FILE, XP_NO_HIGHLIGHT_FILE, XP_RUNNER_FILE, XP_PREVIEW_FILE
 ];
 
 module.exports = convertCommitsToSlidesContent;
@@ -70,6 +71,7 @@ function convertCommitsToSlidesContent (commits) {
     const annotations = getFile(commit.newFiles, ANNOTATIONS_FILE, '');
     const displayTree = hasFile(allFiles, XP_TREE_FILE);
     const runner = getFile(allFiles, XP_RUNNER_FILE, false);
+    const preview = getFile(allFiles, XP_PREVIEW_FILE, false);
 
     const active = editors[0].id;
     slidesContent.push({
@@ -80,6 +82,7 @@ function convertCommitsToSlidesContent (commits) {
       annotations,
       displayTree,
       runner,
+      preview,
       title: msg.title,
       comment: msg.comment
     });

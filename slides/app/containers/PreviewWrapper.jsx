@@ -73,6 +73,7 @@ class PreviewContainer extends React.Component {
           onRun={this.runAction.bind(this)}
           previewId={id}
           runId={preview.get('runId')}
+          file={preview.get('file')}
           runServerUrl={runServerUrl}
           />
       </div>

@@ -63,6 +63,7 @@ None
 ### Params
 - `xp-preview[runner]` - *Required*. Type of runner that should be used to execute the code. (Allowed: `html`, `html-jsx`, `html-babel`, `html-ts`, `java`, `python`, `burger`)
 - `xp-preview[no-run]` - Don't run the code automatically when the slide is loaded.
+- `xp-preview[file]` - File to open in preview (defaults to `index.html`)
 
 ### Example
 ```html
@@ -79,7 +80,7 @@ Represents slide metadata and additional content to annotations.
 
 ### Params
 - `aside[file]` - *Required*. Name of the file
-- `aside[order]` - *Required*. Additional content to display below code snippet.
+- `aside[order]` - *Required*. Additional content to display below code snippet (starting from 1).
 
 ### Example
 ```html

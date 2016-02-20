@@ -11,46 +11,62 @@
     <script src="http://xpla.org/static/js/slide_loader.3.0.0.js"></script>
   </head>
   <body class="xp-slide">
-    <div class="xp-column" style="width:50%">
-      <xp-editor tree>
-        <script id="index.html" type="application/octetstream">
-          <html>
-            <head>
-              <title>Angular 2 QuickStart</title>
-              <script src="/cdn/systemjs/0.19.9/dist/system.js"><+/script>
-              <script src="/cdn/angular.js/2.0.0-beta.0/angular2-polyfills.js"><+/script>
-              <script src="/cdn/angular.js/2.0.0-beta.0/Rx.js"><+/script>
-              <script src="/cdn/angular.js/2.0.0-beta.0/angular2.dev.js"><+/script>
-              <script>
-                System.import('./app.js');
-              <+/script>
-            </head>
-            <body>
-              <my-app>loading...</my-app>
-          </body>
-          </html>
+    <div class="xp-row with-comments">
+      <div class="xp-column" style="width:50%">
+        <xp-editor tree>
+          <script id="index.html" type="application/octetstream">
+            <html>
+              <head>
+                <title>Angular 2 QuickStart</title>
+                <script src="/cdn/systemjs/0.19.9/dist/system.js"><+/script>
+                <script src="/cdn/angular.js/2.0.0-beta.0/angular2-polyfills.js"><+/script>
+                <script src="/cdn/angular.js/2.0.0-beta.0/Rx.js"><+/script>
+                <script src="/cdn/angular.js/2.0.0-beta.0/angular2.dev.js"><+/script>
+                <script>
+                  System.import('./app.js');
+                <+/script>
+              </head>
+              <body>
+                <my-app>loading...</my-app>
+            </body>
+            </html>
 
-        </script>
-        <script id="app.ts" type="application/octetstream">
-          import {Component} from 'angular2/core';
-          import {bootstrap} from 'angular2/platform/browser';
+          </script>
+          <script id="app.ts" type="application/octetstream" highlight>
+            import {Component} from 'angular2/core';
+            import {bootstrap} from 'angular2/platform/browser';
 
-          @Component({
-              selector: 'my-app',
-              template: '<h1>{{ hello }}</h1>'
-          })
-          class AppComponent {
-              public hello:string = 'Hello, world!';
-          }
+            //4/ We are using TypeScript annotations
+            @Component({
+                selector: 'my-app',
+                template: '<h1>{{ hello }}</h1>'
+            })
+            class AppComponent {
+                public hello:string = 'Hello, world!';
+            }
 
-          bootstrap(AppComponent);
+            // And then bootstrap the application
+            bootstrap(AppComponent);
 
-        </script>
-      </xp-editor>
+          </script>
+        </xp-editor>
+      </div>
+      <div class="xp-resize-column"></div>
+      <div class="xp-column" style="width:50%">
+        <xp-preview runner="html-ts"></xp-preview>
+      </div>
     </div>
-    <div class="xp-resize-column"></div>
-    <div class="xp-column" style="width:50%">
-      <xp-preview runner="html-ts"></xp-preview>
+    <div class="xp-resize-row"></div>
+    <div class="xp-row comments">
+        <xp-annotations>
+          <header><h1>My first slide</h1></header>
+          <details>
+            <p>Let's see the annotations, shall we?</p>
+          </details>
+          <aside file="app.ts" order="1">
+            <p>Annotations are used in Angular2 everywhere!</p>
+          </aside>
+        </xp-annotations>
     </div>
   </body>
 </html>
