@@ -89,7 +89,7 @@ export class Annotations extends React.Component {
     const dots = _.range(maxAnno).map((dot) => {
       const active = anno === dot;
       return (
-        <span key={dot} className={active ? styles.activeDot : styles.dot}>
+        <span className={active ? styles.activeDot : styles.dot} key={dot}>
           <Icon icon={'dot'} />
         </span>
       );

@@ -68,8 +68,8 @@ class TimerContainer extends React.Component {
           <h1>
             <span
               contentEditable={true}
-              onInput={this.handleInput.bind(this)}
-              dangerouslySetInnerHTML={{__html: this.state.time}}>
+              dangerouslySetInnerHTML={{__html: this.state.time}}
+              onInput={this.handleInput.bind(this)}>
             </span>
             &nbsp;min
           </h1>
