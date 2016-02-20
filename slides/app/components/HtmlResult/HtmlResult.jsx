@@ -10,12 +10,13 @@ export class HtmlResult extends React.Component {
     const runId = this.props.runId;
     const runServerUrl = this.props.runServerUrl;
     const isLoading = this.props.isLoading;
+    const file = this.props.file;
 
     return (
       <iframe
         className={isLoading ? styles.resultLoading : styles.result}
         seamless
-        src={`${runServerUrl}/api/results/${runId}/`}
+        src={`${runServerUrl}/api/results/${runId}/${file}`}
         ></iframe>
     );
   }

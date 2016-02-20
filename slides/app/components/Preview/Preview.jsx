@@ -28,6 +28,7 @@ export class Preview extends React.Component {
     const runServerUrl = this.props.runServerUrl;
     const isLoading = this.props.isLoading;
     const isError = this.props.isError;
+    const file = this.props.file;
 
     if (isError) {
       return (
@@ -60,6 +61,7 @@ export class Preview extends React.Component {
       <div className={styles.previewWindow}>
         {this.renderAlert()}
         <HtmlResult
+          file={file}
           isLoading={isLoading}
           runId={runId}
           runServerUrl={runServerUrl}
