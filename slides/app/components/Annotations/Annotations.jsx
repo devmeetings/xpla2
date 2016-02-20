@@ -32,9 +32,8 @@ export class Annotations extends React.Component {
     content : {
       position                   : 'absolute',
       top                        : '10%',
-      left                       : '22%',
-      right                      : '22%',
-      minHeight                  : '300px',
+      left                       : '17%',
+      right                      : '17%',
       maxHeight                  : '90%',
       bottom                     : '15%',
       border                     : '1px solid #ccc',

@@ -24,7 +24,8 @@
       height: 50%;
       width: 100%;
       position: relative;
-      overflow-y: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
 
       &.with-comments {
         height: calc(100% - #{$commentSize});
