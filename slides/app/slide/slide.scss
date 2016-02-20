@@ -2,6 +2,15 @@
   @import '../components/scrollbars.scss';
   $commentSize: 50px;
 
+  @media (max-width: 800px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+    h2 {
+      font-size: 1.3rem;
+    }
+  }
+
   .xp-slide, [xp-slide] {
     height: 100%;
     position: absolute;
