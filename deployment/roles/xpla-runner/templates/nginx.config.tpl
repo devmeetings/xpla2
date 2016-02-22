@@ -22,6 +22,12 @@ server {
     }
   }
 
+  location /slides/angular2/ {
+    proxy_pass http://kapke.github.io/angular2-shop/slides/;
+    proxy_set_header X-Real-IP $remote_addr;
+  }
+
+
   location /static {
     root /srv/{{ server_name }}/;
   }
