@@ -27,11 +27,11 @@ server {
     proxy_set_header X-Real-IP $remote_addr;
   }
 
-  location /slides/dm-angular2 {
+  location /slides/dm-angular2/ {
     proxy_pass http://kapke.github.io/angular2-shop/;
     proxy_set_header X-Real-IP $remote_addr;
 
-    location = /slides/dm-angular2/program {
+    location = /slides/dm-angular2/program/ {
       proxy_pass http://kapke.github.io/angular2-shop/;
       proxy_set_header X-Real-IP $remote_addr;
 
