@@ -27,6 +27,19 @@ server {
     proxy_set_header X-Real-IP $remote_addr;
   }
 
+  location /slides/dm-angular2 {
+    proxy_pass http://kapke.github.io/angular2-shop/;
+    proxy_set_header X-Real-IP $remote_addr;
+
+    location = /slides/dm-angular2/program {
+      proxy_pass http://kapke.github.io/angular2-shop/;
+      proxy_set_header X-Real-IP $remote_addr;
+
+      # angular2 / angular2-krk / angular2-waw / 5613
+      auth_basic "Restricted";
+      auth_basic_user_file /etc/nginx/{{ server_name }}-htpasswd;
+    }
+  }
 
   location /static {
     root /srv/{{ server_name }}/;
