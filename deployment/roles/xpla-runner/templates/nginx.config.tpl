@@ -28,10 +28,14 @@ server {
   }
 
   location /slides/dm-angular2/program/ {
-    proxy_pass http://kapke.github.io/angular2-shop/program/;
+    return 301 /slides/dm-angular2/program-devmeeting/;
+  }
+
+  location /slides/dm-angular2/program-devmeeting/ {
+    proxy_pass http://kapke.github.io/angular2-shop/program-devmeeting/;
     proxy_set_header X-Real-IP $remote_addr;
 
-    # angular2 / angular2-krk / angular2-waw / 5613
+    # angular2 / angular2-wro / angular2-krk / angular2-waw / 5613
     auth_basic "Restricted";
     auth_basic_user_file /etc/nginx/{{ server_name }}-htpasswd;
   }
