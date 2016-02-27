@@ -29,7 +29,19 @@
 .annotationText {
   height: 100%;
   font-size: 1.2rem;
-  text-align: center;
+  text-align: left;
+
+  p,pre {
+    margin: 0 0 1rem;
+  }
+  pre {
+    padding: $padding;
+    background-color: lighten($color-disabled, 10%);
+  }
+  code {
+    background-color: lighten($color-disabled, 10%);
+    color: $brand-code;
+  }
 }
 .annotationText > div {
   height: 100%;
@@ -37,7 +49,8 @@
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+
   &::after, &::before {
     display: block;
     content: '';
