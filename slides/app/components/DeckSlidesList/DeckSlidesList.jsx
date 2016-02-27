@@ -71,6 +71,23 @@ export class DeckSlidesList extends React.Component {
     );
   }
 
+  renderBackButton () {
+    return (
+      <li className={styles.itemMore} key={'button'}>
+        <a href="../">
+          <Tooltip
+            overlay={<span>Back to list</span>}
+            placement={'top'}
+            >
+            <div>
+              <Icon icon={'keyboard-return'} size={'1em'} />
+            </div>
+          </Tooltip>
+        </a>
+      </li>
+    );
+  }
+
   renderSlide (slide) {
     const activeId = this.props.active.get('id');
     const id = slide.get('id');
@@ -119,6 +136,7 @@ export class DeckSlidesList extends React.Component {
         className={styles.list}
         ref={(ul) => this._list = ul}
         >
+        {this.renderBackButton()}
         {this.renderMoreSlidesButton(slides.hasMore)}
         {this.renderSlides(slides.before)}
         {this.renderSlides(slides.after)}

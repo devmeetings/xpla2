@@ -95,5 +95,8 @@ const ICONS = {
   ),
   'stop': (
     <g><path d="M6 6h12v12H6z"></path></g>
+  ),
+  'keyboard-return': (
+    <g><path d="M19 7v4h-13.17l3.58-3.59-1.41-1.41-6 6 6 6 1.41-1.41-3.58-3.59h15.17v-6z"></path></g>
   )
 };
