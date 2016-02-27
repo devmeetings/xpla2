@@ -73,7 +73,7 @@ export class DeckSlidesList extends React.Component {
 
   renderBackButton () {
     return (
-      <li className={styles.itemMore} key={'button'}>
+      <li className={styles.itemMore} key={'button-back'}>
         <a href="../">
           <Tooltip
             overlay={<span>Back to list</span>}
