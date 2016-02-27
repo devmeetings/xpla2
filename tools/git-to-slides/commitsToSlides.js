@@ -5,6 +5,7 @@ const XP_TREE_FILE = '_xp-tree';
 const XP_NO_HIGHLIGHT_FILE = '_xp-no-highlight';
 const XP_RUNNER_FILE = '_xp-runner';
 const XP_PREVIEW_FILE = '_xp-preview-file';
+const XP_NO_PREVIEW = '_xp-no-preview';
 
 const SPECIAL_FILES = [
   ANNOTATIONS_FILE, XP_TREE_FILE, XP_NO_HIGHLIGHT_FILE, XP_RUNNER_FILE, XP_PREVIEW_FILE
@@ -70,6 +71,7 @@ function convertCommitsToSlidesContent (commits) {
     const allFiles = commit.newFiles.concat(commit.oldFiles);
     const annotations = getFile(commit.newFiles, ANNOTATIONS_FILE, '');
     const displayTree = hasFile(allFiles, XP_TREE_FILE);
+    const displayPreview = !hasFile(allFiles, XP_NO_PREVIEW);
     const runner = getFile(allFiles, XP_RUNNER_FILE, false);
     const preview = getFile(allFiles, XP_PREVIEW_FILE, false);
 
@@ -81,6 +83,7 @@ function convertCommitsToSlidesContent (commits) {
       slideName,
       annotations,
       displayTree,
+      displayPreview,
       runner,
       preview,
       title: msg.title,

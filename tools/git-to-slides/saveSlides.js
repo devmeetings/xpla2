@@ -61,6 +61,26 @@ function slideToHtmlDeck (slide) {
 function slideToHtml (options, slide) {
   const runner = slide.runner ? trim(slide.runner) : options.runner;
 
+  const editor = `
+    <div class="xp-column"${slide.displayTree ? ' style="width: 65%"' : ''}>
+      <xp-editor active="${slide.active}" ${slide.displayTree ? 'tree' : ''}>
+        ${slide.editors.map(editorToHtml).join('\n')}
+      </xp-editor>
+    </div>
+  `;
+
+  const preview = `
+    <div class="xp-column"${slide.displayTree ? ' style="width: 35%"' : ''}>
+      <xp-preview runner="${runner}"${slide.preview ? ' file="' + trim(slide.preview) + '"' : ''}></xp-preview>
+    </div>
+  `;
+
+  const slideContent = !slide.displayPreview ? editor : `
+    ${editor}
+    <div class="xp-resize-row"></div>
+    ${preview}
+  `;
+
   return `
     <!DOCTYPE html>
     <html xp-run-server-url="${options.runServer}">
@@ -72,17 +92,9 @@ function slideToHtml (options, slide) {
       </head>
       <body class="xp-slide">
         <div class="xp-row with-comments">
-          <div class="xp-column"${slide.displayTree ? ' style="width: 65%"' : ''}>
-            <xp-editor active="${slide.active}" ${slide.displayTree ? 'tree' : ''}>
-              ${slide.editors.map(editorToHtml).join('\n')}
-            </xp-editor>
-          </div>
           <div class="xp-resize-column"></div>
-          <div class="xp-column"${slide.displayTree ? ' style="width: 35%"' : ''}>
-            <xp-preview runner="${runner}"${slide.preview ? ' file="' + trim(slide.preview) + '"' : ''}></xp-preview>
-          </div>
         </div>
-        <div class="xp-resize-row"></div>
+        ${slideContent}
         <div class="xp-row comments">
           <xp-annotations>
             <header><h1>${trim(slide.comment)}</h1></header>
