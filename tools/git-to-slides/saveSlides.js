@@ -58,11 +58,24 @@ function slideToHtmlDeck (slide) {
   return `\t<link async rel="import" href="${slideFileName(slide)}" />`;
 }
 
+function getEditorWidth(slide) {
+  if (!slide.displayPreview) {
+    return '100%';
+  }
+
+  if (slide.displayTree) {
+    return '65%';
+  }
+
+  return false;
+}
+
 function slideToHtml (options, slide) {
   const runner = slide.runner ? trim(slide.runner) : options.runner;
+  const editorWidth = getEditorWidth(slide);
 
   const editor = `
-    <div class="xp-column"${slide.displayTree ? ' style="width: 65%"' : ''}>
+    <div class="xp-column"${editorWidth ? ' style="width: ' + editorWidth + '"' : ''}>
       <xp-editor active="${slide.active}" ${slide.displayTree ? 'tree' : ''}>
         ${slide.editors.map(editorToHtml).join('\n')}
       </xp-editor>
