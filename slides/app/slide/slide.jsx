@@ -18,7 +18,7 @@ import TimerWrapper from '../containers/TimerWrapper';
 
 import './slide.scss';
 
-export function initializeSlide(dom, runServerUrl, defaultTitle) {
+export function initializeSlide(dom, runServerUrl, defaultTitle, path) {
   if (!dom) {
     throw new Error('Provide DOM element!');
   }
@@ -26,12 +26,13 @@ export function initializeSlide(dom, runServerUrl, defaultTitle) {
   if (!runServerUrl) {
     throw new Error('RunServerUrl is missing.');
   }
+  path = path || '';
   const title = readTitle(dom.parentNode) || defaultTitle;
   const annotations = getIfExists(dom, 'xp-annotations', getAnnotationState)
   annotations.title = title;
 
   const timer = getIfExists(dom, 'xp-timer', getTimerState);
-  const editorsP = getAsMap(dom, 'xp-editor', getEditorState);
+  const editorsP = getAsMap(dom, 'xp-editor', (dom) => getEditorState(dom, path));
   const previewsP = getAsMap(dom, 'xp-preview', getPreviewState);
 
   return Promise.all([editorsP, previewsP])

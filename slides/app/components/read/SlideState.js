@@ -23,6 +23,7 @@ export function getSlideState (dom) {
     const title = readTitle(dom.import);
     const body = dom.import.querySelector('body');
     const name = dom.hasAttribute('title') ? dom.getAttribute('title') : title;
+    const path = dom.hasAttribute('path') ? dom.getAttribute('path') : '';
     body.setAttribute('xp-slide', dom.href);
     dom.removeEventListener('load', onload);
 
@@ -31,7 +32,8 @@ export function getSlideState (dom) {
       shortName: name.replace(/[^a-zA-Z.0-9_\-]+/g, '_'),
       name: name,
       title: title,
-      content: body
+      content: body,
+      path: path
     };
   };
 

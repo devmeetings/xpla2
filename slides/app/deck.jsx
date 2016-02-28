@@ -19,6 +19,7 @@ import DeckContainerWrapper from './containers/DeckWrapper';
 import Store from './store';
 
 const $xpDeck = document.querySelector('xp-deck');
+const back = $xpDeck.getAttribute('back') || '';
 
 const runServerUrl = getRunServerUrl(document.querySelector('html'));
 const slides = _
@@ -33,7 +34,8 @@ Promise.all(slides).then((slides) => {
     runServerUrl,
     deck: {
       active: activeSlide,
-      slides: slides
+      slides: slides,
+      back: back
     }
   });
 

@@ -9,7 +9,8 @@ function findSlideById (slides, slideId) {
 
 export default createReducer(fromJS({
   active: null,
-  slides: []
+  slides: [],
+  back: ''
 }), {
   [DECK_SLIDE_CHANGE]: (deck, action) => {
     const newSlideId = action.payload.newSlideId;

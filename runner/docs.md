@@ -9,10 +9,11 @@ A deck of slides.
 - `link[href]` - *Required*. URL of slide
 - `link[async]` - Load asynchronously (highly recommended).
 - `link[title]` - Override slide title.
+- `xp-deck[back]` - A link to return to list of decks (by default doesnt display a link)
 
 ### Example
 ```html
-<xp-deck>
+<xp-deck back="index.html">
   <link async rel="import" href="slide.html" title="Short Title" />
 </xp-deck>
 ```

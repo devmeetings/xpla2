@@ -72,9 +72,14 @@ export class DeckSlidesList extends React.Component {
   }
 
   renderBackButton () {
+    const {back} = this.props;
+    if (!back) {
+      return;
+    }
+
     return (
       <li className={styles.itemMore} key={'button-back'}>
-        <a href="../">
+        <a href={back}>
           <Tooltip
             overlay={<span>Back to list</span>}
             placement={'top'}
@@ -149,6 +154,7 @@ DeckSlidesList.propTypes = {
   active: Props.contains({
     id: React.PropTypes.string.isRequired,
   }),
+  back: React.PropTypes.string,
   slides: Props.listOf(Props.contains({
     id: React.PropTypes.string.isRequired,
     title: React.PropTypes.string.isRequired

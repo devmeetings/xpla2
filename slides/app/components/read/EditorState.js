@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch';
 import _ from 'lodash';
 
 // We will first read the configuration to use right components
-export function getEditorState (dom) {
+export function getEditorState (dom, path) {
   const id = dom.id || randomId('editor');
   dom.id = id;
 
@@ -28,7 +28,7 @@ export function getEditorState (dom) {
         });
       }
 
-      return fetch(tpl.src)
+      return fetch(path + tpl.src)
         .then((response) => response.text())
         .then((content) => {
           const annotations = parseAnnotations(content, extension, tpl.id);

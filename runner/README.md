@@ -84,7 +84,7 @@
     <link type="text/css" rel="stylesheet" media="all" href="http://xpla.org/static/css/deck.3.0.0.css" />
   </head>
   <body>
-    <xp-deck>
+    <xp-deck back="../">
       <link async rel="import" href="slide.html" title="Short Title" />
     </xp-deck>
     <script async src="http://xpla.org/static/js/deck.3.0.0.js"></script>

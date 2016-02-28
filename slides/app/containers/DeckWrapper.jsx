@@ -89,11 +89,13 @@ class DeckContainer extends React.Component {
           onNextSlide={this.nextSlide.bind(this)}
           onPrevSlide={this.prevSlide.bind(this)}
           runServerUrl={this.props.runServerUrl}
+          path={this.props.activeSlide.get('path')}
           slide={this.props.activeSlide.get('content')}
           title={this.props.activeSlide.get('title')}
           />
         <DeckSlidesList
           active={this.props.activeSlide}
+          back={this.props.back}
           onSlideChange={this.onSlideChange.bind(this)}
           slides={this.props.slides}
         />
@@ -113,7 +115,8 @@ DeckContainer.propTypes = {
   state => ({
     runServerUrl: state.get('runServerUrl'),
     slides: state.get('deck').get('slides'),
-    activeSlide: state.get('deck').get('active')
+    activeSlide: state.get('deck').get('active'),
+    back: state.get('deck').get('back')
   }),
   dispatch => ({
     actions: bindActionCreators(DeckActions, dispatch)
