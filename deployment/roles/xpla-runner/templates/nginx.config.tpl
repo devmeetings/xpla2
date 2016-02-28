@@ -27,6 +27,11 @@ server {
     proxy_set_header X-Real-IP $remote_addr;
   }
 
+  location /slides/modernjs/ {
+    proxy_pass http://devmeetings.github.io/devmeeting-modernjs/;
+    proxy_set_header X-Real-IP $remote_addr;
+  }
+
   location /slides/dm-angular2/program/ {
     return 301 /slides/dm-angular2/program-devmeeting/;
   }
