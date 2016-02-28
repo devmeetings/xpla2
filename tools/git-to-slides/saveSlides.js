@@ -77,7 +77,7 @@ function slideToHtml (options, slide) {
 
   const slideContent = !slide.displayPreview ? editor : `
     ${editor}
-    <div class="xp-resize-row"></div>
+    <div class="xp-resize-column"></div>
     ${preview}
   `;
 
@@ -92,9 +92,9 @@ function slideToHtml (options, slide) {
       </head>
       <body class="xp-slide">
         <div class="xp-row with-comments">
-          <div class="xp-resize-column"></div>
+          ${slideContent}
         </div>
-        ${slideContent}
+        <div class="xp-resize-row"></div>
         <div class="xp-row comments">
           <xp-annotations>
             <header><h1>${trim(slide.comment)}</h1></header>
