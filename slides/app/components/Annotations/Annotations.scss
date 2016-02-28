@@ -36,11 +36,11 @@
 
   p,pre {
     margin: 0 0 1rem;
-    min-height: 1.6rem;
   }
   pre {
     padding: $padding;
     background-color: lighten($color-disabled, 10%);
+    min-height: 1.6rem;
   }
   code {
     background-color: lighten($color-disabled, 10%);
