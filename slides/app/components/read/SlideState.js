@@ -23,7 +23,7 @@ export function getSlideState (dom) {
     const title = readTitle(dom.import);
     const body = dom.import.querySelector('body');
     const name = dom.hasAttribute('title') ? dom.getAttribute('title') : title;
-    const path = dom.hasAttribute('path') ? dom.getAttribute('path') : '';
+    const path = dom.hasAttribute('root') ? dom.getAttribute('root') : '';
     body.setAttribute('xp-slide', dom.href);
     dom.removeEventListener('load', onload);
 

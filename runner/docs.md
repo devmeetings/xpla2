@@ -9,6 +9,7 @@ A deck of slides.
 - `link[href]` - *Required*. URL of slide
 - `link[async]` - Load asynchronously (highly recommended).
 - `link[title]` - Override slide title.
+- `link[root]` - Root folder (may be relative to deck location) for relative paths resolving.
 - `xp-deck[back]` - A link to return to list of decks (by default doesnt display a link)
 
 ### Example
