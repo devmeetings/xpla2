@@ -28,7 +28,11 @@ export function getEditorState (dom, path) {
         });
       }
 
-      return fetch(path + tpl.src)
+      if (path) {
+        tpl.setAttribute('src', path + tpl.getAttribute('src'));
+      }
+
+      return fetch(tpl.src)
         .then((response) => response.text())
         .then((content) => {
           const annotations = parseAnnotations(content, extension, tpl.id);
