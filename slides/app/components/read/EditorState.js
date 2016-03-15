@@ -80,6 +80,7 @@ function parseAnnotations (content, ext, fileName) {
     'less': C_LIKE_PATTERNS,
     'java': C_LIKE_PATTERNS,
     'jsx': C_LIKE_PATTERNS,
+    'go': C_LIKE_PATTERNS,
     'py': [new RegExp(`#(${COMMENT})`)],
     'html': HTML_LIKE
   };

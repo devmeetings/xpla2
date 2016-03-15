@@ -16,6 +16,7 @@ import 'brace/mode/json';
 import 'brace/mode/jsx';
 import 'brace/mode/typescript';
 import 'brace/mode/java';
+import 'brace/mode/golang';
 import 'brace/mode/python';
 import 'brace/theme/chrome';
 
@@ -25,7 +26,8 @@ export function getModeForFilename(name) {
   const typeMap = {
     js: 'javascript',
     ts: 'typescript',
-    py: 'python'
+    py: 'python',
+    go: 'golang'
   };
 
   const parts = name.split('.');
