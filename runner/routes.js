@@ -47,7 +47,7 @@ module.exports = [
   },
   {
     method: 'GET',
-    path: '/git/download/{param*}',
+    path: '/git/{param*}',
     handler: {
       directory: {
         path: 'static'
