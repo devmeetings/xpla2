@@ -143,6 +143,13 @@ Extended description of stuff displayed in popup (annotations).
 </aside>
 ```
 
+### `_xp-tree`
+
+Put this file to the workspace if you want your files to be displayed as tree (usefull when you want to show the structure of your project).
+
+###### Example
+This file does not need any content.
+
 ### `_xp-no-highlight`
 
 Contains paths to files that should be skipped when parsing comments (we never want this file to be displayed on popup).
@@ -153,20 +160,6 @@ jspm_packages/system.js
 jspm_packages/system.js.map
 ```
 
-### `_xp-tree`
-
-Put this file to the workspace if you want your files to be displayed as tree (usefull when you want to show the structure of your project).
-
-###### Example
-This file does not need any content.
-
-### `_xp-no-preview`
-
-Put this file to the workspace if you don't want the preview do be generated for you (usefull for non-supported technologies)
-
-###### Example
-This file does not need any content.
-
 ### `_console`
 
 File simulating commands that you should run in the console. Don't remove commands between  commit messages - just append new commands, but remove comments from previous ones - on last slide participants will have a full list of commands that should be run for the project.
@@ -176,6 +169,22 @@ File simulating commands that you should run in the console. Don't remove comman
 # To use react in webpack first we need to install it and save in `package.json`
 $ npm install react --save
 ```
+
+### `_xp-preview-file`
+
+By default for HTML runners we will be displaying `index.html` page from your workspace. Use this file to specify different page to be displayed in preview.
+
+###### Example
+```
+index-test.html
+```
+
+### `_xp-no-preview`
+
+Put this file to the workspace if you don't want the preview do be generated for you (usefull for non-supported technologies)
+
+###### Example
+This file does not need any content.
 
 ### `_xp-runner`
 
