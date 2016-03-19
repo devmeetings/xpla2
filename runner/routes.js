@@ -1,6 +1,7 @@
 const Joi = require('joi');
 
 const getHelp = require('./api/help');
+const getGitHelp = require('./api/help-git');
 const codeApi = require('./api/code');
 const resultsApi = require('./api/results');
 
@@ -35,6 +36,22 @@ module.exports = [
     path: '/help',
     handler: (req, reply) => {
       reply(getHelp());
+    }
+  },
+  {
+    method: 'GET',
+    path: '/git/help',
+    handler: (req, reply) => {
+      reply(getGitHelp());
+    }
+  },
+  {
+    method: 'GET',
+    path: '/git/download/{param*}',
+    handler: {
+      directory: {
+        path: 'static'
+      }
     }
   },
   {
