@@ -1,3 +1,5 @@
+'use strict';
+
 const _ = require('lodash');
 const commits = require('../storage/commits');
 const runs = require('../storage/runs');
@@ -26,15 +28,21 @@ function commitCode (data) {
 function runCode (data) {
   const runnerName = data.runnerName;
   const commitId = data.commitId;
+  let runId = null;
 
   return commits.retrieve(commitId).then((commitData) => {
     const runner = runners.getRunner(runnerName);
-    return runner(commitData);
+    return runner(commitData, (runData) => {
+      runs.update(runId, runData);
+    });
   }).then((runData) => {
     return runs.store(runData);
-  }).then((runId) => ({
-    runId
-  }));
+  }).then((newRunId) => {
+    runId = newRunId;
+    return {
+      runId
+    };
+  });
 }
 
 function commitAndRunCode (data) {

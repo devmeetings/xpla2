@@ -11,6 +11,10 @@ function store (runData) {
   return Promise.resolve(runId);
 }
 
+function update(runId, runData) {
+  mem.store(runId, runData);
+}
+
 function retrieve (runId) {
   const runData = mem.retrieve(runId);
   if (runData) {
@@ -22,5 +26,5 @@ function retrieve (runId) {
 }
 
 module.exports = {
-  store, retrieve
+  store, retrieve, update
 };

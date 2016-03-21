@@ -42,7 +42,7 @@ const Workers = (function () {
   store.subscribe(ReplyQueue, maybeAnswer);
 
   return {
-    send: function (Queue, msg) {
+    send: function (Queue, msg, onUpdate) {
       l('Sending message to ' + Queue);
 
       const corrId = uuid();
@@ -59,7 +59,12 @@ const Workers = (function () {
           timestamp: new Date().getTime(),
           callback: (data) => {
             clearTimeout(promiseTimeout);
+            // First resolve
             resolve(data);
+            // then send update
+            if (onUpdate) {
+              onUpdate(data);
+            }
           }
         };
 

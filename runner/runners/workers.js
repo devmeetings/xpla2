@@ -17,8 +17,10 @@ const runners = {
 };
 
 function getRunner (runnerName) {
-  return (code) => {
-    const r = runners[runnerName](code);
+  return (code, onUpdate) => {
+    const r = runners[runnerName](code, (output) => {
+      return onUpdate(addOriginalFiles(output));
+    });
 
     const oldFiles = _.values(code.files).map((file) => {
       const newFile = _.clone(file);
@@ -26,14 +28,16 @@ function getRunner (runnerName) {
       return newFile;
     });
 
-    // Add original files to result
-    return Promise.resolve(r).then((output) => {
+    function addOriginalFiles(output) {
       output.files = _.indexBy(
         output.files.concat(oldFiles),
         'name'
       );
       return output;
-    });
+    }
+
+    // Add original files to result
+    return Promise.resolve(r).then(addOriginalFiles);
   };
 }
 

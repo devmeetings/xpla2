@@ -1,8 +1,10 @@
 const worker = require('./remote-worker');
 
 module.exports = function createWorker (queueName) {
-  return function (data) {
-    return worker.send(queueName, data).then((outputData) => {
+  return function (data, onUpdate) {
+    const onData = (outputData) => {
+      const timestamp = Date.now();
+
       const newFiles = [
         {
           name: 'index.html',
@@ -12,6 +14,34 @@ module.exports = function createWorker (queueName) {
               </head>
               <body>
               ${getResultsAsHtml(outputData)}
+              <script src="/cdn/fetch/0.9.0/fetch.min.js"></script>
+              <script>
+                (function() {
+                  var currentTimestamp = ${timestamp};
+                  var loc = "" + window.location;
+                  var check = loc.replace(/^(.+)\\/.*$/, '$1.json/timestamp');
+                  var noOfChecks = 50;
+
+                  function checkNewVersion() {
+                    fetch(check).then(function (res) {
+                      return res.json();
+                    }).then(function(timestamp) {
+                      if (timestamp.timestamp !== currentTimestamp) {
+                        window.location.reload();
+                      }
+
+                      if (noOfChecks > 0) {
+                        noOfChecks--;
+                        setTimeout(checkNewVersion, 700 + (200 - noOfChecks * 4));
+                      }
+                    }, function () {
+                      setTimeout(checkNewVersion, 2000);
+                    });
+                  }
+
+                  setTimeout(checkNewVersion, 200);
+                }());
+              </script>
               </body>
             </html>
           `,
@@ -21,9 +51,14 @@ module.exports = function createWorker (queueName) {
 
       return {
         success: outputData.success,
+        timestamp: timestamp,
         files: newFiles
       };
-    }, (err) => {
+    };
+
+    return worker.send(queueName, data, function (data) {
+      onUpdate(onData(data));
+    }).then(onData, (err) => {
       if (err.isTimeout) {
         err.code = 503;
       }
