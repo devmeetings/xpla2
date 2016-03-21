@@ -7,9 +7,10 @@ const htmlJsx = require('./workers/html-babel');
 const burger = require('./workers/burger');
 const python = require('./workers/python');
 const node = require('./workers/node');
+const go = require('./workers/go');
 
 const runners = {
-  html, java, burger, python, node,
+  html, java, burger, python, node, go,
   'html-jsx': htmlJsx,
   'html-babel': htmlJsx,
   'html-ts': htmlTs

@@ -7,6 +7,7 @@ import './slide-ts.html';
 import './slide-ts2.html';
 import './slide-jsx.html';
 import './slide-timer.html';
+import './slide-go.html';
 
 import {initializeSlide} from './slide/slide';
 import {getRunServerUrl} from './components/read/RunServerUrlState';
