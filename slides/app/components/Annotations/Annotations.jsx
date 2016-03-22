@@ -218,7 +218,7 @@ export class Annotations extends React.Component {
   }
 
   render () {
-    if (this.props.annotations.size == 0) {
+    if (this.props.annotations.size == 0 && !this.props.hasIntro) {
       return (<div></div>);
     }
 
