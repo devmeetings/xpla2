@@ -76,7 +76,7 @@
 ## And your first deck
 ```html
 <!DOCTYPE html>
-<html xp-run-server-url="http://xpla.org/">
+<html xp-run-server-url="http://xpla.org">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
