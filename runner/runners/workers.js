@@ -28,7 +28,7 @@ function getRunner (runnerName) {
       return newFile;
     });
 
-    function addOriginalFiles(output) {
+    function addOriginalFiles (output) {
       output.files = _.indexBy(
         output.files.concat(oldFiles),
         'name'

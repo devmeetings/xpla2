@@ -11,7 +11,7 @@ function store (runData) {
   return Promise.resolve(runId);
 }
 
-function update(runId, runData) {
+function update (runId, runData) {
   mem.store(runId, runData);
 }
 
