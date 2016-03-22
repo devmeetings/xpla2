@@ -73,6 +73,8 @@ function getResultsAsHtml (data) {
   }
   return `<div style="color: red">
     <pre>${data.errors.join('\n')}</pre>
+    <h3>Output:</h3>
+    <pre>${data.result.join('\n')}</pre>
   </div>`;
 }
 
