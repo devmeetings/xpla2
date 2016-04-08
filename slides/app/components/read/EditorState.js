@@ -33,8 +33,8 @@ export function getEditorState (dom, path) {
       }
 
       return fetch(tpl.src, {
-          credentials: 'same-origin',
-        })
+        credentials: 'same-origin',
+      })
         .then((response) => response.text())
         .then((content) => {
           const annotations = parseAnnotations(content, extension, tpl.id);
