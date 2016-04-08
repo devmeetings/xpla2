@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import fetch from 'isomorphic-fetch';
 
 import logger from '../../components/logger';
 import {getFilesWithActiveAsJsArray} from '../../reducers.utils/editors';

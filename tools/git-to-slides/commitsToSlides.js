@@ -75,7 +75,7 @@ function convertCommitsToSlidesContent (commits) {
     const runner = getFile(allFiles, XP_RUNNER_FILE, false);
     const preview = getFile(allFiles, XP_PREVIEW_FILE, false);
 
-    const active = editors[0].id;
+    const active = editors.length ? editors[0].id : undefined;
     slidesContent.push({
       filesToSave,
       active,

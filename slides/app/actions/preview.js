@@ -32,6 +32,7 @@ export const commitAndRunCode = (payload) => {
     }, CODE_TIMEOUT);
 
     fetch(`${payload.runServerUrl}/api/commitAndRun`, {
+      credentials: 'same-origin',
       method: 'post',
       headers: {
         'Content-Type': 'application/json'

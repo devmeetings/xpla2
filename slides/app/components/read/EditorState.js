@@ -32,7 +32,9 @@ export function getEditorState (dom, path) {
         tpl.setAttribute('src', path + tpl.getAttribute('src'));
       }
 
-      return fetch(tpl.src)
+      return fetch(tpl.src, {
+          credentials: 'same-origin',
+        })
         .then((response) => response.text())
         .then((content) => {
           const annotations = parseAnnotations(content, extension, tpl.id);
