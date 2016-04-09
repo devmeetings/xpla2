@@ -1,5 +1,6 @@
 const Joi = require('joi');
 
+const hook = require('./api/hook');
 const generate = require('./api/generate');
 
 function handleError (e, reply) {
@@ -37,6 +38,17 @@ module.exports = [
       },
       handler: (req, reply) => {
         generate(req.payload.username, req.payload.repo, req.payload.branch)
+          .then(reply)
+          .catch(e => handleError(e, reply));
+      }
+    }
+  },
+  {
+    method: 'POST',
+    path: '/api/hook',
+    config: {
+      handler: (req, reply) => {
+        hook(req.payload)
           .then(reply)
           .catch(e => handleError(e, reply));
       }
