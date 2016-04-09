@@ -31,3 +31,7 @@ cp git-to-slides.tar.gz static
 
 tar cvzf xplarunner.tar.gz runner static
 
+echo '----------------------Building GHSlides-----------------------------'
+cd tools
+tar cvzf ../ghslides.tar.gz *-to-slides
+cd -

@@ -1,0 +1,22 @@
+---
+- name: Nginx | Make sure nginx is installed (package)
+  apt:
+    pkg: nginx
+    state: present
+
+- name: Nginx | Copying site
+  template:
+    src: nginx.config.tpl
+    dest: "/etc/nginx/sites-available/git.{{ server_name }}"
+
+- name: Nginx | Enabling XPlatform git to slides
+  file:
+    src: "/etc/nginx/sites-available/git.{{ server_name }}"
+    dest: "/etc/nginx/sites-enabled/git.{{ server_name }}"
+    state: link
+
+- service: name=nginx state=restarted
+- service: name=nginx enabled=yes
+
+
+

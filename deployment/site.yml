@@ -4,7 +4,9 @@
     server_name: xpla.org
     server_id: xpla
     server_port: 3030
+    gh_server_port: 3035
     xplarunner_version: 'lastSuccessfulBuild'
   roles:
     - xpla-runner
+    - xpla-github-slides
 
