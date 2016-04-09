@@ -7,6 +7,9 @@ function handleError (e, reply) {
   if (e.code === 404) {
     return reply(e.toString()).code(404);
   }
+  if (e.code === 401) {
+    return reply(e.toString()).code(401);
+  }
   // Service Unavailable
   if (e.code === 503) {
     return reply(e.toString()).code(503);
@@ -18,6 +21,8 @@ function handleError (e, reply) {
   });
 }
 
+const safePattern = /^[a-z0-9\.\_\-]+$/i;
+
 module.exports = [
   {
     method: 'POST',
@@ -25,14 +30,15 @@ module.exports = [
     config: {
       validate: {
         payload: {
-          username: Joi.string().required(),
-          repo: Joi.string().required()
+          username: Joi.string().regex(safePattern).required(),
+          repo: Joi.string().regex(safePattern).required(),
+          branch: Joi.string().regex(safePattern).default('master')
         }
       },
       handler: (req, reply) => {
-        generate(req.payload.username, req.payload.repo)
+        generate(req.payload.username, req.payload.repo, req.payload.branch)
           .then(reply)
-          .catch(e => handleError(reply));
+          .catch(e => handleError(e, reply));
       }
     }
   },

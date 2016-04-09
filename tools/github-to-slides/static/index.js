@@ -10,6 +10,7 @@ mod.component('xpUpload', {
 
 function UploadCtrl ($scope, $http) {
   this.url = '';
+  this.branch = 'master';
   this.repo = '';
   this.username = '';
   this.response = {
@@ -49,19 +50,21 @@ Object.assign(UploadCtrl.prototype, {
 
     this.$http.post('/api/generate', {
       username: this.username,
-      repo: this.repo
+      repo: this.repo,
+      branch: this.branch
     }).then((response) => {
       this.response = {
         isGenerating: false,
         success: true,
-        msg: response.data
+        msg: 'Looks like everything went well :)',
+        details: response.data
       };
     }).catch((e) => {
       this.response = {
         isGenerating: false,
         success: false,
         msg: 'Error while generating slides',
-        error: e.data
+        details: e.data
       };
     });
   }
