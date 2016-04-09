@@ -1,0 +1,76 @@
+<div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div
+        class="form-group"
+        ng-class="{'has-error': $ctrl.error}"
+        >
+        <input
+          type="text"
+          class="form-control input-lg"
+          ng-model="$ctrl.url"
+          placeholder="Github Repository URL"
+          />
+          <span class="help-block" ng-show="$ctrl.error">
+            {{ $ctrl.error }}
+          </span>
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          ng-model="$ctrl.username"
+          ng-readonly="$ctrl.url"
+          placeholder="or Username"
+          />
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          ng-model="$ctrl.repo"
+          ng-readonly="$ctrl.url"
+          placeholder="and Repository Name"
+          />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+      <div class="form-group">
+        <button
+          class="btn btn-primary btn-block btn-lg"
+          ng-disabled="$ctrl.error || !$ctrl.username || !$ctrl.repo || $ctrl.response.isGenerating"
+          ng-click="$ctrl.generateSlides()"
+          >
+          <span class="glyphicon glyphicon-random" ng-show="!$ctrl.response.isGenerating"></span>
+          <span class="glyphicon glyphicon-refresh" ng-show="$ctrl.response.isGenerating"></span>
+          &nbsp;
+          <span ng-show="!$ctrl.response.isGenerating">
+            Generate Slides
+          </span>
+          <span ng-show="$ctrl.response.isGenerating">
+            Generating...
+          </span>
+        </button>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div ng-show="$ctrl.response.success !== null">
+        <h2
+          ng-class="{'text-success': $ctrl.response.success, 'text-danger': !$ctrl.response.success}"
+          >{{ $ctrl.response.msg }}</h2>
+      </div>
+      <div ng-show="$ctrl.response.success === false">
+        <pre>{{ $ctrl.response.error | json }}</pre>
+      </div>
+    </div>
+  </div>
+</div>
