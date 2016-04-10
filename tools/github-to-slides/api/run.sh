@@ -65,8 +65,10 @@ git commit -am "Auto-generated slides for $BRANCH"
 # And push
 sleep 10
 echo "Pushing work to repo"
+set +x
 git remote add work "https://${WORK_OWNER}:${WORK_KEY}@github.com/$WORK_OWNER/${WORK_REPO}.git"
-git push -u work gh-pages --force
+git push -u work gh-pages --force &> $LOG_FILE
+set -x
 # Prepare PR
 echo "Preparing PR"
 set +x
