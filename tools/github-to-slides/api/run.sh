@@ -12,8 +12,8 @@ TARGET_REPO="$2"
 BRANCH="$3"
 WORK_OWNER="xpla-bot"
 WORK_REPO="$TARGET_REPO"
-LOG_FILE="./pr-log"
 SLIDES_WORKDIR="slides-$TARGET_OWNER-$BRANCH"
+LOG_FILE="./$SLIDES_WORKDIR-pr-log"
 
 if [ "x$TARGET_OWNER" == "x" ]; then
   echo "Please provide TARGET_OWNER";
@@ -50,11 +50,13 @@ $COMMAND > $LOG_FILE
 # Clear any unfinished work
 rm ../$SLIDES_WORKDIR -r || true
 mv slides ../$SLIDES_WORKDIR
-git checkout gh-pages || (git checkout --orphan gh-pages && git rm * -r)
+git checkout gh-pages || (git checkout --orphan gh-pages && git rm * -rf)
 if [ "$BRANCH" == "master" ]; then
   rsync -a ../$SLIDES_WORKDIR/* .
+  git add .
 else
   rsync -a ../$SLIDES_WORKDIR $BRANCH
+  git add $BRANCH
 fi
 rm ../$SLIDES_WORKDIR -r
 # Commit
