@@ -25,7 +25,7 @@
   file:
     state: absent
     path: /srv/_packages/ghslides-{{xplarunner_version}}.tar.gz
-  when: ghslides_version == 'lastSuccessfulBuild'
+  when: xplarunner_version == 'lastSuccessfulBuild'
 
 - name: XplaRunner | Fetching app
   command: "wget http://applejack.todr.me:8080/job/XplaRunner/{{xplarunner_version}}/artifact/ghslides.tar.gz --user builder --password 123Builder --auth-no-challenge -O /srv/_packages/ghslides_{{xplarunner_version}}.tar.gz"
