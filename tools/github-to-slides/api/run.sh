@@ -50,7 +50,7 @@ $COMMAND > $LOG_FILE
 # Clear any unfinished work
 rm ../$SLIDES_WORKDIR -r || true
 mv slides ../$SLIDES_WORKDIR
-git checkout gh-pages || (git checkout --orphan gh-pages && git rm * -rf)
+git checkout gh-pages || (echo "You need to create gh-pages branch first. (git checkout --orphan gh-pages)" && exit 10)
 if [ "$BRANCH" == "master" ]; then
   rsync -a ../$SLIDES_WORKDIR/* .
   git add .
