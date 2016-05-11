@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xp-run-server-url="<%= run_server_url %>">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Slide Webpack</title>
+    <script src="js/slide_loader.<%= version %>.js"></script>
+  </head>
+  <body class="xp-slide">
+    <div class="xp-column">
+      <div class="xp-row">
+        <xp-editor>
+          <script id="index.html" type="text/html">
+            <html>
+              <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width">
+                <title>Slide Webpack</title>
+              </head>
+              <body>
+                <h1>Hello Webpack</h1>
+                <script src="bundle.js"><+/script>
+              </body>
+            </html>
+          </script>
+          <script id="src/index.js" type="application/octetstream">
+            document.write('Hello Webpack from JS!');
+          </script>
+        </xp-editor>
+      </div>
+      <div class="xp-resize-row"></div>
+      <div class="xp-row">
+        <xp-editor>
+          <script id="webpack.config.js" type="application/octetstream">
+            /// Używamy node'a w wersji 6, więc możemy korzystać z dobrodziejstw ES2015
+            const config = {
+              /// Na początek potrzebujemy plik wejściowy
+              entry: './src/index',
+              //3/ Oraz wynikowy
+              output: {
+                filename: 'bundle.js',
+              },
+            }
+            module.exports = config
+          </script>
+          <script id="package.json" type="application/octetstream">
+{
+  "name": "angularjs-webpack",
+  "version": "1.0.0",
+  "description": "AngularJS Webpack",
+  "scripts": {
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^2.1.0-beta.7"
+  }
+}
+          </script>
+        </xp-editor>
+      </div>
+    </div>
+    <div class="xp-column">
+      <xp-preview runner="webpack"></xp-preview>
+    </div>
+  </body>
+</html>
