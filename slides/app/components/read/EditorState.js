@@ -70,6 +70,7 @@ function parseAnnotations (content, ext, fileName) {
   const C_LIKE_PATTERN = new RegExp(`^\\s*//(${COMMENT})`);
   const C_LIKE_PATTERN2 = new RegExp(`\\/\\*(${COMMENT})\\*\\/`);
   const C_LIKE_PATTERNS = [C_LIKE_PATTERN2, C_LIKE_PATTERN];
+  const HASH_PATTERN = [new RegExp(`#(${COMMENT})`)];
   const HTML_LIKE = [new RegExp(`<!--(${COMMENT})-->`)];
 
   const LINE_PATTERNS = {
@@ -83,7 +84,8 @@ function parseAnnotations (content, ext, fileName) {
     'java': C_LIKE_PATTERNS,
     'jsx': C_LIKE_PATTERNS,
     'go': C_LIKE_PATTERNS,
-    'py': [new RegExp(`#(${COMMENT})`)],
+    'py': HASH_PATTERN,
+    'sh': HASH_PATTERN,
     'html': HTML_LIKE
   };
   const PATTERN = LINE_PATTERNS[ext];
