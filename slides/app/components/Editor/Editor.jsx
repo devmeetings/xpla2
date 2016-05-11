@@ -20,6 +20,7 @@ import 'brace/mode/golang';
 import 'brace/mode/python';
 import 'brace/mode/markdown';
 import 'brace/mode/sh';
+import 'brace/mode/stylus';
 import 'brace/theme/chrome';
 
 import styles from './Editor.scss';
@@ -30,7 +31,8 @@ export function getModeForFilename(name) {
     ts: 'typescript',
     py: 'python',
     go: 'golang',
-    md: 'markdown'
+    md: 'markdown',
+    styl: 'stylus'
   };
 
   const parts = name.split('.');
