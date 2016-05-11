@@ -77,8 +77,9 @@ function getResultsAsHtml (data) {
     return `<pre>${data.result.join('\n')}</pre>`;
   }
 
-  var errors = data.errors || [];
-  var result = data.result || [];
+  var result = data.result || ['No data'];
+  var errors = data.errors || ['Unknown error occured.'];
+
   return `<div style="color: red">
     <pre>${errors.join('\n')}</pre>
     <h3>Output:</h3>
