@@ -18,6 +18,8 @@ import 'brace/mode/typescript';
 import 'brace/mode/java';
 import 'brace/mode/golang';
 import 'brace/mode/python';
+import 'brace/mode/markdown';
+import 'brace/mode/sh';
 import 'brace/theme/chrome';
 
 import styles from './Editor.scss';
@@ -27,7 +29,8 @@ export function getModeForFilename(name) {
     js: 'javascript',
     ts: 'typescript',
     py: 'python',
-    go: 'golang'
+    go: 'golang',
+    md: 'markdown'
   };
 
   const parts = name.split('.');
