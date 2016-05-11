@@ -55,7 +55,7 @@ if [ "$BRANCH" == "master" ]; then
   rsync -a ../$SLIDES_WORKDIR/* .
   git add .
 else
-  rsync -a ../$SLIDES_WORKDIR $BRANCH
+  rsync -a ../$SLIDES_WORKDIR/ $BRANCH
   git add $BRANCH
 fi
 rm ../$SLIDES_WORKDIR -r
