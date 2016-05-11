@@ -98,5 +98,8 @@ const ICONS = {
   ),
   'keyboard-return': (
     <g><path d="M19 7v4h-13.17l3.58-3.59-1.41-1.41-6 6 6 6 1.41-1.41-3.58-3.59h15.17v-6z"></path></g>
+  ),
+  'subject': (
+    <g><path d="M14 17h-10v2h10v-2zm6-8h-16v2h16v-2zm-16 6h16v-2h-16v2zm0-10v2h16v-2h-16z"></path></g>
   )
 };

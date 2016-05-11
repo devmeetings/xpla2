@@ -78,6 +78,16 @@
     color: $brand-primary-light;
   }
 }
+.logsButton {
+  @include button;
+  float: right;
+  opacity: 0.5;
+
+  color: $brand-primary;
+  &:hover {
+    color: $brand-primary-light;
+  }
+}
 .loadingIcon {
   text-align: center;
   margin: 20%;

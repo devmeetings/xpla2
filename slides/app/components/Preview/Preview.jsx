@@ -74,6 +74,7 @@ export class Preview extends React.Component {
     if (this.props.isFresh) {
       return styles.runButton + ' ' + styles.disabled;
     }
+
     return styles.runButton;
   }
 
@@ -86,6 +87,7 @@ export class Preview extends React.Component {
         </span>
       );
     }
+
     if (this.props.isFresh) {
       return (
         <span>
@@ -94,6 +96,7 @@ export class Preview extends React.Component {
         </span>
       );
     }
+
     return (
       <span>
         <Icon icon={'play'} />
@@ -126,11 +129,25 @@ export class Preview extends React.Component {
     );
   }
 
+  renderLogsButton () {
+    return (
+      <a
+        className={styles.logsButton}
+        href={this.props.runServerUrl + '/api/results/' + this.props.runId + '/_logs.html'}
+        target={'_blank'}
+        title='Output logs'
+        >
+          <Icon icon={'subject'} />
+      </a>
+    );
+  }
+
   render () {
     return (
       <div className={styles.preview}>
         <div className={styles.previewBar}>
           {this.renderRunButton()}
+          {this.renderLogsButton()}
           {this.renderNewWindowButton()}
         </div>
         {this.renderResultWindow()}
