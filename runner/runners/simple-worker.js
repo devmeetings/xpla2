@@ -4,7 +4,7 @@ module.exports = function createWorker (queueName) {
   return function (data, onUpdate) {
     const onData = (outputData) => {
       const timestamp = Date.now();
-      const onlyOutput = outputData.newFiles || !outputData.success;
+      const onlyOutput = !outputData.newFiles || !outputData.newFiles.length || !outputData.success;
 
       const newFiles = [
         {
