@@ -86,7 +86,7 @@ function parseAnnotations (content, ext, fileName) {
     'go': C_LIKE_PATTERNS,
     'py': HASH_PATTERN,
     'sh': HASH_PATTERN,
-    'styl': HASH_PATTERN,
+    'styl': C_LIKE_PATTERNS,
     'html': HTML_LIKE
   };
   const PATTERN = LINE_PATTERNS[ext];
