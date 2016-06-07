@@ -22,7 +22,7 @@ $ git commit -am "Marking todos as completed [Completed]"
 
 ## How to run `git-to-slides`?
 
-1. Fetch [Git-To-Slides](./git-to-slides.tar.gz)
+1. Fetch [Git-To-Slides](../static/git-to-slides.tar.gz)
 1. Unpack and install dependencies:
 ```bash
 $ tar xf git-to-slides.tar.gz
