@@ -3,6 +3,7 @@ import 'normalize.css/normalize.css';
 import 'webcomponents.js/HTMLImports.js';
 import './index.html';
 import './deck.html';
+import './styles.scss';
 
 import _ from 'lodash';
 import React from 'react';

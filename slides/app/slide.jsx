@@ -1,5 +1,6 @@
 import 'babel-core/polyfill';
 import 'normalize.css/normalize.css';
+import './styles.scss';
 import './index.html';
 import './slide.html';
 import './slide1.html';
