@@ -2,7 +2,14 @@ import {randomId} from './utils';
 import logger from '../logger';
 
 export function readTitle(dom) {
-  const elem = dom.querySelector('title');
+
+  // Firefox polyfill has wrong title, but the right one is inside body.
+  let elem = dom.querySelector('body title');
+
+  if (!elem) {
+    elem = dom.querySelector('title');
+  }
+
   if (!elem) {
     return '';
   }
