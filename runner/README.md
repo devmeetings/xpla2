@@ -3,12 +3,12 @@
 ## Create your first slide
 ```html
 <!DOCTYPE html>
-<html xp-run-server-url="http://xpla.org">
+<html xp-run-server-url="https://xpla.org">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Angular2 Intro</title>
-    <script src="http://xpla.org/static/js/slide_loader.3.0.0.js"></script>
+    <script src="https://xpla.org/static/js/slide_loader.3.0.0.js"></script>
   </head>
   <body class="xp-slide">
     <div class="xp-row with-comments">
@@ -76,18 +76,18 @@
 ## And your first deck
 ```html
 <!DOCTYPE html>
-<html xp-run-server-url="http://xpla.org">
+<html xp-run-server-url="https://xpla.org">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title></title>
-    <link type="text/css" rel="stylesheet" media="all" href="http://xpla.org/static/css/deck.3.0.0.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="https://xpla.org/static/css/deck.3.0.0.css" />
   </head>
   <body>
     <xp-deck back="../">
       <link async rel="import" href="slide.html" title="Short Title" />
     </xp-deck>
-    <script async src="http://xpla.org/static/js/deck.3.0.0.js"></script>
+    <script async src="https://xpla.org/static/js/deck.3.0.0.js"></script>
   </body>
 </html>
 ```

@@ -43,7 +43,7 @@ $ cd slides && live-server
 ```
 1. You can commit your slides to `gh-pages` branch and it will be served by Github.
 ```
-http://<yourname>.github.io/<reponame>/slides
+https://<yourname>.github.io/<reponame>/slides
 ```
 
 ## I've made a mistake, what now?

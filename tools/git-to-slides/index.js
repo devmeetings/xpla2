@@ -7,8 +7,8 @@ const saveSlides = require('./saveSlides');
 
 const DEFAULT_OUTPUT = 'slides';
 const DEFAULT_RUNNER = 'html';
-const DEFAULT_RUN_SERVER = 'http://xpla.org';
-const DEFAULT_RESOURCE_URL = 'http://xpla.org/static';
+const DEFAULT_RUN_SERVER = 'https://xpla.org';
+const DEFAULT_RESOURCE_URL = 'https://xpla.org/static';
 const DEFAULT_SOFTWARE_VERSION = '3.0.0';
 
 program
