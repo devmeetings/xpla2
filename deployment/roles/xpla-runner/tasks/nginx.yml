@@ -14,8 +14,22 @@
     src: "htpasswd"
     dest: "/etc/nginx/{{server_name}}-htpasswd"
 
+- name: Nginx | Copying Configuration
+  template:
+    src: nginx.services.tpl
+    dest: "/etc/nginx/xpla/{{server_name}}.config"
 
-- name: Nginx | Enabling XPlatform
+- name: Nginx | Copying Keys
+  copy:
+    src: xpla.org.crt
+    dest: /etc/nginx/xpla/keys/{{server_name}}.crt
+
+- name: Nginx | Copying Keys2
+  copy:
+    src: xpla.org.key
+    dest: /etc/nginx/xpla/keys/{{server_name}}.key
+
+- name: Nginx | Enabling XPla
   file:
     src: "/etc/nginx/sites-available/{{ server_name }}"
     dest: "/etc/nginx/sites-enabled/{{ server_name }}"
