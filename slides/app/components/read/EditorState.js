@@ -86,6 +86,7 @@ function parseAnnotations (content, ext, fileName) {
     'go': C_LIKE_PATTERNS,
     'py': HASH_PATTERN,
     'sh': HASH_PATTERN,
+    'md': HASH_PATTERN,
     'styl': C_LIKE_PATTERNS,
     'html': HTML_LIKE
   };
