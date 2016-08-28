@@ -66,7 +66,7 @@ function getExtension (name) {
 }
 
 function parseAnnotations (content, ext, fileName) {
-  const COMMENT = '[^\\-]\\s*(([0-9]+)\\/ )?(([0-9\\.]+)\\.)?\\s*(.+)'
+  const COMMENT = '[^\\-]?\\s*(([0-9]+)\\/ )?(([0-9\\.]+)\\.)?\\s*([^\\-].+)'
   const C_LIKE_PATTERN = new RegExp(`^\\s*//(${COMMENT})`);
   const C_LIKE_PATTERN2 = new RegExp(`\\/\\*(${COMMENT})\\*\\/`);
   const C_LIKE_PATTERNS = [C_LIKE_PATTERN2, C_LIKE_PATTERN];
