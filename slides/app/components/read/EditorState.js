@@ -129,7 +129,7 @@ function trim (val) {
     .map((line) => {
       return line.replace(tabs, '');
     })
-    .filter((l) => l)
+    .filter((l, k) => k != 0 || l)
     .join('\n')
     .replace(/\s+$/, '');
 }
