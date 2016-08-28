@@ -45,4 +45,9 @@ export class Logger {
   }
 }
 
-export default new Logger(window.localStorage.xplaDebug);
+let debugEnabled = false;
+try {
+  debugEnabled = window.localStorage.xplaDebug;
+} catch (e) {}
+
+export default new Logger(debugEnabled);
