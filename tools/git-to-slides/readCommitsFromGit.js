@@ -12,7 +12,7 @@ module.exports = function readCommitsFromGit(dir, ignore) {
      Git.Repository.open(dir)
       .then((repo) => repo.getHeadCommit())
       .then((head) => {
-        console.log('Head', head.message());
+        console.log('Head', head.message().replace(/\s+$/g, ''));
         const history = head.history(Git.Revwalk.SORT.REVERSE);
 
         const commits = [];
@@ -33,7 +33,7 @@ module.exports = function readCommitsFromGit(dir, ignore) {
 };
 
 function readCommit (commit, ignore) {
-  console.log('Reading commit', commit.message());
+  console.log('Reading commit', commit.message().replace(/\s+$/g, ''));
   const treePromise = commit.getTree();
   const diffPromise = commit.getDiff();
 
@@ -113,8 +113,8 @@ function parseDiffsToFiles (commit, diffs, tree) {
 function convertHunksToLines (hunks) {
   return Promise.all(hunks.map((hunk) => {
     return {
-      lineNo: hunk.hunk.newStart(),
-      numLines: hunk.hunk.newLines()
+      lineNo: hunk.newStart(),
+      numLines: hunk.newLines()
     };
   }).reduce(convertLinesToRanges, []));
 }
