@@ -28,19 +28,19 @@ $ git commit -am "Marking todos as completed [Completed]"
 $ tar xf git-to-slides.tar.gz
 $ cd git-to-slides && npm install
 ```
-1. Go to your branch root folder.
-1. Provide relative path to `git-to-slides`.
+1. Run in watch mode using
+$ npm start ../path/to/myproject
+
+1. Your slides are generated to `./git-to-slides/slides` copy them to your project.
 ```bash
-$ cd myproject
-$ ../git-to-slides/index.js # This will generate the slides
+$ cd ../path/to/myproject                   # go to your project
+$ git checkout -b gh-pages --orphan         # or just `git checkout gh-pages`
+$ cp -r ../path/to/git-to-slides/slides/* . # copy slides
+$ git add .                                 # add them to version control
+$ git commit -am "My First slides"          # commit (message does not matter)
+$ git push -u origin gh-pages               # push to origin
 ```
-1. Your slides will be generated in `slides` folder.
-```bash
-$ cd slides && python -m SimpleHTTPServer
-# or
-$ npm install live-server -g
-$ cd slides && live-server
-```
+
 1. You can commit your slides to `gh-pages` branch and it will be served by Github.
 ```
 https://<yourname>.github.io/<reponame>/slides
