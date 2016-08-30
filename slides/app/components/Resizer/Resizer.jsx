@@ -5,6 +5,7 @@ import _ from 'lodash';
 import styles from './Resizer.scss';
 
 const CLASS_NAME_V = 'xp-resize-column';
+const CLASS_NAME_V2 = 'xp-resize-col';
 const CLASS_NAME_H = 'xp-resize-row';
 
 export function resizer(target) {
@@ -17,7 +18,7 @@ export function resizer(target) {
 
 function startResize (ev) {
   const clazz = ev.target.className;
-  if (clazz !== CLASS_NAME_V && clazz !== CLASS_NAME_H) {
+  if (clazz !== CLASS_NAME_V && clazz !== CLASS_NAME_H && clazz !== CLASS_NAME_V2) {
     return;
   }
   const p = ev.target.parentNode;
