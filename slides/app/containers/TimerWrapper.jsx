@@ -5,7 +5,9 @@ import Props from 'react-immutable-proptypes';
 
 import {Icon} from '../components/Icon/Icon';
 
-class TimerContainer extends React.Component {
+import styles from './TimerWrapper.scss';
+
+export class TimerContainer extends React.Component {
 
   constructor(...args) {
     super(...args);
@@ -73,7 +75,7 @@ class TimerContainer extends React.Component {
             </span>
             &nbsp;min
           </h1>
-          <button onClick={this.resume.bind(this)}>
+          <button onClick={this.resume.bind(this)} className={styles.button}>
             <Icon icon={'play-arrow'} />
           </button>
         </div>

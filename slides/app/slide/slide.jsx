@@ -9,12 +9,14 @@ import {getEditorState} from '../components/read/EditorState';
 import {getPreviewState} from '../components/read/PreviewState';
 import {getAnnotationState} from '../components/read/AnnotationsMetaState';
 import {getTimerState} from '../components/read/TimerState';
+import {getTasksState} from '../components/read/TasksState';
 import {readTitle} from '../components/read/SlideState';
 
 import EditorWrapper from '../containers/EditorWrapper';
 import PreviewWrapper from '../containers/PreviewWrapper';
 import AnnotationsWrapper from '../containers/AnnotationsWrapper';
 import TimerWrapper from '../containers/TimerWrapper';
+import TasksWrapper from '../containers/TasksWrapper';
 
 import './slide.scss';
 
@@ -32,6 +34,7 @@ export function initializeSlide(dom, runServerUrl, defaultTitle, path) {
   annotations.title = title;
 
   const timer = getIfExists(dom, 'xp-timer', getTimerState);
+  const tasks = getIfExists(dom, 'xp-tasks', getTasksState);
   const editorsP = getAsMap(dom, 'xp-editor', (dom) => getEditorState(dom, path));
   const previewsP = getAsMap(dom, 'xp-preview', getPreviewState);
 
@@ -40,13 +43,14 @@ export function initializeSlide(dom, runServerUrl, defaultTitle, path) {
       const [editors, previews] = a;
 
       const store = Store({
-        editors, previews, runServerUrl, annotations, timer
+        editors, previews, runServerUrl, annotations, timer, tasks
       });
 
       const globalEvents = new EventEmitter({});
 
       const $annotations = renderComponent(dom.querySelector('xp-annotations'), globalEvents, store, annotations, AnnotationsWrapper);
       const $timer = renderComponent(dom.querySelector('xp-timer'), globalEvents, store, timer, TimerWrapper);
+      const $tasks = renderComponent(dom.querySelector('xp-tasks'), globalEvents, store, tasks, TasksWrapper);
       const $editors = renderComponents(dom, globalEvents, store, editors, EditorWrapper, 'editorId');
       const $previews = renderComponents(dom, globalEvents, store, previews, PreviewWrapper, 'previewId');
 
@@ -56,6 +60,8 @@ export function initializeSlide(dom, runServerUrl, defaultTitle, path) {
           [$annotations]
           .concat($editors)
           .concat($previews)
+          .concat($timer)
+          .concat($tasks)
         )
       };
     });

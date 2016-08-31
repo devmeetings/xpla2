@@ -50,6 +50,12 @@
           content: '';
           flex: 1;
         }
+
+        ol, ul {
+          display: inline-block;
+          text-align: left;
+          flex: 1;
+        }
       }
 
       &.comments {

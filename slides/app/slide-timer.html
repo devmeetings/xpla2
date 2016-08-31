@@ -7,9 +7,22 @@
     <script src="js/slide_loader.<%= version %>.js"></script>
   </head>
   <body class="xp-slide">
-    <div class="xp-row center" style="height: 100%">
+    <div class="xp-row center" style="height: 30%">
       <h1>Hello Timer</h1>
       <xp-timer>50</xp-timer>
+    </div>
+    <div class="xp-resize-row"></div>
+    <div class="xp-row center" style="height: 70%">
+      <xp-tasks time="30">
+        <h1>Tasks are awesome</h1>
+        <ol>
+          <li class="xp-basic">Task number 1</li>
+          <li class="xp-basic">Task number 2</li>
+          <li class="xp-advanced">Advanced `task number 1`</li>
+          <li class="xp-advanced">Advanced `task number 2`</li>
+          <li class="xp-extra">Extra task with **markdown**!</li>
+        </ol>
+      </xp-tasks>
     </div>
   </body>
 </html>

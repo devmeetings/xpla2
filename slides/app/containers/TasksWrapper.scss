@@ -1,0 +1,30 @@
+.task {
+  padding: 4px 0;
+  line-height: 1.6;
+}
+
+.badge {
+  position: relative;
+  top: -2px;
+  line-height: 1.4;
+  display: inline-block;
+  background-color: #44d;
+  color: #fff;
+  border: 1px solid #44a;
+  border-radius: 3px;
+  padding: 0 4px;
+  font-size: 12px;
+  margin: 0 3px;
+}
+.basic {
+  background-color: #4d4;
+  border: 1px solid #4a4;
+}
+.advanced {
+  background-color: #bb0;
+  border: 1px solid #880;
+}
+.extra {
+  background-color: #d44;
+  border: 1px solid #a44;
+}

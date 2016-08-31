@@ -19,7 +19,7 @@ export default function (initialState) {
         logger.log(store.getState().toJS());
         logger.log(action);
         next(action);
-      }
+      },
     )(
       createStore
     )(
@@ -27,6 +27,7 @@ export default function (initialState) {
         const newState = reducer(state, action);
         return globalReducer(newState, action);
       },
-      fromJS(initialState)
+      fromJS(initialState),
+      window.devToolsExtension && window.devToolsExtension()
     );
 }
