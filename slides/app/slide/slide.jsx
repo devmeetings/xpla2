@@ -69,7 +69,7 @@ export function initializeSlide(dom, runServerUrl, defaultTitle, path) {
 
 function destroyFunction ($elems) {
   return () => {
-    $elems.map(unmountComponentAtNode);
+    $elems.filter(x => x).map(unmountComponentAtNode);
   };
 }
 
