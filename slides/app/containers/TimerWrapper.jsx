@@ -5,6 +5,7 @@ import Props from 'react-immutable-proptypes';
 
 import {Icon} from '../components/Icon/Icon';
 
+// TODO [todr] Most of the logic should go to Timer component instead!
 import styles from './TimerWrapper.scss';
 
 export class TimerContainer extends React.Component {
@@ -86,7 +87,7 @@ export class TimerContainer extends React.Component {
     return (
       <div>
           <h1>{timeLeft} min</h1>
-          <button onClick={this.pause.bind(this)}>
+          <button onClick={this.pause.bind(this)} className={styles.button}>
             <Icon icon={'stop'} />
           </button>
       </div>
