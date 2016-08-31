@@ -75,7 +75,7 @@ function destroyFunction ($elems) {
 
 function getIfExists (dom, query, mapper) {
   const elem = dom.querySelector(query);
-  return mapper(elem || dom);
+  return mapper(elem || dom, dom);
 }
 
 function getAsMap (dom, query, mapper) {

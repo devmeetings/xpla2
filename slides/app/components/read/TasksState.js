@@ -1,12 +1,19 @@
 
-export function getTasksState (dom) {
+export function getTasksState (dom, top) {
+  if (dom === top) {
+    return {
+      time: 0,
+      header: '',
+      tasks: []
+    };
+  }
   // parse time
   const time = parseInt(dom.getAttribute('time'), 10);
   // parse tasks list
   const tasks = getTasks(dom.querySelectorAll('li'));
   // remove tasks
-  [].map.call(dom.querySelectorAll('ol'), li => li.parentNode.removeChild(li));
-  [].map.call(dom.querySelectorAll('ul'), li => el.parentNode.removeChild(el));
+  [].map.call(dom.querySelectorAll('ol'), el => el.parentNode.removeChild(el));
+  [].map.call(dom.querySelectorAll('ul'), el => el.parentNode.removeChild(el));
 
   // take the whole element
   const header = dom.innerHTML;
