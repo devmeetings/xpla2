@@ -143,6 +143,29 @@ Extended description of stuff displayed in popup (annotations).
 </aside>
 ```
 
+### `_tasks.html`
+
+Extended description of stuff displayed in popup (annotations).
+
+- `xp-tasks` - Tasks slide. Any content apart of `li` will be displayed as header.
+- `xp-tasks[time]` - Time for tasks in minutes
+- `xp-tasks li[class="xp-basic"]` - Basic task (html/markdown)
+- `xp-tasks li[class="xp-advanced"]` - Advanced task (html/markdown)
+- `xp-tasks li[class="xp-extra"]` - Extra task definition (html/markdown)
+
+###### Example
+```html
+<xp-tasks time="120">
+  <h1>Sprint 4</h1>
+  <h3>Very important Sprint</h3>
+  <ol>
+    <li class="xp-basic">Basic task 1</li>
+    <li class="xp-advanced">Advanced task 1</li>
+    <li class="xp-extra">Extra task 1</li>
+  </ol>
+</xp-tasks>
+```
+
 ### `_xp-tree`
 
 Put this file to the workspace if you want your files to be displayed as tree (usefull when you want to show the structure of your project).

@@ -70,7 +70,35 @@ function getEditorWidth(slide) {
   return false;
 }
 
+function tasksToHtml (options, slide) {
+  let subcontent = '';
+  if (slide.title !== slide.comment) {
+    subcontent = `<h3>${slide.comment}</h3>`;
+  }
+
+  return `
+    <!DOCTYPE html>
+    <html xp-run-server-url="${options.runServer}">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>${trim(slide.title)}</title>
+        <script src="${options.resourceUrl}/js/slide_loader.${options.version}.js"></script>
+      </head>
+
+      <body class="xp-slide">
+        ${slide.tasks}
+        ${subcontent}
+      </body>
+    </html>
+  `;
+}
+
 function slideToHtml (options, slide) {
+  if (slide.tasks) {
+    return tasksToHtml(options, slide);
+  }
+
   const runner = slide.runner ? trim(slide.runner) : options.runner;
   const editorWidth = getEditorWidth(slide);
 

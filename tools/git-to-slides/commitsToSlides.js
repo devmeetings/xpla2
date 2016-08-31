@@ -1,6 +1,7 @@
 const _ = require('lodash');
 
 const ANNOTATIONS_FILE = '_annotations.html';
+const TASKS_FILE = '_tasks.html';
 const XP_TREE_FILE = '_xp-tree';
 const XP_NO_HIGHLIGHT_FILE = '_xp-no-highlight';
 const XP_RUNNER_FILE = '_xp-runner';
@@ -8,7 +9,7 @@ const XP_PREVIEW_FILE = '_xp-preview-file';
 const XP_NO_PREVIEW = '_xp-no-preview';
 
 const SPECIAL_FILES = [
-  ANNOTATIONS_FILE, XP_TREE_FILE, XP_NO_HIGHLIGHT_FILE, XP_RUNNER_FILE, XP_PREVIEW_FILE, XP_NO_PREVIEW
+  ANNOTATIONS_FILE, XP_TREE_FILE, XP_NO_HIGHLIGHT_FILE, XP_RUNNER_FILE, XP_PREVIEW_FILE, XP_NO_PREVIEW, TASKS_FILE
 ];
 
 module.exports = convertCommitsToSlidesContent;
@@ -70,25 +71,38 @@ function convertCommitsToSlidesContent (commits) {
     const msg = splitToTitleAndComment(commit.message);
     const allFiles = commit.newFiles.concat(commit.oldFiles);
     const annotations = getFile(commit.newFiles, ANNOTATIONS_FILE, '');
+    const tasks = getFile(commit.newFiles, TASKS_FILE, false);
     const displayTree = hasFile(allFiles, XP_TREE_FILE);
     const displayPreview = !hasFile(allFiles, XP_NO_PREVIEW);
     const runner = getFile(allFiles, XP_RUNNER_FILE, false);
     const preview = getFile(allFiles, XP_PREVIEW_FILE, false);
 
     const active = editors.length ? editors[0].id : undefined;
-    slidesContent.push({
-      filesToSave,
-      active,
-      editors,
-      slideName,
-      annotations,
-      displayTree,
-      displayPreview,
-      runner,
-      preview,
-      title: msg.title,
-      comment: msg.comment
-    });
+
+    // Push a slide if there are no tasks or more then one file is inside the commit.
+    if (!tasks || commit.newFiles > 1) {
+      slidesContent.push({
+        filesToSave,
+        active,
+        editors,
+        slideName,
+        annotations,
+        displayTree,
+        displayPreview,
+        runner,
+        preview,
+        title: msg.title,
+        comment: msg.comment
+      });
+    }
+
+    if (tasks) {
+      slidesContent.push({
+        tasks,
+        title: msg.title,
+        comment: msg.comment,
+      });
+    }
 
     return slidesContent;
   }, []);
