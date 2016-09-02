@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+"use strict";
+
 const program = require('commander');
 const readCommitsFromGit = require('./readCommitsFromGit');
 const convertCommitsToSlidesContent = require('./commitsToSlides');

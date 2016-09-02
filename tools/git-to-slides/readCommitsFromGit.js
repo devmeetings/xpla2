@@ -1,3 +1,5 @@
+"use strict";
+
 const Git = require('nodegit');
 const _ = require('lodash');
 
