@@ -72,10 +72,11 @@ function parseAnnotations (content, ext, fileName) {
   const C_LIKE_PATTERNS = [C_LIKE_PATTERN2, C_LIKE_PATTERN];
   const HASH_PATTERN = [new RegExp(`#(${COMMENT})`)];
   const HTML_LIKE = [new RegExp(`<!--(${COMMENT})-->`)];
+  const JSON_PATTERN = [new RegExp(`"__.*": "${COMMENT}"`)];
 
   const LINE_PATTERNS = {
     'md': HTML_LIKE,
-    'json': C_LIKE_PATTERNS,
+    'json': [JSON_PATTERN].concat(C_LIKE_PATTERNS),
     'js': C_LIKE_PATTERNS,
     'ts': C_LIKE_PATTERNS,
     'css': C_LIKE_PATTERNS,
