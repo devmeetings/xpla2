@@ -71,7 +71,7 @@ module.exports = [
         payload: {
           files: Joi.array().items(Joi.object({
             name: Joi.string().required(),
-            content: Joi.string().required()
+            content: Joi.string().default('')
           })).min(1).required()
         }
       },
@@ -91,7 +91,7 @@ module.exports = [
           runnerName: runnerSchema(),
           files: Joi.array().items(Joi.object({
             name: Joi.string().required(),
-            content: Joi.string().required()
+            content: Joi.string().default('')
           })).min(1).required()
         }
       },
