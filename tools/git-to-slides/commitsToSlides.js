@@ -102,10 +102,11 @@ function convertCommitsToSlidesContent (commits) {
       slidesContent.push({
         slideName,
         tasks,
+        active,
+        editors,
         title: msg.title,
         comment: msg.comment,
         filesToSave: [],
-        editors: [],
       });
     }
 
