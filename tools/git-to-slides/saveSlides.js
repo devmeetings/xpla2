@@ -85,7 +85,7 @@ function tasksToHtml (options, slide) {
 
       <body class="xp-slide">
         <div class="xp-row center" style="height: 100%">
-          <h1>${trim(slide.title)}</h1>
+          <h1>${trim(slide.comment)}</h1>
           ${slide.tasks}
         </div>
       </body>
