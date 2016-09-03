@@ -46,7 +46,7 @@ function deckToHtml (options, slides) {
       </head>
       <body>
 
-        <xp-deck>
+        <xp-deck back="../">
           ${slides.map(slideToHtmlDeck).join('\n')}
         </xp-deck>
 
