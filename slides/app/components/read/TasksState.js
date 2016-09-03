@@ -15,12 +15,18 @@ export function getTasksState (dom, top) {
   [].map.call(dom.querySelectorAll('ol'), el => el.parentNode.removeChild(el));
   [].map.call(dom.querySelectorAll('ul'), el => el.parentNode.removeChild(el));
 
+  let footer = dom.querySelector('footer');
+  if (footer) {
+    footer.parentNode.removeChild(footer);
+    footer = footer.innerHTML;
+  }
+
   // take the whole element
   const header = dom.innerHTML;
 
   return {
     time: isNaN(time) ? 30 : time,
-    header, tasks
+    header, footer, tasks
   };
 }
 

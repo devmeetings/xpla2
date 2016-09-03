@@ -73,11 +73,6 @@ function getEditorWidth(slide) {
 }
 
 function tasksToHtml (options, slide) {
-  let subcontent = '';
-  if (slide.title !== slide.comment) {
-    subcontent = `<h3>${slide.comment}</h3>`;
-  }
-
   return `
     <!DOCTYPE html>
     <html xp-run-server-url="${options.runServer}">
@@ -89,8 +84,10 @@ function tasksToHtml (options, slide) {
       </head>
 
       <body class="xp-slide">
-        ${slide.tasks}
-        ${subcontent}
+        <div class="xp-row center" style="height: 100%">
+          <h1>${trim(slide.title)}</h1>
+          ${slide.tasks}
+        </div>
       </body>
     </html>
   `;

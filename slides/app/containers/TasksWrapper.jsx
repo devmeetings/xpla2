@@ -33,6 +33,7 @@ export class TasksContainer extends React.Component {
         <ol>
           {this.renderTasks()}
         </ol>
+        <div dangerouslySetInnerHTML={{__html: this.props.footer}}></div>
       </div>
     );
   }
@@ -43,6 +44,7 @@ TasksContainer.propTypes = {
   timer: Props.map.isRequired,
   tasks: Props.list.isRequired,
   header: React.PropTypes.string.isRequired,
+  footer: React.PropTypes.string,
   globalEvents: React.PropTypes.object.isRequired
 };
 
@@ -50,6 +52,7 @@ TasksContainer.propTypes = {
   state => ({
     timer: state.get('tasks'),
     header: state.get('tasks').get('header'),
+    footer: state.get('tasks').get('footer'),
     tasks: state.get('tasks').get('tasks'),
   }),
   dispatch => ({
