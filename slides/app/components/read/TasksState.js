@@ -33,7 +33,7 @@ export function getTasksState (dom, top) {
 function getTasks(elems) {
   return [].map.call(elems, task => {
     const type = (task.getAttribute('class') || '').replace('xp-', '');
-    const content = task.textContent;
+    const content = task.innerHTML;
 
     return { type, content };
   });
