@@ -7,6 +7,7 @@ import {AceEditor, createEditSession} from '../AceEditor/AceEditor';
 import {FileTabs} from '../FileTabs/FileTabs';
 import {FileTree} from '../FileTree/FileTree';
 import {ModeMenu} from '../ModeMenu/ModeMenu';
+import {isSmallScreen} from '../isSmallScreen';
 
 import {WORK_MODE_DECK_EDIT} from '../../reducers.utils/workMode';
 
@@ -159,7 +160,7 @@ export class Editor extends React.Component {
         />
     );
 
-    const isFileTree = this.props.showFileTree;
+    const isFileTree = this.props.showFileTree && !isSmallScreen();
     if (!isFileTree) {
       return (
         <div>
@@ -179,7 +180,7 @@ export class Editor extends React.Component {
     }
     return (
       <div className={styles.treeEditor}>
-        <div className={'xp-column'} style={{width: '175px'}}>
+        <div className={'xp-column'} style={{width: '11rem'}}>
           <FileTree
             active={this.props.active}
             files={this.props.files}
@@ -187,7 +188,7 @@ export class Editor extends React.Component {
             />
         </div>
         <div className={'xp-resize-column'}></div>
-        <div className={'xp-column'} style={{width: 'calc(100% - 175px)'}}>
+        <div className={'xp-column'} style={{width: 'calc(100% - 11rem)'}}>
           <div className={styles.treeEditorAce}>
             {aceEditor}
           </div>

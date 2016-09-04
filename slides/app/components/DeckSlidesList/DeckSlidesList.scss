@@ -37,6 +37,10 @@
     width: 13vw;
     overflow: hidden;
     text-align: center;
+
+    @media(max-width: $small-screen) {
+      width: 16vw;
+    }
   }
 
   &:hover {

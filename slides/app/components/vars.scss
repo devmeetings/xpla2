@@ -1,10 +1,10 @@
-$filetabs-height: 35px;
-$slideslist-height: 45px;
-$previewbar-height: 34px;
+$filetabs-height: 2.33333rem;
+$previewbar-height: 2.26667rem;
+$slideslist-height: 3rem;
 
-$padding: 7px;
-$border: 4px;
-$border-small: 1px;
+$padding: 0.46667rem;
+$border: 0.26667rem;
+$border-small: 0.06667rem;
 
 $color-text: #444;
 $color-inverse: #fff;
@@ -22,3 +22,6 @@ $brand-light-bg: #F3F5F6;
 
 $transition: ease-in-out 0.15s;
 $transition-long: ease-in-out 0.4s;
+
+$small-screen: 800px;
+$small-screen-h: 600px;

@@ -10,11 +10,16 @@
   }
 }
 :global .ReactModal__Content {
-  @media (max-width: 800px) {
-    left: 20px !important;
-    right: 20px !important;
-    top: 40px !important;
-    bottom: 60px !important;
+  @media (max-width: $small-screen) {
+    left: 5px !important;
+    right: 5px !important;
+    top: 25px !important;
+    bottom: 45px !important;
+    padding: 10px !important;
+  }
+
+  @media (max-height: $small-screen-h) {
+    bottom: 10px !important;
   }
 }
 
@@ -105,6 +110,11 @@
   top: 1rem;
   right: 1rem;
   cursor: pointer;
+
+  @media (max-width: $small-screen) {
+    right: .5rem;
+    top: .5rem;
+  }
 }
 
 .fileName {
@@ -126,6 +136,11 @@
   top: 1rem;
   left: 2rem;
   margin: 0;
+
+  @media (max-width: $small-screen) {
+    left: .5rem;
+    top: .5rem;
+  }
 }
 
 .buttonBar {
@@ -137,9 +152,16 @@
   right: 2rem;
   bottom: 2rem;
 
+  @media (max-width: $small-screen) {
+    bottom: .5rem;
+    left: .5rem;
+    right: .5rem;
+  }
+
   .button {
     flex: 0 0 8rem;
     max-width: 30vw;
     white-space: nowrap;
   }
 }
+

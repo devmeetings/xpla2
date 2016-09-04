@@ -1,20 +1,22 @@
+@import "../components/vars.scss";
+
 .task {
-  padding: 4px 0;
+  padding: $border 0;
   line-height: 1.6;
 }
 
 .badge {
   position: relative;
-  top: -2px;
+  top: -$border/2;
   line-height: 1.4;
   display: inline-block;
   background-color: #44d;
   color: #fff;
   border: 1px solid #44a;
   border-radius: 3px;
-  padding: 0 4px;
-  font-size: 12px;
-  margin: 0 3px;
+  padding: 0 $border;
+  font-size: 0.8rem;
+  margin: 0 $border;
 }
 .basic {
   background-color: #4d4;

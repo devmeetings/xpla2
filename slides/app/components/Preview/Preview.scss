@@ -91,4 +91,7 @@
 .loadingIcon {
   text-align: center;
   margin: 20%;
+  @media(max-width: $small-screen) {
+    margin: 10%;
+  }
 }

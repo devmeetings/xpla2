@@ -2,6 +2,8 @@ import ace from 'brace';
 import React from 'react';
 import './AceEditor.scss';
 
+import {isSmallScreen} from '../isSmallScreen';
+
 const Range = ace.acequire('ace/range').Range;
 
 export function createEditSession (content, mode, highlight) {
@@ -230,7 +232,7 @@ AceEditor.defaultProps = {
   height: '500px',
   width: '500px',
   value: '',
-  fontSize: 14,
+  fontSize: isSmallScreen() ? 9 : 14,
   showGutter: true,
   onChange: null,
   onPaste: null,

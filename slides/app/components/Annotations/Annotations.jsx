@@ -10,6 +10,7 @@ import {Icon} from '../Icon/Icon';
 import {AceEditor} from '../AceEditor/AceEditor';
 import {FileTree} from '../FileTree/FileTree';
 import {getModeForFilename} from '../Editor/Editor';
+import {isSmallScreen} from '../isSmallScreen';
 
 import styles from './Annotations.scss';
 
@@ -136,7 +137,7 @@ export class Annotations extends React.Component {
   renderWithTree(editors, editorActive, annotation) {
     return (
       <div className={'xp-slide'}>
-        <div className={'xp-column'} style={{width: '135px'}}>
+        <div className={'xp-column'} styles={{ width: '9rem' }}>
           <FileTree
             active={editorActive}
             files={editors}
@@ -144,7 +145,7 @@ export class Annotations extends React.Component {
             />
         </div>
         <div className={'xp-resize-column'}></div>
-        <div className={'xp-column'} style={{width: 'calc(100% - 135px)'}}>
+        <div className={'xp-column'} styles={{ width: 'calc(100% - 9rem)' }}>
           {this.renderAce(annotation)}
         </div>
       </div>
@@ -157,7 +158,7 @@ export class Annotations extends React.Component {
       name: annotation.fileName
     });
 
-    if (editors.size > 1) {
+    if (editors.size > 1 && !isSmallScreen()) {
       return (
         <div className={styles.editor}>
           {this.renderWithTree(editors, editorActive, annotation)}

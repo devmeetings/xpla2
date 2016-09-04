@@ -1,4 +1,6 @@
+@import "../components/vars.scss";
+
 .button {
-  padding: 5px 10px;
-  font-size: 17px;
+  padding: $border 2*$border;
+  font-size: 1.13333rem;
 }

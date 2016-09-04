@@ -1,13 +1,26 @@
+@import '../components/vars.scss';
+
 :global {
   @import '../components/scrollbars.scss';
-  $commentSize: 50px;
+  $commentSize: 3.33333rem;
 
-  @media (max-width: 800px) {
+  @media (max-width: $small-screen) {
+    html:root, :root body {
+      font-size: 10px;
+      line-height: 12px;
+    }
+
     h1 {
       font-size: 1.5rem;
     }
     h2 {
       font-size: 1.3rem;
+    }
+
+    .xp-row.comments {
+      h1,h2,h3,h4,h5,h6 {
+        font-size: 4vw;
+      }
     }
   }
 
@@ -18,6 +31,13 @@
     right: 0;
     left: 0;
     bottom: 0;
+
+    code {
+      background: #eee;
+      padding: 1px $border;
+      border-radius: 1px;
+      border: 1px solid #ddd;
+    }
 
     .xp-column, .xp-col {
       float: left;
