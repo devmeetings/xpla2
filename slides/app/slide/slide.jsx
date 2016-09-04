@@ -17,6 +17,7 @@ import PreviewWrapper from '../containers/PreviewWrapper';
 import AnnotationsWrapper from '../containers/AnnotationsWrapper';
 import TimerWrapper from '../containers/TimerWrapper';
 import TasksWrapper from '../containers/TasksWrapper';
+import {isSmallScreen} from '../components/isSmallScreen';
 
 import './slide.scss';
 
@@ -28,6 +29,12 @@ export function initializeSlide(dom, runServerUrl, defaultTitle, path) {
   if (!runServerUrl) {
     throw new Error('RunServerUrl is missing.');
   }
+
+  // Hide address bar on mobile hack
+  if (isSmallScreen()) {
+    window.scrollTo(0,1);
+  }
+
   path = path || '';
   const title = readTitle(dom.parentNode) || defaultTitle;
   const annotations = getIfExists(dom, 'xp-annotations', getAnnotationState)
