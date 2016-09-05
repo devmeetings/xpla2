@@ -137,7 +137,7 @@ export class Annotations extends React.Component {
   renderWithTree(editors, editorActive, annotation) {
     return (
       <div className={'xp-slide'}>
-        <div className={'xp-column'} styles={{ width: '9rem' }}>
+        <div className={'xp-column'} style={{ width: '9rem' }}>
           <FileTree
             active={editorActive}
             files={editors}
@@ -145,7 +145,7 @@ export class Annotations extends React.Component {
             />
         </div>
         <div className={'xp-resize-column'}></div>
-        <div className={'xp-column'} styles={{ width: 'calc(100% - 9rem)' }}>
+        <div className={'xp-column'} style={{ width: 'calc(100% - 9rem)' }}>
           {this.renderAce(annotation)}
         </div>
       </div>
