@@ -233,7 +233,7 @@ AceEditor.defaultProps = {
   width: '500px',
   value: '',
   fontSize: isSmallScreen() ? 9 : 14,
-  showGutter: true,
+  showGutter: !isSmallScreen(),
   onChange: null,
   onPaste: null,
   onLoad: null,
