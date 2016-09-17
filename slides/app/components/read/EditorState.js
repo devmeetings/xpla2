@@ -67,7 +67,7 @@ function getExtension (name) {
 
 function parseAnnotations (content, ext, fileName) {
   const COMMENT = '\\s*(([0-9]+)\\/ )?(([0-9\\.]+)\\.)?\\s*([^\\-].+)'
-  const C_LIKE_PATTERN = new RegExp(`^\\s*//(${COMMENT})`);
+  const C_LIKE_PATTERN = new RegExp(`^\\s*///?(${COMMENT})`);
   const C_LIKE_PATTERN2 = new RegExp(`\\/\\*(${COMMENT})\\*\\/`);
   const C_LIKE_PATTERNS = [C_LIKE_PATTERN2, C_LIKE_PATTERN];
   const HASH_PATTERN = [new RegExp(`#(${COMMENT})`)];
@@ -79,6 +79,7 @@ function parseAnnotations (content, ext, fileName) {
     'json': JSON_PATTERN.concat(C_LIKE_PATTERNS),
     'js': C_LIKE_PATTERNS,
     'ts': C_LIKE_PATTERNS,
+    'rs': C_LIKE_PATTERNS,
     'css': C_LIKE_PATTERNS,
     'scss': C_LIKE_PATTERNS,
     'less': C_LIKE_PATTERNS,

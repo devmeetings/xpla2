@@ -12,6 +12,7 @@ import {isSmallScreen} from '../isSmallScreen';
 import {WORK_MODE_DECK_EDIT} from '../../reducers.utils/workMode';
 
 import 'brace/mode/html';
+import 'brace/mode/rust';
 import 'brace/mode/javascript';
 import 'brace/mode/json';
 import 'brace/mode/jsx';
@@ -33,6 +34,7 @@ export function getModeForFilename(name) {
     py: 'python',
     go: 'golang',
     md: 'markdown',
+    rs: 'rust',
     styl: 'stylus'
   };
 
