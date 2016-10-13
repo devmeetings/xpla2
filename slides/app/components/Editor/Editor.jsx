@@ -23,6 +23,8 @@ import 'brace/mode/python';
 import 'brace/mode/markdown';
 import 'brace/mode/sh';
 import 'brace/mode/stylus';
+import 'brace/mode/yaml';
+import 'brace/mode/dart';
 import 'brace/theme/chrome';
 
 import styles from './Editor.scss';
@@ -35,7 +37,8 @@ export function getModeForFilename(name) {
     go: 'golang',
     md: 'markdown',
     rs: 'rust',
-    styl: 'stylus'
+    styl: 'stylus',
+    yml: 'yaml'
   };
 
   const parts = name.split('.');
