@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xp-run-server-url="<%= run_server_url %>">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Slide Dart</title>
+    <script src="js/slide_loader.<%= version %>.js"></script>
+  </head>
+  <body class="xp-slide">
+    <div class="xp-column">
+      <div class="xp-row">
+        <xp-editor xp-tree>
+          <script id="web/index.html" type="text/html">
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Backoffice</title>
+
+    <!--  Polyfill of Custom Elements and HTML Imports -->
+    <script src="packages/web_components/webcomponents-lite.min.js"><+/script>
+
+    <!--  Calling index.dart -->
+    <script defer type="application/dart" src="index.dart"><+/script>
+    <script defer src="packages/browser/dart.js"><+/script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body unresolved>
+<!--  Component created by us! -->
+<main-app></main-app>
+</body>
+</html>
+          </script>
+          <script id="web/index.dart" type="application/octetstream">
+// 9/ index.dart
+library dev_meetings_sample.index;
+
+import 'package:dev_meetings_sample/main_app.dart';
+import 'package:polymer/polymer.dart';
+
+// 3/ async & await
+main() async {
+  await initPolymer();
+}
+          </script>
+          <script id="web/styles.css" type="application/octetstream">
+body {
+    font-family: RobotoDraft, sans-serif;
+    color: #333;
+}
+          </script>
+          <script id="lib/main_app.html" type="application/octetstream">
+<!-- 18/ dom-module with the id of the element-->
+<dom-module id="main-app">
+    <!-- 8/ css style-->
+    <style>
+        :host {
+            display: block;
+        }
+        h1{
+            color: red;
+        }
+    </style>
+    <!-- 3/ html structure-->
+    <template>
+        <h1> Hello DevMeetings! </h1>
+    </template>
+</dom-module>
+          </script>
+          <script id="lib/main_app.dart" type="application/octetstream">
+//18/
+@HtmlImport('main_app.html')
+library dev_meetings_sample.main_app;
+
+import 'dart:html';
+
+import 'package:polymer/polymer.dart';
+import 'package:web_components/web_components.dart';
+
+// id del elemento
+@PolymerRegister('main-app')
+class MainApp extends PolymerElement {
+
+  MainApp.created() : super.created();
+
+
+}
+          </script>
+        </xp-editor>
+      </div>
+      <div class="xp-resize-row"></div>
+      <div class="xp-row">
+        <xp-editor>
+          <script id="pubspec.yaml" type="application/octetstream">
+name: 'dev_meetings_sample'
+version: 0.0.1
+description: A sample backOffice built using polymer.dart.
+author: Pablo González Doval <dovaleac@gmail.com>
+
+environment:
+  sdk: '>=1.9.0 <2.0.0'
+
+dependencies:
+  browser: ^0.10.0
+  polymer_elements: ^1.0.0-rc.8
+  polymer: ^1.0.0-rc.15
+  web_components: ^0.12.0
+
+transformers:
+- polymer:
+    entry_points: web/index.html
+- $dart2js:
+    minify: false
+    sourceMaps: false
+    commandLineOptions:
+    - --trust-type-annotations
+    - --trust-primitives
+          </script>
+        </xp-editor>
+      </div>
+    </div>
+    <div class="xp-column">
+      <xp-preview runner="dart"></xp-preview>
+    </div>
+  </body>
+</html>

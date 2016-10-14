@@ -10,6 +10,7 @@ import './slide-jsx.html';
 import './slide-timer.html';
 import './slide-go.html';
 import './slide-webpack.html';
+import './slide-dart.html';
 
 import {initializeSlide} from './slide/slide';
 import {getRunServerUrl} from './components/read/RunServerUrlState';
