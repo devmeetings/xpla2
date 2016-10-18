@@ -6,7 +6,7 @@ const db = require('./db');
 const mem = db();
 
 function store (code) {
-  const commitId = uuid.v1();
+  const commitId = code.hash || uuid.v1();
   mem.store(commitId, code);
 
   return Promise.resolve(commitId);

@@ -39,6 +39,7 @@ export const commitAndRunCode = (payload) => {
       },
       body: JSON.stringify({
         runnerName: payload.runnerName,
+        skipCache: payload.skipCache,
         files: payload.files.map((file) => ({
           name: file.name,
           content: file.content

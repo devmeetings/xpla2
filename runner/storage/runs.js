@@ -5,8 +5,8 @@ const db = require('./db');
 
 const mem = db();
 
-function store (runData) {
-  const runId = uuid.v1();
+function store (runData, cacheId) {
+  const runId = cacheId || uuid.v1();
   mem.store(runId, runData);
   return Promise.resolve(runId);
 }

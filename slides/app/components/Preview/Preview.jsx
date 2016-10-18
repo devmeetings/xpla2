@@ -105,12 +105,17 @@ export class Preview extends React.Component {
     );
   }
 
+  triggerRun = () => {
+    const forceRun = this.props.isFresh;
+    this.props.onRun(forceRun);
+  };
+
   renderRunButton () {
     return (
       <button
         className={this.getBtnClass()}
         disabled={this.props.isLoading}
-        onClick={this.props.onRun}
+        onClick={this.triggerRun}
         >
         {this.renderRunButtonText()}
       </button>

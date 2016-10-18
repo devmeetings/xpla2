@@ -89,6 +89,7 @@ module.exports = [
       validate: {
         payload: {
           runnerName: runnerSchema(),
+          skipCache: Joi.boolean().default(false),
           files: Joi.array().items(Joi.object({
             name: Joi.string().required(),
             content: Joi.string().default('')
@@ -108,6 +109,7 @@ module.exports = [
     config: {
       validate: {
         params: {
+          skipCache: Joi.boolean().default(false),
           commitId: Joi.string().required(),
           runnerName: runnerSchema()
         }

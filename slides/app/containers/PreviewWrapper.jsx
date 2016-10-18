@@ -34,7 +34,7 @@ class PreviewContainer extends React.Component {
   }
 
   onGlobalRun () {
-    this.runAction();
+    this.runAction(false);
   }
 
   getFilesFromEditors () {
@@ -42,7 +42,7 @@ class PreviewContainer extends React.Component {
     return files.toSetSeq().flatten(1);
   }
 
-  runAction () {
+  runAction = (force) => {
     const previewId = this.props.previewId;
     const preview = this.props.previews.get(previewId);
     const runServerUrl = this.props.runServerUrl;
@@ -54,9 +54,10 @@ class PreviewContainer extends React.Component {
       runServerUrl: runServerUrl,
       previewId: previewId,
       runnerName: runnerName,
-      files: files.toJS()
+      files: files.toJS(),
+      skipCache: !!force
     });
-  }
+  };
 
   render () {
     const id = this.props.previewId;
@@ -70,7 +71,7 @@ class PreviewContainer extends React.Component {
           isFresh={preview.get('isFresh')}
           isLoading={preview.get('isLoading')}
           isTakingLong={preview.get('isTakingLong')}
-          onRun={this.runAction.bind(this)}
+          onRun={this.runAction}
           previewId={id}
           runId={preview.get('runId')}
           file={preview.get('file')}
