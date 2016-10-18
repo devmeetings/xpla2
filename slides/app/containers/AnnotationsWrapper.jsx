@@ -96,6 +96,7 @@ class AnnotationsContainer extends React.Component {
   getEditorAnnotations (moreAnnotations) {
     const annotations = this.getFilesFromEditors()
       .filter((file) => file.get('highlight').size)
+      .sort((a, b) => a.get('fileOrder') - b.get('fileOrder'))
       .map((file) => {
         const fileName = file.get('name');
         const extended = moreAnnotations.get(fileName);

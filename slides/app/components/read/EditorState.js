@@ -17,11 +17,12 @@ export function getEditorState (dom, path) {
 
       if (!tpl.src) {
         const content = fixPossibleScriptTags(trim(tpl.innerHTML));
-        const annotations = parseAnnotations(content, extension, tpl.id);
+        const {fileOrder, annotations} = parseAnnotations(content, extension, tpl.id);
         const highlight = parseHighlight(tpl, annotations);
 
         return Promise.resolve({
           name: tpl.id,
+          fileOrder,
           content,
           annotations,
           highlight
@@ -37,11 +38,12 @@ export function getEditorState (dom, path) {
       })
         .then((response) => response.text())
         .then((content) => {
-          const annotations = parseAnnotations(content, extension, tpl.id);
+          const {fileOrder, annotations} = parseAnnotations(content, extension, tpl.id);
           const highlight = parseHighlight(tpl, annotations);
 
           return {
             name: tpl.id,
+            fileOrder,
             content,
             annotations,
             highlight
@@ -100,16 +102,36 @@ function parseAnnotations (content, ext, fileName) {
     return [];
   }
 
+  let fileOrder = 9999;
   const lines = content.split('\n');
   const annotations = [];
+
   for (let i = 0; i < lines.length; ++i) {
     let line = lines[i];
     let match = PATTERN.reduce((match, pattern) => match || line.match(pattern), false);
     if (match) {
+      // Check for order comment
+      if (i === 0) {
+        const orderMatch = match[6].match(/o(rder)?:\s*([0-9]+)/i);
+        if (orderMatch) {
+          fileOrder = parseInt(orderMatch[2], 10);
+          continue;
+        }
+      }
+
       // get next lines
       let noOfLines = parseInt(match[3], 10) || 1;
       let order = parseInt(match[5], 10) || annotations.length + 1;
       let title = match[6];
+
+      // Skip annotation if there was another one right above
+      let len = annotations.length;
+      if (len > 0 && annotations[len - 1].highlight[0] === i) {
+        // Extend range of higlight to cover next lines too.
+        annotations[len - 1].highlight[1] = Math.max(annotations[len - 1].highlight[1], i + 1 + noOfLines);
+        continue;
+      }
+
       annotations.push({
         line: i,
         noOfLines,
@@ -122,7 +144,11 @@ function parseAnnotations (content, ext, fileName) {
       });
     }
   }
-  return annotations.sort((a, b) => a.order - b.order);
+
+  return {
+    fileOrder,
+    annotations: annotations.sort((a, b) => a.order - b.order),
+  };
 }
 
 
