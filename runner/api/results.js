@@ -43,7 +43,11 @@ function getRaw (data) {
   });
 }
 
+function clear (runId) {
+  return runs.remove(runId);
+}
+
 module.exports = {
-  getFile, getRaw
+  getFile, getRaw, clear
 };
 

@@ -151,7 +151,19 @@ module.exports = [
         })
         .catch((e) => handleError(e, reply));
     }
+  },
+  {
+    method: 'DELETE',
+    path: '/api/results/{runId}',
+    handler: (req, reply) => {
+      resultsApi.clear(req.params.runId)
+        .then(ok => {
+          reply(ok)
+        })
+        .catch(e => handleError(e, reply));
+    }
   }
+
 ];
 
 function runnerSchema () {

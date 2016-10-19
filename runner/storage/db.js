@@ -35,7 +35,7 @@ module.exports = function newDb () {
       pendingCacheUpdates.forEach((id) => {
         let idx = memIds.indexOf(id);
         // Do nothing if it's already at the end
-        if (idx === memIds.length - 1) {
+        if (idx === memIds.length - 1 || idx === -1) {
           return;
         }
         // Remove
@@ -70,6 +70,15 @@ module.exports = function newDb () {
         updateCacheLater();
       }
       return val;
+    },
+
+    remove (id) {
+      if (!mem[id]) {
+        return false;
+      }
+
+      delete mem[id];
+      return true;
     }
   };
 };

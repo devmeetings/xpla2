@@ -25,6 +25,15 @@ function retrieve (runId) {
   return Promise.reject(e);
 }
 
+function remove (runId) {
+  if (mem.remove(runId)) {
+    return Promise.resolve('OK');
+  }
+  const e = new Error(`No data for run ${runId}`);
+  e.code = 404;
+  return Promise.reject(e);
+}
+
 module.exports = {
-  store, retrieve, update
+  store, retrieve, update, remove
 };
