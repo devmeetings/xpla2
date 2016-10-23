@@ -64,8 +64,8 @@ class AnnotationsContainer extends React.Component {
   }
 
   onKey (ev) {
-    const prev = [37/* LEFT */];
-    const next = [39/* RIGHT */, 32/* SPACE*/];
+    const prev = [37/* LEFT */, 38/* UP */];
+    const next = [39/* RIGHT */, 32/* SPACE*/, 40/* DOWN */];
     const code = ev.keyCode;
 
     const anno = this.state.currentAnnotation;

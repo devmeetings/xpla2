@@ -27,8 +27,8 @@ class DeckContainer extends React.Component {
   }
 
   onKey (ev) {
-    const prevPage = [33/* PGUP */, 38/* UP */];
-    const nextPage = [34/* PGDOWN */, 40/* DOWN */];
+    const prevPage = [33/* PGUP */];
+    const nextPage = [34/* PGDOWN */];
     const code = ev.keyCode;
 
     if (prevPage.indexOf(code) !== -1) {

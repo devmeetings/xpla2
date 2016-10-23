@@ -158,7 +158,7 @@ module.exports = [
     handler: (req, reply) => {
       resultsApi.clear(req.params.runId)
         .then(ok => {
-          reply(ok)
+          reply(ok);
         })
         .catch(e => handleError(e, reply));
     }
