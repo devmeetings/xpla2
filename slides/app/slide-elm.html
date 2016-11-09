@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xp-run-server-url="<%= run_server_url %>">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Slide Elm</title>
+    <script src="js/slide_loader.<%= version %>.js"></script>
+  </head>
+  <body class="xp-slide">
+    <div class="xp-column">
+        <xp-editor>
+          <script id="Main.elm" highlight type="application/octetstream">
+-- Elm es un lenguaje de programación funcional creado por un chico llamado Evan Czaplicki
+elmCreator = "Evan Czaplicki"
+
+-- Se creó con la intención de fusionar la usabilidad y accesibilidad de JS con la mantenibilidad de lenguajes funcionales como Haskell
+isElmEasyAndMaintainable = True
+
+-- 6/ Es un lenguaje diseñado desde 0 para ser user friendly
+type ElmPrinciples
+    = GradualLearning
+    | Communication
+    | Culture
+    | UsageDrivenDesign
+    | ExcellentTooling
+
+-- 8/ En resumen Elm es:
+elmFeatures =
+    [ "Virtual Dom" -- (aka React.js)
+    , "Unidirectional dataflow" -- (aka Flux)
+    , "Concise modern syntax" -- (aka not JS)
+    , "Immutable values" -- (aka Immutable.js)
+    , "Stateless functions"
+    , "Typed language" -- (aka Flow, Typescript)
+    ]
+        </script>
+        <script id="package.json" type="application/octetstream">
+{
+  "name": "elm-devmeetings-presentation",
+  "version": "1.0.0",
+  "description": "This project is meant to be run with the slide generator.",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "elm",
+    "devmeetings",
+    "slides",
+    "presentation",
+    "workshop"
+  ],
+  "author": "David G. Shannon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Snesi/elm-devmeetings-slides/issues"
+  },
+  "homepage": "https://github.com/Snesi/elm-devmeetings-slides#readme",
+  "devDependencies": {
+    "elm": "0.17.1"
+  }
+}
+        </script>
+        </xp-editor>
+    </div>
+    <div class="xp-column">
+      <xp-preview runner="elm"></xp-preview>
+    </div>
+  </body>
+</html>

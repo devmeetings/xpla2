@@ -75,6 +75,7 @@ function parseAnnotations (content, ext, fileName) {
   const HASH_PATTERN = [new RegExp(`#(${COMMENT})`)];
   const HTML_LIKE = [new RegExp(`<!--(${COMMENT})-->`)];
   const JSON_PATTERN = [new RegExp(`"__.*": "(${COMMENT})"`)];
+  const ELM_PATTERN = [new RegExp(`--(${COMMENT})`)];
 
   const LINE_PATTERNS = {
     'md': HTML_LIKE,
@@ -95,11 +96,15 @@ function parseAnnotations (content, ext, fileName) {
     'sh': HASH_PATTERN,
     'md': HASH_PATTERN,
     'styl': C_LIKE_PATTERNS,
-    'html': HTML_LIKE
+    'html': HTML_LIKE,
+    'elm': ELM_PATTERN,
   };
   const PATTERN = LINE_PATTERNS[ext];
   if (!PATTERN) {
-    return [];
+    return {
+      fileOrder: 9999,
+      annotations: []
+    };
   }
 
   let fileOrder = 9999;

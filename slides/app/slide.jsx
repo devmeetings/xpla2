@@ -11,6 +11,7 @@ import './slide-timer.html';
 import './slide-go.html';
 import './slide-webpack.html';
 import './slide-dart.html';
+import './slide-elm.html';
 
 import {initializeSlide} from './slide/slide';
 import {getRunServerUrl} from './components/read/RunServerUrlState';
