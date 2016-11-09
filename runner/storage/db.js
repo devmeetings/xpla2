@@ -65,11 +65,11 @@ module.exports = function newDb () {
 
     retrieve (id) {
       const val = mem[id];
-      if (val) {
+      if (id && val) {
         pendingCacheUpdates.add(id);
         updateCacheLater();
       }
-      return val;
+      return id ? val : null;
     },
 
     remove (id) {
