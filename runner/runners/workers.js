@@ -11,9 +11,10 @@ const go = require('./workers/go');
 const webpack = require('./workers/webpack');
 const dart = require('./workers/dart');
 const elm = require('./workers/elm');
+const react = require('./workers/react');
 
 const runners = {
-  html, java, burger, python, node, go, webpack, dart, elm,
+  html, java, burger, python, node, go, webpack, dart, elm, react,
   'html-jsx': htmlJsx,
   'html-babel': htmlJsx,
   'html-ts': htmlTs
