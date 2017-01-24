@@ -67,6 +67,7 @@ class PreviewContainer extends React.Component {
     return (
       <div>
         <Preview
+          file={preview.get('file')}
           isError={preview.get('isError')}
           isFresh={preview.get('isFresh')}
           isLoading={preview.get('isLoading')}
@@ -74,7 +75,6 @@ class PreviewContainer extends React.Component {
           onRun={this.runAction}
           previewId={id}
           runId={preview.get('runId')}
-          file={preview.get('file')}
           runServerUrl={runServerUrl}
           />
       </div>

@@ -60,7 +60,7 @@ export class DeckLocationUpdater extends React.Component {
 
   render () {
     return (
-      <span></span>
+      <span />
     );
   }
 }

@@ -72,11 +72,14 @@ export class TimerContainer extends React.Component {
             <span
               contentEditable={true}
               dangerouslySetInnerHTML={{__html: this.state.time}}
-              onInput={this.handleInput.bind(this)}>
-            </span>
+              onInput={this.handleInput.bind(this)}
+              />
             &nbsp;min
           </h1>
-          <button onClick={this.resume.bind(this)} className={styles.button}>
+          <button
+            className={styles.button}
+            onClick={this.resume.bind(this)}
+            >
             <Icon icon={'play-arrow'} />
           </button>
         </div>
@@ -87,7 +90,10 @@ export class TimerContainer extends React.Component {
     return (
       <div>
           <h1>{timeLeft} min</h1>
-          <button onClick={this.pause.bind(this)} className={styles.button}>
+          <button
+            className={styles.button}
+            onClick={this.pause.bind(this)}
+            >
             <Icon icon={'stop'} />
           </button>
       </div>

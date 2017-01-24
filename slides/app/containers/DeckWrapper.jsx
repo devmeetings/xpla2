@@ -88,8 +88,8 @@ class DeckContainer extends React.Component {
         <DeckActiveSlide
           onNextSlide={this.nextSlide.bind(this)}
           onPrevSlide={this.prevSlide.bind(this)}
-          runServerUrl={this.props.runServerUrl}
           path={this.props.activeSlide.get('path')}
+          runServerUrl={this.props.runServerUrl}
           slide={this.props.activeSlide.get('content')}
           title={this.props.activeSlide.get('title')}
           />

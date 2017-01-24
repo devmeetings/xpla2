@@ -68,12 +68,11 @@ export class DeckActiveSlide extends React.Component {
         <div
           className={styles.slide}
           ref={(c) => this._previousElement = c}
-          >
-        </div>
+          />
         <div
           className={styles.slide}
-          ref={(c) => this._element = c}>
-        </div>
+          ref={(c) => this._element = c}
+          />
       </div>
     );
   }

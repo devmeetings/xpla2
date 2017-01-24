@@ -51,7 +51,7 @@ function generateSlide (state, slideName) {
 
       // Fill in the editors
       _.values(state.editors).map((editor, idx) => {
-        const $editor = clone.querySelectorAll(`xp-editor`)[idx];
+        const $editor = clone.querySelectorAll('xp-editor')[idx];
         $editor.setAttribute('active', editor.active.name);
         const files = getFilesWithActiveAsJsArray(editor);
         $editor.innerHTML =  '\n' + files.map((file) => {

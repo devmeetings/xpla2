@@ -3,8 +3,8 @@ if (document == document.currentScript.ownerDocument) {
 }
 
 function loadStylesAndScripts (document) {
-  const styles = `css/slide.$1.css`;
-  const script = `js/slide.$1.js`;
+  const styles = 'css/slide.$1.css';
+  const script = 'js/slide.$1.js';
 
   const $style = document.createElement('link');
   $style.rel = 'stylesheet';

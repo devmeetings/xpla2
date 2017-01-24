@@ -156,12 +156,12 @@ export class Editor extends React.Component {
     const aceEditor = (
         <AceEditor
           commands={this.commands}
-          height='100%'
+          height="100%"
           name={`editor-${name}-${this.editorName}`}
           onChange={this.props.onTabContentChange}
           session={session}
-          theme='chrome'
-          width='100%'
+          theme="chrome"
+          width="100%"
         />
     );
 
@@ -192,7 +192,7 @@ export class Editor extends React.Component {
             onChange={this.props.onTabChange}
             />
         </div>
-        <div className={'xp-resize-column'}></div>
+        <div className={'xp-resize-column'} />
         <div className={'xp-column'} style={{width: 'calc(100% - 11rem)'}}>
           <div className={styles.treeEditorAce}>
             {aceEditor}

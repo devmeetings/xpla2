@@ -144,7 +144,7 @@ export class Annotations extends React.Component {
             onChange={() => {}}
             />
         </div>
-        <div className={'xp-resize-column'}></div>
+        <div className={'xp-resize-column'} />
         <div className={'xp-column'} style={{ width: 'calc(100% - 9rem)' }}>
           {this.renderAce(annotation)}
         </div>
@@ -192,7 +192,7 @@ export class Annotations extends React.Component {
     }
 
     if (this.props.annotations.size <= anno) {
-      return (<div></div>);
+      return (<div />);
     }
 
     const annotation = this.props.annotations.get(anno).toJS();
@@ -203,7 +203,8 @@ export class Annotations extends React.Component {
         {this.renderAnnotationsEditor(annotation)}
         <div
           className={annotation.description ? styles.slideDescription: ''}
-          dangerouslySetInnerHTML={{__html: annotation.description || ''}}></div>
+          dangerouslySetInnerHTML={{__html: annotation.description || ''}}
+          />
     </div>
     );
   }
@@ -220,14 +221,14 @@ export class Annotations extends React.Component {
 
   render () {
     if (this.props.annotations.size == 0 && !this.props.hasIntro) {
-      return (<div></div>);
+      return (<div />);
     }
 
     const anno = this.props.currentAnnotation;
     return (
       <Modal
-        isOpen={this.props.isOpen}
         contentLabel={this.props.title}
+        isOpen={this.props.isOpen}
         onRequestClose={this.props.onRequestClose}
         style={this.modalStyles}
         >

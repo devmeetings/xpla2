@@ -140,7 +140,7 @@ export class Preview extends React.Component {
         className={styles.logsButton}
         href={this.props.runServerUrl + '/api/results/' + this.props.runId + '/_logs.html'}
         target={'_blank'}
-        title='Output logs'
+        title="Output logs"
         >
           <Icon icon={'subject'} />
       </a>

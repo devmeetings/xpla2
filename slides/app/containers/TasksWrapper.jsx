@@ -17,8 +17,8 @@ export class TasksContainer extends React.Component {
   renderTasks () {
     return this.props.tasks.map((task, idx) => {
       return (
-        <li key={idx} className={styles.task}>
-          <span dangerouslySetInnerHTML={{__html: task.get('content')}}></span>
+        <li className={styles.task} key={idx}>
+          <span dangerouslySetInnerHTML={{__html: task.get('content')}} />
           <span className={`${styles.badge} ${styles[task.get('type')]}`}>{task.get('type')}</span>
         </li>
       );
@@ -28,12 +28,15 @@ export class TasksContainer extends React.Component {
   render () {
     return (
       <div>
-        <div dangerouslySetInnerHTML={{__html: this.props.header}}></div>
-        <TimerContainer timer={this.props.timer} globalEvents={this.props.globalEvents} />
+        <div dangerouslySetInnerHTML={{__html: this.props.header}} />
+        <TimerContainer
+          globalEvents={this.props.globalEvents}
+          timer={this.props.timer}
+          />
         <ol>
           {this.renderTasks()}
         </ol>
-        <div dangerouslySetInnerHTML={{__html: this.props.footer}}></div>
+        <div dangerouslySetInnerHTML={{__html: this.props.footer}} />
       </div>
     );
   }

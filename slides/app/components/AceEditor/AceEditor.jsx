@@ -189,8 +189,7 @@ export class AceEditor extends React.Component {
       <div
         className={className}
         id={this.props.name}
-        style={divStyle}>
-      </div>
+        style={divStyle} />
     );
   }
 }

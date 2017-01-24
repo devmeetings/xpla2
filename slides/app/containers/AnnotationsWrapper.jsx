@@ -151,7 +151,7 @@ class AnnotationsContainer extends React.Component {
 }
 
 function asHtml(content) {
-  return (<div dangerouslySetInnerHTML={{__html: content}}></div>);
+  return (<div dangerouslySetInnerHTML={{__html: content}} />);
 }
 
 AnnotationsContainer.propTypes = {
