@@ -14,7 +14,7 @@ module.exports = function readCommitsFromGit(dir, branches, ignore) {
 
   return Git.Repository.open(dir)
     .then(repo => {
-      if (branches[0] === 'current' && branches.length === 1) {
+      if (branches[0] === 'current=Current' && branches.length === 1) {
         return repo.getHeadCommit()
           .then(head => processCommit(head, ignored))
           .then(commits => ({
@@ -23,7 +23,8 @@ module.exports = function readCommitsFromGit(dir, branches, ignore) {
       }
 
       const branches2 = Promise.all(branches.map(branch => {
-        return Git.Branch.lookup(repo, branch, Git.Branch.BRANCH.ALL)
+        const split = branch.split('=');
+        return Git.Branch.lookup(repo, split[0], Git.Branch.BRANCH.ALL)
           .then(ref => ({
             branch: ref,
             name: branch

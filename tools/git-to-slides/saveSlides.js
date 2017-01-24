@@ -6,19 +6,25 @@ const mkdirp = require('mkdirp');
 const path = require('path');
 
 module.exports = function saveSlides (options, slidesPerBranch) {
-  Object.keys(slidesPerBranch).forEach(branch => {
+  const decks = Object.keys(slidesPerBranch).map(branch => {
     const options2 = _.clone(options);
-    options2.output = path.join(options.output, branch);
+    const split = branch.split('=');
+    const shortName = split[0];
+    const fullName = split[1] || shortName;
+    options2.output = path.join(options.output, shortName);
 
     const slides = slidesPerBranch[branch];
     mkdirp.sync(options2.output);
     slides.map(saveSlide.bind(this, options2));
-    saveDeck(options2, slides);
+    saveDeck(options2, fullName, slides);
+    return { shortName, fullName };
   });
+
+  fs.writeFileSync(path.join(options.output, 'index.html'), agenda(options, decks));
 };
 
-function saveDeck (options, slides) {
-  fs.writeFileSync(path.join(options.output, 'index.html'), deckToHtml(options, slides));
+function saveDeck (options, name, slides) {
+  fs.writeFileSync(path.join(options.output, 'index.html'), deckToHtml(options, name, slides));
 }
 
 function saveSlide (options, slide) {
@@ -41,14 +47,53 @@ function slideFileName (slide) {
   return `${slide.slideName}-${title}.html`;
 }
 
-function deckToHtml (options, slides) {
+function agenda (options, decks) {
+  return `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>${options.name}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" media="all" href="${options.resourceUrl}/css/deck.${options.version}.css" />
+        <style>
+          body {
+            margin: 5rem;
+          }
+          a[hhref] {
+            color: #aaa;
+          }
+        </style>
+      </head>
+      <body style="text-align: center">
+        <div style="min-width: 60vw; margin: 0 auto; display:inline-block; width: auto;text-align: left">
+          <h1 style="text-align: center">${options.name}</h1>
+          <h3 style="text-align: center; color: #aaa;">${options.date}</h3>
+          <h3 style="text-align: center; color: #aaa;">${options.link}</h3>
+
+          ${decks.map(deckToLink).join('\n')}
+        </div>
+      </body>
+    </html>
+  `;
+}
+
+function deckToLink (deck, index) {
+  const { shortName, fullName } = deck;
+  return `
+    <h3><a href="${shortName}/index.html">${index+1}. ${fullName}</a></h3>
+  `;
+}
+
+function deckToHtml (options, name, slides) {
   return `
     <!DOCTYPE html>
     <html xp-run-server-url="${options.runServer}">
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title>Deck</title>
+        <title>${name}</title>
         <link type="text/css" rel="stylesheet" media="all" href="${options.resourceUrl}/css/deck.${options.version}.css" />
       </head>
       <body>

@@ -16,15 +16,18 @@ const DEFAULT_SOFTWARE_VERSION = '3.0.0';
 if (require.main === module) {
   program
     .version(require('./package.json').version)
-    .option('-b, --branches <branches>', 'Comma separated list of branches [current]', function (val) {
-      return val.split(',');
-    }, ['current'])
+    .option(
+      '-b, --branches <branches>',
+      'Semicolon separated list of branches, fullname can be supplied after = [current=Current]',
+      val => val.split(';'), ['current=Current']
+    )
+    .option('-n, --name [name]', `Workshop name [Workshop]`, 'Workshop')
+    .option('-d, --date [date]', 'Workshop date and location []', '')
+    .option('-l, --link [link]', 'Short link for the workshop []', '')
     .option('-r, --runner [runner]', `Runner type [${DEFAULT_RUNNER}]`, DEFAULT_RUNNER)
     .option('-s, --run-server [url]', `Run server url, [${DEFAULT_RUN_SERVER}]`, DEFAULT_RUN_SERVER)
     .option('-o, --output [dir]', `Output directory [${DEFAULT_OUTPUT}]`, DEFAULT_OUTPUT)
-    .option('-i, --ignore <patterns>', 'Comma separated list of filenames to ignore, []', function (val) {
-      return val.split(',');
-    }, [])
+    .option('-i, --ignore <patterns>', 'Comma separated list of filenames to ignore, []', val => val.split(','), [])
     .parse(process.argv);
 
   readCommitsFromGit(process.cwd(), program.branches, program.ignore)
@@ -38,7 +41,10 @@ if (require.main === module) {
       runner: program.runner,
       runServer: program.runServer,
       resourceUrl: DEFAULT_RESOURCE_URL,
-      version: DEFAULT_SOFTWARE_VERSION
+      version: DEFAULT_SOFTWARE_VERSION,
+      name: program.name,
+      date: program.date,
+      link: program.link
     }))
     .catch(rethrow);
 }
