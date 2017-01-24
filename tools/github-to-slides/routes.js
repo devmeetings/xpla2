@@ -22,7 +22,7 @@ function handleError (e, reply) {
   });
 }
 
-const safePattern = /^[a-z0-9\.\_\-]+$/i;
+const safePattern = /^[a-z0-9._-]+$/i;
 
 module.exports = [
   {

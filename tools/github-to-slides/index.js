@@ -28,13 +28,15 @@ server.register([
   {
     register: Good,
     options: {
-      reporters: [{
-        reporter: require('good-console'),
-        events: {
-          response: '*',
-          log: '*'
-        }
-      }]
+      reporters: {
+        console: [{
+          module: 'good-console',
+          args: [{
+            response: '*',
+            log: '*'
+          }]
+        }, 'stdout']
+      }
     }
   }
 ], (err) => {

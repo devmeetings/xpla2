@@ -35,7 +35,7 @@ server.register([
             response: '*',
             log: '*'
           }]
-        }]
+        }, 'stdout']
       }
     }
   }

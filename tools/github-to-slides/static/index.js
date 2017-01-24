@@ -1,5 +1,5 @@
 /* globals angular */
-"use strict";
+'use strict';
 
 let mod = angular.module('github-to-slides', []);
 
@@ -30,7 +30,7 @@ Object.assign(UploadCtrl.prototype, {
       return;
     }
 
-    let pattern = /github\.com[:\/](.+)\/(.+)$/;
+    let pattern = /github\.com[:/](.+)\/(.+)$/;
     let match = pattern.exec(url);
 
     if (!match) {
@@ -69,6 +69,5 @@ Object.assign(UploadCtrl.prototype, {
     });
   }
 });
-
 
 angular.bootstrap(document, [mod.name]);
