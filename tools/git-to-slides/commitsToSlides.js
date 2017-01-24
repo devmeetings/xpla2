@@ -57,7 +57,7 @@ function convertCommitsToSlidesContent (commits) {
     if (hasOldFiles) {
       // reuse old editors
       const lastSlide = _.last(slidesContent);
-      editors.push.apply(editors, oldFiles.map((file) => {
+      editors.push.apply(editors, lastSlide ? oldFiles.map((file) => {
         const oldEditor = lastSlide.editors.find((editor) => {
           return editor.id === file.path;
         });
@@ -67,7 +67,7 @@ function convertCommitsToSlidesContent (commits) {
           highlight: '',
           src: oldEditor.src
         };
-      }));
+      }) : []);
     }
 
     const msg = splitToTitleAndComment(commit.message);
