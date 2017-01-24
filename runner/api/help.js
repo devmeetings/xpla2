@@ -1,6 +1,7 @@
 const marked = require('marked');
 const fs = require('fs');
 const highlight = require('highlight.js');
+const path = require('path');
 
 marked.setOptions({
   highlight: function (code) {
@@ -23,9 +24,9 @@ module.exports = function getHelp () {
     </style>
   </head>
   <body>
-  ${marked(fs.readFileSync(__dirname + '/../README.md', 'utf8'))}
+  ${marked(fs.readFileSync(path.join(__dirname, '..', 'README.md'), 'utf8'))}
   <h1>Detailed docs</h1>
-  ${marked(fs.readFileSync(__dirname + '/../docs.md', 'utf8'))}
+  ${marked(fs.readFileSync(path.jon(__dirname, '..', 'docs.md'), 'utf8'))}
   </body>
   </html>`;
 };

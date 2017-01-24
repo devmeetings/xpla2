@@ -3,6 +3,7 @@
 const ts = require('typescript');
 const fs = require('fs');
 const _ = require('lodash');
+const path = require('path');
 const cwd = process.cwd() + '/';
 
 const buildErrorsPage = require('./buildErrorsPage');
@@ -96,7 +97,7 @@ function tsSysForWorkspace (workspace) {
         return c.toString();
       }
 
-      fileName = __dirname + '/' + fileName;
+      fileName = path.join(__dirname, fileName);
       if (fs.existsSync(fileName)) {
         const c = fs.readFileSync(fileName, encoding);
         return c.toString();
@@ -109,14 +110,14 @@ function tsSysForWorkspace (workspace) {
     resolvePath: function (path) {
       return path;
     },
-    fileExists: function (path) {
-      const workspacePath = path.replace(cwd, '');
+    fileExists: function (path2) {
+      const workspacePath = path2.replace(cwd, '');
       const existsInWorkspace = !!workspace[workspacePath];
       if (existsInWorkspace) {
         return true;
       }
-      path = __dirname + '/' + path;
-      return fs.existsSync(path);
+      path2 = path.join(__dirname, path2);
+      return fs.existsSync(path2);
     },
     directoryExists: function (path) {
       return true;

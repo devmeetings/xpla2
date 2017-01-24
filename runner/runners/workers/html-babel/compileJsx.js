@@ -2,6 +2,7 @@ const babel = require('babel-core');
 
 const _ = require('lodash');
 const buildErrorsPage = require('../html-ts/buildErrorsPage');
+const path = require('path');
 
 module.exports = function compileJsx (code) {
   const inFiles = _.values(code.files);
@@ -28,7 +29,7 @@ module.exports = function compileJsx (code) {
 };
 
 function preset (presetName) {
-  return __dirname + `/node_modules/babel-preset-${presetName}`;
+  return path.join(__dirname, 'node_modules', `babel-preset-${presetName}`);
 }
 
 function transpileJsxFiles (files) {

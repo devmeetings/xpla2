@@ -22,7 +22,7 @@ function commitCode (data) {
       hash.update(file.content);
       return file;
     })
-    .indexBy('name')
+    .keyBy('name')
     .value();
 
   return commits.store({

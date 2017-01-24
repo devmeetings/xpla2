@@ -1,6 +1,7 @@
 const marked = require('marked');
 const fs = require('fs');
 const highlight = require('highlight.js');
+const path = require('path');
 
 marked.setOptions({
   highlight: function (code) {
@@ -23,7 +24,7 @@ module.exports = function getHelp () {
     </style>
   </head>
   <body>
-  ${marked(fs.readFileSync(__dirname + '/../docs-git.md', 'utf8'))}
+  ${marked(fs.readFileSync(path.join(__dirname, '..', 'docs-git.md'), 'utf8'))}
   </body>
   </html>`;
 };

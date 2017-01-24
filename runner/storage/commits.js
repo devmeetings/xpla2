@@ -1,6 +1,6 @@
 'use strict';
 
-const uuid = require('node-uuid');
+const uuid = require('uuid');
 const db = require('./db');
 
 const mem = db();
