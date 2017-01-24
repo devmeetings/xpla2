@@ -16,7 +16,7 @@ if (!sourceDir || process.argv[2] !== '--dir') {
 
 
 function generateSlides(source, target) {
-  return generator.readCommitsFromGit(source, [])
+  return generator.readCommitsFromGit(source, ['current'], [])
     .then(generator.convertCommitsToSlidesContent)
     .then(generator.saveSlides.bind(null, {
       output: target,

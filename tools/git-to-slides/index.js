@@ -16,6 +16,9 @@ const DEFAULT_SOFTWARE_VERSION = '3.0.0';
 if (require.main === module) {
   program
     .version(require('./package.json').version)
+    .option('-b, --branches <branches>', 'Comma separated list of branches [current]', function (val) {
+      return val.split(',');
+    }, ['current'])
     .option('-r, --runner [runner]', `Runner type [${DEFAULT_RUNNER}]`, DEFAULT_RUNNER)
     .option('-s, --run-server [url]', `Run server url, [${DEFAULT_RUN_SERVER}]`, DEFAULT_RUN_SERVER)
     .option('-o, --output [dir]', `Output directory [${DEFAULT_OUTPUT}]`, DEFAULT_OUTPUT)
@@ -24,7 +27,11 @@ if (require.main === module) {
     }, [])
     .parse(process.argv);
 
-  readCommitsFromGit(process.cwd(), program.ignore)
+  readCommitsFromGit(process.cwd(), program.branches, program.ignore)
+    .then(x => {
+      console.log(x);
+      return x;
+    })
     .then(convertCommitsToSlidesContent)
     .then(saveSlides.bind(null, {
       output: program.output,
@@ -37,6 +44,7 @@ if (require.main === module) {
 }
 
 function rethrow (err) {
+  console.error(err);
   setTimeout(() => {
     throw err;
   });

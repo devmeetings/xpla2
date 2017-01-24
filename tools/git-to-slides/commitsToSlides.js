@@ -20,98 +20,100 @@ function editorFilePath (slideName, file) {
   return `${slideName}/${file.path}`;
 }
 
-function convertCommitsToSlidesContent (commits) {
-  return commits.reduce((slidesContent, commit, idx) => {
-    // printCommit(commit);
+function convertCommitsToSlidesContent (commitsPerBranch) {
+  return _.mapValues(commitsPerBranch, commits => {
+    return commits.reduce((slidesContent, commit, idx) => {
+      // printCommit(commit);
 
-    const slideNo = idx + 1;
-    const slideName = withLeadingZeros(slideNo);
+      const slideNo = idx + 1;
+      const slideName = withLeadingZeros(slideNo);
 
-    const oldFiles = commit.oldFiles
-      .filter((file) => SPECIAL_FILES.indexOf(file.path) === -1);
+      const oldFiles = commit.oldFiles
+        .filter((file) => SPECIAL_FILES.indexOf(file.path) === -1);
 
-    const hasOldFiles = oldFiles.length;
+      const hasOldFiles = oldFiles.length;
 
-    const newFiles = commit.newFiles
-      .filter((file) => SPECIAL_FILES.indexOf(file.path) === -1);
+      const newFiles = commit.newFiles
+        .filter((file) => SPECIAL_FILES.indexOf(file.path) === -1);
 
-    const filesToSave = newFiles
-      .map((file) => {
-        return {
-          path: editorFilePath(slideName, file),
-          content: file.content
-        };
-      });
-
-    const noHighlight = getFile(commit.newFiles, XP_NO_HIGHLIGHT_FILE, '').split('\n');
-    const editors = newFiles.map((file) => {
-      const highlights = noHighlight.indexOf(file.path) === -1 ? linesToHighlights(file.lines) : '';
-
-      return {
-        id: file.path,
-        highlight: highlights,
-        src: editorFilePath(slideName, file)
-      };
-    });
-
-    if (hasOldFiles) {
-      // reuse old editors
-      const lastSlide = _.last(slidesContent);
-      editors.push.apply(editors, lastSlide ? oldFiles.map((file) => {
-        const oldEditor = lastSlide.editors.find((editor) => {
-          return editor.id === file.path;
+      const filesToSave = newFiles
+        .map((file) => {
+          return {
+            path: editorFilePath(slideName, file),
+            content: file.content
+          };
         });
+
+      const noHighlight = getFile(commit.newFiles, XP_NO_HIGHLIGHT_FILE, '').split('\n');
+      const editors = newFiles.map((file) => {
+        const highlights = noHighlight.indexOf(file.path) === -1 ? linesToHighlights(file.lines) : '';
 
         return {
           id: file.path,
-          highlight: '',
-          src: oldEditor.src
+          highlight: highlights,
+          src: editorFilePath(slideName, file)
         };
-      }) : []);
-    }
-
-    const msg = splitToTitleAndComment(commit.message);
-    const allFiles = commit.newFiles.concat(commit.oldFiles);
-    const annotations = getFile(commit.newFiles, ANNOTATIONS_FILE, '');
-    const tasks = getFile(commit.newFiles, TASKS_FILE, false);
-    const displayTree = hasFile(allFiles, XP_TREE_FILE);
-    const displayPreview = !hasFile(allFiles, XP_NO_PREVIEW);
-    const runner = getFile(allFiles, XP_RUNNER_FILE, false);
-    const preview = getFile(allFiles, XP_PREVIEW_FILE, false);
-
-    const active = editors.length ? editors[0].id : undefined;
-
-    // Push a slide if there are no tasks or more then one file is inside the commit.
-    if (!tasks || commit.newFiles > 1) {
-      slidesContent.push({
-        filesToSave,
-        active,
-        editors,
-        slideName,
-        annotations,
-        displayTree,
-        displayPreview,
-        runner,
-        preview,
-        title: msg.title,
-        comment: msg.comment
       });
-    }
 
-    if (tasks) {
-      slidesContent.push({
-        slideName,
-        tasks,
-        active,
-        editors,
-        title: msg.title,
-        comment: msg.comment,
-        filesToSave: [],
-      });
-    }
+      if (hasOldFiles) {
+        // reuse old editors
+        const lastSlide = _.last(slidesContent);
+        editors.push.apply(editors, lastSlide ? oldFiles.map((file) => {
+          const oldEditor = lastSlide.editors.find((editor) => {
+            return editor.id === file.path;
+          });
 
-    return slidesContent;
-  }, []);
+          return {
+            id: file.path,
+            highlight: '',
+            src: oldEditor.src
+          };
+        }) : []);
+      }
+
+      const msg = splitToTitleAndComment(commit.message);
+      const allFiles = commit.newFiles.concat(commit.oldFiles);
+      const annotations = getFile(commit.newFiles, ANNOTATIONS_FILE, '');
+      const tasks = getFile(commit.newFiles, TASKS_FILE, false);
+      const displayTree = hasFile(allFiles, XP_TREE_FILE);
+      const displayPreview = !hasFile(allFiles, XP_NO_PREVIEW);
+      const runner = getFile(allFiles, XP_RUNNER_FILE, false);
+      const preview = getFile(allFiles, XP_PREVIEW_FILE, false);
+
+      const active = editors.length ? editors[0].id : undefined;
+
+      // Push a slide if there are no tasks or more then one file is inside the commit.
+      if (!tasks || commit.newFiles > 1) {
+        slidesContent.push({
+          filesToSave,
+          active,
+          editors,
+          slideName,
+          annotations,
+          displayTree,
+          displayPreview,
+          runner,
+          preview,
+          title: msg.title,
+          comment: msg.comment
+        });
+      }
+
+      if (tasks) {
+        slidesContent.push({
+          slideName,
+          tasks,
+          active,
+          editors,
+          title: msg.title,
+          comment: msg.comment,
+          filesToSave: [],
+        });
+      }
+
+      return slidesContent;
+    }, []);
+  });
 }
 
 function getFile(newFiles, fileName, defaultVal) {
@@ -144,7 +146,7 @@ function splitToTitleAndComment(message) {
 
 function withLeadingZeros (num) {
   const n = `${num}`;
-  return _.padLeft(n, 3, '0');
+  return _.padStart(n, 3, '0');
 }
 
 function linesToHighlights (lines) {

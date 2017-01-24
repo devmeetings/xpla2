@@ -8,31 +8,61 @@ const IGNORE = [
   '.gitignore'
 ];
 
-module.exports = function readCommitsFromGit(dir, ignore) {
+module.exports = function readCommitsFromGit(dir, branches, ignore) {
+  console.log(dir, branches, ignore);
   const ignored = ignore.concat(IGNORE);
-  return new Promise((resolve, reject) => {
-     Git.Repository.open(dir)
-      .then((repo) => repo.getHeadCommit())
-      .then((head) => {
-        console.log('Head', head.message().replace(/\s+$/g, ''));
-        const history = head.history(Git.Revwalk.SORT.REVERSE);
 
-        const commits = [];
-        history.on('commit', (commit) => {
-          commits.push(
-            readCommit(commit, ignored).catch(reject)
-          );
+  return Git.Repository.open(dir)
+    .then(repo => {
+      if (branches[0] === 'current' && branches.length === 1) {
+        return repo.getHeadCommit()
+          .then(head => processCommit(head, ignored))
+          .then(commits => ({
+            current: commits
+          }));
+      }
+
+      const branches2 = Promise.all(branches.map(branch => {
+        return Git.Branch.lookup(repo, branch, Git.Branch.BRANCH.ALL)
+          .then(ref => ({
+            branch: ref,
+            name: branch
+          }));
+      }));
+
+      return branches2.then(branches => branches.reduce((previous, { branch, name }) => {
+        return previous.then(allCommits => {
+          console.log('Processing branch: ', name);
+          return repo.getCommit(branch.target())
+            .then(head => processCommit(head, ignored))
+            .then(commits => {
+              allCommits[name] = commits;
+              return allCommits;
+            })
         });
-
-        history.on('end', () => {
-          Promise.all(commits).then(resolve, reject)
-        });
-
-        history.start();
-      })
-      .catch(reject);
-  });
+      }, Promise.resolve({})))
+    });
 };
+
+function processCommit (head, ignored) {
+  return new Promise((resolve, reject) => {
+    console.log('Head', head.message().replace(/\s+$/g, ''));
+    const history = head.history(Git.Revwalk.SORT.REVERSE);
+
+    const commits = [];
+    history.on('commit', (commit) => {
+      commits.push(
+        readCommit(commit, ignored).catch(reject)
+      );
+    });
+
+    history.on('end', (a) => {
+      Promise.all(commits).then(resolve, reject)
+    });
+
+    history.start();
+  });
+}
 
 function readCommit (commit, ignore) {
   console.log('Reading commit', commit.message().replace(/\s+$/g, ''));
@@ -61,7 +91,7 @@ function readCommit (commit, ignore) {
 }
 
 function removeIgnoredFiles (files, ignore) {
-  return files.filter((file) => !_.contains(ignore, file.path));
+  return files.filter((file) => !_.includes(ignore, file.path));
 }
 
 function getAllFileEntries(tree) {

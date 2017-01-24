@@ -1,13 +1,20 @@
 "use strict";
 
+const _ = require('lodash');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
 const path = require('path');
 
-module.exports = function (options, slides) {
-  mkdirp.sync(options.output);
-  slides.map(saveSlide.bind(this, options));
-  saveDeck(options, slides);
+module.exports = function saveSlides (options, slidesPerBranch) {
+  Object.keys(slidesPerBranch).forEach(branch => {
+    const options2 = _.clone(options);
+    options2.output = path.join(options.output, branch);
+
+    const slides = slidesPerBranch[branch];
+    mkdirp.sync(options2.output);
+    slides.map(saveSlide.bind(this, options2));
+    saveDeck(options2, slides);
+  });
 };
 
 function saveDeck (options, slides) {
