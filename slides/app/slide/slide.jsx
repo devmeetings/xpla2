@@ -92,7 +92,7 @@ function getAsMap (dom, query, mapper) {
     .value();
 
   return Promise.all(elems).then((elemsResolved) => {
-    return _.indexBy(elemsResolved, 'id');
+    return _.keyBy(elemsResolved, 'id');
   });
 }
 

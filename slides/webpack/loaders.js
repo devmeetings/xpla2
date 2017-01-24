@@ -9,10 +9,10 @@ var RUN_SERVER = DEBUG ? 'http://localhost:3030' : 'https://xpla.org';
 var jsxLoader;
 var sassLoader;
 var cssLoader;
-var urlLoader = 'url-loader?name=[path][name].[ext]';
+var urlLoader = 'url?name=[path][name].[ext]';
 var htmlLoader = [
-  'file-loader?name=[path][name].[ext]',
-  'template-html-loader?' + [
+  'file?name=[path][name].[ext]',
+  'template-html?' + [
     'raw=true',
     'engine=lodash',
     'version=' + pkg.version,
@@ -21,7 +21,7 @@ var htmlLoader = [
     'debug=' + DEBUG
   ].join('&')
 ].join('!');
-var jsonLoader = ['json-loader'];
+var jsonLoader = ['json'];
 
 var sassParams = [
   'outputStyle=expanded',
@@ -29,34 +29,43 @@ var sassParams = [
   'includePaths[]=' + path.resolve(__dirname, '../node_modules')
 ];
 
+var babel = 'babel?' + [
+  'presets[]=react',
+  'presets[]=latest',
+  'presets[]=stage-0',
+  'plugins[]=transform-runtime',
+  'plugins[]=transform-decorators-legacy',
+  'plugins[]=rewire'
+].join('&');
+
 if (DEBUG || TEST) {
   jsxLoader = [];
   if (!TEST) {
     jsxLoader.push('react-hot');
   }
-  jsxLoader.push('babel-loader?optional[]=runtime&stage=0&plugins=rewire');
+  jsxLoader.push(babel);
   sassParams.push('sourceMap', 'sourceMapContents=true');
   sassLoader = [
-    'style-loader',
-    'css-loader?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]',
-    'postcss-loader',
-    'sass-loader?' + sassParams.join('&')
+    'style',
+    'css?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]',
+    'postcss',
+    'sass?' + sassParams.join('&')
   ].join('!');
   cssLoader = [
-    'style-loader',
-    'css-loader?sourceMap',
-    'postcss-loader'
+    'style',
+    'css?sourceMap',
+    'postcss'
   ].join('!');
 } else {
-  jsxLoader = ['babel-loader?optional[]=runtime&stage=0&plugins=rewire'];
-  sassLoader = ExtractTextPlugin.extract('style-loader', [
-    'css-loader?modules&localIdentName=[hash:base64:5]',
-    'postcss-loader',
-    'sass-loader?' + sassParams.join('&')
+  jsxLoader = [babel];
+  sassLoader = ExtractTextPlugin.extract('style', [
+    'css?modules&localIdentName=[hash:base64:5]',
+    'postcss',
+    'sass?' + sassParams.join('&')
   ].join('!'));
-  cssLoader = ExtractTextPlugin.extract('style-loader', [
-    'css-loader',
-    'postcss-loader'
+  cssLoader = ExtractTextPlugin.extract('style', [
+    'css',
+    'postcss'
   ].join('!'));
 }
 

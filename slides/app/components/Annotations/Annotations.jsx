@@ -227,6 +227,7 @@ export class Annotations extends React.Component {
     return (
       <Modal
         isOpen={this.props.isOpen}
+        contentLabel={this.props.title}
         onRequestClose={this.props.onRequestClose}
         style={this.modalStyles}
         >

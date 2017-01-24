@@ -24,7 +24,6 @@ export class Icon extends React.Component {
     return (
       <svg
         className={isSpinning ? cssStyles.spinning : cssStyles.normal}
-        fit
         preserveAspectRatio="xMidYMid meet"
         style={this._mergeStyles(
           styles,
