@@ -9,7 +9,6 @@ const IGNORE = [
 ];
 
 module.exports = function readCommitsFromGit(dir, branches, ignore) {
-  console.log(dir, branches, ignore);
   const ignored = ignore.concat(IGNORE);
 
   return Git.Repository.open(dir)

@@ -23,6 +23,8 @@ function handleError (e, reply) {
 }
 
 const safePattern = /^[a-z0-9._-]+$/i;
+const safeTitle = /^[a-z0-9.,:;/_ -]+$/i;
+const branch = /^[a-z0-9._-]+(=[a-z0-9._ -]+)?$/i
 
 module.exports = [
   {
@@ -33,11 +35,24 @@ module.exports = [
         payload: {
           username: Joi.string().regex(safePattern).required(),
           repo: Joi.string().regex(safePattern).required(),
-          branch: Joi.string().regex(safePattern).default('master')
+          branches: Joi.array()
+            .items(Joi.string().regex(branch).default('master'))
+            .min(1)
+            .unique(),
+          workshopName: Joi.string().regex(safeTitle).allow('').default(''),
+          workshopDate: Joi.string().regex(safeTitle).allow('').default(''),
+          workshopLink: Joi.string().regex(safeTitle).allow('').default('')
         }
       },
       handler: (req, reply) => {
-        generate(req.payload.username, req.payload.repo, req.payload.branch)
+        generate(
+          req.payload.username,
+          req.payload.repo,
+          req.payload.branches.join(';'),
+          req.payload.workshopName,
+          req.payload.workshopDate,
+          req.payload.workshopLink
+        )
           .then(reply)
           .catch(e => handleError(e, reply));
       }

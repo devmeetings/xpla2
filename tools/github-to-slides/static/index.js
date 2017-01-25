@@ -8,11 +8,21 @@ mod.component('xpUpload', {
   templateUrl: './upload.html'
 });
 
+function load(key, defaultValue) {
+  return localStorage.getItem('gh.slides-' + key) || defaultValue;
+}
+function save(key, val) {
+  localStorage.setItem('gh.slides-' + key, val);
+}
+
 function UploadCtrl ($scope, $http) {
-  this.url = '';
-  this.branch = 'master';
-  this.repo = '';
-  this.username = '';
+  this.url = load('url', '');
+  this.repo = load('repo', '');
+  this.username = load('username', '');
+  this.branches = load('branches', 'master');
+  this.workshopName = load('workshop.name', '');
+  this.workshopDate = load('workshop.date', '');
+  this.workshopLink = load('workshop.link', '');
   this.response = {
     isGenerating: false,
     success: null
@@ -20,6 +30,12 @@ function UploadCtrl ($scope, $http) {
 
   this.$http = $http;
   $scope.$watch(() => this.url, this.onUrlChange.bind(this));
+  // persistence
+  ['url', 'branches', 'workshopName', 'workshopDate', 'workshopLink'].forEach(prop => {
+    $scope.$watch(() => this[prop], (newVal) => {
+      save(prop, newVal);
+    });
+  });
 }
 
 Object.assign(UploadCtrl.prototype, {
@@ -40,6 +56,9 @@ Object.assign(UploadCtrl.prototype, {
 
     this.username = match[1];
     this.repo = match[2].replace(/\.git$/, '');
+
+    save('username', this.username);
+    save('repo', this.repo);
   },
 
   generateSlides () {
@@ -51,7 +70,10 @@ Object.assign(UploadCtrl.prototype, {
     this.$http.post('/api/generate', {
       username: this.username,
       repo: this.repo,
-      branch: this.branch
+      branches: this.branches.split('\n'),
+      workshopName: this.workshopName,
+      workshopDate: this.workshopDate,
+      workshopLink: this.workshopLink
     }).then((response) => {
       this.response = {
         isGenerating: false,

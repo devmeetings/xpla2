@@ -18,7 +18,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-5">
+    <div class="col-sm-6">
       <div class="form-group">
         <input
           type="text"
@@ -29,7 +29,7 @@
           />
       </div>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-6">
       <div class="form-group">
         <input
           type="text"
@@ -40,15 +40,53 @@
           />
       </div>
     </div>
-    <div class="col-sm-2">
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <h4>Workshop Details</h4>
       <div class="form-group">
         <input
           type="text"
           class="form-control"
-          ng-model="$ctrl.branch"
-          placeholder="Branch"
-        />
+          ng-model="$ctrl.workshopName"
+          placeholder="Workshop Name (optional)"
+          />
       </div>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          ng-model="$ctrl.workshopDate"
+          placeholder="Workshop Date and Location (optional)"
+          />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          ng-model="$ctrl.workshopLink"
+          placeholder="Workshop Short Link (optional)"
+          />
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <h4>List of branches:</h4>
+      <div class="form-group">
+        <textarea
+          type="text"
+          class="form-control"
+          rows="5"
+          ng-model="$ctrl.branches"
+          placeholder="List of branches"
+        ></textarea>
+      </div>
+      <p>
+        <small>
+          One branch per line. To add a title type:
+          <code>branch=branchTitle</code>, for example:
+          <code>react=Introduction to React</code>
+        </small>
+      </p>
     </div>
   </div>
   <div class="row">
@@ -56,7 +94,7 @@
       <div class="form-group">
         <button
           class="btn btn-primary btn-block btn-lg"
-          ng-disabled="$ctrl.error || !$ctrl.username || !$ctrl.repo || $ctrl.response.isGenerating"
+          ng-disabled="$ctrl.error || !$ctrl.username || !$ctrl.repo || !$ctrl.branches || $ctrl.response.isGenerating"
           ng-click="$ctrl.generateSlides()"
           >
           <span class="glyphicon glyphicon-random" ng-show="!$ctrl.response.isGenerating"></span>

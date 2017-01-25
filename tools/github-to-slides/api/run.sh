@@ -7,13 +7,17 @@ set -x
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 WORK_DIR="/tmp/work"
 COMMAND="$DIR/../../git-to-slides/index.js"
+ARGS=()
 TARGET_OWNER="$1"
 TARGET_REPO="$2"
-BRANCH="$3"
+BRANCHES=$3
+WORKSHOP_NAME=$4
+WORKSHOP_DATE=$5
+WORKSHOP_LINK=$6
 WORK_OWNER="xpla-bot"
 WORK_REPO="$TARGET_REPO"
-SLIDES_WORKDIR="slides-$TARGET_OWNER-$BRANCH"
-LOG_FILE="./$SLIDES_WORKDIR-pr-log"
+SLIDES_WORKDIR="slides-$TARGET_OWNER"
+LOG_FILE="/tmp/$SLIDES_WORKDIR-pr-log"
 
 if [ "x$TARGET_OWNER" == "x" ]; then
   echo "Please provide TARGET_OWNER";
@@ -23,9 +27,23 @@ if [ "x$TARGET_REPO" == "x" ]; then
   echo "Please provide TARGET_REPO";
   exit 3
 fi
-if [ "x$BRANCH" == "x" ]; then
-  echo "Please provide BRANCH";
+if [ "x$BRANCHES" == "x" ]; then
+  echo "Please provide BRANCHES";
   exit 3
+else
+  ARGS+=(--branches "$BRANCHES")
+fi
+
+if [ "x$WORKSHOP_NAME" != "x" ]; then
+  ARGS+=(--name "$WORKSHOP_NAME")
+fi
+
+if [ "x$WORKSHOP_DATE" != "x" ]; then
+  ARGS=(--date "$WORKSHOP_DATE")
+fi
+
+if [ "x$WORKSHOP_LINK" != "x" ]; then
+  ARGS=(--link "$WORKSHOP_LINK")
 fi
 
 set +x
@@ -43,26 +61,21 @@ set -x
 echo "Cloning repo"
 rm -rf $WORK_DIR || true
 rm -rf $LOG_FILE || true
-git clone -b $BRANCH "https://github.com/$TARGET_OWNER/$TARGET_REPO.git" $WORK_DIR
+git clone "https://github.com/$TARGET_OWNER/$TARGET_REPO.git" $WORK_DIR
 cd $WORK_DIR
 # Format code
 echo "Processing"
-$COMMAND > $LOG_FILE
+$COMMAND "${ARGS[@]}"> $LOG_FILE
 # Clear any unfinished work
 rm ../$SLIDES_WORKDIR -r || true
 mv slides ../$SLIDES_WORKDIR
 git checkout gh-pages || (echo "You need to create gh-pages branch first. (git checkout --orphan gh-pages)" && exit 10)
-if [ "$BRANCH" == "master" ]; then
-  rsync -a ../$SLIDES_WORKDIR/* .
-  git add .
-else
-  rsync -a ../$SLIDES_WORKDIR/ $BRANCH
-  git add $BRANCH
-fi
+rsync -a ../$SLIDES_WORKDIR/* .
+git add .
 rm ../$SLIDES_WORKDIR -r
 # Commit
 echo "Committing work"
-git commit -am "Auto-generated slides for $BRANCH"
+git commit -am "Auto-generated slides."
 # And push
 sleep 10
 echo "Pushing work to repo"
@@ -70,6 +83,7 @@ set +x
 git remote add work "https://${WORK_OWNER}:${WORK_KEY}@github.com/$WORK_OWNER/${WORK_REPO}.git"
 git push -u work gh-pages --force &> $LOG_FILE
 set -x
+exit 1
 # Prepare PR
 echo "Preparing PR"
 set +x

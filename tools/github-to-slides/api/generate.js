@@ -2,9 +2,9 @@
 
 const spawn = require('child_process').spawn;
 
-module.exports = function (user, repo, branch) {
+module.exports = function (user, repo, branches, workshopName, workshopDate, workshopLink) {
   return new Promise((resolve, reject) => {
-    const proc = spawn('./run.sh', [user, repo, branch], {
+    const proc = spawn('./run.sh', [user, repo, branches, workshopName, workshopDate, workshopLink], {
       cwd: __dirname
     });
 

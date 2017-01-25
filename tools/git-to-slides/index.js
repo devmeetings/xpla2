@@ -31,10 +31,6 @@ if (require.main === module) {
     .parse(process.argv);
 
   readCommitsFromGit(process.cwd(), program.branches, program.ignore)
-    .then(x => {
-      console.log(x);
-      return x;
-    })
     .then(convertCommitsToSlidesContent)
     .then(saveSlides.bind(null, {
       output: program.output,
