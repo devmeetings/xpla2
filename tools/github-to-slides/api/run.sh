@@ -63,6 +63,10 @@ rm -rf $WORK_DIR || true
 rm -rf $LOG_FILE || true
 git clone "https://github.com/$TARGET_OWNER/$TARGET_REPO.git" $WORK_DIR
 cd $WORK_DIR
+
+# Create local branches
+for remote in `git branch -r `; do git checkout $remote ; git pull; done
+git checkout master
 # Format code
 echo "Processing"
 $COMMAND "${ARGS[@]}"> $LOG_FILE
