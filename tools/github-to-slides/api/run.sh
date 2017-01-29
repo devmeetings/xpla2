@@ -64,8 +64,9 @@ rm -rf $LOG_FILE || true
 git clone "https://github.com/$TARGET_OWNER/$TARGET_REPO.git" $WORK_DIR
 cd $WORK_DIR
 
+IFS=';' read -r -a branchnames <<< "$BRANCHES"
 # Create local branches
-for remote in `git branch -r `; do git checkout $remote ; git pull; done
+for remote in "${branchnames[@]}"; do git checkout $remote ; git pull; done
 git checkout master
 # Format code
 echo "Processing"
@@ -87,7 +88,6 @@ set +x
 git remote add work "https://${WORK_OWNER}:${WORK_KEY}@github.com/$WORK_OWNER/${WORK_REPO}.git"
 git push -u work gh-pages --force &> $LOG_FILE
 set -x
-exit 1
 # Prepare PR
 echo "Preparing PR"
 set +x
