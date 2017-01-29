@@ -8,11 +8,11 @@ mod.component('xpUpload', {
   templateUrl: './upload.html'
 });
 
-function load(key, defaultValue) {
-  return localStorage.getItem('gh.slides-' + key) || defaultValue;
+function load (key, defaultValue) {
+  return window.localStorage.getItem('gh.slides-' + key) || defaultValue;
 }
-function save(key, val) {
-  localStorage.setItem('gh.slides-' + key, val);
+function save (key, val) {
+  window.localStorage.setItem('gh.slides-' + key, val);
 }
 
 function UploadCtrl ($scope, $http) {

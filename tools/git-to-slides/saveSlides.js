@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const _ = require('lodash');
 const fs = require('fs');
@@ -43,7 +43,7 @@ function saveSlide (options, slide) {
 }
 
 function slideFileName (slide) {
-  const title = trim(slide.title).replace(/[^a-z0-9\-_\.\s]/ig, '').replace(/\s/g, '_');
+  const title = trim(slide.title).replace(/[^a-z0-9\-_.\s]/ig, '').replace(/\s/g, '_');
   return `${slide.slideName}-${title}.html`;
 }
 
@@ -82,7 +82,7 @@ function agenda (options, decks) {
 function deckToLink (deck, index) {
   const { shortName, fullName } = deck;
   return `
-    <h3><a href="${shortName}/index.html">${index+1}. ${fullName}</a></h3>
+    <h3><a href="${shortName}/index.html">${index + 1}. ${fullName}</a></h3>
   `;
 }
 
@@ -112,7 +112,7 @@ function slideToHtmlDeck (slide) {
   return `\t<link async rel="import" href="${slideFileName(slide)}" />`;
 }
 
-function getEditorWidth(slide) {
+function getEditorWidth (slide) {
   if (!slide.displayPreview) {
     return '100%';
   }

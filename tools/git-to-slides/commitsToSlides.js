@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const _ = require('lodash');
 
@@ -10,6 +10,7 @@ const XP_RUNNER_FILE = '_xp-runner';
 const XP_PREVIEW_FILE = '_xp-preview-file';
 const XP_NO_PREVIEW = '_xp-no-preview';
 
+const DEBUG = false;
 const SPECIAL_FILES = [
   ANNOTATIONS_FILE, XP_TREE_FILE, XP_NO_HIGHLIGHT_FILE, XP_RUNNER_FILE, XP_PREVIEW_FILE, XP_NO_PREVIEW, TASKS_FILE
 ];
@@ -23,7 +24,9 @@ function editorFilePath (slideName, file) {
 function convertCommitsToSlidesContent (commitsPerBranch) {
   return _.mapValues(commitsPerBranch, commits => {
     return commits.reduce((slidesContent, commit, idx) => {
-      // printCommit(commit);
+      if (DEBUG) {
+        printCommit(commit);
+      }
 
       const slideNo = idx + 1;
       const slideName = withLeadingZeros(slideNo);
@@ -107,7 +110,7 @@ function convertCommitsToSlidesContent (commitsPerBranch) {
           editors,
           title: msg.title,
           comment: msg.comment,
-          filesToSave: [],
+          filesToSave: []
         });
       }
 
@@ -116,7 +119,7 @@ function convertCommitsToSlidesContent (commitsPerBranch) {
   });
 }
 
-function getFile(newFiles, fileName, defaultVal) {
+function getFile (newFiles, fileName, defaultVal) {
   const file = newFiles.filter((file) => file.path === fileName)[0];
   if (!file) {
     return defaultVal;
@@ -124,13 +127,13 @@ function getFile(newFiles, fileName, defaultVal) {
   return file.content;
 }
 
-function hasFile(newFiles, fileName) {
+function hasFile (newFiles, fileName) {
   const file = newFiles.filter((file) => file.path === fileName)[0];
   return !!file;
 }
 
-function splitToTitleAndComment(message) {
-  const PATTERN = /(.+) \[(.+)\]/;
+function splitToTitleAndComment (message) {
+  const PATTERN = /(.+) \[(.+)]/;
   const match = message.match(PATTERN);
   if (match) {
     return {
@@ -160,13 +163,13 @@ function linesToHighlights (lines) {
 }
 
 function printCommit (commit) {
-    const printFile = (file) => {
-      const c = _.clone(file);
-      delete c.content;
-      c.lines = JSON.stringify(file.lines);
-      return c;
-    };
-    console.log('New:', commit.newFiles.map(printFile));
-    console.log('Old:', commit.oldFiles.map(printFile));
-    console.log(commit.message + '\n');
+  const printFile = (file) => {
+    const c = _.clone(file);
+    delete c.content;
+    c.lines = JSON.stringify(file.lines);
+    return c;
+  };
+  console.log('New:', commit.newFiles.map(printFile));
+  console.log('Old:', commit.oldFiles.map(printFile));
+  console.log(commit.message + '\n');
 }

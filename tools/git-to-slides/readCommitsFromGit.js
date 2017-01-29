@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const Git = require('nodegit');
 const _ = require('lodash');
@@ -8,7 +8,7 @@ const IGNORE = [
   '.gitignore'
 ];
 
-module.exports = function readCommitsFromGit(dir, branches, ignore) {
+module.exports = function readCommitsFromGit (dir, branches, ignore) {
   const ignored = ignore.concat(IGNORE);
 
   return Git.Repository.open(dir)
@@ -38,9 +38,9 @@ module.exports = function readCommitsFromGit(dir, branches, ignore) {
             .then(commits => {
               allCommits[name] = commits;
               return allCommits;
-            })
+            });
         });
-      }, Promise.resolve({})))
+      }, Promise.resolve({})));
     });
 };
 
@@ -57,7 +57,7 @@ function processCommit (head, ignored) {
     });
 
     history.on('end', (a) => {
-      Promise.all(commits).then(resolve, reject)
+      Promise.all(commits).then(resolve, reject);
     });
 
     history.start();
@@ -94,7 +94,7 @@ function removeIgnoredFiles (files, ignore) {
   return files.filter((file) => !_.includes(ignore, file.path));
 }
 
-function getAllFileEntries(tree) {
+function getAllFileEntries (tree) {
   const entries = tree.entries()
     .filter((entry) => entry.isFile());
 

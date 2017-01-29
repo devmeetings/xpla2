@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const gulp = require('gulp');
 const watch = require('gulp-watch');
@@ -14,8 +14,7 @@ if (!sourceDir || process.argv[2] !== '--dir') {
   throw new Error('You need to provide path to the repository. `npm start <dir>`');
 }
 
-
-function generateSlides(source, target) {
+function generateSlides (source, target) {
   return generator.readCommitsFromGit(source, ['current'], [])
     .then(generator.convertCommitsToSlidesContent)
     .then(generator.saveSlides.bind(null, {
@@ -33,19 +32,17 @@ gulp.task('clean', function () {
 });
 
 gulp.task('serve', ['clean'], function () {
-
   watch([`${sourceDir}/**/*`], function () {
     return generateSlides(sourceDir, slidesDir);
   });
 
   generateSlides(sourceDir, slidesDir).then(() => {
-   gulp.src(slidesDir)
+    gulp.src(slidesDir)
     .pipe(server({
       livereload: true,
       open: true
     }));
   });
-
 });
 
 gulp.task('default', ['serve']);
