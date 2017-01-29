@@ -50,7 +50,7 @@ export class DeckActiveSlide extends React.Component {
 
     // Initialize slide content
     this._element.classList.add(styles.hidenow)
-    initializeSlide(this._element, props.runServerUrl, props.title, props.path).then((destroy) => {
+    initializeSlide(this._element, props.runServerUrl, props.presenceServerUrl, props.title, props.path).then((destroy) => {
       this._element.classList.remove(styles.hidenow);
       // TODO [todr] Not sure if this might be mem leak?
       destroy.events.on('slide.next', this.props.onNextSlide);
@@ -83,6 +83,7 @@ DeckActiveSlide.propTypes = {
   slide: React.PropTypes.object.isRequired,
   path: React.PropTypes.string.isRequired,
   runServerUrl: React.PropTypes.string.isRequired,
+  presenceServerUrl: React.PropTypes.string,
   onNextSlide: React.PropTypes.func.isRequired,
   onPrevSlide: React.PropTypes.func.isRequired
 };

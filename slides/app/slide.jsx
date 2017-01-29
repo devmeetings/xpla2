@@ -19,8 +19,10 @@ import {resizer} from './components/Resizer/Resizer';
 
 
 if (!document.querySelector('xp-deck')) {
-  const runServerUrl = getRunServerUrl(document.querySelector('html'));
-  initializeSlide(document.body, runServerUrl).catch((e) => console.error(e));
+  const $html = document.querySelector('html');
+  const runServerUrl = getRunServerUrl($html);
+  const presenceServerUrl = $html.getAttribute('xp-presence-url');
+  initializeSlide(document.body, runServerUrl, presenceServerUrl).catch((e) => console.error(e));
 
   // To support saving on slide and on deck we need to to this:
   document.body.setAttribute('xp-slide', window.location.href);

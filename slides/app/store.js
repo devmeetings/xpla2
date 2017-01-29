@@ -8,6 +8,7 @@ import logger from './components/logger';
 
 import reducers from './reducers';
 import globalReducer from './reducers/global/index';
+import presence from './middlewares/presence/index';
 
 export default function (initialState) {
 
@@ -20,6 +21,7 @@ export default function (initialState) {
         logger.log(action);
         next(action);
       },
+      presence,
     )(
       createStore
     )(

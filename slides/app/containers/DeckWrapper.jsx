@@ -90,6 +90,7 @@ class DeckContainer extends React.Component {
           onPrevSlide={this.prevSlide.bind(this)}
           path={this.props.activeSlide.get('path')}
           runServerUrl={this.props.runServerUrl}
+          presenceServerUrl={this.props.presenceServerUrl}
           slide={this.props.activeSlide.get('content')}
           title={this.props.activeSlide.get('title')}
           />
@@ -114,6 +115,7 @@ DeckContainer.propTypes = {
 @connect(
   state => ({
     runServerUrl: state.get('runServerUrl'),
+    presenceServerUrl: state.get('presenceServerUrl'),
     slides: state.get('deck').get('slides'),
     activeSlide: state.get('deck').get('active'),
     back: state.get('deck').get('back')

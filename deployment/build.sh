@@ -22,6 +22,14 @@ if (( $tests == 1 )); then
 fi
 cd -
 
+echo '----------------------Crafting Presence-----------------------------'
+cd presence
+yarn install
+if (( $tests == 1 )); then
+  npm run lint
+fi
+cd -
+
 echo '----------------------Preparing git-to-slides archive --------------'
 cd tools
 rm -rf git-to-slides/node_modules || true
@@ -41,10 +49,11 @@ cd runner
 npm run clean_modules
 cd -
 rm -rf static || true
+rm -rf presence/node_modules || true
 cp slides/build static -r
 cp git-to-slides.tar.gz static
 
-tar cvzf xplarunner.tar.gz runner static
+tar cvzf xplarunner.tar.gz runner presence static
 
 echo '----------------------Building GHSlides-----------------------------'
 cd tools
