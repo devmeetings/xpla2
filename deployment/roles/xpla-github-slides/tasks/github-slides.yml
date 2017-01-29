@@ -39,9 +39,11 @@
     src: "/srv/_packages/ghslides_{{xplarunner_version}}.tar.gz"
 
 - name: Installing Modules
-  npm:
-    production: yes
-    path: "/srv/git.{{ server_name }}/github-to-slides"
+  command: "yarn install --production"
+  environment:
+    NODE_ENV: production
+  args:
+    chdir: "/srv/git.{{ server_name }}/github-to-slides"
 
 - name: Installing Modules
   npm:

@@ -2,6 +2,7 @@
   "name": "xpla-github-to-slides",
   "version": "0.1.0",
   "description": "",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
@@ -15,26 +16,25 @@
       "**/node_modules/**"
     ]
   },
-  "author": "Tomusdrw <tomusdrw@todr.me>",
-  "license": "ISC",
+  "author": "Tomusdrw <tomusdrw@gmail.com>",
   "dependencies": {
-    "good": "^7.1.0",
-    "good-console": "^6.2.0",
-    "hapi": "^16.1.0",
-    "highlight.js": "^9.9.0",
-    "inert": "^4.1.0",
-    "joi": "^10.2.0",
-    "lodash": "^4.17.4",
-    "lout": "^9.2.0",
-    "marked": "^0.3.6",
-    "mime-types": "^2.1.14",
-    "redis": "^2.6.5",
-    "redis-url": "^1.2.1",
-    "vision": "^4.1.1"
+    "good": "7.1.0",
+    "good-console": "6.2.0",
+    "hapi": "16.1.0",
+    "highlight.js": "9.9.0",
+    "inert": "4.1.0",
+    "joi": "10.2.0",
+    "lodash": "4.17.4",
+    "lout": "9.2.0",
+    "marked": "0.3.6",
+    "mime-types": "2.1.14",
+    "redis": "2.6.5",
+    "redis-url": "1.2.1",
+    "vision": "4.1.1"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0",
-    "semistandard": "^9.2.1",
-    "snazzy": "^6.0.0"
+    "nodemon": "1.11.0",
+    "semistandard": "9.2.1",
+    "snazzy": "6.0.0"
   }
 }

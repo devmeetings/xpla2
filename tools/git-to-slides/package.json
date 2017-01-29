@@ -2,23 +2,23 @@
   "name": "git-to-slides",
   "version": "1.1.0",
   "description": "",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "start": "gulp --dir"
   },
-  "author": "",
-  "license": "MIT",
+  "author": "Tomusdrw <tomusdrw@gmail.com>",
   "dependencies": {
-    "commander": "^2.9.0",
-    "lodash": "^4.17.4",
-    "mkdirp": "^0.5.1",
-    "nodegit": "^0.16.0"
+    "commander": "2.9.0",
+    "lodash": "4.17.4",
+    "mkdirp": "0.5.1",
+    "nodegit": "0.16.0"
   },
   "devDependencies": {
-    "del": "^2.2.2",
-    "gulp": "^3.9.1",
+    "del": "2.2.2",
+    "gulp": "3.9.1",
     "gulp-live-server": "0.0.30",
-    "gulp-server-livereload": "^1.9.2",
-    "gulp-watch": "^4.3.11"
+    "gulp-server-livereload": "1.9.2",
+    "gulp-watch": "4.3.11"
   }
 }

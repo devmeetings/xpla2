@@ -39,9 +39,11 @@
     src: "/srv/_packages/xplarunner_{{xplarunner_version}}.tar.gz"
 
 - name: Installing Modules
-  npm:
-    production: yes
-    path: "/srv/{{ server_name }}/runner"
+  command: "yarn install --production"
+  environment:
+    NODE_ENV: production
+  args:
+    chdir: "/srv/{{ server_name }}/runner"
 
 - name: Run On Startup
   command: pm2 startup -u xplarunner && mv /etc/init.d/pm2-init.sh /etc/init.d/pm2-{{ server_id }}.sh

@@ -3,28 +3,13 @@
   "version": "3.0.0",
   "description": "",
   "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "cd runner && npm run lint && cd ../slides && npm run lint",
-    "commit": "commit-wizard"
+    "test": "cd runner && npm run lint && cd ../slides && npm run lint"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@bitbucket.org/xpla2/xpla2.git"
   },
-  "config": {
-    "pre-git": {
-      "pre-push": [
-        "npm test"
-      ],
-      "pre-commit": [],
-      "post-commit": "git st",
-      "post-merge": "npm install"
-    }
-  },
-  "author": "Tomusdrw <todr@todr.me>",
-  "license": "ISC",
-  "homepage": "https://bitbucket.org/xpla2/xpla2#readme",
-  "devDependencies": {
-    "pre-git": "^3.12.0"
-  }
+  "author": "Tomusdrw <tomusdrw@gmail.com>"
 }

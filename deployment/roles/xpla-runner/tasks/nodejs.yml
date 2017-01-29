@@ -9,9 +9,14 @@
 - name: NodeJS | Install package
   apt: name=nodejs state=installed
 
-- name: NodeJS | Tools
+- name: NodeJS | Tools | PM2
   npm:
     name: pm2
+    global: yes
+
+- name: NodeJS | Tools | Yarn
+  npm:
+    name: yarn
     global: yes
 
 - name: Ensuring build essential
