@@ -22,7 +22,9 @@ import Store from './store';
 const $xpDeck = document.querySelector('xp-deck');
 const back = $xpDeck.getAttribute('back') || '';
 
-const runServerUrl = getRunServerUrl(document.querySelector('html'));
+const $html = document.querySelector('html');
+const runServerUrl = getRunServerUrl($html);
+const presenceServerUrl = $html.getAttribute('xp-presence-url');
 const slides = _
     .chain($xpDeck.querySelectorAll('link'))
     .map(getSlideState)
@@ -33,6 +35,7 @@ Promise.all(slides).then((slides) => {
 
   const store = Store({
     runServerUrl,
+    presenceServerUrl,
     deck: {
       active: activeSlide,
       slides: slides,

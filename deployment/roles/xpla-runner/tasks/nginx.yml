@@ -19,6 +19,11 @@
     src: nginx.services.tpl
     dest: "/etc/nginx/xpla/{{server_name}}.config"
 
+- name: Nginx | Copying Configuration (presence)
+  template:
+    src: nginx.presence.config.tpl
+    dest: "/etc/nginx/xpla/presence.{{server_name}}.config"
+
 - name: Nginx | Copying Keys
   copy:
     src: xpla.org.crt

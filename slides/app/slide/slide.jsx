@@ -21,7 +21,7 @@ import {isSmallScreen} from '../components/isSmallScreen';
 
 import './slide.scss';
 
-export function initializeSlide(dom, runServerUrl, defaultTitle, path) {
+export function initializeSlide(dom, runServerUrl, presenceServerUrl, defaultTitle, path) {
   if (!dom) {
     throw new Error('Provide DOM element!');
   }
@@ -50,7 +50,7 @@ export function initializeSlide(dom, runServerUrl, defaultTitle, path) {
       const [editors, previews] = a;
 
       const store = Store({
-        editors, previews, runServerUrl, annotations, timer, tasks
+        editors, previews, runServerUrl, presenceServerUrl, annotations, timer, tasks
       });
 
       const globalEvents = new EventEmitter({});
