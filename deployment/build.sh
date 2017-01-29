@@ -31,8 +31,9 @@ if (( $tests == 1 )); then
   cd git-to-slides
   yarn install
   npm run lint
+  cd ..
 fi
-cd -
+cd ..
 
 
 echo '----------------------Molding---------------------------------------'
@@ -55,5 +56,6 @@ if (( $tests == 1 )); then
   cd github-to-slides
   yarn install
   npm run lint
+  cd ..
 fi
-cd -
+cd ..

@@ -4,7 +4,22 @@
   "description": "Presence APIs for xplatform.",
   "author": "Tomusdrw <tomusdrw@gmail.com>",
   "main": "index.js",
+  "private": true,
   "scripts": {
+    "start": "nodemon index.js",
+    "lint": "semistandard --verbose | snazzy",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "good": "^7.1.0",
+    "good-console": "6.2.0",
+    "hapi": "16.1.0",
+    "joi": "10.2.0",
+    "nes": "6.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "1.11.0",
+    "semistandard": "9.2.1",
+    "snazzy": "6.0.0"
   }
 }
