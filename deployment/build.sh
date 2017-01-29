@@ -24,6 +24,7 @@ cd -
 
 echo '----------------------Preparing git-to-slides archive --------------'
 cd tools
+rm -rf git-to-slides/node_modules || true
 tar cvzf ../git-to-slides.tar.gz git-to-slides
 
 if (( $tests == 1 )); then
@@ -46,6 +47,8 @@ tar cvzf xplarunner.tar.gz runner static
 
 echo '----------------------Building GHSlides-----------------------------'
 cd tools
+rm -rf github-to-slides/node_modules || true
+rm -rf git-to-slides/node_modules || true
 tar cvzf ../ghslides.tar.gz *-to-slides
 
 if (( $tests == 1 )); then
