@@ -65,8 +65,47 @@
       <p>Each directory will be converted to one slide.</p>
     </div>
     <div class="col-sm-8" ng-show="$ctrl.mode === 'json'">
-      <h3>Your slides will be generated based on JSON file on <code>master</code> branch.</h3>
+      <h3>Your slides will be generated based on <code>xpla.json</code> file on <code>master</code> branch.</h3>
       <p>Make sure to include file with all details in <code>master</code> branch.</h3>
+      <p>
+        <a href="#" ng-click="$ctrl.showExample = !$ctrl.showExample">Example</a>
+      </p>
+      <textarea ng-if="$ctrl.showExample" rows="10" class="form-control">
+// Generate from directories
+// Example: https://github.com/tomusdrw/devmeeting-dirs-test
+{
+  "xpla.version": 1,
+  "name": "Test workshop with dirs",
+  "dirs": [
+    {
+      "name": "react",
+      "title": "React Example"
+    },
+    {
+      "name": "test2"
+    }
+  ]
+}
+
+// Generate from gitHistory (with default runner)
+// Example: https://github.com/tomusdrw/modernjs-demo
+{
+  "xpla.version": 1,
+  "name": "Test workshop with dirs",
+  "date": "24th July 2017",
+  "link": "https://short.link/",
+  "runner": "html",
+  "branches": [
+    {
+      "name": "react",
+      "title": "React Example"
+    },
+    {
+      "name": "branch2"
+    }
+  ]
+}
+      </textarea>
     </div>
     <div class="col-sm-8" ng-show="$ctrl.mode === 'manual'">
       <h3>Your slides will be generated from Git history of given branches.</h3>

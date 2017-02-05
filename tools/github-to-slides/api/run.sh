@@ -36,6 +36,8 @@ if [ "x$BRANCHES" == "xnone" ]; then
   ARGS+=(--from-dirs)
 elif [ "x$BRANCHES" != "x" ]; then
   ARGS+=(--branches "$BRANCHES")
+else
+  ARGS+=(--config)
 fi
 
 if [ "x$WORKSHOP_NAME" != "x" ]; then

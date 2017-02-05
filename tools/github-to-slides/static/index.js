@@ -21,7 +21,7 @@ function UploadCtrl ($scope, $http) {
     title: 'Directories in master'
   }, {
     name: 'json',
-    title: 'JSON file in master'
+    title: 'xpla.json file in master'
   }, {
     name: 'manual',
     title: 'Git History of branches'
