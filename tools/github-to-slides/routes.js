@@ -36,8 +36,7 @@ module.exports = [
           username: Joi.string().regex(safePattern).required(),
           repo: Joi.string().regex(safePattern).required(),
           branches: Joi.array()
-            .items(Joi.string().regex(branch).default('master'))
-            .min(1)
+            .items(Joi.string().regex(branch).default('none'))
             .unique(),
           workshopName: Joi.string().regex(safeTitle).allow('').default(''),
           workshopDate: Joi.string().regex(safeTitle).allow('').default(''),

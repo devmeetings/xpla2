@@ -6,7 +6,8 @@ const glob = require('glob');
 
 const IGNORE = [
   '.editorconfig',
-  '.gitignore'
+  '.gitignore',
+  '.git'
 ];
 
 module.exports = function readSlidesFromDir (dir, branches, ignore) {
@@ -14,6 +15,7 @@ module.exports = function readSlidesFromDir (dir, branches, ignore) {
 
   return fs.readdir(dir)
     .then(files => {
+      files = files.filter(name => ignored.indexOf(name) === -1);
       const dirs = getDirs(dir, files, branches);
       console.log('Directories', dirs);
 
@@ -79,7 +81,6 @@ function readFiles (dirObject, ignore) {
       });
     })
     .then(files => {
-      console.log(`Reading ${dirObject.path}`, files);
       return Promise.all(files
         .filter(file => fs.statSync(file).isFile())
         .map(file => {

@@ -42,6 +42,38 @@
     </div>
   </div>
   <div class="row">
+    <div class="col-sm-4">
+      <h3>Generate from:</h3>
+      <div class="form-group">
+        <label
+          class="form-check-label"
+          ng-repeat="val in $ctrl.modes"
+          >
+          <input
+            type="radio"
+            class="form-check-input"
+            ng-value="val.name"
+            ng-model="$ctrl.mode"
+            />
+          {{ val.title }}
+        </label>
+      </div>
+    </div>
+    <div class="col-sm-8" ng-show="$ctrl.mode === 'simple'">
+      <h3>Your slides will be generated from directories on <code>master</code> branch</h3>
+      <p>Each directory will be converted to one slide.</p>
+    </div>
+    <div class="col-sm-8" ng-show="$ctrl.mode === 'json'">
+      <h3>Your slides will be generated based on JSON file on <code>master</code> branch.</h3>
+      <p>Make sure to include file with all details in <code>master</code> branch.</h3>
+    </div>
+    <div class="col-sm-8" ng-show="$ctrl.mode === 'manual'">
+      <h3>Your slides will be generated from Git history of given branches.</h3>
+      <p>Fill up workshop details (name, date and link) and provide branches to generate slides from.</p>
+      <p>Those details will be saved in your browser, but you can also create a JSON file and store it in the repo.</p>
+    </div>
+  </div>
+  <div class="row" ng-show="$ctrl.mode === 'manual'">
     <div class="col-sm-6">
       <h4>Workshop Details</h4>
       <div class="form-group">
@@ -94,7 +126,7 @@
       <div class="form-group">
         <button
           class="btn btn-primary btn-block btn-lg"
-          ng-disabled="$ctrl.error || !$ctrl.username || !$ctrl.repo || !$ctrl.branches || $ctrl.response.isGenerating"
+          ng-disabled="$ctrl.error || !$ctrl.username || !$ctrl.repo || $ctrl.response.isGenerating"
           ng-click="$ctrl.generateSlides()"
           >
           <span class="glyphicon glyphicon-random" ng-show="!$ctrl.response.isGenerating"></span>

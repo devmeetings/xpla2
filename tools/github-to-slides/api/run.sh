@@ -27,10 +27,14 @@ if [ "x$TARGET_REPO" == "x" ]; then
   echo "Please provide TARGET_REPO";
   exit 3
 fi
-if [ "x$BRANCHES" == "x" ]; then
-  echo "Please provide BRANCHES";
-  exit 3
-else
+
+# Branches can be:
+# 1. `none` - generate from directories
+# 2. `` (empty) - generate from JSON
+# 3. `branch=Title` - semicolon separated list of branches
+if [ "x$BRANCHES" == "xnone" ]; then
+  ARGS+=(--from-dirs)
+elif [ "x$BRANCHES" != "x" ]; then
   ARGS+=(--branches "$BRANCHES")
 fi
 
@@ -54,7 +58,7 @@ curl -i \
     -H "Authorization: token ${WORK_KEY}" \
     -X POST \
     -d "{}" \
-    "https://api.github.com/repos/$TARGET_OWNER/$TARGET_REPO/forks"
+    "https://api.github.com/repos/$TARGET_OWNER/$TARGET_REPO/forks" > /dev/null
 set -x
 
 # Clone repo
@@ -64,9 +68,12 @@ rm -rf $LOG_FILE || true
 git clone "https://github.com/$TARGET_OWNER/$TARGET_REPO.git" $WORK_DIR
 cd $WORK_DIR
 
-IFS=';' read -r -a branchnames <<< "$BRANCHES"
-# Create local branches
-for remote in "${branchnames[@]}"; do git checkout $remote ; git pull; done
+
+if [ "x$BRANCHES" != "xnone" ]; then
+  IFS=';' read -r -a branchnames <<< "$BRANCHES"
+  # Create local branches
+  for remote in "${branchnames[@]}"; do git checkout $remote ; git pull; done
+fi
 git checkout master
 # Format code
 echo "Processing"

@@ -16,6 +16,17 @@ function save (key, val) {
 }
 
 function UploadCtrl ($scope, $http) {
+  this.modes = [{
+    name: 'simple',
+    title: 'Directories in master'
+  }, {
+    name: 'json',
+    title: 'JSON file in master'
+  }, {
+    name: 'manual',
+    title: 'Git History of branches'
+  }];
+  this.mode = load('mode', 'simple');
   this.url = load('url', '');
   this.repo = load('repo', '');
   this.username = load('username', '');
@@ -31,7 +42,7 @@ function UploadCtrl ($scope, $http) {
   this.$http = $http;
   $scope.$watch(() => this.url, this.onUrlChange.bind(this));
   // persistence
-  ['url', 'branches', 'workshopName', 'workshopDate', 'workshopLink'].forEach(prop => {
+  ['mode', 'url', 'branches', 'workshopName', 'workshopDate', 'workshopLink'].forEach(prop => {
     $scope.$watch(() => this[prop], (newVal) => {
       save(prop, newVal);
     });
@@ -61,6 +72,18 @@ Object.assign(UploadCtrl.prototype, {
     save('repo', this.repo);
   },
 
+  getBranches () {
+    if (this.mode === 'simple') {
+      return ['none'];
+    }
+
+    if (this.mode === 'json') {
+      return [];
+    }
+
+    return this.branches.split('\n');
+  },
+
   generateSlides () {
     this.response = {
       isGenerating: true,
@@ -70,8 +93,8 @@ Object.assign(UploadCtrl.prototype, {
     this.$http.post('/api/generate', {
       username: this.username,
       repo: this.repo,
-      branches: this.branches.split('\n'),
-      workshopName: this.workshopName,
+      branches: this.getBranches(),
+      workshopName: this.workshopName || this.repo,
       workshopDate: this.workshopDate,
       workshopLink: this.workshopLink
     }).then((response) => {
