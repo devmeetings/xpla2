@@ -37,18 +37,43 @@ if (require.main === module) {
     .option('-i, --ignore <patterns>', 'Comma separated list of filenames to ignore, []', val => val.split(','), [])
     .parse(process.argv);
 
-  if (program.config !== false) {
-    const defaultConfig = path.join(process.cwd(), 'xpla.json');
-    program.config = program.config === true ? defaultConfig : program.config || defaultConfig;
+  if (!readConfigFile(process.cwd(), program.config, program)) {
+    process.exit(1);
+  }
+
+  const commits = program.fromDirs
+    ? readCommitsFromDir(process.cwd(), program.branches, program.ignore)
+    : readCommitsFromGit(process.cwd(), program.branches, program.ignore)
+  ;
+
+  commits
+    .then(convertCommitsToSlidesContent)
+    .then(saveSlides.bind(null, {
+      output: program.output,
+      runner: program.runner,
+      runServer: program.runServer,
+      resourceUrl: DEFAULT_RESOURCE_URL,
+      version: DEFAULT_SOFTWARE_VERSION,
+      name: program.name,
+      date: program.date,
+      link: program.link
+    }))
+    .catch(rethrow);
+}
+
+function readConfigFile (workingDir, cfg, program = {}) {
+  if (cfg !== false) {
+    const defaultConfig = path.join(workingDir, 'xpla.json');
+    program.config = cfg === true ? defaultConfig : cfg || defaultConfig;
+
     const raw = JSON.parse(require('fs').readFileSync(program.config, 'utf8'));
     const result = validateConfig(raw);
     if (result.error) {
       console.error('Config: ', result.error.toString());
-      process.exit(1);
+      return false;
     }
 
     const config = result.value;
-
     program.name = config.name;
     program.date = config.date || program.date;
     program.link = config.link || program.link;
@@ -64,27 +89,11 @@ if (require.main === module) {
     }
   }
 
-  const commits = program.fromDirs
-    ? readCommitsFromDir(process.cwd(), program.branches, program.ignore)
-    : readCommitsFromGit(process.cwd(), program.branches, program.ignore)
-  ;
-
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
+  program.date = program.date || dateformat(tomorrow, 'fullDate');
 
-  commits
-    .then(convertCommitsToSlidesContent)
-    .then(saveSlides.bind(null, {
-      output: program.output,
-      runner: program.runner,
-      runServer: program.runServer,
-      resourceUrl: DEFAULT_RESOURCE_URL,
-      version: DEFAULT_SOFTWARE_VERSION,
-      name: program.name,
-      date: program.date || dateformat(tomorrow, 'fullDate'),
-      link: program.link
-    }))
-    .catch(rethrow);
+  return program;
 }
 
 function rethrow (err) {
@@ -96,7 +105,9 @@ function rethrow (err) {
 
 module.exports = {
   readCommitsFromGit,
+  readCommitsFromDir,
   convertCommitsToSlidesContent,
+  readConfigFile,
   saveSlides,
   DEFAULT_RUN_SERVER,
   DEFAULT_RESOURCE_URL,

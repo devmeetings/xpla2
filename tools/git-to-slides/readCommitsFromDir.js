@@ -17,7 +17,7 @@ module.exports = function readSlidesFromDir (dir, branches, ignore) {
     .then(files => {
       files = files.filter(name => ignored.indexOf(name) === -1);
       const dirs = getDirs(dir, files, branches);
-      console.log('Directories', dirs);
+      console.log('Directories', dirs.map(dir => dir.name));
 
       return Promise.all(dirs.map(dir => readFiles(dir, ignored)));
     })

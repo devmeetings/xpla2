@@ -1,5 +1,7 @@
 'use strict';
 
+const fs = require('fs');
+const path = require('path');
 const gulp = require('gulp');
 const watch = require('gulp-watch');
 const server = require('gulp-server-livereload');
@@ -15,14 +17,26 @@ if (!sourceDir || process.argv[2] !== '--dir') {
 }
 
 function generateSlides (source, target) {
-  return generator.readCommitsFromGit(source, ['current'], [])
+  const config = generator.readConfigFile(source, fs.existsSync(path.join(source, 'xpla.json')), {
+    branches: ['current=Current'],
+    ignore: [],
+    name: 'Devmeeting',
+  });
+
+  return (config.fromDirs
+      ? generator.readCommitsFromDir(source, config.branches, config.ignore)
+      : generator.readCommitsFromGit(source, config.branches, config.ignore)
+    )
     .then(generator.convertCommitsToSlidesContent)
     .then(generator.saveSlides.bind(null, {
       output: target,
-      runner: 'html',
-      runServer: generator.DEFAULT_RUN_SERVER,
+      runner: config.runner,
+      runServer: config.runServer || generator.DEFAULT_RUN_SERVER,
       resourceUrl: generator.DEFAULT_RESOURCE_URL,
-      version: generator.DEFAULT_SOFTWARE_VERSION
+      version: generator.DEFAULT_SOFTWARE_VERSION,
+      name: config.name,
+      date: config.date,
+      link: config.link
     }))
     .catch(generator.rethrow);
 }
