@@ -91,6 +91,7 @@ class DeckContainer extends React.Component {
           path={this.props.activeSlide.get('path')}
           presenceServerUrl={this.props.presenceServerUrl}
           runServerUrl={this.props.runServerUrl}
+          presenceServerUrl={this.props.presenceServerUrl}
           slide={this.props.activeSlide.get('content')}
           title={this.props.activeSlide.get('title')}
           />
