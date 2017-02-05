@@ -2,6 +2,7 @@
 
 'use strict';
 
+const dateformat = require('dateformat');
 const program = require('commander');
 const readCommitsFromGit = require('./readCommitsFromGit');
 const readCommitsFromDir = require('./readCommitsFromDir');
@@ -23,7 +24,7 @@ if (require.main === module) {
       val => val.split(';'), ['current=Current']
     )
     .option('-f, --from-dirs', 'Generate slides from directories instead of git history.', false)
-    .option('-n, --name [name]', `Workshop name [Workshop]`, 'Workshop')
+    .option('-n, --name [name]', `Workshop name [Devmeeting]`, 'Devmeeting')
     .option('-d, --date [date]', 'Workshop date and location []', '')
     .option('-l, --link [link]', 'Short link for the workshop []', '')
     .option('-r, --runner [runner]', `Runner type [${DEFAULT_RUNNER}]`, DEFAULT_RUNNER)
@@ -36,6 +37,10 @@ if (require.main === module) {
     ? readCommitsFromDir(process.cwd(), program.branches, program.ignore)
     : readCommitsFromGit(process.cwd(), program.branches, program.ignore)
   ;
+
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
   commits
     .then(convertCommitsToSlidesContent)
     .then(saveSlides.bind(null, {
@@ -45,7 +50,7 @@ if (require.main === module) {
       resourceUrl: DEFAULT_RESOURCE_URL,
       version: DEFAULT_SOFTWARE_VERSION,
       name: program.name,
-      date: program.date,
+      date: program.date || dateformat(tomorrow, 'fullDate'),
       link: program.link
     }))
     .catch(rethrow);

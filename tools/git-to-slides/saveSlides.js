@@ -10,7 +10,7 @@ module.exports = function saveSlides (options, slidesPerBranch) {
     const options2 = _.clone(options);
     const split = branch.split('=');
     const shortName = split[0];
-    const fullName = split[1] || shortName;
+    const fullName = split[1] || capitalize(shortName);
     options2.output = path.join(options.output, shortName);
 
     const slides = slidesPerBranch[branch];
@@ -22,6 +22,19 @@ module.exports = function saveSlides (options, slidesPerBranch) {
 
   fs.writeFileSync(path.join(options.output, 'index.html'), agenda(options, decks));
 };
+
+function capitalize (name) {
+  if (name === 'current') {
+    return 'Workshop Slides';
+  }
+
+  return name.replace(/-\._:/g, ' ')
+    .split(' ')
+    .map(word => {
+
+    })
+    .join(' ');
+}
 
 function saveDeck (options, name, slides) {
   fs.writeFileSync(path.join(options.output, 'index.html'), deckToHtml(options, name, slides));
@@ -70,12 +83,20 @@ function agenda (options, decks) {
         <div style="min-width: 60vw; margin: 0 auto; display:inline-block; width: auto;text-align: left">
           <h1 style="text-align: center">${options.name}</h1>
           <h3 style="text-align: center; color: #aaa;">${options.date}</h3>
-          <h3 style="text-align: center; color: #aaa;">${options.link}</h3>
+          <h3 style="text-align: center; color: #aaa;">${options.link ? options.link : genLink()}</h3>
 
           ${decks.map(deckToLink).join('\n')}
         </div>
       </body>
     </html>
+  `;
+}
+
+function genLink () {
+  return `
+    <script>
+      document.write(window.location);
+    </script>
   `;
 }
 

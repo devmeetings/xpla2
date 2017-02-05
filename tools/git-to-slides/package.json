@@ -11,6 +11,7 @@
   "author": "Tomusdrw <tomusdrw@gmail.com>",
   "dependencies": {
     "commander": "2.9.0",
+    "dateformat": "^2.0.0",
     "fs.promised": "^3.0.0",
     "glob": "^7.1.1",
     "lodash": "4.17.4",
