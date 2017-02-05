@@ -26,7 +26,7 @@ function UploadCtrl ($scope, $http) {
     name: 'manual',
     title: 'Git History of branches'
   }];
-  this.mode = load('mode', 'simple');
+  this.mode = load('mode', 'manual');
   this.url = load('url', '');
   this.repo = load('repo', '');
   this.username = load('username', '');
