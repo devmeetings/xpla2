@@ -150,7 +150,7 @@ function slideToHtml (options, slide) {
     return tasksToHtml(options, slide);
   }
 
-  const runner = slide.runner ? trim(slide.runner) : options.runner;
+  const runner = slide.runner ? trim(slide.runner) : ((options.runner === 'auto') ? 'html' : options.runner);
   const editorWidth = getEditorWidth(slide);
 
   const editor = `

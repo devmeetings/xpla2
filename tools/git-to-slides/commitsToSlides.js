@@ -80,7 +80,7 @@ function convertCommitsToSlidesContent (commitsPerBranch) {
       const tasks = getFile(commit.newFiles, TASKS_FILE, false);
       const displayTree = hasFile(allFiles, XP_TREE_FILE);
       const displayPreview = !hasFile(allFiles, XP_NO_PREVIEW);
-      const runner = getFile(allFiles, XP_RUNNER_FILE, false);
+      const runner = getFile(allFiles, XP_RUNNER_FILE, false) || autoRunner(allFiles);
       const preview = getFile(allFiles, XP_PREVIEW_FILE, false);
 
       const active = editors.length ? editors[0].id : undefined;
@@ -117,6 +117,41 @@ function convertCommitsToSlidesContent (commitsPerBranch) {
       return slidesContent;
     }, []);
   });
+}
+
+function autoRunner (files) {
+  const byFileEnding = [
+    [ 'java', '.java' ],
+    [ 'python', '.py' ],
+    [ 'go', '.go' ],
+    [ 'elm', '.elm' ],
+    [ 'dart', '.dart' ],
+    [ 'webpack', 'webpack.config.js' ],
+    [ 'html-ts', '.ts', '.tsx' ],
+    [ 'html-jsx', '.jsx' ],
+    [ 'html', '.html' ],
+    [ 'node', '.js' ]
+  ];
+
+  const isReact = files.any(file => {
+    return file.path === 'package.json' && file.content.indexOf('react-scripts') > 0;
+  });
+
+  if (isReact) {
+    return 'react';
+  }
+
+  const runner = byFileEnding.find(el => {
+    const runner = el[0];
+    const extensions = el.slice(1);
+
+    const found = extensions.find(ext => files.any(file => file.path.endsWith(ext)));
+    return found ? runner : false;
+  });
+
+  if (runner) {
+    return runner[0];
+  }
 }
 
 function getFile (newFiles, fileName, defaultVal) {
