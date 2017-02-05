@@ -133,7 +133,7 @@ function autoRunner (files) {
     [ 'node', '.js' ]
   ];
 
-  const isReact = files.any(file => {
+  const isReact = files.find(file => {
     return file.path === 'package.json' && file.content.indexOf('react-scripts') > 0;
   });
 
@@ -145,7 +145,7 @@ function autoRunner (files) {
     const runner = el[0];
     const extensions = el.slice(1);
 
-    const found = extensions.find(ext => files.any(file => file.path.endsWith(ext)));
+    const found = extensions.find(ext => files.find(file => file.path.endsWith(ext)));
     return found ? runner : false;
   });
 

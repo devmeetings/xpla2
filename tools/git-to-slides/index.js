@@ -4,6 +4,7 @@
 
 const program = require('commander');
 const readCommitsFromGit = require('./readCommitsFromGit');
+const readCommitsFromDir = require('./readCommitsFromDir');
 const convertCommitsToSlidesContent = require('./commitsToSlides');
 const saveSlides = require('./saveSlides');
 
@@ -21,6 +22,7 @@ if (require.main === module) {
       'Semicolon separated list of branches, fullname can be supplied after = [current=Current]',
       val => val.split(';'), ['current=Current']
     )
+    .option('-f, --from-dirs', 'Generate slides from directories instead of git history.', false)
     .option('-n, --name [name]', `Workshop name [Workshop]`, 'Workshop')
     .option('-d, --date [date]', 'Workshop date and location []', '')
     .option('-l, --link [link]', 'Short link for the workshop []', '')
@@ -30,7 +32,11 @@ if (require.main === module) {
     .option('-i, --ignore <patterns>', 'Comma separated list of filenames to ignore, []', val => val.split(','), [])
     .parse(process.argv);
 
-  readCommitsFromGit(process.cwd(), program.branches, program.ignore)
+  const commits = program.fromDirs
+    ? readCommitsFromDir(process.cwd(), program.branches, program.ignore)
+    : readCommitsFromGit(process.cwd(), program.branches, program.ignore)
+  ;
+  commits
     .then(convertCommitsToSlidesContent)
     .then(saveSlides.bind(null, {
       output: program.output,
