@@ -6,7 +6,7 @@ const branchSchema = Joi.object().keys({
 });
 
 const schema = Joi.object().keys({
-  ['xpla.version']: Joi.number().allow(1).required(),
+  'xpla.version': Joi.number().allow(1).required(),
   name: Joi.string().required().description('Name of the workshop'),
   date: Joi.string().description('Date of the workshop (your preferred format)'),
   link: Joi.string().description('Short link to the workshop'),
@@ -14,12 +14,12 @@ const schema = Joi.object().keys({
   runServer: Joi.string().description('Run server to use (Do not set if you don\'t know what it is)'),
   ignore: Joi.array().items(Joi.string()).description('Array of files to ignore while generating slides.'),
   dirs: Joi.array().items(branchSchema).min(1).description('List of directories to process'),
-  branches: Joi.array().items(branchSchema).min(1).description('List of branches to process'),
+  branches: Joi.array().items(branchSchema).min(1).description('List of branches to process')
 }).xor('branches', 'dirs');
 
 module.exports = function validate (config) {
   return Joi.validate(config, schema, {
     convert: false,
-    allowUnknown: false,
+    allowUnknown: false
   });
-}
+};

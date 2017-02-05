@@ -20,7 +20,7 @@ function generateSlides (source, target) {
   const config = generator.readConfigFile(source, fs.existsSync(path.join(source, 'xpla.json')), {
     branches: ['current=Current'],
     ignore: [],
-    name: 'Devmeeting',
+    name: 'Devmeeting'
   });
 
   return (config.fromDirs
