@@ -17,7 +17,7 @@ import {getActiveSlideState} from './components/read/ActiveSlideState';
 
 import DeckContainerWrapper from './containers/DeckWrapper';
 
-import Store from './store';
+import { deckStore } from './store';
 
 const $xpDeck = document.querySelector('xp-deck');
 const back = $xpDeck.getAttribute('back') || '';
@@ -33,7 +33,7 @@ const slides = _
 Promise.all(slides).then((slides) => {
   const activeSlide = getActiveSlideState(slides);
 
-  const store = Store({
+  const store = deckStore({
     runServerUrl,
     presenceServerUrl,
     deck: {

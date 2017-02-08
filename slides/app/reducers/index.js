@@ -1,4 +1,4 @@
-import deck from './deck';
+import deckReducer from './deck';
 import editors from './editors';
 import previews from './previews';
 import {runServerUrl, presenceServerUrl} from './servers';
@@ -8,8 +8,13 @@ import timer from './timer';
 import tasks from './tasks';
 import lastGeneratedSlideNumber from './lastGeneratedSlideNumber';
 
-export default {
-  deck,
+export const deck = {
+  deck: deckReducer,
+  runServerUrl,
+  presenceServerUrl,
+};
+
+export const slide = {
   editors,
   previews,
   runServerUrl,

@@ -1,10 +1,10 @@
-import {randomId} from './utils';
+import {findId} from './utils';
 import fetch from 'isomorphic-fetch';
 import _ from 'lodash';
 
 // We will first read the configuration to use right components
 export function getEditorState (dom, path) {
-  const id = dom.id || randomId('editor');
+  const id = dom.id || findId('editor', dom);
   dom.id = id;
 
   const active = dom.getAttribute('active');

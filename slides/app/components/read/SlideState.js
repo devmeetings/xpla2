@@ -1,4 +1,4 @@
-import {randomId} from './utils';
+import {findId} from './utils';
 import logger from '../logger';
 
 export function readTitle(dom) {
@@ -18,7 +18,7 @@ export function readTitle(dom) {
 }
 
 export function getSlideState (dom) {
-  const id = randomId(dom.href);
+  const id = findId(dom.href, dom);
   dom.id = `slide_${id}`;
 
 

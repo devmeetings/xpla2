@@ -14,7 +14,7 @@
     "good": "^7.1.0",
     "good-console": "6.2.0",
     "hapi": "16.1.0",
-    "joi": "10.2.0",
+    "joi": "^10.2.1",
     "nes": "6.4.0"
   },
   "devDependencies": {

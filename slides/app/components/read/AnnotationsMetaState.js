@@ -1,5 +1,3 @@
-import {randomId} from './utils';
-
 function getHtml(dom, field) {
   let elem = dom.querySelector(field);
   if (elem) {

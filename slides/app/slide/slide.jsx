@@ -4,7 +4,7 @@ import {render, unmountComponentAtNode} from 'react-dom';
 import {Provider} from 'react-redux';
 import EventEmitter from 'event-emitter';
 
-import Store from '../store';
+import { slideStore } from '../store';
 import {getEditorState} from '../components/read/EditorState';
 import {getPreviewState} from '../components/read/PreviewState';
 import {getAnnotationState} from '../components/read/AnnotationsMetaState';
@@ -49,7 +49,7 @@ export function initializeSlide(dom, runServerUrl, presenceServerUrl, defaultTit
     .then((a) => {
       const [editors, previews] = a;
 
-      const store = Store({
+      const store = slideStore({
         editors, previews, runServerUrl, presenceServerUrl, annotations, timer, tasks
       });
 

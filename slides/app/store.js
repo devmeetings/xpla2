@@ -6,23 +6,22 @@ import {fromJS} from 'immutable';
 
 import logger from './components/logger';
 
-import reducers from './reducers';
+import { deck, slide } from './reducers';
 import globalReducer from './reducers/global/index';
 import presence from './middlewares/presence/index';
 
-export default function (initialState) {
+function initStore (reducers, middlewares) {
+  return (initialState) => {
+    const reducer = combineReducers(reducers);
 
-  const reducer = combineReducers(reducers);
-
-  return applyMiddleware(
+    return applyMiddleware.apply(null, [
       thunk,
       (store) => (next) => (action) => {
         logger.log(store.getState().toJS());
         logger.log(action);
         next(action);
-      },
-      presence,
-    )(
+      }
+    ].concat(middlewares))(
       createStore
     )(
       (state, action) => {
@@ -32,4 +31,13 @@ export default function (initialState) {
       fromJS(initialState),
       window.devToolsExtension && window.devToolsExtension()
     );
+  };
+}
+
+export function deckStore(initialState) {
+  return initStore(deck, [presence])(initialState);
+}
+
+export function slideStore(initialState) {
+  return initStore(slide, [])(initialState);
 }
