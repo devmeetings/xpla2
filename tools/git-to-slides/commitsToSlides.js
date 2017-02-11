@@ -18,7 +18,12 @@ const SPECIAL_FILES = [
 module.exports = convertCommitsToSlidesContent;
 
 function editorFilePath (slideName, file) {
-  return `${slideName}/${file.path}`;
+  let path = file.path;
+  if (path[0] === '.') {
+    path = `dotfile${path}`;
+  }
+
+  return `${slideName}/${path}`;
 }
 
 function convertCommitsToSlidesContent (commitsPerBranch) {
