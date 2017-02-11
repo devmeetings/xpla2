@@ -48,12 +48,13 @@ cd ..
 echo '----------------------Molding---------------------------------------'
 cd runner
 npm run clean_modules
+npm run copy-config
 cd -
 rm -rf static || true
 rm -rf presence/node_modules || true
 cp slides/build static -r
+cp runner/static/* static/ -r
 cp git-to-slides.tar.gz static
-npm run copy-config
 
 tar cvzf xplarunner.tar.gz runner presence static
 
