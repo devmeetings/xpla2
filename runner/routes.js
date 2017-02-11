@@ -71,7 +71,7 @@ module.exports = [
         payload: {
           files: Joi.array().items(Joi.object({
             name: Joi.string().required(),
-            content: Joi.string().default('').allow('')
+            content: Joi.string().allow('').default('')
           })).min(1).required()
         }
       },
@@ -92,7 +92,7 @@ module.exports = [
           skipCache: Joi.boolean().default(false),
           files: Joi.array().items(Joi.object({
             name: Joi.string().required(),
-            content: Joi.string().default('')
+            content: Joi.string().allow('').default('')
           })).min(1).required()
         }
       },
