@@ -11,13 +11,14 @@ module.exports = function saveSlides (options, slidesPerBranch) {
     const split = branch.split('=');
     const shortName = split[0];
     const fullName = split[1] || capitalize(shortName);
+    const description = split[2] || '';
     options2.output = path.join(options.output, shortName);
 
     const slides = slidesPerBranch[branch];
     mkdirp.sync(options2.output);
     slides.map(saveSlide.bind(this, options2));
     saveDeck(options2, fullName, slides);
-    return { shortName, fullName };
+    return { shortName, fullName, description };
   });
 
   fs.writeFileSync(path.join(options.output, 'index.html'), agenda(options, decks));
@@ -81,14 +82,38 @@ function agenda (options, decks) {
       </head>
       <body style="text-align: center">
         <div style="min-width: 60vw; margin: 0 auto; display:inline-block; width: auto;text-align: left">
-          <h1 style="text-align: center">${options.name}</h1>
+          <a href="http://devmeetings.com" style="float:left">
+            <img src="http://xpla.org/static/devmeetings.png" />
+          </a>
+          ${author(options)}
+          <br style="clear: both" />
+          <h1 style="text-align: center;margin-top: 3em">${options.name}</h1>
           <h3 style="text-align: center; color: #aaa;">${options.date}</h3>
           <h3 style="text-align: center; color: #aaa;">${options.link ? options.link : genLink()}</h3>
-
+          <br />
           ${decks.map(deckToLink).join('\n')}
         </div>
       </body>
     </html>
+  `;
+}
+
+function author (options) {
+  if (!options.author) {
+    return '';
+  }
+
+  let link = options.authorLink;
+  if (link.indexOf('@') === 0) {
+    link = `https://twitter.com/${link.substr(1)}`;
+  } else if (link.indexOf('@') > 0) {
+    link = `mailto:${link}`;
+  }
+
+  return `
+    <h3 style="float: right; margin-top: 0">
+      <a href="${link}">${options.author}</a>
+    </h3>
   `;
 }
 
@@ -101,9 +126,10 @@ function genLink () {
 }
 
 function deckToLink (deck, index) {
-  const { shortName, fullName } = deck;
+  const { shortName, fullName, description } = deck;
   return `
     <h3><a href="${shortName}/index.html">${index + 1}. ${fullName}</a></h3>
+    <p>${description}</p>
   `;
 }
 

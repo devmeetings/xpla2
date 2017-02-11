@@ -31,6 +31,8 @@ if (require.main === module) {
     .option('-n, --name [name]', `Workshop name [Devmeeting]`, 'Devmeeting')
     .option('-d, --date [date]', 'Workshop date and location []', '')
     .option('-l, --link [link]', 'Short link for the workshop []', '')
+    .option('-a, --author [author]', 'Author name []', '')
+    .option('-e, --author-link [link]', 'Author link, twitter handle or e-mail address []', '')
     .option('-r, --runner [runner]', `Runner type [${DEFAULT_RUNNER}]`, DEFAULT_RUNNER)
     .option('-s, --run-server [url]', `Run server url, [${DEFAULT_RUN_SERVER}]`, DEFAULT_RUN_SERVER)
     .option('-o, --output [dir]', `Output directory [${DEFAULT_OUTPUT}]`, DEFAULT_OUTPUT)
@@ -56,7 +58,9 @@ if (require.main === module) {
       version: DEFAULT_SOFTWARE_VERSION,
       name: program.name,
       date: program.date,
-      link: program.link
+      link: program.link,
+      author: program.author,
+      authorLink: program.authorLink
     }))
     .catch(rethrow);
 }
@@ -80,12 +84,14 @@ function readConfigFile (workingDir, cfg, program = {}) {
     program.runner = config.runner || program.runner;
     program.runServer = config.runServer || program.runServer;
     program.ignore = config.ignore || program.ignore;
+    program.author = config.author.name || program.author.name;
+    program.authorLink = config.author.link || program.author.link;
     if (config.branches) {
       program.fromDirs = false;
-      program.branches = config.branches.map(branch => `${branch.name}=${branch.title || branch.name}`);
+      program.branches = config.branches.map(branch => `${branch.name}=${branch.title || branch.name}=${branch.description || ''}`);
     } else {
       program.fromDirs = true;
-      program.branches = config.dirs.map(dir => `${dir.name}=${dir.title || dir.name}`);
+      program.branches = config.dirs.map(dir => `${dir.name}=${dir.title || dir.name}=${dir.description || ''}`);
     }
   }
 

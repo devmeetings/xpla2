@@ -26,14 +26,16 @@ module.exports = function readSlidesFromDir (dir, branches, ignore) {
         return {
           newFiles: dirObject.files,
           oldFiles: [],
-          message: dirObject.title
+          message: dirObject.title,
+          branch: dirObject.branch
         };
       });
     })
     .then(dirsAsCommits => {
-      return {
-        current: dirsAsCommits
-      };
+      return dirsAsCommits.reduce((memo, dir) => {
+        memo[dir.branch] = [dir];
+        return memo;
+      }, {});
     });
 };
 
@@ -45,16 +47,20 @@ function getDirs (dir, files, branches) {
       .map(file => ({
         name: file,
         title: file,
+        description: '',
+        branch: `${file}`,
         path: path.join(dir, file)
       }));
   }
 
   return branches
     .map(branch => {
-      const [name, title] = branch.split('=');
+      const [name, title, description] = branch.split('=');
       return {
         name,
         title,
+        description,
+        branch,
         path: path.join(dir, name)
       };
     })
