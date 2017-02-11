@@ -17,6 +17,7 @@ cd -
 echo '----------------------Icing Runner----------------------------------'
 cd runner
 yarn install
+npm run copy-config
 if (( $tests == 1 )); then
   npm run test
 fi
@@ -52,6 +53,7 @@ rm -rf static || true
 rm -rf presence/node_modules || true
 cp slides/build static -r
 cp git-to-slides.tar.gz static
+npm run copy-config
 
 tar cvzf xplarunner.tar.gz runner presence static
 

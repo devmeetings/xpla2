@@ -10,7 +10,7 @@ const readCommitsFromGit = require('./readCommitsFromGit');
 const readCommitsFromDir = require('./readCommitsFromDir');
 const convertCommitsToSlidesContent = require('./commitsToSlides');
 const saveSlides = require('./saveSlides');
-const validateConfig = require('./config');
+const configModule = require('./config');
 
 const DEFAULT_OUTPUT = 'slides';
 const DEFAULT_RUNNER = 'auto';
@@ -71,7 +71,7 @@ function readConfigFile (workingDir, cfg, program = {}) {
     program.config = cfg === true ? defaultConfig : cfg || defaultConfig;
 
     const raw = JSON.parse(require('fs').readFileSync(program.config, 'utf8'));
-    const result = validateConfig(raw);
+    const result = configModule.validate(raw);
     if (result.error) {
       console.error('Config: ', result.error.toString());
       return false;

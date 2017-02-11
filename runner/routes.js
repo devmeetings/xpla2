@@ -40,6 +40,18 @@ module.exports = [
   },
   {
     method: 'GET',
+    path: '/xpla.json',
+    config: {
+      handler: (req, reply) => {
+        reply(require('./static/xpla.json'));
+      },
+      response: {
+        schema: require('./static/config').schema
+      }
+    }
+  },
+  {
+    method: 'GET',
     path: '/git/help',
     handler: (req, reply) => {
       reply(getGitHelp());
