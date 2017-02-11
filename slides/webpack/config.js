@@ -33,9 +33,8 @@ if (DEBUG) {
 var config = {
   context: path.join(__dirname, '../app'),
   cache: DEBUG,
-  debug: DEBUG,
   target: 'web',
-  devtool: DEBUG || TEST ? 'inline-source-map' : false,
+  devtool: DEBUG || TEST ? '#source-map' : false,
   entry: entry,
   output: {
     path: path.resolve(pkg.config.buildDir),
@@ -51,7 +50,8 @@ var config = {
   ],
   plugins: plugins,
   resolve: {
-    extensions: ['', '.js', '.json', '.jsx']
+    extensions: ['', '.js', '.json', '.jsx'],
+    unsafeCache: true
   },
   devServer: {
     contentBase: path.resolve(pkg.config.buildDir),

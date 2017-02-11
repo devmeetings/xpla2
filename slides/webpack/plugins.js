@@ -1,6 +1,7 @@
 var path = require('path');
 var util = require('util');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var webpack = require('webpack');
 var pkg = require('../package.json');
 
@@ -10,7 +11,10 @@ var TEST = process.env.NODE_ENV === 'test';
 var cssBundle = path.join('css', util.format('[name].%s.css', pkg.version));
 
 var plugins = [
-  new webpack.optimize.OccurenceOrderPlugin()
+  new webpack.optimize.OccurenceOrderPlugin(),
+  new CopyWebpackPlugin([{
+    from: '../static/'
+  }])
 ];
 if (DEBUG) {
   plugins.push(
