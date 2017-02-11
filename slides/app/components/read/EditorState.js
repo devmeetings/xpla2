@@ -36,7 +36,14 @@ export function getEditorState (dom, path) {
       return fetch(tpl.src, {
         credentials: 'same-origin',
       })
-        .then((response) => response.text())
+        .then((response) => {
+          if (response.status === 200) {
+            return response.text();
+          }
+
+          console.warn(`File not found ${tpl.src}`);
+          return '';
+        })
         .then((content) => {
           const {fileOrder, annotations} = parseAnnotations(content, extension, tpl.id);
           const highlight = parseHighlight(tpl, annotations);
