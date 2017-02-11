@@ -14,6 +14,8 @@ BRANCHES=$3
 WORKSHOP_NAME=$4
 WORKSHOP_DATE=$5
 WORKSHOP_LINK=$6
+WORKSHOP_AUTHOR=$7
+WORKSHOP_AUTHOR_LINK=$8
 WORK_OWNER="xpla-bot"
 WORK_REPO="$TARGET_REPO"
 SLIDES_WORKDIR="slides-$TARGET_OWNER"
@@ -45,11 +47,19 @@ if [ "x$WORKSHOP_NAME" != "x" ]; then
 fi
 
 if [ "x$WORKSHOP_DATE" != "x" ]; then
-  ARGS=(--date "$WORKSHOP_DATE")
+  ARGS+=(--date "$WORKSHOP_DATE")
 fi
 
 if [ "x$WORKSHOP_LINK" != "x" ]; then
-  ARGS=(--link "$WORKSHOP_LINK")
+  ARGS+=(--link "$WORKSHOP_LINK")
+fi
+
+if [ "x$WORKSHOP_AUTHOR" != "x" ]; then
+  ARGS+=(--author "$WORKSHOP_AUTHOR")
+fi
+
+if [ "x$WORKSHOP_AUTHOR_LINK" != "x" ]; then
+  ARGS+=(--author-link "$WORKSHOP_AUTHOR_LINK")
 fi
 
 set +x
@@ -74,7 +84,9 @@ cd $WORK_DIR
 if [ "x$BRANCHES" != "xnone" ]; then
   IFS=';' read -r -a branchnames <<< "$BRANCHES"
   # Create local branches
-  for remote in "${branchnames[@]}"; do git checkout $remote ; git pull; done
+  for remote in "${branchnames[@]}"; do
+    git checkout ${remote%%=*} ; git pull;
+  done
 fi
 git checkout master
 # Format code

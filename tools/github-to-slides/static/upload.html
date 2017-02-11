@@ -141,6 +141,22 @@
           placeholder="Workshop Short Link (optional)"
           />
       </div>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          ng-model="$ctrl.workshopAuthor"
+          placeholder="Workshop Author (optional)"
+          />
+        </div>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          ng-model="$ctrl.workshopAuthorLink"
+          placeholder="Workshop Author E-mail, Twitter or website (optional)"
+          />
+      </div>
     </div>
     <div class="col-sm-6">
       <h4>List of branches:</h4>
@@ -156,8 +172,8 @@
       <p>
         <small>
           One branch per line. To add a title type:
-          <code>branch=branchTitle</code>, for example:
-          <code>react=Introduction to React</code>
+          <code>branch=branchTitle=branchDescription</code>, for example:
+          <code>react=Introduction to React=Learn everything about React</code>
         </small>
       </p>
     </div>

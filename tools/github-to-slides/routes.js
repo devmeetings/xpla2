@@ -23,8 +23,8 @@ function handleError (e, reply) {
 }
 
 const safePattern = /^[a-z0-9._-]+$/i;
-const safeTitle = /^[a-z0-9.,:;/_ -]+$/i;
-const branch = /^[a-z0-9._-]+(=[a-z0-9._ -]+)?$/i;
+const safeTitle = /^[a-z0-9.,:;/_ -@]+$/i;
+const branch = /^[a-z0-9._-]+(=[a-z0-9._ -]+){0,2}$/i;
 
 module.exports = [
   {
@@ -40,7 +40,9 @@ module.exports = [
             .unique(),
           workshopName: Joi.string().regex(safeTitle).allow('').default(''),
           workshopDate: Joi.string().regex(safeTitle).allow('').default(''),
-          workshopLink: Joi.string().regex(safeTitle).allow('').default('')
+          workshopLink: Joi.string().regex(safeTitle).allow('').default(''),
+          workshopAuthor: Joi.string().regex(safeTitle).allow('').default(''),
+          workshopAuthorLink: Joi.string().regex(safeTitle).allow('').default('')
         }
       },
       handler: (req, reply) => {
@@ -50,7 +52,9 @@ module.exports = [
           req.payload.branches.join(';'),
           req.payload.workshopName,
           req.payload.workshopDate,
-          req.payload.workshopLink
+          req.payload.workshopLink,
+          req.payload.workshopAuthor,
+          req.payload.workshopAuthorLink
         )
           .then(reply)
           .catch(e => handleError(e, reply));

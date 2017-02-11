@@ -31,9 +31,11 @@ function UploadCtrl ($scope, $http) {
   this.repo = load('repo', '');
   this.username = load('username', '');
   this.branches = load('branches', 'master');
-  this.workshopName = load('workshop.name', '');
-  this.workshopDate = load('workshop.date', '');
-  this.workshopLink = load('workshop.link', '');
+  this.workshopName = load('workshopName', '');
+  this.workshopDate = load('workshopDate', '');
+  this.workshopLink = load('workshopLink', '');
+  this.workshopAuthor = load('workshopAuthor', '');
+  this.workshopAuthorLink = load('workshopAuthorLink', '');
   this.response = {
     isGenerating: false,
     success: null
@@ -42,7 +44,7 @@ function UploadCtrl ($scope, $http) {
   this.$http = $http;
   $scope.$watch(() => this.url, this.onUrlChange.bind(this));
   // persistence
-  ['mode', 'url', 'branches', 'workshopName', 'workshopDate', 'workshopLink'].forEach(prop => {
+  ['mode', 'url', 'branches', 'workshopName', 'workshopDate', 'workshopLink', 'workshopAuthor', 'workshopAuthorLink'].forEach(prop => {
     $scope.$watch(() => this[prop], (newVal) => {
       save(prop, newVal);
     });
@@ -96,7 +98,9 @@ Object.assign(UploadCtrl.prototype, {
       branches: this.getBranches(),
       workshopName: this.workshopName || this.repo,
       workshopDate: this.workshopDate,
-      workshopLink: this.workshopLink
+      workshopLink: this.workshopLink,
+      workshopAuthor: this.workshopAuthor,
+      workshopAuthorLink: this.workshopAuthorLink
     }).then((response) => {
       this.response = {
         isGenerating: false,
