@@ -71,7 +71,7 @@ module.exports = [
         payload: {
           files: Joi.array().items(Joi.object({
             name: Joi.string().required(),
-            content: Joi.string().default('')
+            content: Joi.string().default('').allow('')
           })).min(1).required()
         }
       },
