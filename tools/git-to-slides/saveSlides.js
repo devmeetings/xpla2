@@ -83,7 +83,7 @@ function agenda (options, decks) {
       <body style="text-align: center">
         <div style="min-width: 60vw; margin: 0 auto; display:inline-block; width: auto;text-align: left">
           <a href="http://devmeetings.com" style="float:left">
-            <img src="http://xpla.org/static/devmeetings.png" />
+            <img src="https://xpla.org/static/devmeetings.png" />
           </a>
           ${author(options)}
           <br style="clear: both" />
