@@ -177,6 +177,29 @@ export class Annotations extends React.Component {
     )];
   }
 
+  onRef = (div) => {
+    this.div = div;
+  };
+
+  componentDidUpdate(prevProps) {
+    if (this.props.currentAnnotation === prevProps.currentAnnotation) {
+      return;
+    }
+
+    // TODO [ToDr] Crappy.
+    setTimeout(() => {
+      if (!this.div) {
+        return;
+      }
+
+      const audio = this.div.querySelector('audio');
+      if (audio) {
+        audio.autoplay = true;
+        audio.play();
+      }
+    });
+  }
+
   renderAnnotation (anno) {
     const title = this.props.title;
 
@@ -204,6 +227,7 @@ export class Annotations extends React.Component {
         <div
           className={annotation.description ? styles.slideDescription: ''}
           dangerouslySetInnerHTML={{__html: annotation.description || ''}}
+          ref={this.onRef}
           />
     </div>
     );
