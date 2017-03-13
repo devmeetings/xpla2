@@ -48,16 +48,34 @@ function generateSlide (state, slideName) {
     link.onerror = reject;
     link.onload = function (e) {
       const clone = link.import.querySelector('html').cloneNode(true);
-
       // Fill in the editors
       _.values(state.editors).map((editor, idx) => {
         const $editor = clone.querySelectorAll('xp-editor')[idx];
         $editor.setAttribute('active', editor.active.name);
         const files = getFilesWithActiveAsJsArray(editor);
-        $editor.innerHTML =  '\n' + files.map((file) => {
+        files.forEach((file) => {
           const content = fixPossibleScriptTags(file.content);
-          return `\t<script id="${file.name}" type="application/octetstream">\n${content}\n</script>`;
-        }).join('\n') + '\n';
+          const $script = $editor.querySelector(`script[id='${file.name}']`);
+          if ($script && file.touched) {
+            $script.removeAttribute('script');
+            $script.setAttribute('type', 'application/octetstream');
+            $script.innerHTML = `\n${content}\n`;
+          } else if (file.touched) {
+            const $s = document.createElement('script');
+            $s.setAttribute('id', file.name);
+            $s.setAttribute('type', 'application/octetstream');
+            $s.innerHTML = `\n${content}\n`;
+          }
+        });
+
+        // Update annotations
+        const $annotations = $editor.querySelector('xp-annotations');
+        if (!$annotations) {
+          return;
+        }
+        fill($annotations, 'header', state.annotations.header);
+        fill($annotations, 'details', state.annotations.details);
+        // TODO [ToDr] Update annotations.
       });
 
       // Fill the title
@@ -67,6 +85,14 @@ function generateSlide (state, slideName) {
     };
     document.head.appendChild(link);
   });
+}
+
+function fill ($dom, selector, value) {
+  const $elem = $dom.querySelector(selector);
+  if (!$elem) {
+    return;
+  }
+  $elem.innerHTML = value;
 }
 
 function fixPossibleScriptTags (val) {

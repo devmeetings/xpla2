@@ -32,6 +32,7 @@ export default createReducer(Map({}), {
       editor
         .get('active')
         .set('content', content)
+        .set('touched', true)
     ));
   }
 });

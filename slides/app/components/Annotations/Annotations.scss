@@ -126,9 +126,15 @@
   font-size: 0.8rem;
 }
 
+.editMode {
+  background: rgba(255, 25, 25, 0.5);
+}
+
 .slideDescription {
   margin: 1rem 0;
+}
 
+.slideDescription, .annotationText {
   audio {
     margin-top: 1rem;
     display: block;

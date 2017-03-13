@@ -3,8 +3,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Props from 'react-immutable-proptypes';
 
+import * as WorkModeActions from '../actions/workMode';
+
+import {WORK_MODE_DECK_EDIT} from '../reducers.utils/workMode';
+
 import {Preview} from '../components/Preview/Preview';
 import {Annotations} from '../components/Annotations/Annotations';
+import {HtmlEditor} from '../components/HtmlEditor/HtmlEditor';
 
 import {getFilesWithActive} from '../reducers.utils/editors';
 
@@ -12,6 +17,7 @@ class AnnotationsContainer extends React.Component {
   constructor (...args) {
     super(...args);
     this.onKey = this.onKey.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
 
     const annotations = this.props.annotations.get('annotations');
     const editorAnnotations = this.getEditorAnnotations(annotations);
@@ -55,15 +61,34 @@ class AnnotationsContainer extends React.Component {
     });
   }
 
+  updateAnnotation = (content, anno) => {
+
+  }
+
   componentDidMount () {
     window.addEventListener('keyup', this.onKey);
+    window.addEventListener('keydown', this.onKeyDown);
   }
 
   componentWillUnmount () {
     window.removeEventListener('keyup', this.onKey);
+    window.removeEventListener('keydown', this.onKeyDown);
+  }
+
+  onKeyDown (ev) {
+    if (ev.ctrlKey && ev.keyCode === 80 /* P */) {
+      ev.preventDefault();
+      this.props.actionsWorkMode.workModeDeckEditToggle();
+      return false;
+    }
   }
 
   onKey (ev) {
+    // Don't handle slide changes in edit mode.
+    if (this.isEditMode) {
+      return;
+    }
+
     const prev = [37/* LEFT */, 38/* UP */];
     const next = [39/* RIGHT */, 32/* SPACE*/, 40/* DOWN */];
     const code = ev.keyCode;
@@ -130,7 +155,7 @@ class AnnotationsContainer extends React.Component {
 
     return (
       <div>
-        {asHtml(header)}
+        {this.asHtml(header, 'header')}
         <Annotations
           annotations={editorAnnotations}
           currentAnnotation={anno}
@@ -141,17 +166,38 @@ class AnnotationsContainer extends React.Component {
           onPrev={() => this.changeAnnotation(anno - 1)}
           onRequestClose={() => this.setState({isOpen: false})}
           title={title}
+          isEditMode={this.isEditMode}
+          onUpdateAnnotation={this.updateAnnotation}
           >
-          {asHtml(details)}
+          {this.asHtml(details, 'details')}
         </Annotations>
       </div>
     );
   }
 
-}
+  get isEditMode () {
+    return this.props.workMode === WORK_MODE_DECK_EDIT;
+  }
 
-function asHtml(content) {
-  return (<div dangerouslySetInnerHTML={{__html: content}} />);
+  asHtml (content, id) {
+    if (this.isEditMode) {
+      return (
+        <HtmlEditor
+          text={content}
+          onChange={(text) => {
+            this.props.actionsWorkMode.editAnnotations({
+              prop: id,
+              value: text,
+            })
+          }}
+        />
+      );
+    }
+
+    return (<div dangerouslySetInnerHTML={{__html: content}} />);
+  }
+
+
 }
 
 AnnotationsContainer.propTypes = {
@@ -163,9 +209,11 @@ AnnotationsContainer.propTypes = {
 @connect(
   state => ({
     editors: state.get('editors'),
-    annotations: state.get('annotations')
+    annotations: state.get('annotations'),
+    workMode: state.get('workMode').get('current')
   }),
   dispatch => ({
+    actionsWorkMode: bindActionCreators(WorkModeActions, dispatch)
   })
 )
 export default class AnnotationsContainerWrapper extends React.Component {

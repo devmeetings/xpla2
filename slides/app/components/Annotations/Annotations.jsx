@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import classnames from 'classnames';
 import Props from 'react-immutable-proptypes';
 
 // TODO [todr] This is very temporary!
@@ -11,6 +12,8 @@ import {AceEditor} from '../AceEditor/AceEditor';
 import {FileTree} from '../FileTree/FileTree';
 import {getModeForFilename} from '../Editor/Editor';
 import {isSmallScreen} from '../isSmallScreen';
+
+import {HtmlEditor} from '../HtmlEditor/HtmlEditor';
 
 import styles from './Annotations.scss';
 
@@ -177,10 +180,6 @@ export class Annotations extends React.Component {
     )];
   }
 
-  onRef = (div) => {
-    this.div = div;
-  };
-
   componentDidUpdate(prevProps) {
     if (this.props.currentAnnotation === prevProps.currentAnnotation) {
       return;
@@ -200,14 +199,22 @@ export class Annotations extends React.Component {
     });
   }
 
+  onRef = (div) => {
+    this.div = div;
+  };
+
   renderAnnotation (anno) {
     const title = this.props.title;
 
-    if (anno === -1 && this.props.hasIntro) {
+    if (anno === -1 && (this.props.hasIntro || this.props.isEditMode)) {
+      const clazz = classnames(styles.annotationText, {
+        [styles.editMode]: this.props.isEditMode,
+      });
+
       return (
         <div className={styles.annotation}>
           <h2 className={styles.slideTitle}>{title}</h2>
-          <div className={styles.annotationText}>
+          <div className={clazz}>
             {this.props.children}
           </div>
         </div>
@@ -219,16 +226,29 @@ export class Annotations extends React.Component {
     }
 
     const annotation = this.props.annotations.get(anno).toJS();
+    const clazz = classnames({
+      [styles.slideDescription]: annotation.description,
+      [styles.editMode]: this.props.isEditMode,
+    });
 
     return (
       <div className={styles.annotation}>
         <h2 className={styles.slideTitle}>{title}</h2>
         {this.renderAnnotationsEditor(annotation)}
-        <div
-          className={annotation.description ? styles.slideDescription: ''}
-          dangerouslySetInnerHTML={{__html: annotation.description || ''}}
-          ref={this.onRef}
+        {this.props.isEditMode ? (
+          <div className={clazz}>
+            <HtmlEditor
+              text={annotation.description || ''}
+              onChange={(text) => this.props.onUpdateAnnotation(anno, text)}
+            />
+          </div>
+        ) : (
+          <div
+            className={clazz}
+            dangerouslySetInnerHTML={{__html: annotation.description || ''}}
+            ref={this.onRef}
           />
+        )}
     </div>
     );
   }
@@ -279,5 +299,7 @@ Annotations.propTypes = {
   onRequestClose: React.PropTypes.func.isRequired,
   onNext: React.PropTypes.func.isRequired,
   onPrev: React.PropTypes.func.isRequired,
+  isEditMode: React.PropTypes.bool,
+  onUpdateAnnotation: React.PropTypes.func,
 };
 
