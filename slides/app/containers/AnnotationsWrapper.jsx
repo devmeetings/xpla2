@@ -164,6 +164,7 @@ class AnnotationsContainer extends React.Component {
           minAnno={this.minAnno()}
           onNext={() => this.changeAnnotation(anno + 1)}
           onPrev={() => this.changeAnnotation(anno - 1)}
+          onReopen={() => this.changeAnnotation(anno)}
           onRequestClose={() => this.setState({isOpen: false})}
           title={title}
           isEditMode={this.isEditMode}

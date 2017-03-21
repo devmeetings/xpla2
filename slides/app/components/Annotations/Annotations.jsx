@@ -268,18 +268,30 @@ export class Annotations extends React.Component {
       return (<div />);
     }
 
+    const reopen = classnames(styles.reopen, {
+      [styles.reopenVisible]: !this.props.isOpen
+    });
     const anno = this.props.currentAnnotation;
     return (
-      <Modal
-        contentLabel={this.props.title}
-        isOpen={this.props.isOpen}
-        onRequestClose={this.props.onRequestClose}
-        style={this.modalStyles}
-        >
-        {this.renderClose()}
-        {this.renderAnnotation(anno)}
-        {this.renderButtons(anno)}
-      </Modal>
+      <div>
+        <button
+          className={reopen}
+          onClick={this.props.onReopen}
+          title={'Display walkthrough'}
+          >
+            <Icon icon="receipt" />
+        </button>
+        <Modal
+          contentLabel={this.props.title}
+          isOpen={this.props.isOpen}
+          onRequestClose={this.props.onRequestClose}
+          style={this.modalStyles}
+          >
+          {this.renderClose()}
+          {this.renderAnnotation(anno)}
+          {this.renderButtons(anno)}
+        </Modal>
+      </div>
     );
   }
 }
@@ -299,6 +311,7 @@ Annotations.propTypes = {
   onRequestClose: React.PropTypes.func.isRequired,
   onNext: React.PropTypes.func.isRequired,
   onPrev: React.PropTypes.func.isRequired,
+  onReopen: React.PropTypes.func.isRequired,
   isEditMode: React.PropTypes.bool,
   onUpdateAnnotation: React.PropTypes.func,
 };

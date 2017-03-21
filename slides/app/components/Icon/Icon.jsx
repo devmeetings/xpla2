@@ -1,10 +1,25 @@
+// @flow
+
 import React from 'react';
 
 import cssStyles from './Icon.scss';
 
 export class Icon extends React.Component {
 
-  _mergeStyles (...args) {
+ static defaultProps = {
+    size: '1em',
+    spin: false,
+    style: {}
+  };
+
+  static propTypes = {
+    size: React.PropTypes.string,
+    spin: React.PropTypes.bool,
+    icon: React.PropTypes.string.isRequired,
+    style: React.PropTypes.object,
+  };
+
+  _mergeStyles (...args: any) {
     // This is the m function from "CSS in JS" and can be extracted to a mixin
     return Object.assign({}, ...args);
   }
@@ -38,21 +53,11 @@ export class Icon extends React.Component {
 
 }
 
-Icon.defaultProps = {
-  size: '1em',
-  spin: false,
-  style: {}
-};
-
-Icon.propTypes = {
-  size: React.PropTypes.string,
-  spin: React.PropTypes.bool,
-  icon: React.PropTypes.string.isRequired,
-  style: React.PropTypes.object,
-};
-
 // http://dmfrancisco.github.io/react-icons/
 const ICONS = {
+  'receipt': (
+    <g><path d="M18 17h-12v-2h12v2zm0-4h-12v-2h12v2zm0-4h-12v-2h12v2zm-15 13l1.5-1.5 1.5 1.5 1.5-1.5 1.5 1.5 1.5-1.5 1.5 1.5 1.5-1.5 1.5 1.5 1.5-1.5 1.5 1.5 1.5-1.5 1.5 1.5v-20l-1.5 1.5-1.5-1.5-1.5 1.5-1.5-1.5-1.5 1.5-1.5-1.5-1.5 1.5-1.5-1.5-1.5 1.5-1.5-1.5-1.5 1.5-1.5-1.5v20z"></path></g>
+  ),
   'refresh': (
     <g><path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46c1.23.78 2.69 1.24 4.26 1.24 4.42 0 8-3.58 8-8h3l-4-4zm-13 4c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46c-1.23-.78-2.69-1.24-4.26-1.24-4.42 0-8 3.58-8 8h-3l4 4 4-4h-3z" /></g>
   ),

@@ -1,13 +1,13 @@
 @import "../vars";
 
+@keyframes :global(fadein) {
+  from {opacity: 0.0;}
+  to {opacity:1.0;}
+}
+
 :global .ReactModal__Overlay {
   animation: fadein 0.2s ease-in;
   bottom: $slideslist-height !important;
-
-  @keyframes :global(fadein) {
-    from {opacity: 0.0;}
-    to {opacity:1.0;}
-  }
 }
 :global .ReactModal__Content {
   @media (max-width: $small-screen) {
@@ -177,3 +177,28 @@
   }
 }
 
+
+.reopen {
+  background: none;
+  border: none;
+  bottom: 2em;
+  font-size: 1.8em;
+  left: 0.1em;
+  opacity: 0;
+  outline: none;
+  pointer-events: none;
+  position: fixed;
+  z-index: 100;
+
+  transition: opacity 0.2s ease-in-out, color 0.2s ease-in;
+
+  &:hover {
+    color: $brand-primary;
+  }
+
+  &.reopenVisible {
+    opacity: 1;
+    pointer-events: initial;
+    cursor: pointer;
+  }
+}
