@@ -1,3 +1,5 @@
+// @flow
+
 import _ from 'lodash';
 import React from 'react';
 import {render, unmountComponentAtNode} from 'react-dom';
@@ -21,7 +23,7 @@ import {isSmallScreen} from '../components/isSmallScreen';
 
 import './slide.scss';
 
-export function initializeSlide(dom, runServerUrl, presenceServerUrl, defaultTitle, path) {
+export function initializeSlide(dom: Element, runServerUrl: ?string, presenceServerUrl: ?string, defaultTitle: ?string, path: string = '') {
   if (!dom) {
     throw new Error('Provide DOM element!');
   }
@@ -35,7 +37,6 @@ export function initializeSlide(dom, runServerUrl, presenceServerUrl, defaultTit
     window.scrollTo(0,1);
   }
 
-  path = path || '';
   const title = readTitle(dom.parentNode) || defaultTitle;
   const annotations = getIfExists(dom, 'xp-annotations', getAnnotationState)
   annotations.title = title;

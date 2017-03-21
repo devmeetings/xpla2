@@ -1,14 +1,17 @@
+// @flow
+
 import React from 'react';
 import Props from 'react-immutable-proptypes';
 import _ from 'lodash';
 
 import styles from './Resizer.scss';
+import {nonNull, cast} from '../../assert';
 
 const CLASS_NAME_V = 'xp-resize-column';
 const CLASS_NAME_V2 = 'xp-resize-col';
 const CLASS_NAME_H = 'xp-resize-row';
 
-export function resizer(target) {
+export function resizer(target: HTMLElement) {
   target.addEventListener('mousedown', startResize);
 
   return () => {
@@ -16,26 +19,28 @@ export function resizer(target) {
   };
 }
 
-function startResize (ev) {
-  const clazz = ev.target.className;
+function startResize (ev: MouseEvent) {
+  const target: HTMLElement = cast(ev.target);
+  const clazz = target.className;
   if (clazz !== CLASS_NAME_V && clazz !== CLASS_NAME_H && clazz !== CLASS_NAME_V2) {
     return;
   }
-  const p = ev.target.parentNode;
+  const p: HTMLElement = cast(nonNull(target.parentNode));
+  const children = nonNull(p.children);
   // Find next and prev
-  const idx = [].indexOf.call(p.children, ev.target);
+  const idx = [].indexOf.call(children, target);
 
-  const prev = idx > 0 ? p.children[idx - 1] : false;
-  const next = idx + 1 < p.children.length ? p.children[idx + 1] : false;
+  const prev = idx > 0 ? children[idx - 1] : false;
+  const next = idx + 1 < children.length ? children[idx + 1] : false;
 
   if (!next || !prev) {
-    console.warn('Trying to use resize, but no nodes found.', ev.target);
+    console.warn('Trying to use resize, but no nodes found.', target);
     return;
   }
 
   // Add overlay
   const overlay = new Overlay(p, clazz);
-  overlay.d.addEventListener('mousemove', (ev) => {
+  overlay.d.addEventListener('mousemove', (ev: MouseEvent) => {
     let pos = overlay.calculatePos(ev);
     let prop = overlay.getProp();
     prev.style[prop] = `${pos * 100}%`;
@@ -48,6 +53,10 @@ function startResize (ev) {
 }
 
 class Overlay {
+  p: HTMLElement;
+  d: HTMLElement;
+  clazz: string;
+
   constructor (p, clazz) {
     this.p = p;
     this.clazz = clazz;
@@ -56,7 +65,7 @@ class Overlay {
     this.p.appendChild(this.d);
   }
 
-  getProp () {
+  getProp (): any {
     if (this.clazz === CLASS_NAME_H) {
       return 'height';
     }
