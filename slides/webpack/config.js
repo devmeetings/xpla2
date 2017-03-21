@@ -43,7 +43,7 @@ var config = {
     pathinfo: false
   },
   module: {
-    loaders: loaders
+    loaders: loaders.loaders
   },
   postcss: [
     autoprefixer

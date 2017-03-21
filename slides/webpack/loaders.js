@@ -76,11 +76,11 @@ var loaders = [
   {
     test: /\.jsx?$/,
     exclude: /node_modules/,
-    loaders: jsxLoader
+    loaders: ['happypack/loader?id=jsx']
   },
   {
     test: /\.css$/,
-    loader: cssLoader
+    loaders: ['happypack/loader?id=css']
   },
   {
     test: /\.jpe?g$|\.gif$|\.png$|\.ico|\.svg$|\.woff$|\.ttf$/,
@@ -97,8 +97,13 @@ var loaders = [
   },
   {
     test: /\.scss$/,
-    loader: sassLoader
+    loaders: ['happypack/loader?id=sass']
   }
 ];
 
-module.exports = loaders;
+module.exports = {
+  loaders: loaders,
+  js: jsxLoader,
+  css: [cssLoader],
+  sass: [sassLoader]
+};
