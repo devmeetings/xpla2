@@ -185,15 +185,15 @@ class AnnotationsContainer extends React.Component {
           annotations={editorAnnotations}
           currentAnnotation={anno}
           hasIntro={!!details || this.isEditMode}
+          isEditMode={this.isEditMode}
           isOpen={this.state.isOpen}
           minAnno={this.minAnno()}
           onNext={() => this.changeAnnotation(anno + 1)}
           onPrev={() => this.changeAnnotation(anno - 1)}
           onReopen={() => this.changeAnnotation(anno)}
           onRequestClose={() => this.setState({isOpen: false})}
-          title={title}
-          isEditMode={this.isEditMode}
           onUpdateAnnotation={this.updateAnnotation}
+          title={title}
           >
           {this.asHtml(details, 'details')}
         </Annotations>
@@ -209,13 +209,13 @@ class AnnotationsContainer extends React.Component {
     if (this.isEditMode) {
       return (
         <HtmlEditor
-          text={content}
           onChange={(text) => {
             this.props.actionsWorkMode.editAnnotations({
               prop: id,
               value: text,
             })
           }}
+          text={content}
         />
       );
     }

@@ -38,10 +38,10 @@ export class HtmlEditor extends React.Component {
   render () {
     return (
       <Editor
-        tag='div'
-        text={this.state.text}
         onChange={this.handleChange}
         options={options}
+        tag="div"
+        text={this.state.text}
         />
     );
   }

@@ -53,10 +53,12 @@ function generateSlide (state, slideName) {
       _.values(state.editors).map((editor, idx) => {
         const $editor = clone.querySelectorAll('xp-editor')[idx];
         $editor.setAttribute('active', editor.active.name);
+
         const files = getFilesWithActiveAsJsArray(editor);
-          files.forEach((file) => {
+        files.forEach((file) => {
           const content = fixPossibleScriptTags(file.content);
           const $script = $editor.querySelector(`script[id='${file.name}']`);
+
           if ($script && file.touched) {
             $script.removeAttribute('script');
             $script.setAttribute('type', 'application/octetstream');

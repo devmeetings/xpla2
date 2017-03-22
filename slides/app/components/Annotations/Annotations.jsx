@@ -238,8 +238,8 @@ export class Annotations extends React.Component {
         {this.props.isEditMode ? (
           <div className={clazz}>
             <HtmlEditor
-              text={annotation.description || ''}
               onChange={(text) => this.props.onUpdateAnnotation(anno, text)}
+              text={annotation.description || ''}
             />
           </div>
         ) : (
