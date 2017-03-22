@@ -20,7 +20,7 @@ class AnnotationsContainer extends React.Component {
     this.onKeyDown = this.onKeyDown.bind(this);
 
     const annotations = this.props.annotations.get('annotations');
-    const editorAnnotations = this.getEditorAnnotations(annotations);
+    const editorAnnotations = this.getEditorAnnotations(annotations, this.props.editors);
 
     this.state = {
       isOpen: editorAnnotations.size > 0 || this.minAnno() === -1,
@@ -32,11 +32,16 @@ class AnnotationsContainer extends React.Component {
   minAnno() {
     const meta = this.props.annotations;
     const details = meta.get('details');
-    return !!details ? -1 : 0;
+
+    return (!!details || this.isEditMode) ? -1 : 0;
   }
 
   changeAnnotation (anno) {
     const editorAnnotations = this.state.annotations;
+    if (this.isEditMode && anno === 0 && editorAnnotations.size === 0) {
+      anno = -1;
+    }
+
     if (anno < this.minAnno()) {
       this.prevSlide();
       return;
@@ -61,8 +66,17 @@ class AnnotationsContainer extends React.Component {
     });
   }
 
-  updateAnnotation = (content, anno) => {
+  updateAnnotation = (anno, content) => {
+    const annotation = this.state.annotations.get(anno);
+    if (!annotation) {
+      return;
+    }
 
+    this.props.actionsWorkMode.editEditorAnnotation({
+      fileName: annotation.get('fileName'),
+      order: annotation.get('order'),
+      description: content
+    });
   }
 
   componentDidMount () {
@@ -113,13 +127,13 @@ class AnnotationsContainer extends React.Component {
     this.props.globalEvents.emit('slide.prev');
   }
 
-  getFilesFromEditors () {
-    const files = this.props.editors.map(getFilesWithActive);
+  getFilesFromEditors (editors) {
+    const files = editors.map(getFilesWithActive);
     return files.toSetSeq().flatten(1);
   }
 
-  getEditorAnnotations (moreAnnotations) {
-    const annotations = this.getFilesFromEditors()
+  getEditorAnnotations (moreAnnotations, editors) {
+    const annotations = this.getFilesFromEditors(editors)
       .filter((file) => file.get('highlight').size)
       .sort((a, b) => a.get('fileOrder') - b.get('fileOrder'))
       .map((file) => {
@@ -144,13 +158,24 @@ class AnnotationsContainer extends React.Component {
     return annotations;
   }
 
+  componentWillReceiveProps (newProps) {
+    if (newProps.annotations === this.props.annotations && newProps.editors === this.props.editors) {
+      return;
+    }
+
+    const annotations = newProps.annotations.get('annotations');
+    this.setState({
+      annotations: this.getEditorAnnotations(annotations, newProps.editors),
+    });
+  }
+
   render () {
     const meta = this.props.annotations;
     const title = meta.get('title');
     const header = meta.get('header');
     const details = meta.get('details');
     const annotations = meta.get('annotations');
-    const editorAnnotations = this.getEditorAnnotations(annotations);
+    const editorAnnotations = this.state.annotations;
     const anno = this.state.currentAnnotation;
 
     return (
@@ -159,7 +184,7 @@ class AnnotationsContainer extends React.Component {
         <Annotations
           annotations={editorAnnotations}
           currentAnnotation={anno}
-          hasIntro={!!details}
+          hasIntro={!!details || this.isEditMode}
           isOpen={this.state.isOpen}
           minAnno={this.minAnno()}
           onNext={() => this.changeAnnotation(anno + 1)}

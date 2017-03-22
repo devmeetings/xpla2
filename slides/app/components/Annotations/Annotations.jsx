@@ -264,12 +264,14 @@ export class Annotations extends React.Component {
   }
 
   render () {
-    if (this.props.annotations.size == 0 && !this.props.hasIntro) {
+    const {hasIntro, isEditMode, isOpen} = this.props;
+
+    if (this.props.annotations.size == 0 && !hasIntro && !isEditMode) {
       return (<div />);
     }
 
     const reopen = classnames(styles.reopen, {
-      [styles.reopenVisible]: !this.props.isOpen
+      [styles.reopenVisible]: !isOpen
     });
     const anno = this.props.currentAnnotation;
     return (
@@ -283,7 +285,7 @@ export class Annotations extends React.Component {
         </button>
         <Modal
           contentLabel={this.props.title}
-          isOpen={this.props.isOpen}
+          isOpen={isOpen}
           onRequestClose={this.props.onRequestClose}
           style={this.modalStyles}
           >

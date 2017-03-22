@@ -60,7 +60,7 @@ class Overlay {
   constructor (p, clazz) {
     this.p = p;
     this.clazz = clazz;
-    this.d = document.createElement('div');
+    this.d = p.ownerDocument.createElement('div');
     this.d.className = `${styles.overlay} ${clazz === CLASS_NAME_H ? styles.overlayH : styles.overlayV}`;
     this.p.appendChild(this.d);
   }
