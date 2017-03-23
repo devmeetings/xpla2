@@ -6,6 +6,16 @@ upstream gh_{{ server_id }} {
 server {
   listen 80;
   server_name git.{{ server_name }};
+  return 301 https://$host$request_uri;
+}
+
+server {
+  listen 443 ssl http2;
+  server_name git.{{ server_name }};
+
+  ssl on;
+  ssl_certificate /etc/letsencrypt/live/{{server_name}}/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/{{server_name}}/privkey.pem;
 
   location / {
     proxy_pass http://gh_{{ server_id }};
@@ -13,11 +23,19 @@ server {
     proxy_set_header X-Real-IP $remote_addr;
   }
 
-  #error_page 502 /offline.html;
-  #location = /offline.html {
-  #  root /srv/{{ server_name }}/;
-  #}
+  # 502 Error Page
+  error_page 502 /offline.html;
+  location = /offline.html {
+    root /srv/{{ server_name }}/static/;
+  }
 
+  # Let's encrypt
+  location ~ /.well-known {
+    allow all;
+    root /srv/xpla.org/static/;
+  }
+
+  # Stats
   location /nginx_status {
     # copied from http://blog.kovyrin.net/2006/04/29/monitoring-nginx-with-rrdtool/
     stub_status on;

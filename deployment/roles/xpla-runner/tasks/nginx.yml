@@ -24,16 +24,6 @@
     src: nginx.presence.config.tpl
     dest: "/etc/nginx/xpla/presence.{{server_name}}.config"
 
-- name: Nginx | Copying Keys
-  copy:
-    src: xpla.org.crt
-    dest: /etc/nginx/xpla/keys/{{server_name}}.crt
-
-- name: Nginx | Copying Keys2
-  copy:
-    src: xpla.org.key
-    dest: /etc/nginx/xpla/keys/{{server_name}}.key
-
 - name: Nginx | Enabling XPla
   file:
     src: "/etc/nginx/sites-available/{{ server_name }}"

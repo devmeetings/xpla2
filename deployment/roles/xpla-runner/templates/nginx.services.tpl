@@ -58,8 +58,8 @@ location / {
   proxy_set_header X-Real-IP $remote_addr;
 }
 
-#error_page 502 /offline.html;
-#location = /offline.html {
-#  root /srv/{{ server_name }}/;
-#}
+error_page 502 /offline.html;
+location = /offline.html {
+  root /srv/{{ server_name }}/static/;
+}
 
