@@ -1,3 +1,5 @@
+// @flow
+
 import {bindActionCreators} from 'redux';
 import React from 'react';
 import {connect} from 'react-redux';
@@ -8,15 +10,11 @@ import * as DeckActions from '../actions/deck';
 import {DeckActiveSlide} from '../components/DeckActiveSlide/DeckActiveSlide';
 import {DeckSlidesList} from '../components/DeckSlidesList/DeckSlidesList';
 import {DeckLocationUpdater, getSlideId} from '../components/DeckLocationUpdater/DeckLocationUpdater';
+import {DeckRecordings} from '../components/DeckRecordings';
 
 import styles from './DeckWrapper.scss';
 
 class DeckContainer extends React.Component {
-
-  constructor (...args) {
-    super(...args);
-    this.onKey = this.onKey.bind(this);
-  }
 
   componentDidMount () {
     window.addEventListener('keyup', this.onKey);
@@ -26,7 +24,7 @@ class DeckContainer extends React.Component {
     window.removeEventListener('keyup', this.onKey);
   }
 
-  onKey (ev) {
+  onKey = (ev) => {
     const prevPage = [33/* PGUP */];
     const nextPage = [34/* PGDOWN */];
     const code = ev.keyCode;
@@ -40,41 +38,53 @@ class DeckContainer extends React.Component {
       this.nextSlide();
       return;
     }
-  }
+  };
 
-  nextSlide () {
-    let active = this.props.activeSlide;
-    let idx = this.props.slides.indexOf(active);
+  annotation = (annotation = -1) => {
+    this.props.actions.deckSlideChange({
+      newSlideId: this.props.activeSlide.get('id'),
+      annotation
+    });
+  };
+
+  nextSlide = () => {
+    let activeId = this.props.activeSlide.get('id');
+    let idx = this.props.slides.findIndex(slide => slide.get('id') === activeId);
     if (idx + 1 >= this.props.slides.size) {
       return;
     }
-    this.onSlideChange(this.props.slides.get(idx + 1));
-  }
 
-  prevSlide () {
-    let active = this.props.activeSlide;
-    let idx = this.props.slides.indexOf(active);
+    this.onSlideChange(this.props.slides.get(idx + 1));
+  };
+
+  prevSlide = () => {
+    let activeId = this.props.activeSlide.get('id');
+    let idx = this.props.slides.findIndex(slide => slide.get('id') === activeId);
     if (idx - 1 < 0) {
       return;
     }
+
     this.onSlideChange(this.props.slides.get(idx - 1));
-  }
+  };
 
-  onSlideChange (slide) {
+  onSlideChange = (slide) => {
     this.props.actions.deckSlideChange({
-      newSlideId: slide.get('id')
+      newSlideId: slide.get('id'),
+      annotation: -1
     });
-  }
+  };
 
-  onSlideUrlChange (slideUrlId) {
-    const slide = this.props.slides.find((slide) => getSlideId(slide) === slideUrlId);
-    if (!slide) {
+  onSlideUrlChange = ({slide, annotation = -1}) => {
+    const s = this.props.slides.find((s) => getSlideId(s) === slide);
+    if (!s) {
       return;
     }
+
     this.props.actions.deckSlideChange({
-      newSlideId: slide.get('id')
+      newSlideId: s.get('id'),
+      annotation
     });
-  }
+  };
 
   render () {
     return (
@@ -83,11 +93,19 @@ class DeckContainer extends React.Component {
         >
         <DeckLocationUpdater
           active={this.props.activeSlide}
-          onUrlChange={this.onSlideUrlChange.bind(this)}
+          onUrlChange={this.onSlideUrlChange}
+          />
+        <DeckRecordings
+          onReset={this.props.actions.resetRecordings}
+          onToggleState={this.props.actions.toggleRecordingState}
+          onToggleView={this.props.actions.toggleRecordingView}
+          recordings={this.props.recordings}
           />
         <DeckActiveSlide
-          onNextSlide={this.nextSlide.bind(this)}
-          onPrevSlide={this.prevSlide.bind(this)}
+          annotation={this.props.activeSlide.get('annotation')}
+          onAnnotation={this.annotation}
+          onNextSlide={this.nextSlide}
+          onPrevSlide={this.prevSlide}
           path={this.props.activeSlide.get('path')}
           presenceServerUrl={this.props.presenceServerUrl}
           runServerUrl={this.props.runServerUrl}
@@ -97,7 +115,7 @@ class DeckContainer extends React.Component {
         <DeckSlidesList
           active={this.props.activeSlide}
           back={this.props.back}
-          onSlideChange={this.onSlideChange.bind(this)}
+          onSlideChange={this.onSlideChange}
           slides={this.props.slides}
         />
       </div>
@@ -118,7 +136,8 @@ DeckContainer.propTypes = {
     presenceServerUrl: state.get('presenceServerUrl'),
     slides: state.get('deck').get('slides'),
     activeSlide: state.get('deck').get('active'),
-    back: state.get('deck').get('back')
+    back: state.get('deck').get('back'),
+    recordings: state.get('recordings')
   }),
   dispatch => ({
     actions: bindActionCreators(DeckActions, dispatch)
@@ -131,5 +150,3 @@ export default class DeckContainerWrapper extends React.Component {
     )
   }
 }
-DeckContainerWrapper.propTypes = {
-};

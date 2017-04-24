@@ -2,6 +2,7 @@ import {createReducer} from 'redux-immutablejs';
 import {fromJS} from 'immutable';
 
 import {
+  SLIDE_CHANGE_ANNOTATION,
   WORK_MODE_EDIT_ANNOTATIONS,
   WORK_MODE_EDIT_EDITOR_ANNOTATION
 } from '../actions';
@@ -10,8 +11,12 @@ export default createReducer(fromJS({
   title: '',
   header: '',
   details: '',
+  currentAnnotation: -1,
   annotations: {}
 }), {
+  [SLIDE_CHANGE_ANNOTATION]: (annotations, action) => {
+    return annotations.set('currentAnnotation', action.payload);
+  },
   [WORK_MODE_EDIT_ANNOTATIONS]: (annotations, action) => {
     const {prop, value} = action.payload;
     return annotations.set(prop, value);

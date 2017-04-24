@@ -23,7 +23,14 @@ import {isSmallScreen} from '../components/isSmallScreen';
 
 import './slide.scss';
 
-export function initializeSlide(dom: Element, runServerUrl: ?string, presenceServerUrl: ?string, defaultTitle: ?string, path: string = '') {
+export function initializeSlide(
+  dom: Element,
+  runServerUrl: ?string,
+  presenceServerUrl: ?string,
+  defaultTitle: ?string,
+  path: string = '',
+  annotation: number = -1
+) {
   if (!dom) {
     throw new Error('Provide DOM element!');
   }
@@ -40,6 +47,7 @@ export function initializeSlide(dom: Element, runServerUrl: ?string, presenceSer
   const title = readTitle(dom.parentNode) || defaultTitle;
   const annotations = getIfExists(dom, 'xp-annotations', getAnnotationState)
   annotations.title = title;
+  annotations.currentAnnotation = annotation;
 
   const timer = getIfExists(dom, 'xp-timer', getTimerState);
   const tasks = getIfExists(dom, 'xp-tasks', getTasksState);
@@ -64,6 +72,7 @@ export function initializeSlide(dom: Element, runServerUrl: ?string, presenceSer
 
       return {
         events: globalEvents,
+        store: store,
         destroy: destroyFunction(
           [$annotations]
           .concat($editors)

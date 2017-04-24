@@ -32,6 +32,7 @@ export function getAnnotationState (dom) {
   return {
     header,
     details,
+    currentAnnotation: -1,
     annotations
   };
 }

@@ -74,7 +74,7 @@ export class HtmlEditor extends React.Component {
           title={'Toggle HTML mode'}
           >
           <Icon
-            icon='keyboard'
+            icon="keyboard"
           />
         </a>
         {this.renderEditor()}
@@ -86,9 +86,9 @@ export class HtmlEditor extends React.Component {
     if (this.state.raw) {
       return (
         <textarea
+          className={styles.rawEditor}
           onChange={this.handleRawChange}
           value={this.state.text}
-          className={styles.rawEditor}
         />
       );
     }

@@ -1,14 +1,16 @@
+// @flow
+
 import {COMMIT_AND_RUN_CODE, COMMIT_AND_RUN_CODE_STARTED, COMMIT_AND_RUN_CODE_ERROR, COMMIT_AND_RUN_CODE_LONG} from './index';
 import {createAction} from 'redux-actions';
 import fetch from 'isomorphic-fetch';
 
-function checkStatus(response) {
+function checkStatus (response: { status: number, statusText: string }) {
   if (response.status >= 200 && response.status < 300) {
-    return response
+    return response;
   } else {
-    var error = new Error(response.statusText)
-    error.response = response
-    throw error
+    const error: any = new Error(response.statusText);
+    error.response = response;
+    throw error;
   }
 }
 
@@ -19,8 +21,19 @@ const commitAndRunCodeLong = createAction(COMMIT_AND_RUN_CODE_LONG);
 const commitAndRunCodeError = createAction(COMMIT_AND_RUN_CODE_ERROR);
 const commitAndRunCodeFinished = createAction(COMMIT_AND_RUN_CODE);
 
-export const commitAndRunCode = (payload) => {
-  return (dispatch) => {
+type PayloadT = {
+  previewId: number,
+  runServerUrl: string,
+  runnerName: string,
+  skipCache: bool,
+  files: [{
+    name: string,
+    content: string
+  }]
+};
+
+export const commitAndRunCode = (payload: PayloadT) => {
+  return (dispatch: (any) => void) => {
     dispatch(commitAndRunCodeStarted({
       previewId: payload.previewId
     }));

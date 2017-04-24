@@ -1,26 +1,29 @@
+// @flow
+
 import React from 'react';
 import _ from 'lodash';
 import Props from 'react-immutable-proptypes';
 
 export function readUrl () {
-  return window.location.hash.substring(1);
+  const url = window.location.hash.substring(1);
+  const [slide, annotation] = url.split('/');
+  let anno = parseInt(annotation, 10);
+  return {
+    slide: slide,
+    annotation: isNaN(anno) ? -1 : anno,
+  };
 }
 
-export function getSlideId (slide) {
+export function getSlideId (slide: any) {
   return slide.shortName || slide.get('shortName');
 }
 
 export class DeckLocationUpdater extends React.Component {
 
-  constructor (...args) {
-    super(...args);
-    this.locationListener = this.locationListener.bind(this);
-  }
-
   componentDidMount () {
     window.addEventListener('hashchange', this.locationListener);
 
-    this.writeHash(this.getActiveId(this.props));
+    this.writeHash(this.getActive(this.props));
   }
 
   componentWillUnmount () {
@@ -31,37 +34,39 @@ export class DeckLocationUpdater extends React.Component {
     return readUrl();
   }
 
-  writeHash (val) {
-    window.location.hash = `#${val}`;
+  writeHash ({slide, annotation}: {slide: string, annotation: number}) {
+    window.location.hash = `#${slide}${annotation > -1 ? '/' + annotation : ''}`;
   }
 
-  getActiveId (props) {
-    return getSlideId(props.active);
+  getActive (props: { active: any }) {
+    return {
+      slide: getSlideId(props.active),
+      annotation: props.active.get('annotation')
+    };
   }
 
-  locationListener () {
+  locationListener = () => {
     // Read current URL and send event if necessary
     const hash = this.readHash();
-    const activeId = this.getActiveId(this.props);
-    if (hash === activeId) {
+    const active = this.getActive(this.props);
+    if (hash.slide === active.slide && hash.annotation === active.annotation) {
       return;
     }
     // Notify changed
     this.props.onUrlChange(hash);
-  }
+  };
 
-  componentWillReceiveProps (newProps) {
+  componentWillReceiveProps (newProps: { active: any }) {
     // update Active
-    const activeId = this.getActiveId(newProps);
-    if (this.readHash() != activeId) {
-      this.writeHash(activeId);
+    const active = this.getActive(newProps);
+    const read = this.readHash();
+    if (read.slide !== active.slide || read.annotation !== active.annotation) {
+      this.writeHash(active);
     }
   }
 
   render () {
-    return (
-      <span />
-    );
+    return null;
   }
 }
 

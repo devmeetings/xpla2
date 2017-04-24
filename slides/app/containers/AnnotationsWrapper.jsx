@@ -1,3 +1,5 @@
+// @flow
+
 import {bindActionCreators} from 'redux';
 import React from 'react';
 import {connect} from 'react-redux';
@@ -16,17 +18,19 @@ import {getFilesWithActive} from '../reducers.utils/editors';
 class AnnotationsContainer extends React.Component {
   constructor (...args) {
     super(...args);
-    this.onKey = this.onKey.bind(this);
-    this.onKeyDown = this.onKeyDown.bind(this);
 
+    const annotation = this.props.annotations.get('currentAnnotation');
     const annotations = this.props.annotations.get('annotations');
     const editorAnnotations = this.getEditorAnnotations(annotations, this.props.editors);
+
 
     this.state = {
       isOpen: editorAnnotations.size > 0 || this.minAnno() === -1,
       annotations: editorAnnotations,
-      currentAnnotation: this.minAnno()
+      currentAnnotation: annotation > 0 || annotation === 0 && !isNaN(annotation) ? annotation : this.minAnno(),
     };
+
+    this.annotationEvent(this.state.currentAnnotation);
   }
 
   minAnno() {
@@ -57,6 +61,7 @@ class AnnotationsContainer extends React.Component {
         isOpen: false,
         currentAnnotation: anno
       });
+      this.annotationEvent(anno);
       return;
     }
 
@@ -64,6 +69,7 @@ class AnnotationsContainer extends React.Component {
       isOpen: true,
       currentAnnotation: anno
     });
+    this.annotationEvent(anno);
   }
 
   updateAnnotation = (anno, content) => {
@@ -89,15 +95,15 @@ class AnnotationsContainer extends React.Component {
     window.removeEventListener('keydown', this.onKeyDown);
   }
 
-  onKeyDown (ev) {
+  onKeyDown = (ev) => {
     if (ev.ctrlKey && ev.keyCode === 80 /* P */) {
       ev.preventDefault();
       this.props.actionsWorkMode.workModeDeckEditToggle();
       return false;
     }
-  }
+  };
 
-  onKey (ev) {
+  onKey = (ev) => {
     // Don't handle slide changes in edit mode.
     if (this.isEditMode) {
       return;
@@ -117,6 +123,10 @@ class AnnotationsContainer extends React.Component {
       this.changeAnnotation(anno - 1);
       return;
     }
+  };
+
+  annotationEvent (anno) {
+    this.props.globalEvents.emit('slide.annotation', anno);
   }
 
   nextSlide () {
@@ -161,6 +171,11 @@ class AnnotationsContainer extends React.Component {
   componentWillReceiveProps (newProps) {
     if (newProps.annotations === this.props.annotations && newProps.editors === this.props.editors) {
       return;
+    }
+
+    const anno = newProps.annotations.get('currentAnnotation');
+    if (anno !== this.state.currentAnnotation) {
+      this.changeAnnotation(anno);
     }
 
     const annotations = newProps.annotations.get('annotations');
@@ -222,8 +237,6 @@ class AnnotationsContainer extends React.Component {
 
     return (<div dangerouslySetInnerHTML={{__html: content}} />);
   }
-
-
 }
 
 AnnotationsContainer.propTypes = {

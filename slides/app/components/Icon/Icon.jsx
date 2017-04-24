@@ -54,8 +54,11 @@ export class Icon extends React.Component {
 
 // http://dmfrancisco.github.io/react-icons/
 const ICONS = {
+  'videocam': (
+    <g><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" /></g>
+  ),
   'keyboard': (
-    <g><path d="M20 5h-16c-1.1 0-1.99.9-1.99 2l-.01 10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2zm-9 3h2v2h-2v-2zm0 3h2v2h-2v-2zm-3-3h2v2h-2v-2zm0 3h2v2h-2v-2zm-1 2h-2v-2h2v2zm0-3h-2v-2h2v2zm9 7h-8v-2h8v2zm0-4h-2v-2h2v2zm0-3h-2v-2h2v2zm3 3h-2v-2h2v2zm0-3h-2v-2h2v2z"></path></g>
+    <g><path d="M20 5h-16c-1.1 0-1.99.9-1.99 2l-.01 10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2zm-9 3h2v2h-2v-2zm0 3h2v2h-2v-2zm-3-3h2v2h-2v-2zm0 3h2v2h-2v-2zm-1 2h-2v-2h2v2zm0-3h-2v-2h2v2zm9 7h-8v-2h8v2zm0-4h-2v-2h2v2zm0-3h-2v-2h2v2zm3 3h-2v-2h2v2zm0-3h-2v-2h2v2z" /></g>
   ),
   'receipt': (
     <g><path d="M18 17h-12v-2h12v2zm0-4h-12v-2h12v2zm0-4h-12v-2h12v2zm-15 13l1.5-1.5 1.5 1.5 1.5-1.5 1.5 1.5 1.5-1.5 1.5 1.5 1.5-1.5 1.5 1.5 1.5-1.5 1.5 1.5 1.5-1.5 1.5 1.5v-20l-1.5 1.5-1.5-1.5-1.5 1.5-1.5-1.5-1.5 1.5-1.5-1.5-1.5 1.5-1.5-1.5-1.5 1.5-1.5-1.5-1.5 1.5-1.5-1.5v20z" /></g>

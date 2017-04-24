@@ -1,3 +1,5 @@
+// @flow
+
 import {DECK_SLIDE_CHANGE} from '../actions';
 
 import {createReducer} from 'redux-immutablejs';
@@ -22,7 +24,7 @@ export default createReducer(fromJS({
 
     return deck.set(
       'active',
-      activeSlide
+      activeSlide.set('annotation', action.payload.annotation)
     );
-  }
+  },
 });

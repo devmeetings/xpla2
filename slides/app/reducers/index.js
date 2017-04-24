@@ -3,6 +3,7 @@ import editors from './editors';
 import previews from './previews';
 import {runServerUrl, presenceServerUrl} from './servers';
 import workMode from './workMode';
+import recordings from './recordings';
 import annotations from './annotations';
 import timer from './timer';
 import tasks from './tasks';
@@ -12,6 +13,7 @@ export const deck = {
   deck: deckReducer,
   runServerUrl,
   presenceServerUrl,
+  recordings,
 };
 
 export const slide = {

@@ -1,3 +1,5 @@
+// @flow
+
 import {CHANGE_ACTIVE_TAB, MODIFY_ACTIVE_TAB_CONTENT, SAVE_WORKSPACE_AS_ZIP} from './index';
 import {createAction} from 'redux-actions';
 

@@ -1,15 +1,47 @@
+// @flow
+
 import React from 'react';
 import _ from 'lodash';
 import Props from 'react-immutable-proptypes';
 
 import {initializeSlide} from '../../slide/slide';
+import {slideChangeAnnotation} from '../../actions/slide';
+import {cast} from '../../assert';
 
 import styles from './DeckActiveSlide.scss';
 
+type PropsT = {
+  slide: HTMLElement,
+  runServerUrl: ?string,
+  presenceServerUrl: ?string,
+  title: string,
+  path: string,
+  annotation: number,
+};
+
+type StoreT = {
+  dispatch: (any) => void
+};
+
+type DestroyT = {
+  destroy: () => void,
+  store: ?StoreT
+};
+
 export class DeckActiveSlide extends React.Component {
 
+  _previousElement = cast({});
+  _element = cast({});
+  _destroyPreviousSlide: DestroyT = {
+    store: null,
+    destroy () {}
+  };
+
   componentDidMount () {
-    this._destroyPreviousSlide = () => {};
+    this._destroyPreviousSlide = {
+      store: null,
+      destroy() {}
+    };
     this.renderDomNode(this.props);
   }
 
@@ -20,7 +52,19 @@ export class DeckActiveSlide extends React.Component {
     }
   }
 
-  componentWillReceiveProps (newProps) {
+  componentWillReceiveProps (newProps: any) {
+    const isDifferent = Object.keys(newProps).filter(key => key !== 'annotation').find(key => newProps[key] !== this.props[key]);
+    if (!isDifferent) {
+      if (newProps.annotation !== this.props.annotation) {
+        // Update annotation
+        const store = this._destroyPreviousSlide.store;
+        if (store) {
+          store.dispatch(slideChangeAnnotation(newProps.annotation));
+        }
+      }
+      return;
+    }
+
     this.destroyPreviousSlide();
     this.renderDomNode(newProps);
   }
@@ -36,7 +80,7 @@ export class DeckActiveSlide extends React.Component {
     const destroyMe = this._destroyPreviousSlide;
 
     setTimeout(() => {
-      destroyMe();
+      destroyMe.destroy();
       while(this._previousElement.hasChildNodes()) {
         this._previousElement.removeChild(this._previousElement.childNodes[0]);
       }
@@ -44,34 +88,45 @@ export class DeckActiveSlide extends React.Component {
     }, 1000);
   }
 
-  renderDomNode (props) {
+  renderDomNode (props: PropsT) {
     const clone = props.slide.cloneNode(true);
     this._element.appendChild(clone);
 
     // Initialize slide content
     this._element.classList.add(styles.hidenow)
-    initializeSlide(this._element, props.runServerUrl, props.presenceServerUrl, props.title, props.path).then((destroy) => {
+    initializeSlide(
+      this._element,
+      props.runServerUrl,
+      props.presenceServerUrl,
+      props.title,
+      props.path,
+      props.annotation
+    ).then((destroy) => {
       this._element.classList.remove(styles.hidenow);
       // TODO [todr] Not sure if this might be mem leak?
       destroy.events.on('slide.next', this.props.onNextSlide);
       destroy.events.on('slide.prev', this.props.onPrevSlide);
-      this._destroyPreviousSlide = destroy.destroy;
+      destroy.events.on('slide.annotation', this.props.onAnnotation);
+      this._destroyPreviousSlide = destroy;
     }, (e) => {
       console.error('Error while loading slide.');
       console.error(e);
     });
   }
 
+  onPreviousElement = (c: HTMLElement) => this._previousElement = c;
+  onElement = (c: HTMLElement) => this._element = c;
+
   render () {
     return (
       <div className={styles.slideContainer}>
         <div
           className={styles.slide}
-          ref={(c) => this._previousElement = c}
+          ref={this.onPreviousElement}
           />
         <div
           className={styles.slide}
-          ref={(c) => this._element = c}
+          ref={this.onElement}
           />
       </div>
     );
@@ -84,6 +139,7 @@ DeckActiveSlide.propTypes = {
   path: React.PropTypes.string.isRequired,
   runServerUrl: React.PropTypes.string.isRequired,
   presenceServerUrl: React.PropTypes.string,
+  onAnnotation: React.PropTypes.func.isRequired,
   onNextSlide: React.PropTypes.func.isRequired,
   onPrevSlide: React.PropTypes.func.isRequired
 };
