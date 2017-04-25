@@ -43,7 +43,8 @@ function runCode (data) {
     let cacheId = skipCache ? null : `${runnerName}_${commitData.hash}`;
     return runs.retrieve(cacheId).then(cacheData => {
       return {
-        runId: cacheId
+        runId: cacheId,
+        cached: true
       };
     }, () => {
       const runner = runners.getRunner(runnerName);
@@ -54,7 +55,8 @@ function runCode (data) {
       }).then((newRunId) => {
         runId = newRunId;
         return {
-          runId
+          runId,
+          cached: false
         };
       });
     });

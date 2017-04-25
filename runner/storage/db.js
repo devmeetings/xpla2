@@ -79,6 +79,10 @@ module.exports = function newDb () {
 
       delete mem[id];
       return true;
+    },
+
+    keys () {
+      return Object.keys(mem);
     }
   };
 };

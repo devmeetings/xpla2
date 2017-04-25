@@ -4,6 +4,7 @@ const getHelp = require('./api/help');
 const getGitHelp = require('./api/help-git');
 const codeApi = require('./api/code');
 const resultsApi = require('./api/results');
+const stats = require('./api/stats');
 
 const runners = Object.keys(require('./runners/workers').runners);
 
@@ -76,6 +77,15 @@ module.exports = [
     }
   },
   {
+    method: 'GET',
+    path: '/api/stats',
+    handler: (req, reply) => {
+      stats.get()
+        .then(reply)
+        .catch(e => handleError(e, reply));
+    }
+  },
+  {
     method: 'POST',
     path: '/api/commits',
     config: {
@@ -88,6 +98,7 @@ module.exports = [
         }
       },
       handler: (req, reply) => {
+        stats.note(req.headers.origin, 'commit');
         codeApi.commitCode(req.payload)
           .then(reply)
           .catch((e) => handleError(e, reply));
@@ -110,7 +121,10 @@ module.exports = [
       },
       handler: (req, reply) => {
         codeApi.commitAndRunCode(req.payload)
-          .then(reply)
+          .then(r => {
+            stats.note(req.headers.origin, r.cached ? 'commitAndRun:cached' : 'commitAndRun');
+            return reply(r);
+          })
           .catch((e) => handleError(e, reply));
       }
     }
@@ -131,7 +145,10 @@ module.exports = [
           commitId: req.params.commitId,
           runnerName: req.params.runnerName
         })
-          .then(reply)
+          .then(r => {
+            stats.note(req.headers.origin, r.cached ? 'run:cached' : 'run');
+            return reply(r);
+          })
           .catch((e) => handleError(e, reply));
       }
     }
