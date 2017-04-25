@@ -98,7 +98,7 @@ module.exports = [
         }
       },
       handler: (req, reply) => {
-        stats.note(req.headers.origin, 'commit');
+        stats.note(req.headers.origin, req.headers.referer, 'commit');
         codeApi.commitCode(req.payload)
           .then(reply)
           .catch((e) => handleError(e, reply));
@@ -122,7 +122,7 @@ module.exports = [
       handler: (req, reply) => {
         codeApi.commitAndRunCode(req.payload)
           .then(r => {
-            stats.note(req.headers.origin, r.cached ? 'commitAndRun:cached' : 'commitAndRun');
+            stats.note(req.headers.origin, req.headers.referer, r.cached ? 'commitAndRun:cached' : 'commitAndRun');
             return reply(r);
           })
           .catch((e) => handleError(e, reply));
@@ -146,7 +146,7 @@ module.exports = [
           runnerName: req.params.runnerName
         })
           .then(r => {
-            stats.note(req.headers.origin, r.cached ? 'run:cached' : 'run');
+            stats.note(req.headers.origin, req.headers.referer, r.cached ? 'run:cached' : 'run');
             return reply(r);
           })
           .catch((e) => handleError(e, reply));
