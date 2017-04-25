@@ -42,10 +42,20 @@ location /slides/dm-angular2/ {
 
 location /static {
   root /srv/{{ server_name }}/;
+
+  gzip on;
+  gzip_vary on;
+  gzip_proxied any;
+  gzip_comp_level 6;
+  gzip_types text/plain text/html text/css application/x-javascript text/javascript;
+
+  expires 30m;
+  add_header Cache-Control "public";
 }
 
 location /cdn {
   root /srv/{{ server_name }}/runner/;
+
   gzip on;
   gzip_types text/plain application/x-javascript application/javascript text/css application/octet-stream;
 
