@@ -10,7 +10,7 @@ function store (origin, data) {
   return Promise.resolve(origin);
 }
 
-function getAll() {
+function getAll () {
   const data = {};
   mem.keys().forEach(key => {
     data[key] = mem.retrieve(key);

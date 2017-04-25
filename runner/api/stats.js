@@ -2,7 +2,6 @@
 
 const stats = require('../storage/stats');
 
-
 module.exports = {
   get () {
     return stats.getAll();
