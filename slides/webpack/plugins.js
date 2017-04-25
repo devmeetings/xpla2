@@ -13,7 +13,7 @@ var TEST = process.env.NODE_ENV === 'test';
 
 var cssBundle = path.join('css', util.format('[name].%s.css', pkg.version));
 
-var plugins = [
+var plugins = (DEBUG || TEST) ? [
   new HappyPack({
     id: 'jsx',
     loaders: loaders.js
@@ -26,11 +26,17 @@ var plugins = [
     id: 'sass',
     loaders: loaders.sass,
   }),
-  new webpack.optimize.OccurenceOrderPlugin(),
+] : [];
+
+plugins.push(
+  new webpack.optimize.OccurenceOrderPlugin()
+);
+plugins.push(
   new CopyWebpackPlugin([{
     from: '../static/'
   }])
-];
+);
+
 if (DEBUG) {
   plugins.push(
     new webpack.HotModuleReplacementPlugin()

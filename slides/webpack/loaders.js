@@ -66,21 +66,21 @@ if (DEBUG || TEST) {
     'postcss',
     'sass?' + sassParams.join('&')
   ].join('!'));
-  cssLoader = ExtractTextPlugin.extract('style', [
+  cssLoader = [
     'css',
     'postcss'
-  ].join('!'));
+  ].join('!');
 }
 
 var loaders = [
   {
     test: /\.jsx?$/,
     exclude: /node_modules/,
-    loaders: ['happypack/loader?id=jsx']
+    loaders: (DEBUG || TEST) ? ['happypack/loader?id=jsx'] : jsxLoader
   },
   {
     test: /\.css$/,
-    loaders: ['happypack/loader?id=css']
+    loader: (DEBUG || TEST) ? 'happypack/loader?id=css' : cssLoader
   },
   {
     test: /\.jpe?g$|\.gif$|\.png$|\.ico|\.svg$|\.woff$|\.ttf$/,
@@ -97,7 +97,7 @@ var loaders = [
   },
   {
     test: /\.scss$/,
-    loaders: ['happypack/loader?id=sass']
+    loader: (DEBUG || TEST) ? 'happypack/loader?id=sass' : sassLoader
   }
 ];
 
