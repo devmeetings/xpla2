@@ -107,6 +107,7 @@ export class DeckActiveSlide extends React.Component {
       destroy.events.on('slide.next', this.props.onNextSlide);
       destroy.events.on('slide.prev', this.props.onPrevSlide);
       destroy.events.on('slide.annotation', this.props.onAnnotation);
+      destroy.events.on('slide.forward', this.props.onSlideAction);
       this._destroyPreviousSlide = destroy;
     }, (e) => {
       console.error('Error while loading slide.');
@@ -141,7 +142,8 @@ DeckActiveSlide.propTypes = {
   presenceServerUrl: React.PropTypes.string,
   onAnnotation: React.PropTypes.func.isRequired,
   onNextSlide: React.PropTypes.func.isRequired,
-  onPrevSlide: React.PropTypes.func.isRequired
+  onPrevSlide: React.PropTypes.func.isRequired,
+  onSlideAction: React.PropTypes.func.isRequired
 };
 
 

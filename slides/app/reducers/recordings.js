@@ -3,7 +3,7 @@
 import {STATE_NORMAL, STATE_RECORDING, VIEW_NORMAL, VIEW_ADMIN} from '../reducers.utils/recordings';
 
 import {RECORDING_STATE_TOGGLE, RECORDING_VIEW_TOGGLE, RECORDING_RESET, RECORDING_SET} from '../actions';
-import {DECK_SLIDE_CHANGE} from '../actions';
+import {DECK_SLIDE_CHANGE, DECK_SLIDE_ACTION} from '../actions';
 
 import {fromJS} from 'immutable';
 import {createReducer} from 'redux-immutablejs';
@@ -56,14 +56,19 @@ export default createReducer(fromJS({
     return state.set('recordings', fromJS([]));
   },
 
-  [DECK_SLIDE_CHANGE]: (state, action) => {
-    if (state.get('state') !== STATE_RECORDING) {
-      return state;
-    }
-
-    return state.set('recordings', state.get('recordings').push(fromJS({
-      timestamp: Date.now() - state.get('started'),
-      action
-    })));
+  [DECK_SLIDE_CHANGE]: addAction,
+  [DECK_SLIDE_ACTION]: (state, action) => {
+    return addAction(state, action.payload);
   },
 });
+
+function addAction (state, action) {
+  if (state.get('state') !== STATE_RECORDING) {
+    return state;
+  }
+
+  return state.set('recordings', state.get('recordings').push(fromJS({
+    timestamp: Date.now() - state.get('started'),
+    action
+  })));
+}

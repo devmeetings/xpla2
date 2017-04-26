@@ -67,6 +67,11 @@ class DeckContainer extends React.Component {
     this.onSlideChange(this.props.slides.get(idx - 1));
   };
 
+  onSlideAction = (action) => {
+    action.payload.slideId = this.props.activeSlide.get('id');
+    this.props.actions.slideAction(action);
+  };
+
   onSlideChange = (slide) => {
     this.props.actions.deckSlideChange({
       newSlideId: slide.get('id'),
@@ -107,6 +112,7 @@ class DeckContainer extends React.Component {
           onAnnotation={this.annotation}
           onNextSlide={this.nextSlide}
           onPrevSlide={this.prevSlide}
+          onSlideAction={this.onSlideAction}
           path={this.props.activeSlide.get('path')}
           presenceServerUrl={this.props.presenceServerUrl}
           runServerUrl={this.props.runServerUrl}

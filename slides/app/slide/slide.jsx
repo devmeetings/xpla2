@@ -58,11 +58,10 @@ export function initializeSlide(
     .then((a) => {
       const [editors, previews] = a;
 
+      const globalEvents = new EventEmitter({});
       const store = slideStore({
         editors, previews, runServerUrl, presenceServerUrl, annotations, timer, tasks
-      });
-
-      const globalEvents = new EventEmitter({});
+      }, globalEvents);
 
       const $annotations = renderComponent(dom.querySelector('xp-annotations'), globalEvents, store, annotations, AnnotationsWrapper);
       const $timer = renderComponent(dom.querySelector('xp-timer'), globalEvents, store, timer, TimerWrapper);
@@ -78,15 +77,17 @@ export function initializeSlide(
           .concat($editors)
           .concat($previews)
           .concat($timer)
-          .concat($tasks)
+          .concat($tasks),
+          globalEvents
         )
       };
     });
 }
 
-function destroyFunction ($elems) {
+function destroyFunction ($elems, events) {
   return () => {
     $elems.filter(x => x).map(unmountComponentAtNode);
+    events.eventNames().map(eventName => events.removeAllListeners(eventName));
   };
 }
 

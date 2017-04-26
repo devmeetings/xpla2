@@ -35,7 +35,8 @@ type PayloadT = {
 export const commitAndRunCode = (payload: PayloadT) => {
   return (dispatch: (any) => void) => {
     dispatch(commitAndRunCodeStarted({
-      previewId: payload.previewId
+      previewId: payload.previewId,
+      code: payload
     }));
 
     const timeout = setTimeout(() => {

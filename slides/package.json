@@ -16,7 +16,8 @@
     "env": "env",
     "flow": "flow",
     "lint": "flow check && npm run lint-ci",
-    "lint-ci": "eslint --ext .js --ext .jsx ./app ./webpack && echo No linting errors.",
+    "lint-ci": "semistandard && eslint --ext .js --ext .jsx ./app ./webpack && echo No linting errors.",
+    "semistandard": "semistandard",
     "prebuild": "npm run clean",
     "prestart": "yarn install",
     "pretest": "yarn install && npm run lint",
@@ -108,6 +109,7 @@
     "recordrtc": "^5.4.1",
     "rimraf": "2.5.4",
     "sass-loader": "4.1.1",
+    "semistandard": "^11.0.0",
     "sinon": "1.17.7",
     "source-map-support": "0.4.10",
     "style-loader": "0.13.1",
@@ -166,6 +168,9 @@
       "react/prop-types": 0,
       "react/react-in-jsx-scope": 1,
       "react/self-closing-comp": 1
+    },
+    "semistandard": {
+      "parser": "babel-eslint"
     }
   }
 }

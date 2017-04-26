@@ -16,6 +16,8 @@ export const WORK_MODE_EDIT_EDITOR_ANNOTATION = 'WORK_MODE_EDIT_EDITOR_ANNOTATIO
 
 // Only in deck context
 export const DECK_SLIDE_CHANGE = 'DECK_SLIDE_CHANGE';
+// Forwarded slide action
+export const DECK_SLIDE_ACTION = 'DECK_SLIDE_ACTION';
 
 //-- Recording actions
 export const RECORDING_VIEW_TOGGLE = 'RECORDING_VIEW_TOGGLE';

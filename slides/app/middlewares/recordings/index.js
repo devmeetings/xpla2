@@ -73,6 +73,7 @@ class RecordingsMiddleware {
         return;
       }
 
+      console.log(keys);
       const recordings = keys.filter(key => key !== STARTED).map(key => localforage.getItem(key));
       recordings.push(localforage.getItem(STARTED));
       return Promise.all(recordings);
@@ -101,7 +102,7 @@ class RecordingsMiddleware {
     }
 
     const lastRec = rec.get(rec.size - 1);
-    localforage.setItem(`rec:${lastRec.timestamp}`, lastRec.toJS());
+    localforage.setItem(`rec:${lastRec.get('timestamp')}`, lastRec.toJS());
   }
 
   onToggleState () {

@@ -1,3 +1,5 @@
+// @flow
+
 import {createStore, applyMiddleware} from 'redux';
 import {combineReducers} from 'redux-immutablejs';
 import thunk from 'redux-thunk';
@@ -10,9 +12,10 @@ import { deck, slide } from './reducers';
 import globalReducer from './reducers/global/index';
 import presence from './middlewares/presence/index';
 import recordings from './middlewares/recordings/index';
+import forwarder from './middlewares/slide.forwarder/index';
 
 function initStore (reducers, middlewares) {
-  return (initialState) => {
+  return (initialState: any) => {
     const reducer = combineReducers(reducers);
 
     return applyMiddleware.apply(null, [
@@ -35,10 +38,10 @@ function initStore (reducers, middlewares) {
   };
 }
 
-export function deckStore(initialState) {
+export function deckStore(initialState: any, globalEvents: any) {
   return initStore(deck, [presence, recordings])(initialState);
 }
 
-export function slideStore(initialState) {
-  return initStore(slide, [])(initialState);
+export function slideStore(initialState: any, globalEvents: any) {
+  return initStore(slide, [forwarder(globalEvents)])(initialState);
 }
