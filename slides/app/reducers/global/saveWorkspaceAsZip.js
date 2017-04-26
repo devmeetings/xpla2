@@ -1,10 +1,12 @@
+// @flow
+
 import JSZip from 'jszip';
 import _ from 'lodash';
 
 import {getFilesWithActiveAsJsArray} from '../../reducers.utils/editors';
-import {saveBlob} from './saveFile';
+import {saveBlob} from '../../reducers.utils/saveFile';
 
-export function saveWorkspaceAsZip (imState, action) {
+export function saveWorkspaceAsZip (imState: any) {
   const state = imState.toJS();
 
   const files = _.values(state.editors).reduce((files, editor) => {
@@ -19,9 +21,11 @@ export function saveWorkspaceAsZip (imState, action) {
   }, new JSZip());
 
   const now = new Date();
+  const name = `xpla_workspace_${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}_${now.getHours()}:${now.getMinutes()}.zip`;
+
   saveBlob(zip.generate({
     type: 'blob'
-  }), `xpla_workspace_${1900 + now.getYear()}-${now.getMonth()+1}-${now.getDate()}_${now.getHours()}:${now.getMinutes()}.zip`);
+  }), name);
 
   return imState;
 };

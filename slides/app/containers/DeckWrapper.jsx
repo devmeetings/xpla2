@@ -97,6 +97,7 @@ class DeckContainer extends React.Component {
           />
         <DeckRecordings
           onReset={this.props.actions.resetRecordings}
+          onSetRecordings={this.props.actions.setRecordings}
           onToggleState={this.props.actions.toggleRecordingState}
           onToggleView={this.props.actions.toggleRecordingView}
           recordings={this.props.recordings}

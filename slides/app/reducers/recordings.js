@@ -61,9 +61,9 @@ export default createReducer(fromJS({
       return state;
     }
 
-    return state.set('recordings', state.get('recordings').push({
+    return state.set('recordings', state.get('recordings').push(fromJS({
       timestamp: Date.now() - state.get('started'),
       action
-    }));
+    })));
   },
 });

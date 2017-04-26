@@ -101,7 +101,7 @@ class RecordingsMiddleware {
     }
 
     const lastRec = rec.get(rec.size - 1);
-    localforage.setItem(`rec:${lastRec.timestamp}`, lastRec);
+    localforage.setItem(`rec:${lastRec.timestamp}`, lastRec.toJS());
   }
 
   onToggleState () {

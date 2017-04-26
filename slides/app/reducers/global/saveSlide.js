@@ -1,11 +1,14 @@
+// @flow
+
 import _ from 'lodash';
 
 import logger from '../../components/logger';
 import {getFilesWithActiveAsJsArray} from '../../reducers.utils/editors';
 
-import {saveFile} from './saveFile';
+import {nonNull, cast} from '../../assert';
+import {saveFile} from '../../reducers.utils/saveFile';
 
-export function saveSlide (state, action) {
+export function saveSlide (state: any) {
   let lastNumber = state.get('lastGeneratedSlideNumber');
   if (!lastNumber) {
     lastNumber = window.prompt('Slide number [default: 1]', 1);
@@ -37,8 +40,8 @@ export function saveSlide (state, action) {
 }
 
 function generateSlide (state, slideName) {
-  const $slide = document.querySelector('[xp-slide]');
-  const slideUrl = $slide.getAttribute('xp-slide');
+  const $slide = nonNull(document.querySelector('[xp-slide]'));
+  const slideUrl = nonNull($slide.getAttribute('xp-slide'));
   const $doc = $slide.ownerDocument;
 
   const link = $doc.createElement('link');
@@ -48,7 +51,8 @@ function generateSlide (state, slideName) {
   return new Promise((resolve, reject) => {
     link.onerror = reject;
     link.onload = function (e) {
-      const clone = link.import.querySelector('html').cloneNode(true);
+      const l = cast(link);
+      const clone = l.import.querySelector('html').cloneNode(true);
       // Fill in the editors
       _.values(state.editors).map((editor, idx) => {
         const $editor = clone.querySelectorAll('xp-editor')[idx];
@@ -85,7 +89,7 @@ function generateSlide (state, slideName) {
 
       resolve(clone.outerHTML);
     };
-    $doc.head.appendChild(link);
+    nonNull($doc.head).appendChild(link);
   });
 }
 
