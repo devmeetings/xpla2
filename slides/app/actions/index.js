@@ -19,12 +19,12 @@ export const DECK_SLIDE_CHANGE = 'DECK_SLIDE_CHANGE';
 // Forwarded slide action
 export const DECK_SLIDE_ACTION = 'DECK_SLIDE_ACTION';
 
-//-- Recording actions
+// -- Recording actions
 export const RECORDING_VIEW_TOGGLE = 'RECORDING_VIEW_TOGGLE';
 export const RECORDING_STATE_TOGGLE = 'RECORDING_STATE_TOGGLE';
 export const RECORDING_RESET = 'RECORDING_RESET';
 export const RECORDING_SET = 'RECORDING_SET';
 
-//-- Tracking actions
+// -- Tracking actions
 export const PRESENCE_CLIENTS = 'PRESENCE_CLIENTS';
 export const PRESENCE_CLIENT_SLIDE_UPDATE = 'PRESENCE_CLIENT_SLIDE_UPDATE';

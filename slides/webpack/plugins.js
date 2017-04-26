@@ -20,12 +20,12 @@ var plugins = (DEBUG || TEST) ? [
   }),
   new HappyPack({
     id: 'css',
-    loaders: loaders.css,
+    loaders: loaders.css
   }),
   new HappyPack({
     id: 'sass',
-    loaders: loaders.sass,
-  }),
+    loaders: loaders.sass
+  })
 ] : [];
 
 plugins.push(

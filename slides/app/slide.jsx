@@ -31,4 +31,3 @@ if (!document.querySelector('xp-deck')) {
   $body.setAttribute('xp-slide', window.location.href);
   resizer($body);
 }
-

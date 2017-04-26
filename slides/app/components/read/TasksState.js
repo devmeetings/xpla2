@@ -26,11 +26,13 @@ export function getTasksState (dom, top) {
 
   return {
     time: isNaN(time) ? 30 : time,
-    header, footer, tasks
+    header,
+    footer,
+    tasks
   };
 }
 
-function getTasks(elems) {
+function getTasks (elems) {
   return [].map.call(elems, task => {
     const type = (task.getAttribute('class') || '').replace('xp-', '');
     const content = task.innerHTML;

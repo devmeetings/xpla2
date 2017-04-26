@@ -7,7 +7,6 @@ import Tooltip from '../Tooltip';
 import {Icon} from '../Icon/Icon';
 
 export class FileTabs extends React.Component {
-
   constructor (...args) {
     super(...args);
     this.state = {

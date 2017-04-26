@@ -26,5 +26,5 @@ export default createReducer(fromJS({
       'active',
       activeSlide.set('annotation', action.payload.annotation)
     );
-  },
+  }
 });

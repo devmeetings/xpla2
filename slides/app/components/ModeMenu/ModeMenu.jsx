@@ -8,7 +8,6 @@ import {Icon} from '../Icon/Icon';
 import styles from './ModeMenu.scss';
 
 export class ModeMenu extends React.Component {
-
   renderTooltip () {
     if (this.props.isEditMode) {
       return (

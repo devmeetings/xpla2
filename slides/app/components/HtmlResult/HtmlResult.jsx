@@ -5,7 +5,6 @@ import Props from 'react-immutable-proptypes';
 import styles from './HtmlResult.scss';
 
 export class HtmlResult extends React.Component {
-
   render () {
     const runId = this.props.runId;
     const runServerUrl = this.props.runServerUrl;
@@ -20,11 +19,10 @@ export class HtmlResult extends React.Component {
         />
     );
   }
-
 }
 
 HtmlResult.propTypes = {
   runId: React.PropTypes.string.isRequired,
   isLoading: React.PropTypes.bool.isRequired,
   runServerUrl: React.PropTypes.string.isRequired
-}
+};

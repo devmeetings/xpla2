@@ -19,9 +19,9 @@ function loadStylesAndScripts (document) {
   $head.appendChild($script);
 }
 
-function findResourcesUrl(document, res) {
+function findResourcesUrl (document, res) {
   var scripts = document.querySelectorAll('script');
-  return [].reduce.call(scripts, function(found, script) {
+  return [].reduce.call(scripts, function (found, script) {
     if (found) {
       return found;
     }

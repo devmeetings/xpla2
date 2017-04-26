@@ -1,4 +1,4 @@
-function getHtml(dom, field) {
+function getHtml (dom, field) {
   let elem = dom.querySelector(field);
   if (elem) {
     return elem.innerHTML;
@@ -6,7 +6,7 @@ function getHtml(dom, field) {
   return '';
 }
 
-function readAnnotation(dom) {
+function readAnnotation (dom) {
   const file = dom.getAttribute('file');
   const order = parseInt(dom.getAttribute('order'), 10);
 
@@ -17,11 +17,11 @@ function readAnnotation(dom) {
   };
 }
 
-function readAnnotations(dom, prop) {
+function readAnnotations (dom, prop) {
   return _(dom.querySelectorAll(prop))
     .map(readAnnotation)
     .groupBy('file')
-    .value()
+    .value();
 }
 
 export function getAnnotationState (dom) {

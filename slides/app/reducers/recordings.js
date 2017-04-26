@@ -12,7 +12,7 @@ export default createReducer(fromJS({
   state: STATE_NORMAL,
   view: VIEW_NORMAL,
   started: 0,
-  recordings: [],
+  recordings: []
 }), {
   [RECORDING_SET]: (state, action) => {
     const {recordings, started} = action.payload;
@@ -24,7 +24,7 @@ export default createReducer(fromJS({
   [RECORDING_STATE_TOGGLE]: (state, action) => {
     const map = {
       [STATE_NORMAL]: [STATE_RECORDING, VIEW_NORMAL],
-      [STATE_RECORDING]: [STATE_NORMAL, VIEW_ADMIN],
+      [STATE_RECORDING]: [STATE_NORMAL, VIEW_ADMIN]
     };
 
     const [newState, newView] = map[state.get('state')];
@@ -46,7 +46,7 @@ export default createReducer(fromJS({
   [RECORDING_VIEW_TOGGLE]: (state, action) => {
     const map = {
       [VIEW_NORMAL]: VIEW_ADMIN,
-      [VIEW_ADMIN]: VIEW_NORMAL,
+      [VIEW_ADMIN]: VIEW_NORMAL
     };
 
     return state.set('view', map[state.get('view')]);
@@ -59,7 +59,7 @@ export default createReducer(fromJS({
   [DECK_SLIDE_CHANGE]: addAction,
   [DECK_SLIDE_ACTION]: (state, action) => {
     return addAction(state, action.payload);
-  },
+  }
 });
 
 function addAction (state, action) {

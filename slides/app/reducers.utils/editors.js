@@ -21,4 +21,3 @@ export function getFilesWithActiveAsJsArray (editor) {
     return file;
   });
 }
-

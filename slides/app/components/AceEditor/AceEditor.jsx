@@ -21,7 +21,6 @@ export function createEditSession (content, mode, highlight) {
 }
 
 export class AceEditor extends React.Component {
-
   constructor (...props) {
     super(...props);
   }
@@ -110,7 +109,6 @@ export class AceEditor extends React.Component {
       this.props.onLoad(this.editor);
     }
 
-
     setTimeout(() => {
       this.editor.resize();
     }, 100);
@@ -172,7 +170,7 @@ export class AceEditor extends React.Component {
     });
     const lines = session.getLength();
     // Adding class to everything except those lines
-    const r1 = new Range(0, 0, from-1, 0);
+    const r1 = new Range(0, 0, from - 1, 0);
     const r2 = new Range(to, 0, lines, 0);
     session.addMarker(r1, 'ace_fadeout-line', 'xp-fadeout', true);
     session.addMarker(r2, 'ace_fadeout-line', 'xp-fadeout', true);

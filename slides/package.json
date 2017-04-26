@@ -16,7 +16,7 @@
     "env": "env",
     "flow": "flow",
     "lint": "flow check && npm run lint-ci",
-    "lint-ci": "semistandard && eslint --ext .js --ext .jsx ./app ./webpack && echo No linting errors.",
+    "lint-ci": "eslint --ext .js --ext .jsx ./app ./webpack && echo No linting errors.",
     "semistandard": "semistandard",
     "prebuild": "npm run clean",
     "prestart": "yarn install",

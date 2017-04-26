@@ -51,7 +51,7 @@ Promise.all(slides).then((slides) => {
   );
 }).catch((err) => {
   console.error(err);
-  alert(err)
+  alert(err);
 });
 
 resizer($xpDeck);

@@ -11,7 +11,6 @@ import Tooltip from '../Tooltip';
 import {Icon} from '../Icon/Icon';
 
 export class FileTree extends React.Component {
-
   constructor (...args) {
     super(...args);
     const tree = this.buildTree(this.props.files);
@@ -52,7 +51,7 @@ export class FileTree extends React.Component {
             pathNode = {
               name: pathPart,
               children: []
-            }
+            };
             current.children.push(pathNode);
           }
           // go deeper into that node
@@ -119,7 +118,7 @@ export class FileTree extends React.Component {
             nodeLabel={this.renderTreeNodeLabel(elem)}
             >
             {this.renderSubtree(elem.children)}
-            </TreeView>
+          </TreeView>
         );
       }
       return this.renderTreeLeaf(elem);
@@ -139,7 +138,7 @@ export class FileTree extends React.Component {
 FileTree.propTypes = {
   files: Props.listOf(Props.contains({
     name: React.PropTypes.string.isRequired,
-    highlight: Props.listOf(React.PropTypes.string).isRequired,
+    highlight: Props.listOf(React.PropTypes.string).isRequired
   })),
   active: Props.contains({
     name: React.PropTypes.string.isRequired

@@ -5,7 +5,7 @@ import {presenceClients, presenceClientSlideUpdate} from '../../actions/deckTrac
 import { DECK_SLIDE_CHANGE } from '../../actions';
 
 const forwarding = {
-  [DECK_SLIDE_CHANGE](request, origin, action) {
+  [DECK_SLIDE_CHANGE] (request, origin, action) {
     request(`/tracking/${origin}/slide`, {
       payload: action.payload
     });
@@ -14,14 +14,14 @@ const forwarding = {
 
 function processIncoming (store, message) {
   switch (message.type) {
-  case 'tracking:clients':
-    store.dispatch(presenceClients(message.clients));
-    return;
-  case 'tracking:slideUpdate':
-    store.dispatch(presenceClientSlideUpdate(message));
-    return;
-  default:
-    console.warn('Ignored message', message);
+    case 'tracking:clients':
+      store.dispatch(presenceClients(message.clients));
+      return;
+    case 'tracking:slideUpdate':
+      store.dispatch(presenceClientSlideUpdate(message));
+      return;
+    default:
+      console.warn('Ignored message', message);
   }
 }
 
@@ -80,7 +80,7 @@ export default store => {
           payload: {
             newSlideId: store.getState().getIn(['deck', 'active', 'id'])
           }
-        })
+        });
       }
     );
   });
@@ -88,4 +88,4 @@ export default store => {
   return next => action => {
     return forwardOutgoing(ws, origin, action, next);
   };
-}
+};

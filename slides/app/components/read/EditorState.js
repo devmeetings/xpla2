@@ -34,7 +34,7 @@ export function getEditorState (dom, path) {
       }
 
       return fetch(tpl.src, {
-        credentials: 'same-origin',
+        credentials: 'same-origin'
       })
         .then((response) => {
           if (response.status === 200) {
@@ -75,7 +75,7 @@ function getExtension (name) {
 }
 
 function parseAnnotations (content, ext, fileName) {
-  const COMMENT = '\\s*(([0-9]+)\\/ )?(([0-9\\.]+)\\.)?\\s*([^\\-].+)'
+  const COMMENT = '\\s*(([0-9]+)\\/ )?(([0-9\\.]+)\\.)?\\s*([^\\-].+)';
   const C_LIKE_PATTERN = new RegExp(`^\\s*///?(${COMMENT})`);
   const C_LIKE_PATTERN2 = new RegExp(`\\/\\*(${COMMENT})\\*\\/`);
   const C_LIKE_PATTERNS = [C_LIKE_PATTERN2, C_LIKE_PATTERN];
@@ -104,7 +104,7 @@ function parseAnnotations (content, ext, fileName) {
     'md': HASH_PATTERN,
     'styl': C_LIKE_PATTERNS,
     'html': HTML_LIKE,
-    'elm': ELM_PATTERN,
+    'elm': ELM_PATTERN
   };
   const PATTERN = LINE_PATTERNS[ext];
   if (!PATTERN) {
@@ -159,10 +159,9 @@ function parseAnnotations (content, ext, fileName) {
 
   return {
     fileOrder,
-    annotations: annotations.sort((a, b) => a.order - b.order),
+    annotations: annotations.sort((a, b) => a.order - b.order)
   };
 }
-
 
 function trim (val) {
   // Get initial tabulation size

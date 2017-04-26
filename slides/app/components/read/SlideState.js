@@ -1,8 +1,7 @@
 import {findId} from './utils';
 import logger from '../logger';
 
-export function readTitle(dom) {
-
+export function readTitle (dom) {
   // Firefox polyfill has wrong title, but the right one is inside body.
   let elem = dom.querySelector('body title');
 
@@ -20,7 +19,6 @@ export function readTitle(dom) {
 export function getSlideState (dom) {
   const id = findId(dom.href, dom);
   dom.id = `slide_${id}`;
-
 
   if (!('import' in dom)) {
     logger.warn('Using HTMLImports polyfill. Fingers crossed.');
@@ -54,5 +52,4 @@ export function getSlideState (dom) {
     });
   }
   return Promise.resolve(onload());
-
 }

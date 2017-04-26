@@ -13,7 +13,7 @@ export const deck = {
   deck: deckReducer,
   runServerUrl,
   presenceServerUrl,
-  recordings,
+  recordings
 };
 
 export const slide = {

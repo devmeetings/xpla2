@@ -29,7 +29,7 @@ import 'brace/theme/chrome';
 
 import styles from './Editor.scss';
 
-export function getModeForFilename(name) {
+export function getModeForFilename (name) {
   const typeMap = {
     js: 'jsx',
     ts: 'typescript',
@@ -48,7 +48,6 @@ export function getModeForFilename(name) {
 }
 
 export class Editor extends React.Component {
-
   constructor (...args) {
     super(...args);
     this.commands = this.getCommands();
@@ -154,14 +153,14 @@ export class Editor extends React.Component {
 
   renderEditor (session) {
     const aceEditor = (
-        <AceEditor
-          commands={this.commands}
-          height="100%"
-          name={`editor-${name}-${this.editorName}`}
-          onChange={this.props.onTabContentChange}
-          session={session}
-          theme="chrome"
-          width="100%"
+      <AceEditor
+        commands={this.commands}
+        height='100%'
+        name={`editor-${name}-${this.editorName}`}
+        onChange={this.props.onTabContentChange}
+        session={session}
+        theme='chrome'
+        width='100%'
         />
     );
 
