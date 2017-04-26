@@ -23,6 +23,7 @@ type StoreT = {
 
 type DestroyT = {
   destroy: () => void,
+  events: any,
   store: ?StoreT
 };
 
@@ -31,12 +32,14 @@ export class DeckActiveSlide extends React.Component {
   _element = cast({});
   _destroyPreviousSlide: DestroyT = {
     store: null,
+    events: null,
     destroy () {}
   };
 
   componentDidMount () {
     this._destroyPreviousSlide = {
       store: null,
+      events: null,
       destroy () {}
     }
     this.renderDomNode(this.props)
@@ -78,6 +81,11 @@ export class DeckActiveSlide extends React.Component {
 
     setTimeout(() => {
       destroyMe.destroy()
+      destroyMe.events.off('slide.next', this.props.onNextSlide)
+      destroyMe.events.off('slide.prev', this.props.onPrevSlide)
+      destroyMe.events.off('slide.annotation', this.props.onAnnotation)
+      destroyMe.events.off('slide.forward', this.props.onSlideAction)
+
       while (this._previousElement.hasChildNodes()) {
         this._previousElement.removeChild(this._previousElement.childNodes[0])
       }
@@ -100,7 +108,7 @@ export class DeckActiveSlide extends React.Component {
       props.annotation
     ).then((destroy) => {
       this._element.classList.remove(styles.hidenow)
-      // TODO [todr] Not sure if this might be mem leak?
+      // NOTE [ToDr] Make sure to unassign events!
       destroy.events.on('slide.next', this.props.onNextSlide)
       destroy.events.on('slide.prev', this.props.onPrevSlide)
       destroy.events.on('slide.annotation', this.props.onAnnotation)

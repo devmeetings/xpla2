@@ -77,17 +77,15 @@ export function initializeSlide (
           .concat($editors)
           .concat($previews)
           .concat($timer)
-          .concat($tasks),
-          globalEvents
+          .concat($tasks)
         )
       }
     })
 }
 
-function destroyFunction ($elems, events) {
+function destroyFunction ($elems) {
   return () => {
     $elems.filter(x => x).map(unmountComponentAtNode)
-    events.eventNames().map(eventName => events.removeAllListeners(eventName))
   }
 }
 
