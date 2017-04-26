@@ -1,14 +1,12 @@
 // @flow
 
-import React from 'react';
-import _ from 'lodash';
-import Props from 'react-immutable-proptypes';
+import React from 'react'
 
-import {initializeSlide} from '../../slide/slide';
-import {slideChangeAnnotation} from '../../actions/slide';
-import {cast} from '../../assert';
+import {initializeSlide} from '../../slide/slide'
+import {slideChangeAnnotation} from '../../actions/slide'
+import {cast} from '../../assert'
 
-import styles from './DeckActiveSlide.scss';
+import styles from './DeckActiveSlide.scss'
 
 type PropsT = {
   slide: HTMLElement,
@@ -29,7 +27,6 @@ type DestroyT = {
 };
 
 export class DeckActiveSlide extends React.Component {
-
   _previousElement = cast({});
   _element = cast({});
   _destroyPreviousSlide: DestroyT = {
@@ -40,57 +37,57 @@ export class DeckActiveSlide extends React.Component {
   componentDidMount () {
     this._destroyPreviousSlide = {
       store: null,
-      destroy() {}
-    };
-    this.renderDomNode(this.props);
+      destroy () {}
+    }
+    this.renderDomNode(this.props)
   }
 
   componentWillUnmount () {
-    this.destroyPreviousSlide();
+    this.destroyPreviousSlide()
     while (this._element.hasChildNodes()) {
-      this._element.removeChild(this._element.childNodes[0]);
+      this._element.removeChild(this._element.childNodes[0])
     }
   }
 
   componentWillReceiveProps (newProps: any) {
-    const isDifferent = Object.keys(newProps).filter(key => key !== 'annotation').find(key => newProps[key] !== this.props[key]);
+    const isDifferent = Object.keys(newProps).filter(key => key !== 'annotation').find(key => newProps[key] !== this.props[key])
     if (!isDifferent) {
       if (newProps.annotation !== this.props.annotation) {
         // Update annotation
-        const store = this._destroyPreviousSlide.store;
+        const store = this._destroyPreviousSlide.store
         if (store) {
-          store.dispatch(slideChangeAnnotation(newProps.annotation));
+          store.dispatch(slideChangeAnnotation(newProps.annotation))
         }
       }
-      return;
+      return
     }
 
-    this.destroyPreviousSlide();
-    this.renderDomNode(newProps);
+    this.destroyPreviousSlide()
+    this.renderDomNode(newProps)
   }
 
   destroyPreviousSlide () {
     // First copy to prevContainer
     while (this._element.hasChildNodes()) {
-      this._previousElement.appendChild(this._element.childNodes[0]);
+      this._previousElement.appendChild(this._element.childNodes[0])
     }
     // Then start animation and destroy previous slide
-    this._previousElement.classList.add(styles.hidden);
+    this._previousElement.classList.add(styles.hidden)
     // Remember destroy function now
-    const destroyMe = this._destroyPreviousSlide;
+    const destroyMe = this._destroyPreviousSlide
 
     setTimeout(() => {
-      destroyMe.destroy();
-      while(this._previousElement.hasChildNodes()) {
-        this._previousElement.removeChild(this._previousElement.childNodes[0]);
+      destroyMe.destroy()
+      while (this._previousElement.hasChildNodes()) {
+        this._previousElement.removeChild(this._previousElement.childNodes[0])
       }
-      this._previousElement.classList.remove(styles.hidden);
-    }, 1000);
+      this._previousElement.classList.remove(styles.hidden)
+    }, 1000)
   }
 
   renderDomNode (props: PropsT) {
-    const clone = props.slide.cloneNode(true);
-    this._element.appendChild(clone);
+    const clone = props.slide.cloneNode(true)
+    this._element.appendChild(clone)
 
     // Initialize slide content
     this._element.classList.add(styles.hidenow)
@@ -102,21 +99,26 @@ export class DeckActiveSlide extends React.Component {
       props.path,
       props.annotation
     ).then((destroy) => {
-      this._element.classList.remove(styles.hidenow);
+      this._element.classList.remove(styles.hidenow)
       // TODO [todr] Not sure if this might be mem leak?
-      destroy.events.on('slide.next', this.props.onNextSlide);
-      destroy.events.on('slide.prev', this.props.onPrevSlide);
-      destroy.events.on('slide.annotation', this.props.onAnnotation);
-      destroy.events.on('slide.forward', this.props.onSlideAction);
-      this._destroyPreviousSlide = destroy;
+      destroy.events.on('slide.next', this.props.onNextSlide)
+      destroy.events.on('slide.prev', this.props.onPrevSlide)
+      destroy.events.on('slide.annotation', this.props.onAnnotation)
+      destroy.events.on('slide.forward', this.props.onSlideAction)
+      this._destroyPreviousSlide = destroy
     }, (e) => {
-      console.error('Error while loading slide.');
-      console.error(e);
-    });
+      console.error('Error while loading slide.')
+      console.error(e)
+    })
   }
 
-  onPreviousElement = (c: HTMLElement) => this._previousElement = c;
-  onElement = (c: HTMLElement) => this._element = c;
+  onPreviousElement = (c: HTMLElement) => {
+    this._previousElement = c
+  }
+
+  onElement = (c: HTMLElement) => {
+    this._element = c
+  }
 
   render () {
     return (
@@ -130,7 +132,7 @@ export class DeckActiveSlide extends React.Component {
           ref={this.onElement}
           />
       </div>
-    );
+    )
   }
 }
 
@@ -144,6 +146,4 @@ DeckActiveSlide.propTypes = {
   onNextSlide: React.PropTypes.func.isRequired,
   onPrevSlide: React.PropTypes.func.isRequired,
   onSlideAction: React.PropTypes.func.isRequired
-};
-
-
+}

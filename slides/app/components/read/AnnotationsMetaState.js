@@ -1,38 +1,44 @@
+// @flow
+
+import _ from 'lodash'
+
 function getHtml (dom, field) {
-  let elem = dom.querySelector(field);
+  let elem = dom.querySelector(field)
   if (elem) {
-    return elem.innerHTML;
+    return elem.innerHTML
   }
-  return '';
+  return ''
 }
 
 function readAnnotation (dom) {
-  const file = dom.getAttribute('file');
-  const order = parseInt(dom.getAttribute('order'), 10);
+  const file = dom.getAttribute('file')
+  const order = parseInt(dom.getAttribute('order'), 10)
 
   return {
     file,
     order,
     content: dom.innerHTML
-  };
+  }
 }
 
 function readAnnotations (dom, prop) {
   return _(dom.querySelectorAll(prop))
     .map(readAnnotation)
     .groupBy('file')
-    .value();
+    .value()
 }
 
-export function getAnnotationState (dom) {
-  const header = getHtml(dom, 'header');
-  const details = getHtml(dom, 'details');
-  const annotations = readAnnotations(dom, 'aside');
+export function getAnnotationState (dom: Element) {
+  const header = getHtml(dom, 'header')
+  const details = getHtml(dom, 'details')
+  const annotations = readAnnotations(dom, 'aside')
+  const title: ?string = null
 
   return {
+    title,
     header,
     details,
     currentAnnotation: -1,
     annotations
-  };
+  }
 }

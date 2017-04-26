@@ -14,11 +14,11 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: [/* 'Chrome', */'PhantomJS'],
+    browsers: ['PhantomJS'], /* 'Chrome', */
     singleRun: false,
     webpack: require('./webpack/config.test'),
     webpackMiddleware: {
       noInfo: true
     }
-  });
-};
+  })
+}

@@ -1,33 +1,33 @@
-import React from 'react';
-import {findDOMNode} from 'react-dom';
-import _ from 'lodash';
-import Props from 'react-immutable-proptypes';
+import React from 'react'
+import {findDOMNode} from 'react-dom'
+import _ from 'lodash'
+import Props from 'react-immutable-proptypes'
 
-import {AceEditor, createEditSession} from '../AceEditor/AceEditor';
-import {FileTabs} from '../FileTabs/FileTabs';
-import {FileTree} from '../FileTree/FileTree';
-import {ModeMenu} from '../ModeMenu/ModeMenu';
-import {isSmallScreen} from '../isSmallScreen';
+import {AceEditor, createEditSession as CreateEditSession} from '../AceEditor/AceEditor'
+import {FileTabs} from '../FileTabs/FileTabs'
+import {FileTree} from '../FileTree/FileTree'
+import {ModeMenu} from '../ModeMenu/ModeMenu'
+import {isSmallScreen} from '../isSmallScreen'
 
-import {WORK_MODE_DECK_EDIT} from '../../reducers.utils/workMode';
+import {WORK_MODE_DECK_EDIT} from '../../reducers.utils/workMode'
 
-import 'brace/mode/html';
-import 'brace/mode/rust';
-import 'brace/mode/json';
-import 'brace/mode/jsx';
-import 'brace/mode/typescript';
-import 'brace/mode/java';
-import 'brace/mode/golang';
-import 'brace/mode/python';
-import 'brace/mode/markdown';
-import 'brace/mode/sh';
-import 'brace/mode/stylus';
-import 'brace/mode/yaml';
-import 'brace/mode/dart';
-import 'brace/mode/elm';
-import 'brace/theme/chrome';
+import 'brace/mode/html'
+import 'brace/mode/rust'
+import 'brace/mode/json'
+import 'brace/mode/jsx'
+import 'brace/mode/typescript'
+import 'brace/mode/java'
+import 'brace/mode/golang'
+import 'brace/mode/python'
+import 'brace/mode/markdown'
+import 'brace/mode/sh'
+import 'brace/mode/stylus'
+import 'brace/mode/yaml'
+import 'brace/mode/dart'
+import 'brace/mode/elm'
+import 'brace/theme/chrome'
 
-import styles from './Editor.scss';
+import styles from './Editor.scss'
 
 export function getModeForFilename (name) {
   const typeMap = {
@@ -39,20 +39,20 @@ export function getModeForFilename (name) {
     rs: 'rust',
     styl: 'stylus',
     yml: 'yaml'
-  };
+  }
 
-  const parts = name.split('.');
-  const type = _.last(parts);
+  const parts = name.split('.')
+  const type = _.last(parts)
 
-  return typeMap[type] || type;
+  return typeMap[type] || type
 }
 
 export class Editor extends React.Component {
   constructor (...args) {
-    super(...args);
-    this.commands = this.getCommands();
-    this.state = {};
-    this.editorName = Math.random();
+    super(...args)
+    this.commands = this.getCommands()
+    this.state = {}
+    this.editorName = Math.random()
   }
 
   getCommands () {
@@ -65,7 +65,7 @@ export class Editor extends React.Component {
           sender: 'editor|cli'
         },
         exec: () => {
-          this.props.onSaveWorkspaceAsZipAction();
+          this.props.onSaveWorkspaceAsZipAction()
         }
       },
       {
@@ -76,7 +76,7 @@ export class Editor extends React.Component {
           sender: 'editor|cli'
         },
         exec: () => {
-          this.props.onSaveAction();
+          this.props.onSaveAction()
         }
       }, {
         name: 'runAction',
@@ -86,7 +86,7 @@ export class Editor extends React.Component {
           sender: 'editor|cli'
         },
         exec: () => {
-          this.props.onRunAction();
+          this.props.onRunAction()
         }
       }, {
         name: 'toggleWorkModeAction',
@@ -96,62 +96,62 @@ export class Editor extends React.Component {
           sender: 'editor|cli'
         },
         exec: () => {
-          this.props.onWorkModeToggle();
+          this.props.onWorkModeToggle()
         }
       }
-    ];
+    ]
   }
 
   _isEditMode () {
-    return this.props.workMode === WORK_MODE_DECK_EDIT;
+    return this.props.workMode === WORK_MODE_DECK_EDIT
   }
 
   getType (tab) {
-    return getModeForFilename(tab.get('name'));
+    return getModeForFilename(tab.get('name'))
   }
 
   componentDidMount () {
     this._listener = (ev) => {
       // Don't forward keyups when focused on editor
-      ev.stopPropagation();
-    };
+      ev.stopPropagation()
+    }
 
-    findDOMNode(this).addEventListener('keyup', this._listener);
+    findDOMNode(this).addEventListener('keyup', this._listener)
   }
 
   componentWillUnmount () {
-    findDOMNode(this).removeEventListener('keyup', this._listener);
+    findDOMNode(this).removeEventListener('keyup', this._listener)
   }
 
   componentWillMount () {
-    this.createActiveEditorSession(this.props);
+    this.createActiveEditorSession(this.props)
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.active === this.props.active) {
-      return;
+      return
     }
 
-    const name = nextProps.active.get('name');
+    const name = nextProps.active.get('name')
     if (!this.state[name]) {
-      this.createActiveEditorSession(nextProps);
+      this.createActiveEditorSession(nextProps)
     }
   }
 
   createActiveEditorSession (props) {
-    const mode = this.getType(props.active);
-    const name = props.active.get('name');
-    const content = props.active.get('content');
-    const highlight = props.active.get('highlight');
+    const mode = this.getType(props.active)
+    const name = props.active.get('name')
+    const content = props.active.get('content')
+    const highlight = props.active.get('highlight')
 
-    const editSession = new createEditSession(content, mode, highlight.toJS());
+    const editSession = new CreateEditSession(content, mode, highlight.toJS())
 
     this.setState({
       [name]: editSession
-    });
+    })
   }
 
-  renderEditor (session) {
+  renderEditor (name, session) {
     const aceEditor = (
       <AceEditor
         commands={this.commands}
@@ -162,9 +162,9 @@ export class Editor extends React.Component {
         theme='chrome'
         width='100%'
         />
-    );
+    )
 
-    const isFileTree = this.props.showFileTree && !isSmallScreen();
+    const isFileTree = this.props.showFileTree && !isSmallScreen()
     if (!isFileTree) {
       return (
         <div>
@@ -180,7 +180,7 @@ export class Editor extends React.Component {
             {aceEditor}
           </div>
         </div>
-      );
+      )
     }
     return (
       <div className={styles.treeEditor}>
@@ -198,24 +198,24 @@ export class Editor extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
   render () {
     if (!this.props.active) {
-      return;
+      return
     }
 
-    const name = this.props.active.get('name');
-    const session = this.state[name];
+    const name = this.props.active.get('name')
+    const session = this.state[name]
 
     return (
       <div
         className={this._isEditMode() ? styles.editorEdit : styles.editor}
         >
-        {this.renderEditor(session)}
+        {this.renderEditor(name, session)}
       </div>
-    );
+    )
   }
 }
 Editor.propTypes = {
@@ -235,4 +235,4 @@ Editor.propTypes = {
   onTabChange: React.PropTypes.func.isRequired,
   onTabContentChange: React.PropTypes.func.isRequired,
   onSaveWorkspaceAsZipAction: React.PropTypes.func.isRequired
-};
+}

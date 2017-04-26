@@ -1,6 +1,6 @@
 /* global it */
-import { assert } from 'chai';
+import { assert } from 'chai'
 
 it('should run fine', () => {
-  assert(true, true);
-});
+  assert(true, true)
+})

@@ -1,42 +1,39 @@
 // @flow
 
-import {bindActionCreators} from 'redux';
-import React from 'react';
-import {connect} from 'react-redux';
-import Props from 'react-immutable-proptypes';
+import {bindActionCreators} from 'redux'
+import React from 'react'
+import {connect} from 'react-redux'
 
-import * as DeckActions from '../actions/deck';
+import * as DeckActions from '../actions/deck'
 
-import {DeckActiveSlide} from '../components/DeckActiveSlide/DeckActiveSlide';
-import {DeckSlidesList} from '../components/DeckSlidesList/DeckSlidesList';
-import {DeckLocationUpdater, getSlideId} from '../components/DeckLocationUpdater/DeckLocationUpdater';
-import {DeckRecordings} from '../components/DeckRecordings';
+import {DeckActiveSlide} from '../components/DeckActiveSlide/DeckActiveSlide'
+import {DeckSlidesList} from '../components/DeckSlidesList/DeckSlidesList'
+import {DeckLocationUpdater, getSlideId} from '../components/DeckLocationUpdater/DeckLocationUpdater'
+import {DeckRecordings} from '../components/DeckRecordings'
 
-import styles from './DeckWrapper.scss';
+import styles from './DeckWrapper.scss'
 
 class DeckContainer extends React.Component {
-
   componentDidMount () {
-    window.addEventListener('keyup', this.onKey);
+    window.addEventListener('keyup', this.onKey)
   }
 
   componentWillUnmount () {
-    window.removeEventListener('keyup', this.onKey);
+    window.removeEventListener('keyup', this.onKey)
   }
 
   onKey = (ev) => {
-    const prevPage = [33/* PGUP */];
-    const nextPage = [34/* PGDOWN */];
-    const code = ev.keyCode;
+    const prevPage = [33]/* PGUP */
+    const nextPage = [34]/* PGDOWN */
+    const code = ev.keyCode
 
     if (prevPage.indexOf(code) !== -1) {
-      this.prevSlide();
-      return;
+      this.prevSlide()
+      return
     }
 
     if (nextPage.indexOf(code) !== -1) {
-      this.nextSlide();
-      return;
+      this.nextSlide()
     }
   };
 
@@ -44,51 +41,51 @@ class DeckContainer extends React.Component {
     this.props.actions.deckSlideChange({
       newSlideId: this.props.activeSlide.get('id'),
       annotation
-    });
+    })
   };
 
   nextSlide = () => {
-    let activeId = this.props.activeSlide.get('id');
-    let idx = this.props.slides.findIndex(slide => slide.get('id') === activeId);
+    let activeId = this.props.activeSlide.get('id')
+    let idx = this.props.slides.findIndex(slide => slide.get('id') === activeId)
     if (idx + 1 >= this.props.slides.size) {
-      return;
+      return
     }
 
-    this.onSlideChange(this.props.slides.get(idx + 1));
+    this.onSlideChange(this.props.slides.get(idx + 1))
   };
 
   prevSlide = () => {
-    let activeId = this.props.activeSlide.get('id');
-    let idx = this.props.slides.findIndex(slide => slide.get('id') === activeId);
+    let activeId = this.props.activeSlide.get('id')
+    let idx = this.props.slides.findIndex(slide => slide.get('id') === activeId)
     if (idx - 1 < 0) {
-      return;
+      return
     }
 
-    this.onSlideChange(this.props.slides.get(idx - 1));
+    this.onSlideChange(this.props.slides.get(idx - 1))
   };
 
   onSlideAction = (action) => {
-    action.payload.slideId = this.props.activeSlide.get('id');
-    this.props.actions.slideAction(action);
+    action.payload.slideId = this.props.activeSlide.get('id')
+    this.props.actions.slideAction(action)
   };
 
   onSlideChange = (slide) => {
     this.props.actions.deckSlideChange({
       newSlideId: slide.get('id'),
       annotation: -1
-    });
+    })
   };
 
   onSlideUrlChange = ({slide, annotation = -1}) => {
-    const s = this.props.slides.find((s) => getSlideId(s) === slide);
+    const s = this.props.slides.find((s) => getSlideId(s) === slide)
     if (!s) {
-      return;
+      return
     }
 
     this.props.actions.deckSlideChange({
       newSlideId: s.get('id'),
       annotation
-    });
+    })
   };
 
   render () {
@@ -126,16 +123,15 @@ class DeckContainer extends React.Component {
           slides={this.props.slides}
         />
       </div>
-    );
+    )
   }
-
 }
 
 DeckContainer.propTypes = {
   actions: React.PropTypes.shape({
     deckSlideChange: React.PropTypes.func.isRequired
   }).isRequired
-};
+}
 
 @connect(
   state => ({
@@ -151,7 +147,7 @@ DeckContainer.propTypes = {
   })
 )
 export default class DeckContainerWrapper extends React.Component {
-  render() {
+  render () {
     return (
       <DeckContainer {...this.props} />
     )

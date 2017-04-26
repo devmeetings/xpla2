@@ -16,8 +16,8 @@
     "env": "env",
     "flow": "flow",
     "lint": "flow check && npm run lint-ci",
-    "lint-ci": "eslint --ext .js --ext .jsx ./app ./webpack && echo No linting errors.",
-    "semistandard": "semistandard",
+    "lint-ci": "standard && eslint --ext .js --ext .jsx ./app ./webpack && echo No linting errors.",
+    "standard": "standard",
     "prebuild": "npm run clean",
     "prestart": "yarn install",
     "pretest": "yarn install && npm run lint",
@@ -56,6 +56,7 @@
     "redux-actions": "1.2.0",
     "redux-immutablejs": "0.0.8",
     "redux-thunk": "2.2.0",
+    "standard": "^10.0.2",
     "subtitles-parser": "^0.0.2",
     "tone": "^0.10.0",
     "webcomponents.js": "0.7.23"
@@ -109,7 +110,6 @@
     "recordrtc": "^5.4.1",
     "rimraf": "2.5.4",
     "sass-loader": "4.1.1",
-    "semistandard": "^11.0.0",
     "sinon": "1.17.7",
     "source-map-support": "0.4.10",
     "style-loader": "0.13.1",
@@ -146,8 +146,9 @@
         "global"
       ],
       "indent": [
+        "error",
         2,
-        2
+        { "SwitchCase": 1 }
       ],
       "quotes": [
         2,
@@ -156,7 +157,6 @@
       "no-alert": 0,
       "no-underscore-dangle": 0,
       "react/display-name": 0,
-      "jsx-quotes": 1,
       "react/jsx-no-undef": 1,
       "react/jsx-sort-props": 1,
       "react/jsx-uses-react": 1,
@@ -168,9 +168,18 @@
       "react/prop-types": 0,
       "react/react-in-jsx-scope": 1,
       "react/self-closing-comp": 1
-    },
-    "semistandard": {
-      "parser": "babel-eslint"
     }
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "globals": [
+      "HTMLElement",
+      "Element",
+      "File",
+      "Blob",
+      "FileReader",
+      "KeyboardEvent",
+      "MouseEvent"
+    ]
   }
 }

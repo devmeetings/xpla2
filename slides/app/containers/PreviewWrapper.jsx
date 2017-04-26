@@ -1,54 +1,53 @@
-import {bindActionCreators} from 'redux';
-import React from 'react';
-import {connect} from 'react-redux';
-import Props from 'react-immutable-proptypes';
+import {bindActionCreators} from 'redux'
+import React from 'react'
+import {connect} from 'react-redux'
+import Props from 'react-immutable-proptypes'
 
-import {Preview} from '../components/Preview/Preview';
+import {Preview} from '../components/Preview/Preview'
 
-import {getFilesWithActive} from '../reducers.utils/editors';
+import {getFilesWithActive} from '../reducers.utils/editors'
 
-import * as PreviewActions from '../actions/preview';
+import * as PreviewActions from '../actions/preview'
 
 class PreviewContainer extends React.Component {
-
   constructor (...args) {
-    super(...args);
-    this.onGlobalRun = this.onGlobalRun.bind(this);
+    super(...args)
+    this.onGlobalRun = this.onGlobalRun.bind(this)
   }
 
   componentDidMount () {
-    this.props.globalEvents.on('preview.run', this.onGlobalRun);
-    this.triggerRunOnStart();
+    this.props.globalEvents.on('preview.run', this.onGlobalRun)
+    this.triggerRunOnStart()
   }
 
   componentWillUnmount () {
-    this.props.globalEvents.off('preview.run', this.onGlobalRun);
+    this.props.globalEvents.off('preview.run', this.onGlobalRun)
   }
 
   triggerRunOnStart () {
-    const preview = this.props.previews.get(this.props.previewId);
+    const preview = this.props.previews.get(this.props.previewId)
     if (!preview.get('runOnStart')) {
-      return;
+      return
     }
-    this.onGlobalRun();
+    this.onGlobalRun()
   }
 
   onGlobalRun () {
-    this.runAction(false);
+    this.runAction(false)
   }
 
   getFilesFromEditors () {
-    const files = this.props.editors.map(getFilesWithActive);
-    return files.toSetSeq().flatten(1);
+    const files = this.props.editors.map(getFilesWithActive)
+    return files.toSetSeq().flatten(1)
   }
 
   runAction = (force) => {
-    const previewId = this.props.previewId;
-    const preview = this.props.previews.get(previewId);
-    const runServerUrl = this.props.runServerUrl;
+    const previewId = this.props.previewId
+    const preview = this.props.previews.get(previewId)
+    const runServerUrl = this.props.runServerUrl
 
-    const runnerName = preview.get('runner');
-    const files = this.getFilesFromEditors();
+    const runnerName = preview.get('runner')
+    const files = this.getFilesFromEditors()
 
     this.props.actions.commitAndRunCode({
       runServerUrl: runServerUrl,
@@ -56,13 +55,13 @@ class PreviewContainer extends React.Component {
       runnerName: runnerName,
       files: files.toJS(),
       skipCache: !!force
-    });
+    })
   };
 
   render () {
-    const id = this.props.previewId;
-    const runServerUrl = this.props.runServerUrl;
-    const preview = this.props.previews.get(id);
+    const id = this.props.previewId
+    const runServerUrl = this.props.runServerUrl
+    const preview = this.props.previews.get(id)
 
     return (
       <div>
@@ -78,9 +77,8 @@ class PreviewContainer extends React.Component {
           runServerUrl={runServerUrl}
           />
       </div>
-    );
+    )
   }
-
 }
 
 PreviewContainer.propTypes = {
@@ -91,7 +89,7 @@ PreviewContainer.propTypes = {
     commitAndRunCode: React.PropTypes.func.isRequired
   }).isRequired,
   globalEvents: React.PropTypes.object.isRequired
-};
+}
 
 @connect(
   state => ({
@@ -104,7 +102,7 @@ PreviewContainer.propTypes = {
   })
 )
 export default class PreviewContainerWrapper extends React.Component {
-  render() {
+  render () {
     return (
       <PreviewContainer {...this.props} />
     )
@@ -113,4 +111,4 @@ export default class PreviewContainerWrapper extends React.Component {
 PreviewContainerWrapper.propTypes = {
   previewId: React.PropTypes.string.isRequired,
   globalEvents: React.PropTypes.object.isRequired
-};
+}

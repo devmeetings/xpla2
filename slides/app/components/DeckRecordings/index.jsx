@@ -1,1 +1,1 @@
-export {DeckRecordings} from './DeckRecordings';
+export {DeckRecordings} from './DeckRecordings'

@@ -1,34 +1,31 @@
-import React from 'react';
-import _ from 'lodash';
-import Props from 'react-immutable-proptypes';
+import React from 'react'
 
-import Tooltip from '../Tooltip';
+import Tooltip from '../Tooltip'
 
-import {HtmlResult} from '../HtmlResult/HtmlResult';
-import {Icon} from '../Icon/Icon';
+import {HtmlResult} from '../HtmlResult/HtmlResult'
+import {Icon} from '../Icon/Icon'
 
-import styles from './Preview.scss';
+import styles from './Preview.scss'
 
 export class Preview extends React.Component {
-
   renderAlert () {
-    const isTakingLong = this.props.isTakingLong;
+    const isTakingLong = this.props.isTakingLong
     if (!isTakingLong) {
-      return;
+      return
     }
     return (
       <div className={styles.previewAlert}>
         Your code is running longer than expected. You may be offline or you might try executing again.
       </div>
-    );
+    )
   }
 
   renderResultWindow () {
-    const runId = this.props.runId;
-    const runServerUrl = this.props.runServerUrl;
-    const isLoading = this.props.isLoading;
-    const isError = this.props.isError;
-    const file = this.props.file;
+    const runId = this.props.runId
+    const runServerUrl = this.props.runServerUrl
+    const isLoading = this.props.isLoading
+    const isError = this.props.isError
+    const file = this.props.file
 
     if (isError) {
       return (
@@ -38,7 +35,7 @@ export class Preview extends React.Component {
             There was an error running your code. It means that you are offline or server is having some troubles processing your request.
           </p>
         </div>
-      );
+      )
     }
 
     if (!runId) {
@@ -50,11 +47,11 @@ export class Preview extends React.Component {
           <div>
             {this.renderAlert()}
             <div className={styles.loadingIcon}>
-              <Icon icon={'refresh'} size={'5em'} spin={true} />
+              <Icon icon={'refresh'} size={'5em'} spin />
             </div>
           </div>
         </Tooltip>
-      );
+      )
     }
 
     return (
@@ -67,25 +64,25 @@ export class Preview extends React.Component {
           runServerUrl={runServerUrl}
         />
       </div>
-    );
+    )
   }
 
   getBtnClass () {
     if (this.props.isFresh) {
-      return styles.runButton + ' ' + styles.disabled;
+      return styles.runButton + ' ' + styles.disabled
     }
 
-    return styles.runButton;
+    return styles.runButton
   }
 
   renderRunButtonText () {
     if (this.props.isLoading) {
       return (
         <span>
-          <Icon icon={'restore'} spin={true} />
+          <Icon icon={'restore'} spin />
           &nbsp;Run Code
         </span>
-      );
+      )
     }
 
     if (this.props.isFresh) {
@@ -94,7 +91,7 @@ export class Preview extends React.Component {
           <Icon icon={'refresh'} />
           &nbsp;Run Code
         </span>
-      );
+      )
     }
 
     return (
@@ -102,12 +99,12 @@ export class Preview extends React.Component {
         <Icon icon={'play'} />
         &nbsp;Run Code
       </span>
-    );
+    )
   }
 
   triggerRun = () => {
-    const forceRun = this.props.isFresh;
-    this.props.onRun(forceRun);
+    const forceRun = this.props.isFresh
+    this.props.onRun(forceRun)
   };
 
   renderRunButton () {
@@ -119,7 +116,7 @@ export class Preview extends React.Component {
         >
         {this.renderRunButtonText()}
       </button>
-    );
+    )
   }
 
   renderNewWindowButton () {
@@ -129,9 +126,9 @@ export class Preview extends React.Component {
         href={this.props.runServerUrl + '/api/results/' + this.props.runId + '/' + this.props.file}
         target={'_blank'}
         >
-          <Icon icon={'launch'} />
+        <Icon icon={'launch'} />
       </a>
-    );
+    )
   }
 
   renderLogsButton () {
@@ -140,11 +137,11 @@ export class Preview extends React.Component {
         className={styles.logsButton}
         href={this.props.runServerUrl + '/api/results/' + this.props.runId + '/_logs.html'}
         target={'_blank'}
-        title="Output logs"
+        title='Output logs'
         >
-          <Icon icon={'subject'} />
+        <Icon icon={'subject'} />
       </a>
-    );
+    )
   }
 
   render () {
@@ -157,7 +154,7 @@ export class Preview extends React.Component {
         </div>
         {this.renderResultWindow()}
       </div>
-    );
+    )
   }
 }
 
@@ -170,4 +167,4 @@ Preview.propTypes = {
   file: React.PropTypes.string.isRequired,
   runServerUrl: React.PropTypes.string.isRequired,
   onRun: React.PropTypes.func.isRequired
-};
+}

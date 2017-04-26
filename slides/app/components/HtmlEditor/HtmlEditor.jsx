@@ -1,20 +1,20 @@
-require('medium-editor/dist/css/medium-editor.css');
-require('medium-editor/dist/css/themes/default.css');
+import React from 'react'
+import Editor from 'react-medium-editor'
 
-import React from 'react';
-import Editor from 'react-medium-editor';
+import {Icon} from '../Icon/Icon'
 
-import {Icon} from '../Icon/Icon';
+import styles from './HtmlEditor.scss'
 
-import styles from './HtmlEditor.scss';
+require('medium-editor/dist/css/medium-editor.css')
+require('medium-editor/dist/css/themes/default.css')
 
 // Editor options
 const code = {
   name: 'pre',
   action: 'append-pre',
   aria: 'Predefined text',
-  tagNames: ['code', 'pre'],
-};
+  tagNames: ['code', 'pre']
+}
 const options = {
   toolbar: {
     buttons: [
@@ -25,16 +25,15 @@ const options = {
       'removeFormat', 'html'
     ]
   }
-};
+}
 
 export class HtmlEditor extends React.Component {
-
   static propTypes = {
     onChange: React.PropTypes.func
   };
 
   static defaultPropTypes = {
-    onChange: null,
+    onChange: null
   };
 
   state = {
@@ -44,25 +43,25 @@ export class HtmlEditor extends React.Component {
 
   componentWillReceiveProps (nextProps) {
     if (this.props.text !== nextProps.text) {
-      this.setState({ text: nextProps.text });
+      this.setState({ text: nextProps.text })
     }
   }
 
   handleChange = (text) => {
-    this.setState({ text });
+    this.setState({ text })
     if (this.props.onChange) {
-      this.props.onChange(text);
+      this.props.onChange(text)
     }
   }
 
   handleRawChange = (ev) => {
-    this.handleChange(ev.target.value);
+    this.handleChange(ev.target.value)
   }
 
   toggleRaw = () => {
     this.setState({
       raw: !this.state.raw
-    });
+    })
   }
 
   render () {
@@ -74,12 +73,12 @@ export class HtmlEditor extends React.Component {
           title={'Toggle HTML mode'}
           >
           <Icon
-            icon="keyboard"
+            icon='keyboard'
           />
         </a>
         {this.renderEditor()}
       </div>
-    );
+    )
   }
 
   renderEditor () {
@@ -90,15 +89,15 @@ export class HtmlEditor extends React.Component {
           onChange={this.handleRawChange}
           value={this.state.text}
         />
-      );
+      )
     }
     return (
       <Editor
         onChange={this.handleChange}
         options={options}
-        tag="div"
+        tag='div'
         text={this.state.text}
       />
-    );
+    )
   }
 }

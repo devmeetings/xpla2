@@ -1,15 +1,13 @@
-import React from 'react';
-import _ from 'lodash';
-import Props from 'react-immutable-proptypes';
+import React from 'react'
 
-import styles from './HtmlResult.scss';
+import styles from './HtmlResult.scss'
 
 export class HtmlResult extends React.Component {
   render () {
-    const runId = this.props.runId;
-    const runServerUrl = this.props.runServerUrl;
-    const isLoading = this.props.isLoading;
-    const file = this.props.file;
+    const runId = this.props.runId
+    const runServerUrl = this.props.runServerUrl
+    const isLoading = this.props.isLoading
+    const file = this.props.file
 
     return (
       <iframe
@@ -17,7 +15,7 @@ export class HtmlResult extends React.Component {
         seamless
         src={`${runServerUrl}/api/results/${runId}/${file}`}
         />
-    );
+    )
   }
 }
 
@@ -25,4 +23,4 @@ HtmlResult.propTypes = {
   runId: React.PropTypes.string.isRequired,
   isLoading: React.PropTypes.bool.isRequired,
   runServerUrl: React.PropTypes.string.isRequired
-};
+}

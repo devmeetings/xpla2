@@ -1,6 +1,6 @@
 // @flow
 
-import * as actions from '../../actions';
+import * as actions from '../../actions'
 
 type StateT = any;
 type ActionT = any;
@@ -17,14 +17,14 @@ type EventEmitterT = {
 const forwarded = [
   actions.COMMIT_AND_RUN_CODE_STARTED,
   actions.CHANGE_ACTIVE_TAB
-];
+]
 
 export default (globalEvents: EventEmitterT) => (store: StoreT) => {
-  return (next: (ActionT) => StateT)  => (action: ActionT) => {
+  return (next: (ActionT) => StateT) => (action: ActionT) => {
     if (forwarded.indexOf(action.type) !== -1) {
-      globalEvents.emit('slide.forward', action);
+      globalEvents.emit('slide.forward', action)
     }
 
-    return next(action);
-  };
+    return next(action)
+  }
 }

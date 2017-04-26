@@ -1,55 +1,54 @@
-import {bindActionCreators} from 'redux';
-import React from 'react';
-import {connect} from 'react-redux';
-import Props from 'react-immutable-proptypes';
+import {bindActionCreators} from 'redux'
+import React from 'react'
+import {connect} from 'react-redux'
+import Props from 'react-immutable-proptypes'
 
-import {WORK_MODE_DECK_EDIT} from '../reducers.utils/workMode';
+import {WORK_MODE_DECK_EDIT} from '../reducers.utils/workMode'
 
-import * as EditorActions from '../actions/editor';
-import * as WorkModeActions from '../actions/workMode';
+import * as EditorActions from '../actions/editor'
+import * as WorkModeActions from '../actions/workMode'
 
-import {Editor} from '../components/Editor/Editor';
+import {Editor} from '../components/Editor/Editor'
 
 class EditorContainer extends React.Component {
-
   changeTab = (tab) => {
     this.props.actions.changeActiveTab({
       editorId: this.props.editorId,
       tabName: tab.get('name')
-    });
+    })
   }
 
   changeTabContent = (content) => {
     this.props.actions.modifyActiveTabContent({
       editorId: this.props.editorId,
       content: content
-    });
+    })
   }
 
   saveWorkspaceAsZip = () => {
     this.props.actions.saveWorkspaceAsZip({
       editorId: this.props.editorId
-    });
+    })
   }
 
   saveAndRunOrSaveSlide = (data) => {
     if (this.props.workMode === WORK_MODE_DECK_EDIT) {
-      this.props.actionsWorkMode.saveCurrentSlide();
+      this.props.actionsWorkMode.saveCurrentSlide()
     }
-    this.saveAndRunCode(data);
+    this.saveAndRunCode(data)
   }
 
   saveAndRunCode = (data) => {
-    this.props.globalEvents.emit('preview.run', data);
+    this.props.globalEvents.emit('preview.run', data)
   }
 
   toggleWorkMode = () => {
-    this.props.actionsWorkMode.workModeDeckEditToggle();
+    this.props.actionsWorkMode.workModeDeckEditToggle()
   }
 
   render () {
-    const id = this.props.editorId;
-    const editor = this.props.editors.get(id);
+    const id = this.props.editorId
+    const editor = this.props.editors.get(id)
 
     return (
       <Editor
@@ -66,9 +65,8 @@ class EditorContainer extends React.Component {
         showFileTree={editor.get('showFileTree')}
         workMode={this.props.workMode}
         />
-    );
+    )
   }
-
 }
 
 EditorContainer.propTypes = {
@@ -80,7 +78,7 @@ EditorContainer.propTypes = {
     modifyActiveTabContent: React.PropTypes.func.isRequired
   }).isRequired,
   globalEvents: React.PropTypes.object.isRequired
-};
+}
 
 @connect(
   state => ({
@@ -93,7 +91,7 @@ EditorContainer.propTypes = {
   })
 )
 export default class EditorContainerWrapper extends React.Component {
-  render() {
+  render () {
     return (
       <EditorContainer {...this.props} />
     )
@@ -102,4 +100,4 @@ export default class EditorContainerWrapper extends React.Component {
 EditorContainerWrapper.propTypes = {
   editorId: React.PropTypes.string.isRequired,
   globalEvents: React.PropTypes.object.isRequired
-};
+}

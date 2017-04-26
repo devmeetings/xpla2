@@ -1,19 +1,13 @@
-import {bindActionCreators} from 'redux';
-import React from 'react';
-import {connect} from 'react-redux';
-import Props from 'react-immutable-proptypes';
+import React from 'react'
+import {connect} from 'react-redux'
+import Props from 'react-immutable-proptypes'
 
-import {TimerContainer} from './TimerWrapper';
+import {TimerContainer} from './TimerWrapper'
 
 // TODO [ToDr] much of the logic should be moved to Tasks component!
 import styles from './TasksWrapper.scss'
 
 export class TasksContainer extends React.Component {
-
-  constructor(...args) {
-    super(...args);
-  }
-
   renderTasks () {
     return this.props.tasks.map((task, idx) => {
       return (
@@ -21,8 +15,8 @@ export class TasksContainer extends React.Component {
           <span dangerouslySetInnerHTML={{__html: task.get('content')}} />
           <span className={`${styles.badge} ${styles[task.get('type')]}`}>{task.get('type')}</span>
         </li>
-      );
-    }).toJS();
+      )
+    }).toJS()
   }
 
   render () {
@@ -38,9 +32,8 @@ export class TasksContainer extends React.Component {
         </ol>
         <div dangerouslySetInnerHTML={{__html: this.props.footer}} />
       </div>
-    );
+    )
   }
-
 }
 
 TasksContainer.propTypes = {
@@ -49,20 +42,20 @@ TasksContainer.propTypes = {
   header: React.PropTypes.string.isRequired,
   footer: React.PropTypes.string,
   globalEvents: React.PropTypes.object.isRequired
-};
+}
 
 @connect(
   state => ({
     timer: state.get('tasks'),
     header: state.get('tasks').get('header'),
     footer: state.get('tasks').get('footer'),
-    tasks: state.get('tasks').get('tasks'),
+    tasks: state.get('tasks').get('tasks')
   }),
   dispatch => ({
   })
 )
 export default class TasksContainerWrapper extends React.Component {
-  render() {
+  render () {
     return (
       <TasksContainer {...this.props} />
     )
@@ -70,4 +63,4 @@ export default class TasksContainerWrapper extends React.Component {
 }
 TasksContainerWrapper.propTypes = {
   globalEvents: React.PropTypes.object.isRequired
-};
+}

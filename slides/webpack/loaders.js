@@ -1,16 +1,16 @@
-var path = require('path');
-var pkg = require('../package.json');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var path = require('path')
+var pkg = require('../package.json')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-var DEBUG = process.env.NODE_ENV === 'development';
-var TEST = process.env.NODE_ENV === 'test';
-var RUN_SERVER = DEBUG ? 'http://localhost:3030' : 'https://xpla.org';
-var PRESENCE_SERVER = DEBUG ? 'ws://localhost:3040' : 'wss://presence.xpla.org';
+var DEBUG = process.env.NODE_ENV === 'development'
+var TEST = process.env.NODE_ENV === 'test'
+var RUN_SERVER = DEBUG ? 'http://localhost:3030' : 'https://xpla.org'
+var PRESENCE_SERVER = DEBUG ? 'ws://localhost:3040' : 'wss://presence.xpla.org'
 
-var jsxLoader;
-var sassLoader;
-var cssLoader;
-var urlLoader = 'url?name=[path][name].[ext]';
+var jsxLoader
+var sassLoader
+var cssLoader
+var urlLoader = 'url?name=[path][name].[ext]'
 var htmlLoader = [
   'file?name=[path][name].[ext]',
   'template-html?' + [
@@ -22,14 +22,14 @@ var htmlLoader = [
     'title=' + pkg.name,
     'debug=' + DEBUG
   ].join('&')
-].join('!');
-var jsonLoader = ['json'];
+].join('!')
+var jsonLoader = ['json']
 
 var sassParams = [
   'outputStyle=expanded',
   'includePaths[]=' + path.resolve(__dirname, '../app/scss'),
   'includePaths[]=' + path.resolve(__dirname, '../node_modules')
-];
+]
 
 var babel = 'babel?' + [
   'presets[]=react',
@@ -39,37 +39,37 @@ var babel = 'babel?' + [
   'plugins[]=transform-decorators-legacy',
   'plugins[]=transform-flow-strip-types',
   'plugins[]=rewire'
-].join('&');
+].join('&')
 
 if (DEBUG || TEST) {
-  jsxLoader = [];
+  jsxLoader = []
   if (!TEST) {
-    jsxLoader.push('react-hot');
+    jsxLoader.push('react-hot')
   }
-  jsxLoader.push(babel);
-  sassParams.push('sourceMap', 'sourceMapContents=true');
+  jsxLoader.push(babel)
+  sassParams.push('sourceMap', 'sourceMapContents=true')
   sassLoader = [
     'style',
     'css?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]',
     'postcss',
     'sass?' + sassParams.join('&')
-  ].join('!');
+  ].join('!')
   cssLoader = [
     'style',
     'css?sourceMap',
     'postcss'
-  ].join('!');
+  ].join('!')
 } else {
-  jsxLoader = [babel];
+  jsxLoader = [babel]
   sassLoader = ExtractTextPlugin.extract('style', [
     'css?modules&localIdentName=[hash:base64:5]',
     'postcss',
     'sass?' + sassParams.join('&')
-  ].join('!'));
+  ].join('!'))
   cssLoader = [
     'css',
     'postcss'
-  ].join('!');
+  ].join('!')
 }
 
 var loaders = [
@@ -99,11 +99,11 @@ var loaders = [
     test: /\.scss$/,
     loader: (DEBUG || TEST) ? 'happypack/loader?id=sass' : sassLoader
   }
-];
+]
 
 module.exports = {
   loaders: loaders,
   js: jsxLoader,
   css: [cssLoader],
   sass: [sassLoader]
-};
+}

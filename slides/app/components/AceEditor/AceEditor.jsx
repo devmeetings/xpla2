@@ -1,194 +1,190 @@
-import ace from 'brace';
-import React from 'react';
-import './AceEditor.scss';
+import ace from 'brace'
+import React from 'react'
+import './AceEditor.scss'
 
-import {isSmallScreen} from '../isSmallScreen';
+import {isSmallScreen} from '../isSmallScreen'
 
-const Range = ace.acequire('ace/range').Range;
+const Range = ace.acequire('ace/range').Range
 
 export function createEditSession (content, mode, highlight) {
-  const editSession = ace.createEditSession(content, `ace/mode/${mode}`);
+  const editSession = ace.createEditSession(content, `ace/mode/${mode}`)
 
   if (highlight.length) {
     // add markers
     highlight.map((pattern) => {
-      const range = new Range(pattern.from, 0, pattern.to + 1, 0);
-      editSession.addMarker(range, 'ace_highlight-line', 'xp-highlight');
-    });
+      const range = new Range(pattern.from, 0, pattern.to + 1, 0)
+      editSession.addMarker(range, 'ace_highlight-line', 'xp-highlight')
+    })
   }
 
-  return editSession;
+  return editSession
 }
 
 export class AceEditor extends React.Component {
-  constructor (...props) {
-    super(...props);
-  }
-
   onChange () {
     if (this.props.onChange && !this.silent) {
-      var value = this.editor.getValue();
-      this.props.onChange(value);
+      var value = this.editor.getValue()
+      this.props.onChange(value)
     }
   }
 
   onFocus () {
     if (this.props.onFocus) {
-      this.props.onFocus();
+      this.props.onFocus()
     }
   }
 
   onBlur () {
     if (this.props.onBlur) {
-      this.props.onBlur();
+      this.props.onBlur()
     }
   }
   onCopy (text) {
     if (this.props.onCopy) {
-      this.props.onCopy(text);
+      this.props.onCopy(text)
     }
   }
   onPaste (text) {
     if (this.props.onPaste) {
-      this.props.onPaste(text);
+      this.props.onPaste(text)
     }
   }
   componentDidMount () {
-    this.editor = ace.edit(this.props.name);
+    this.editor = ace.edit(this.props.name)
     if (this.props.onBeforeLoad) {
-      this.props.onBeforeLoad(ace);
+      this.props.onBeforeLoad(ace)
     }
 
-    var editorProps = Object.keys(this.props.editorProps);
+    var editorProps = Object.keys(this.props.editorProps)
     for (var i = 0; i < editorProps.length; i++) {
-      this.editor[editorProps[i]] = this.props.editorProps[editorProps[i]];
+      this.editor[editorProps[i]] = this.props.editorProps[editorProps[i]]
     }
 
     if (this.props.mode) {
-      this.editor.getSession().setMode('ace/mode/' + this.props.mode);
+      this.editor.getSession().setMode('ace/mode/' + this.props.mode)
     }
 
-    this.editor.$blockScrolling = Infinity;
-    this.editor.setTheme('ace/theme/' + this.props.theme);
-    this.editor.setFontSize(this.props.fontSize);
+    this.editor.$blockScrolling = Infinity
+    this.editor.setTheme('ace/theme/' + this.props.theme)
+    this.editor.setFontSize(this.props.fontSize)
     if (this.props.value !== undefined) {
-      this.editor.setValue(this.props.value, this.props.cursorStart);
+      this.editor.setValue(this.props.value, this.props.cursorStart)
     }
-    this.editor.getSession().setUseWrapMode(this.props.wrapEnabled);
-    this.editor.renderer.setShowGutter(this.props.showGutter);
-    this.editor.setOption('maxLines', this.props.maxLines);
-    this.editor.setOption('readOnly', this.props.readOnly);
-    this.editor.setOption('highlightActiveLine', this.props.highlightActiveLine);
-    this.editor.setOption('tabSize', this.props.tabSize);
-    this.editor.setShowPrintMargin(this.props.showPrintMargin);
-    this.editor.on('focus', this.onFocus.bind(this));
-    this.editor.on('blur', this.onBlur.bind(this));
-    this.editor.on('copy', this.onCopy.bind(this));
-    this.editor.on('paste', this.onPaste.bind(this));
-    this.editor.on('change', this.onChange.bind(this));
+    this.editor.getSession().setUseWrapMode(this.props.wrapEnabled)
+    this.editor.renderer.setShowGutter(this.props.showGutter)
+    this.editor.setOption('maxLines', this.props.maxLines)
+    this.editor.setOption('readOnly', this.props.readOnly)
+    this.editor.setOption('highlightActiveLine', this.props.highlightActiveLine)
+    this.editor.setOption('tabSize', this.props.tabSize)
+    this.editor.setShowPrintMargin(this.props.showPrintMargin)
+    this.editor.on('focus', this.onFocus.bind(this))
+    this.editor.on('blur', this.onBlur.bind(this))
+    this.editor.on('copy', this.onCopy.bind(this))
+    this.editor.on('paste', this.onPaste.bind(this))
+    this.editor.on('change', this.onChange.bind(this))
 
     if (this.props.session) {
-      this.editor.setSession(this.props.session);
+      this.editor.setSession(this.props.session)
     }
 
     if (this.props.commands) {
       this.props.commands.map((action) => {
-        this.editor.commands.addCommand(action);
-      });
+        this.editor.commands.addCommand(action)
+      })
     }
 
     if (this.props.keyboardHandler) {
-      this.editor.setKeyboardHandler('ace/keyboard/' + this.props.keyboardHandler);
+      this.editor.setKeyboardHandler('ace/keyboard/' + this.props.keyboardHandler)
     }
 
     if (this.props.highlight) {
-      this.highlight(this.props.highlight);
+      this.highlight(this.props.highlight)
     }
 
     if (this.props.onLoad) {
-      this.props.onLoad(this.editor);
+      this.props.onLoad(this.editor)
     }
 
     setTimeout(() => {
-      this.editor.resize();
-    }, 100);
+      this.editor.resize()
+    }, 100)
   }
 
   componentWillUnmount () {
-    this.editor = null;
+    this.editor = null
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.theme !== this.props.theme) {
-      this.editor.setTheme('ace/theme/' + nextProps.theme);
+      this.editor.setTheme('ace/theme/' + nextProps.theme)
     }
     if (nextProps.fontSize !== this.props.fontSize) {
-      this.editor.setFontSize(nextProps.fontSize);
+      this.editor.setFontSize(nextProps.fontSize)
     }
     if (nextProps.maxLines !== this.props.maxLines) {
-      this.editor.setOption('maxLines', nextProps.maxLines);
+      this.editor.setOption('maxLines', nextProps.maxLines)
     }
     if (nextProps.readOnly !== this.props.readOnly) {
-      this.editor.setOption('readOnly', nextProps.readOnly);
+      this.editor.setOption('readOnly', nextProps.readOnly)
     }
     if (nextProps.highlightActiveLine !== this.props.highlightActiveLine) {
-      this.editor.setOption('highlightActiveLine', nextProps.highlightActiveLine);
+      this.editor.setOption('highlightActiveLine', nextProps.highlightActiveLine)
     }
     if (nextProps.tabSize !== this.props.tabSize) {
-      this.editor.setOption('tabSize', nextProps.tabSize);
+      this.editor.setOption('tabSize', nextProps.tabSize)
     }
     if (nextProps.showPrintMargin !== this.props.showPrintMargin) {
-      this.editor.setShowPrintMargin(nextProps.showPrintMargin);
+      this.editor.setShowPrintMargin(nextProps.showPrintMargin)
     }
     if (nextProps.showGutter !== this.props.showGutter) {
-      this.editor.renderer.setShowGutter(nextProps.showGutter);
+      this.editor.renderer.setShowGutter(nextProps.showGutter)
     }
     if (!nextProps.session) {
       if (nextProps.mode !== this.props.mode) {
-        this.editor.getSession().setMode('ace/mode/' + nextProps.mode);
+        this.editor.getSession().setMode('ace/mode/' + nextProps.mode)
       }
       if (this.editor.getValue() !== nextProps.value) {
         // editor.setValue is a synchronous function call, change event is emitted before setValue return.
-        this.silent = true;
-        this.editor.setValue(nextProps.value, nextProps.cursorStart);
-        this.silent = false;
+        this.silent = true
+        this.editor.setValue(nextProps.value, nextProps.cursorStart)
+        this.silent = false
       }
       if (nextProps.highlight !== this.props.highlight) {
-        this.highlight(nextProps.highlight);
+        this.highlight(nextProps.highlight)
       }
     } else if (nextProps.session !== this.props.session) {
-      this.editor.setSession(nextProps.session);
-      this.editor.focus();
+      this.editor.setSession(nextProps.session)
+      this.editor.focus()
     }
   }
 
   highlight (d) {
-    const [from, to] = d;
-    const session = this.editor.getSession();
+    const [from, to] = d
+    const session = this.editor.getSession()
     Object.keys(session.$frontMarkers).map((marker) => {
-      session.removeMarker(marker);
-    });
-    const lines = session.getLength();
+      session.removeMarker(marker)
+    })
+    const lines = session.getLength()
     // Adding class to everything except those lines
-    const r1 = new Range(0, 0, from - 1, 0);
-    const r2 = new Range(to, 0, lines, 0);
-    session.addMarker(r1, 'ace_fadeout-line', 'xp-fadeout', true);
-    session.addMarker(r2, 'ace_fadeout-line', 'xp-fadeout', true);
-    this.editor.scrollToLine(Math.max(0, from - 4), false, true);
+    const r1 = new Range(0, 0, from - 1, 0)
+    const r2 = new Range(to, 0, lines, 0)
+    session.addMarker(r1, 'ace_fadeout-line', 'xp-fadeout', true)
+    session.addMarker(r2, 'ace_fadeout-line', 'xp-fadeout', true)
+    this.editor.scrollToLine(Math.max(0, from - 4), false, true)
   }
 
   render () {
     var divStyle = {
       width: this.props.width,
       height: this.props.height
-    };
-    var className = this.props.className;
+    }
+    var className = this.props.className
     return (
       <div
         className={className}
         id={this.props.name}
         style={divStyle} />
-    );
+    )
   }
 }
 
@@ -220,7 +216,7 @@ AceEditor.propTypes = {
   wrapEnabled: React.PropTypes.bool,
   commands: React.PropTypes.array,
   highlight: React.PropTypes.array
-};
+}
 
 AceEditor.defaultProps = {
   name: 'brace-editor',
@@ -243,4 +239,4 @@ AceEditor.defaultProps = {
   editorProps: {},
   wrapEnabled: false,
   highlight: null
-};
+}

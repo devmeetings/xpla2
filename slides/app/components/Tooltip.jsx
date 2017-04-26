@@ -1,4 +1,4 @@
-import Tooltip from 'rc-tooltip';
-import 'rc-tooltip/assets/bootstrap.css';
+import Tooltip from 'rc-tooltip'
+import 'rc-tooltip/assets/bootstrap.css'
 
-export default Tooltip;
+export default Tooltip

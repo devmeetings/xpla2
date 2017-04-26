@@ -1,21 +1,21 @@
-var path = require('path');
-var util = require('util');
-var autoprefixer = require('autoprefixer');
-var pkg = require('../package.json');
+var path = require('path')
+var util = require('util')
+var autoprefixer = require('autoprefixer')
+var pkg = require('../package.json')
 
-var loaders = require('./loaders');
-var plugins = require('./plugins');
+var loaders = require('./loaders')
+var plugins = require('./plugins')
 
-var DEBUG = process.env.NODE_ENV === 'development';
-var TEST = process.env.NODE_ENV === 'test';
+var DEBUG = process.env.NODE_ENV === 'development'
+var TEST = process.env.NODE_ENV === 'test'
 
-var jsBundle = path.join('js', util.format('[name].%s.js', pkg.version));
+var jsBundle = path.join('js', util.format('[name].%s.js', pkg.version))
 
 var entry = {
   slide: ['./slide.jsx'],
   deck: ['./deck.jsx'],
   slide_loader: ['./slide_loader.js']
-};
+}
 
 if (DEBUG) {
   ['slide', 'deck'].map(function (e) {
@@ -25,9 +25,9 @@ if (DEBUG) {
         pkg.config.devHost,
         pkg.config.devPort
       )
-    );
-    entry[e].push('webpack/hot/dev-server');
-  });
+    )
+    entry[e].push('webpack/hot/dev-server')
+  })
 }
 
 var config = {
@@ -60,6 +60,6 @@ var config = {
     inline: true,
     stats: { colors: true }
   }
-};
+}
 
-module.exports = config;
+module.exports = config

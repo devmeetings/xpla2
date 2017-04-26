@@ -1,11 +1,10 @@
-import React from 'react';
-import Props from 'react-immutable-proptypes';
+import React from 'react'
 
-import Tooltip from '../Tooltip';
+import Tooltip from '../Tooltip'
 
-import {Icon} from '../Icon/Icon';
+import {Icon} from '../Icon/Icon'
 
-import styles from './ModeMenu.scss';
+import styles from './ModeMenu.scss'
 
 export class ModeMenu extends React.Component {
   renderTooltip () {
@@ -15,7 +14,7 @@ export class ModeMenu extends React.Component {
           You are now in edit mode. Use <kbd>CTRL+S</kbd> to save new slide. <br />
           Press <kbd>CTRL+P</kbd> again to go back to view mode.
         </span>
-      );
+      )
     }
     return (
       <span>
@@ -23,7 +22,7 @@ export class ModeMenu extends React.Component {
         Use <kbd>CTRL+S</kbd> or CTRL+Enter to execute your code. <br />
         Press <kbd>CTRL+Shift+S</kbd> to save your workspace to local disk.
       </span>
-    );
+    )
   }
 
   render () {
@@ -38,10 +37,10 @@ export class ModeMenu extends React.Component {
           </div>
         </Tooltip>
       </div>
-    );
+    )
   }
 }
 
 ModeMenu.propTypes = {
   isEditMode: React.PropTypes.bool.isRequired
-};
+}

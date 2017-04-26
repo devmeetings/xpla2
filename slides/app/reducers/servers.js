@@ -1,4 +1,4 @@
-import {createReducer} from 'redux-immutablejs';
+import {createReducer} from 'redux-immutablejs'
 
-export const runServerUrl = createReducer('', {});
-export const presenceServerUrl = createReducer(null, {});
+export const runServerUrl = createReducer('', {})
+export const presenceServerUrl = createReducer(null, {})

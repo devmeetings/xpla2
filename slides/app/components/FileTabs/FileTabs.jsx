@@ -1,64 +1,64 @@
-import React from 'react';
-import Props from 'react-immutable-proptypes';
+import React from 'react'
+import Props from 'react-immutable-proptypes'
 
-import styles from './FileTabs.scss';
+import styles from './FileTabs.scss'
 
-import Tooltip from '../Tooltip';
-import {Icon} from '../Icon/Icon';
+import Tooltip from '../Tooltip'
+import {Icon} from '../Icon/Icon'
 
 export class FileTabs extends React.Component {
   constructor (...args) {
-    super(...args);
+    super(...args)
     this.state = {
       showAll: false
-    };
+    }
   }
 
   showAll () {
     this.setState({
       showAll: !this.state.showAll
-    });
+    })
   }
 
   clickTab (file, ev) {
-    ev.preventDefault();
+    ev.preventDefault()
 
-    this.props.onChange(file);
+    this.props.onChange(file)
   }
 
   getFileName (path) {
-    const parts = path.split('/');
-    const fileName = parts[parts.length - 1];
+    const parts = path.split('/')
+    const fileName = parts[parts.length - 1]
     if (fileName !== path) {
       return (
         <span><span className={styles.muted}>.../</span>{fileName}</span>
-      );
+      )
     }
-    return fileName;
+    return fileName
   }
 
   renderBadge (file) {
     if (!file.get('highlight').size) {
-      return;
+      return
     }
     return (
       <span className={styles.badge}>
         <Icon icon={'dot'} size={'1em'} />
       </span>
-    );
+    )
   }
 
   renderTabLinks () {
     if (this.props.files.size < 2) {
-      const file = this.props.files.get(0);
-      const fileName = this.getFileName(file.get('name'));
+      const file = this.props.files.get(0)
+      const fileName = this.getFileName(file.get('name'))
 
-      return this.renderFileLink(file, fileName, true);
+      return this.renderFileLink(file, fileName, true)
     }
 
     const highlighted = this.props.files.filter((file) => {
-      return file.get('highlight').size;
-    });
+      return file.get('highlight').size
+    })
 
     if (highlighted.size && !this.state.showAll && highlighted.size !== this.props.files.size) {
       return this.renderTabs(highlighted).concat([(
@@ -74,9 +74,9 @@ export class FileTabs extends React.Component {
             <Icon icon={'more-horiz'} size={'1em'} />
           </a>
         </Tooltip>
-      )]);
+      )])
     }
-    return this.renderTabs(this.props.files);
+    return this.renderTabs(this.props.files)
   }
 
   renderFileLink (file, fileName, isActive) {
@@ -89,17 +89,17 @@ export class FileTabs extends React.Component {
         {fileName}
         {this.renderBadge(file)}
       </a>
-    );
+    )
   }
 
   renderTabs (files) {
-    const activeName = this.props.active.get('name');
+    const activeName = this.props.active.get('name')
     return files.map((file) => {
-      const isActive = activeName === file.get('name');
-      const path = file.get('name');
-      const fileName = this.getFileName(file.get('name'));
+      const isActive = activeName === file.get('name')
+      const path = file.get('name')
+      const fileName = this.getFileName(file.get('name'))
 
-      const link = this.renderFileLink(file, fileName, isActive);
+      const link = this.renderFileLink(file, fileName, isActive)
 
       if (path !== fileName) {
         return (
@@ -110,10 +110,10 @@ export class FileTabs extends React.Component {
             >
             {link}
           </Tooltip>
-        );
+        )
       }
-      return link;
-    });
+      return link
+    })
   }
 
   render () {
@@ -123,7 +123,7 @@ export class FileTabs extends React.Component {
         >
         {this.renderTabLinks()}
       </div>
-    );
+    )
   }
 }
 
@@ -136,4 +136,4 @@ FileTabs.propTypes = {
     name: React.PropTypes.string.isRequired
   }).isRequired,
   onChange: React.PropTypes.func
-};
+}

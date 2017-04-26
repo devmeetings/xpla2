@@ -1,3 +1,3 @@
-import {createReducer} from 'redux-immutablejs';
+import {createReducer} from 'redux-immutablejs'
 
-export default createReducer(0, {});
+export default createReducer(0, {})

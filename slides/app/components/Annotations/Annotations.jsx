@@ -1,52 +1,47 @@
-import React from 'react';
-import _ from 'lodash';
-import classnames from 'classnames';
-import Props from 'react-immutable-proptypes';
+import React from 'react'
+import _ from 'lodash'
+import classnames from 'classnames'
+import Props from 'react-immutable-proptypes'
 
 // TODO [todr] This is very temporary!
-import {fromJS} from 'immutable';
+import {fromJS} from 'immutable'
 
-import Modal from 'react-modal';
-import {Icon} from '../Icon/Icon';
-import {AceEditor} from '../AceEditor/AceEditor';
-import {FileTree} from '../FileTree/FileTree';
-import {getModeForFilename} from '../Editor/Editor';
-import {isSmallScreen} from '../isSmallScreen';
+import Modal from 'react-modal'
+import {Icon} from '../Icon/Icon'
+import {AceEditor} from '../AceEditor/AceEditor'
+import {FileTree} from '../FileTree/FileTree'
+import {getModeForFilename} from '../Editor/Editor'
+import {isSmallScreen} from '../isSmallScreen'
 
-import {HtmlEditor} from '../HtmlEditor/HtmlEditor';
+import {HtmlEditor} from '../HtmlEditor/HtmlEditor'
 
-import styles from './Annotations.scss';
+import styles from './Annotations.scss'
 
 export class Annotations extends React.Component {
-
-  constructor (...args) {
-    super(...args);
-  }
-
   modalStyles = {
-    overlay : {
-      position          : 'fixed',
-      top               : 0,
-      left              : 0,
-      right             : 0,
-      bottom            : 0,
-      backgroundColor   : 'rgba(0, 0, 0, 0.40)',
-      zIndex            : 1000
+    overlay: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: 'rgba(0, 0, 0, 0.40)',
+      zIndex: 1000
     },
-    content : {
-      position                   : 'absolute',
-      top                        : '10%',
-      left                       : '17%',
-      right                      : '17%',
-      maxHeight                  : '90%',
-      bottom                     : '15%',
-      border                     : '1px solid #ccc',
-      background                 : '#fff',
-      overflow                   : 'auto',
-      WebkitOverflowScrolling    : 'touch',
-      borderRadius               : '0',
-      outline                    : 'none',
-      padding                    : '2rem'
+    content: {
+      position: 'absolute',
+      top: '10%',
+      left: '17%',
+      right: '17%',
+      maxHeight: '90%',
+      bottom: '15%',
+      border: '1px solid #ccc',
+      background: '#fff',
+      overflow: 'auto',
+      WebkitOverflowScrolling: 'touch',
+      borderRadius: '0',
+      outline: 'none',
+      padding: '2rem'
     }
   };
 
@@ -58,7 +53,7 @@ export class Annotations extends React.Component {
         >
         <Icon icon={'chevron-left'} />
       </button>
-    );
+    )
     const nextButton = (
       <button
         className={styles.button}
@@ -66,16 +61,16 @@ export class Annotations extends React.Component {
         >
         <Icon icon={'chevron-right'} /> Next
       </button>
-    );
+    )
     const closeButton = (
-       <button
+      <button
         className={styles.button}
         onClick={this.props.onNext}
         >
         <Icon icon={'chevron-right'} /> Ok. I get it
       </button>
-    );
-    const maxAnno = this.props.annotations.size - 1;
+    )
+    const maxAnno = this.props.annotations.size - 1
 
     return (
       <div className={styles.buttonBar}>
@@ -83,44 +78,43 @@ export class Annotations extends React.Component {
         {this.renderDots()}
         {anno < maxAnno ? nextButton : closeButton}
       </div>
-    );
+    )
   }
 
   renderDots () {
-    const maxAnno = this.props.annotations.size;
-    const anno = this.props.currentAnnotation;
+    const maxAnno = this.props.annotations.size
+    const anno = this.props.currentAnnotation
 
     const dots = _.range(maxAnno).map((dot) => {
-      const active = anno === dot;
+      const active = anno === dot
       return (
         <span className={active ? styles.activeDot : styles.dot} key={dot}>
           <Icon icon={'dot'} />
         </span>
-      );
-    });
+      )
+    })
 
     return (
       <div className={styles.dots}>
         {dots}
       </div>
-    );
+    )
   }
 
   getEditors () {
     return fromJS(this.props.annotations.map((elem) => elem.get('fileName')).reduce((acc, name) => {
-
       if (acc.indexOf(name) === -1) {
-        return acc.concat(name);
+        return acc.concat(name)
       }
-      return acc;
+      return acc
     }, []).map((name) => ({
       name,
       highlight: []
-    })));
+    })))
   }
 
   renderAce (annotation) {
-    const mode = getModeForFilename(annotation.fileName);
+    const mode = getModeForFilename(annotation.fileName)
     return (
       <AceEditor
         height={'100%'}
@@ -134,10 +128,10 @@ export class Annotations extends React.Component {
         value={annotation.code}
         width={'100%'}
         />
-    );
+    )
   }
 
-  renderWithTree(editors, editorActive, annotation) {
+  renderWithTree (editors, editorActive, annotation) {
     return (
       <div className={'xp-slide'}>
         <div className={'xp-column'} style={{ width: '9rem' }}>
@@ -152,21 +146,21 @@ export class Annotations extends React.Component {
           {this.renderAce(annotation)}
         </div>
       </div>
-    );
+    )
   }
 
   renderAnnotationsEditor (annotation) {
-    const editors = this.getEditors();
+    const editors = this.getEditors()
     const editorActive = fromJS({
       name: annotation.fileName
-    });
+    })
 
     if (editors.size > 1 && !isSmallScreen()) {
       return (
         <div className={styles.editor}>
           {this.renderWithTree(editors, editorActive, annotation)}
         </div>
-      );
+      )
     }
 
     return [(
@@ -177,39 +171,39 @@ export class Annotations extends React.Component {
       <div className={styles.editor}>
         {this.renderAce(annotation)}
       </div>
-    )];
+    )]
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate (prevProps) {
     if (this.props.currentAnnotation === prevProps.currentAnnotation) {
-      return;
+      return
     }
 
     // TODO [ToDr] Crappy.
     setTimeout(() => {
       if (!this.div) {
-        return;
+        return
       }
 
-      const audio = this.div.querySelector('audio');
+      const audio = this.div.querySelector('audio')
       if (audio) {
-        audio.autoplay = true;
-        audio.play();
+        audio.autoplay = true
+        audio.play()
       }
-    });
+    })
   }
 
   onRef = (div) => {
-    this.div = div;
+    this.div = div
   };
 
   renderAnnotation (anno) {
-    const title = this.props.title;
+    const title = this.props.title
 
     if (anno === -1 && (this.props.hasIntro || this.props.isEditMode)) {
       const clazz = classnames(styles.annotationText, {
-        [styles.editMode]: this.props.isEditMode,
-      });
+        [styles.editMode]: this.props.isEditMode
+      })
 
       return (
         <div className={styles.annotation}>
@@ -218,18 +212,18 @@ export class Annotations extends React.Component {
             {this.props.children}
           </div>
         </div>
-      );
+      )
     }
 
     if (this.props.annotations.size <= anno) {
-      return (<div />);
+      return (<div />)
     }
 
-    const annotation = this.props.annotations.get(anno).toJS();
+    const annotation = this.props.annotations.get(anno).toJS()
     const clazz = classnames({
       [styles.slideDescription]: annotation.description,
-      [styles.editMode]: this.props.isEditMode,
-    });
+      [styles.editMode]: this.props.isEditMode
+    })
 
     return (
       <div className={styles.annotation}>
@@ -249,8 +243,8 @@ export class Annotations extends React.Component {
             ref={this.onRef}
           />
         )}
-    </div>
-    );
+      </div>
+    )
   }
 
   renderClose () {
@@ -258,22 +252,22 @@ export class Annotations extends React.Component {
       <a
         className={styles.close}
         onClick={this.props.onRequestClose}>
-        <Icon icon="clear" />
+        <Icon icon='clear' />
       </a>
-    );
+    )
   }
 
   render () {
-    const {hasIntro, isEditMode, isOpen} = this.props;
+    const {hasIntro, isEditMode, isOpen} = this.props
 
-    if (this.props.annotations.size == 0 && !hasIntro && !isEditMode) {
-      return (<div />);
+    if (this.props.annotations.size === 0 && !hasIntro && !isEditMode) {
+      return (<div />)
     }
 
     const reopen = classnames(styles.reopen, {
       [styles.reopenVisible]: !isOpen
-    });
-    const anno = this.props.currentAnnotation;
+    })
+    const anno = this.props.currentAnnotation
     return (
       <div>
         <button
@@ -281,7 +275,7 @@ export class Annotations extends React.Component {
           onClick={this.props.onReopen}
           title={'Display walkthrough'}
           >
-            <Icon icon="receipt" />
+          <Icon icon='receipt' />
         </button>
         <Modal
           contentLabel={this.props.title}
@@ -294,7 +288,7 @@ export class Annotations extends React.Component {
           {this.renderButtons(anno)}
         </Modal>
       </div>
-    );
+    )
   }
 }
 
@@ -315,6 +309,5 @@ Annotations.propTypes = {
   onPrev: React.PropTypes.func.isRequired,
   onReopen: React.PropTypes.func.isRequired,
   isEditMode: React.PropTypes.bool,
-  onUpdateAnnotation: React.PropTypes.func,
-};
-
+  onUpdateAnnotation: React.PropTypes.func
+}

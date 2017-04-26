@@ -1,12 +1,12 @@
-import {findId} from './utils';
+import {findId} from './utils'
 
 export function getPreviewState (dom) {
-  const id = dom.id || findId('preview', dom);
-  const runner = dom.getAttribute('runner') || 'html';
-  const runOnStart = !dom.hasAttribute('no-run');
-  const file = dom.getAttribute('file') || '';
+  const id = dom.id || findId('preview', dom)
+  const runner = dom.getAttribute('runner') || 'html'
+  const runOnStart = !dom.hasAttribute('no-run')
+  const file = dom.getAttribute('file') || ''
 
-  dom.id = id;
+  dom.id = id
 
   return {
     id,
@@ -18,5 +18,5 @@ export function getPreviewState (dom) {
     isError: false,
     isTakingLong: false,
     runId: null
-  };
+  }
 }
