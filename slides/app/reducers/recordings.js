@@ -2,7 +2,7 @@
 
 import {STATE_NORMAL, STATE_RECORDING, VIEW_NORMAL, VIEW_ADMIN} from '../reducers.utils/recordings';
 
-import {RECORDING_STATE_TOGGLE, RECORDING_VIEW_TOGGLE, RECORDING_RESET} from '../actions';
+import {RECORDING_STATE_TOGGLE, RECORDING_VIEW_TOGGLE, RECORDING_RESET, RECORDING_SET} from '../actions';
 import {DECK_SLIDE_CHANGE} from '../actions';
 
 import {fromJS} from 'immutable';
@@ -14,6 +14,13 @@ export default createReducer(fromJS({
   started: 0,
   recordings: [],
 }), {
+  [RECORDING_SET]: (state, action) => {
+    const {recordings, started} = action.payload;
+    return state
+      .set('recordings', fromJS(recordings))
+      .set('started', started);
+  },
+
   [RECORDING_STATE_TOGGLE]: (state, action) => {
     const map = {
       [STATE_NORMAL]: [STATE_RECORDING, VIEW_NORMAL],
@@ -27,7 +34,10 @@ export default createReducer(fromJS({
       .set('view', newView);
 
     if (newState === STATE_RECORDING) {
-      state2 = state2.set('started', Date.now());
+      const rec = state.get('recordings');
+      // set started to last recording or now.
+      const started = rec.size > 0 ? rec.get(rec.size - 1).get('timestamp') + 1000 + state.get('started') : Date.now();
+      state2 = state2.set('started', started);
     }
 
     return state2;

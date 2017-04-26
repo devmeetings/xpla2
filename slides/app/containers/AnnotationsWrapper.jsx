@@ -25,7 +25,7 @@ class AnnotationsContainer extends React.Component {
 
 
     this.state = {
-      isOpen: editorAnnotations.size > 0 || this.minAnno() === -1,
+      isOpen: (editorAnnotations.size > 0 || this.minAnno() === -1) && annotation < editorAnnotations.size,
       annotations: editorAnnotations,
       currentAnnotation: annotation > 0 || annotation === 0 && !isNaN(annotation) ? annotation : this.minAnno(),
     };
@@ -205,7 +205,7 @@ class AnnotationsContainer extends React.Component {
           minAnno={this.minAnno()}
           onNext={() => this.changeAnnotation(anno + 1)}
           onPrev={() => this.changeAnnotation(anno - 1)}
-          onReopen={() => this.changeAnnotation(anno)}
+          onReopen={() => this.changeAnnotation(anno === editorAnnotations.size ? anno - 1 : anno)}
           onRequestClose={() => this.setState({isOpen: false})}
           onUpdateAnnotation={this.updateAnnotation}
           title={title}

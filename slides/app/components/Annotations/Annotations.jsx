@@ -70,7 +70,7 @@ export class Annotations extends React.Component {
     const closeButton = (
        <button
         className={styles.button}
-        onClick={this.props.onRequestClose}
+        onClick={this.props.onNext}
         >
         <Icon icon={'chevron-right'} /> Ok. I get it
       </button>

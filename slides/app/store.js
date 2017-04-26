@@ -9,6 +9,7 @@ import logger from './components/logger';
 import { deck, slide } from './reducers';
 import globalReducer from './reducers/global/index';
 import presence from './middlewares/presence/index';
+import recordings from './middlewares/recordings/index';
 
 function initStore (reducers, middlewares) {
   return (initialState) => {
@@ -35,7 +36,7 @@ function initStore (reducers, middlewares) {
 }
 
 export function deckStore(initialState) {
-  return initStore(deck, [presence])(initialState);
+  return initStore(deck, [presence, recordings])(initialState);
 }
 
 export function slideStore(initialState) {
