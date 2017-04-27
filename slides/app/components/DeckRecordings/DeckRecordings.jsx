@@ -109,7 +109,7 @@ export class DeckRecordings extends React.Component {
       return {
         id,
         startTime: rec.timestamp,
-        endTime: (recordings[id] || {}).timestamp || rec.timestamp,
+        endTime: (recordings[id] || {}).timestamp - 1 || rec.timestamp + 1000,
         text: JSON.stringify(rec.action)
       }
     })
