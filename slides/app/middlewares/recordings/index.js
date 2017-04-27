@@ -78,14 +78,11 @@ class RecordingsMiddleware {
         return
       }
 
-      console.log(keys)
       keys = keys.filter(key => key !== STARTED).sort((a, b) => {
         const a1 = a.split(':')
         const b1 = b.split(':')
-        console.log(a1, b1)
         return parseInt(a1[1], 10) - parseInt(b1[1], 10)
       })
-      console.log(keys)
 
       const recordings = keys.map(key => localforage.getItem(key))
       recordings.push(localforage.getItem(STARTED))

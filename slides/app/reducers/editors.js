@@ -1,7 +1,9 @@
+// @flow
+
 import {CHANGE_ACTIVE_TAB, MODIFY_ACTIVE_TAB_CONTENT} from '../actions'
 
 import {createReducer} from 'redux-immutablejs'
-import {Map} from 'immutable'
+import {Map, fromJS} from 'immutable'
 
 import {findEditorFileByName, getFilesWithActive} from '../reducers.utils/editors'
 
@@ -22,8 +24,7 @@ export default createReducer(Map({}), {
     return editors.set(editorId, newEditor)
   },
   [MODIFY_ACTIVE_TAB_CONTENT]: (editors, action) => {
-    const editorId = action.payload.editorId
-    const content = action.payload.content
+    const {editorId, content, cursorPosition} = action.payload
 
     const editor = editors.get(editorId)
 
@@ -32,6 +33,7 @@ export default createReducer(Map({}), {
       editor
         .get('active')
         .set('content', content)
+        .set('cursorPosition', fromJS(cursorPosition))
         .set('touched', true)
     ))
   }

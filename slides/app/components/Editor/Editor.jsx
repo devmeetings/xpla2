@@ -142,6 +142,7 @@ export class Editor extends React.Component {
     const editSession = this.state[name]
     if (editSession.getValue() !== content) {
       editSession.setValue(content)
+      editSession.cursorPosition = nextProps.active.get('cursorPosition')
     }
   }
 
@@ -166,6 +167,7 @@ export class Editor extends React.Component {
         name={`editor-${name}-${this.editorName}`}
         onChange={this.props.onTabContentChange}
         session={session}
+        cursorPosition={session.cursorPosition}
         theme='chrome'
         width='100%'
         />

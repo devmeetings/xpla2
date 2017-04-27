@@ -23,8 +23,9 @@ export function createEditSession (content, mode, highlight) {
 export class AceEditor extends React.Component {
   onChange () {
     if (this.props.onChange && !this.silent) {
-      var value = this.editor.getValue()
-      this.props.onChange(value)
+      const value = this.editor.getValue()
+      const cursorPosition = this.editor.getCursorPosition()
+      this.props.onChange(value, cursorPosition)
     }
   }
 
@@ -156,6 +157,11 @@ export class AceEditor extends React.Component {
       this.editor.setSession(nextProps.session)
       this.editor.focus()
     }
+    if (nextProps.cursorPosition && nextProps.cursorPosition !== this.props.cursorPosition) {
+      const cursor = nextProps.cursorPosition.toJS();
+      cursor.column += 1
+      this.editor.moveCursorToPosition(cursor)
+    }
   }
 
   highlight (d) {
@@ -211,6 +217,7 @@ AceEditor.propTypes = {
   tabSize: React.PropTypes.number,
   showPrintMargin: React.PropTypes.bool,
   cursorStart: React.PropTypes.number,
+  cursorPosition: React.PropTypes.object,
   editorProps: React.PropTypes.object,
   keyboardHandler: React.PropTypes.string,
   wrapEnabled: React.PropTypes.bool,
@@ -236,6 +243,7 @@ AceEditor.defaultProps = {
   showPrintMargin: false,
   tabSize: 2,
   cursorStart: 1,
+  cursorPosition: null,
   editorProps: {},
   wrapEnabled: false,
   highlight: null
