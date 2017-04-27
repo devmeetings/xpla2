@@ -6,12 +6,12 @@ import classnames from 'classnames'
 import parser from 'subtitles-parser'
 import Dropzone from 'react-dropzone'
 
-import {VIEW_NORMAL, STATE_RECORDING, STATE_PLAYING} from '../../reducers.utils/recordings'
+import {VIEW_NORMAL, STATE_RECORDING} from '../../reducers.utils/recordings'
 import styles from './DeckRecordings.scss'
 
 import Modal from 'react-modal'
 import {Icon} from '../Icon/Icon'
-import {Player, PlayerInterface} from './Player';
+import {Player, PlayerInterface} from './Player'
 import {saveFile} from '../../reducers.utils/saveFile'
 import {nonNull} from '../../assert'
 
@@ -167,7 +167,7 @@ export class DeckRecordings extends React.Component {
         position={this.state.playPosition}
         speed={this.state.playSpeed}
         />
-    );
+    )
   }
 
   renderCurrentRecording () {

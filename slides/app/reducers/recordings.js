@@ -24,7 +24,7 @@ export default createReducer(fromJS({
   },
 
   [RECORDING_STATE_TOGGLE]: (state, action) => {
-    const isPlayState = action.payload;
+    const isPlayState = action.payload
 
     const recMap = {
       [STATE_NORMAL]: [STATE_RECORDING, VIEW_NORMAL],

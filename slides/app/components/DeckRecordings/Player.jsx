@@ -7,7 +7,7 @@ import {STATE_PLAYING} from '../../reducers.utils/recordings'
 import styles from './DeckRecordings.scss'
 
 import {Icon} from '../Icon/Icon'
-import {nonNull, cast} from '../../assert'
+import {cast} from '../../assert'
 
 export class PlayerInterface extends React.Component {
   static propTypes = {
@@ -65,13 +65,13 @@ export class PlayerInterface extends React.Component {
           <button className={styles.button} onClick={this.onToggleState}>
             <Icon icon='pause' /> Pause
           </button>
-        ): (
+        ) : (
           <button className={styles.button} onClick={this.onToggleState}>
             <Icon icon='play' /> Play
           </button>
         )}
       </div>
-    );
+    )
   }
 }
 
@@ -102,7 +102,7 @@ export class Player extends React.Component {
     }
 
     const {position, speed} = this.props
-    const rec = this.props.recordings.get('recordings');
+    const rec = this.props.recordings.get('recordings')
     const entry = rec.findEntry(rec => rec.get('timestamp') > position)
 
     if (!entry) {
@@ -126,7 +126,7 @@ export class Player extends React.Component {
 
     // Trigger action
     if (key > 0) {
-      const currentRec = rec.get(key - 1);
+      const currentRec = rec.get(key - 1)
       this.props.onPlayAction(currentRec.get('action').toJS())
     }
 
@@ -139,8 +139,8 @@ export class Player extends React.Component {
   }
 
   componentWillReceiveProps (newProps: any) {
-    const playingNow = this.isPlaying();
-    const willPlay = this.isPlaying(newProps);
+    const playingNow = this.isPlaying()
+    const willPlay = this.isPlaying(newProps)
     // Turn on playing
     if (!playingNow && willPlay) {
       this.doTick(true)
@@ -150,7 +150,6 @@ export class Player extends React.Component {
     // Turn off playing
     if (playingNow && !willPlay) {
       clearTimeout(this.timeout)
-      return
     }
   }
 

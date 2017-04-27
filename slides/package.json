@@ -179,7 +179,8 @@
       "Blob",
       "FileReader",
       "KeyboardEvent",
-      "MouseEvent"
+      "MouseEvent",
+      "Event"
     ]
   }
 }

@@ -158,7 +158,7 @@ export class AceEditor extends React.Component {
       this.editor.focus()
     }
     if (nextProps.cursorPosition && nextProps.cursorPosition !== this.props.cursorPosition) {
-      const cursor = nextProps.cursorPosition.toJS();
+      const cursor = nextProps.cursorPosition.toJS()
       cursor.column += 1
       this.editor.moveCursorToPosition(cursor)
     }
