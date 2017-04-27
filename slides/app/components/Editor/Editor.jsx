@@ -133,13 +133,13 @@ export class Editor extends React.Component {
     }
 
     const name = nextProps.active.get('name')
-    if (!this.state[name]) {
-      this.createActiveEditorSession(nextProps)
+    let editSession = this.state[name]
+    if (!editSession) {
+      editSession = this.createActiveEditorSession(nextProps)
     }
 
     // Update content if changed
     const content = nextProps.active.get('content')
-    const editSession = this.state[name]
     if (editSession.getValue() !== content) {
       editSession.setValue(content)
       editSession.cursorPosition = nextProps.active.get('cursorPosition')
@@ -157,6 +157,8 @@ export class Editor extends React.Component {
     this.setState({
       [name]: editSession
     })
+
+    return editSession
   }
 
   renderEditor (name, session) {
