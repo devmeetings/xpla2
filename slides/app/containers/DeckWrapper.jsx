@@ -98,6 +98,7 @@ class DeckContainer extends React.Component {
           onUrlChange={this.onSlideUrlChange}
           />
         <DeckRecordings
+          onPlayAction={this.props.actions.playAction}
           onReset={this.props.actions.resetRecordings}
           onSetRecordings={this.props.actions.setRecordings}
           onToggleState={this.props.actions.toggleRecordingState}
@@ -114,6 +115,7 @@ class DeckContainer extends React.Component {
           presenceServerUrl={this.props.presenceServerUrl}
           runServerUrl={this.props.runServerUrl}
           slide={this.props.activeSlide.get('content')}
+          slideEvents={this.props.slideEvents}
           title={this.props.activeSlide.get('title')}
           />
         <DeckSlidesList

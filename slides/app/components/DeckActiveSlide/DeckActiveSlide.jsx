@@ -43,12 +43,20 @@ export class DeckActiveSlide extends React.Component {
       destroy () {}
     }
     this.renderDomNode(this.props)
+    this.props.slideEvents.on('play.slideAction', this.playSlideAction)
   }
 
   componentWillUnmount () {
     this.destroyPreviousSlide()
     while (this._element.hasChildNodes()) {
       this._element.removeChild(this._element.childNodes[0])
+    }
+    this.props.slideEvents.off('play.slideAction', this.playSlideAction)
+  }
+
+  playSlideAction = (action: any) => {
+    if (this._destroyPreviousSlide.store) {
+      this._destroyPreviousSlide.store.dispatch(action)
     }
   }
 

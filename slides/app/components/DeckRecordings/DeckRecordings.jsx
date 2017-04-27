@@ -6,16 +6,17 @@ import classnames from 'classnames'
 import parser from 'subtitles-parser'
 import Dropzone from 'react-dropzone'
 
-import {VIEW_NORMAL, STATE_RECORDING} from '../../reducers.utils/recordings'
+import {VIEW_NORMAL, STATE_RECORDING, STATE_PLAYING} from '../../reducers.utils/recordings'
 import styles from './DeckRecordings.scss'
 
 import Modal from 'react-modal'
 import {Icon} from '../Icon/Icon'
+import {Player, PlayerInterface} from './Player';
 import {saveFile} from '../../reducers.utils/saveFile'
 import {nonNull} from '../../assert'
 
 export class DeckRecordings extends React.Component {
-  dropZone: any;
+  dropZone: any
 
   static propTypes = {
     onToggleState: React.PropTypes.func.isRequired,
@@ -26,7 +27,20 @@ export class DeckRecordings extends React.Component {
       view: React.PropTypes.string.isRequired,
       state: React.PropTypes.string.isRequired
     }).isRequired
-  };
+  }
+
+  state = {
+    playPosition: 0,
+    playSpeed: 1
+  }
+
+  updatePlayState = (data: any) => {
+    const {position, speed} = data
+    this.setState({
+      playPosition: position === undefined ? this.state.playPosition : position,
+      playSpeed: speed === undefined ? this.state.playSpeed : speed
+    })
+  }
 
   componentDidMount () {
     window.addEventListener('keyup', this.onKey)
@@ -39,6 +53,8 @@ export class DeckRecordings extends React.Component {
   onKey = (ev: KeyboardEvent) => {
     const toggleView = [66]/* B */
     const toggleState = [190]/* . */
+    const togglePlayState = [188]/* , */
+
     const code = ev.keyCode
     const ctrl = ev.ctrlKey || ev.metaKey
 
@@ -48,9 +64,17 @@ export class DeckRecordings extends React.Component {
     }
 
     if (ctrl && toggleState.indexOf(code) !== -1) {
-      this.props.onToggleState()
+      this.props.onToggleState(false)
     }
-  };
+
+    if (ctrl && togglePlayState.indexOf(code) !== -1) {
+      this.props.onToggleState(true)
+    }
+  }
+
+  toggleRecordingState = () => {
+    this.props.onToggleState(false)
+  }
 
   uploadSrt = (files: Array<File>) => {
     const file = files[0]
@@ -76,7 +100,7 @@ export class DeckRecordings extends React.Component {
       }
     }
     reader.readAsText(file)
-  };
+  }
 
   exportSrt = () => {
     const recordings = this.props.recordings.get('recordings').toJS()
@@ -93,7 +117,7 @@ export class DeckRecordings extends React.Component {
     const now = new Date()
     const name = `${title}_${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}_${now.getHours()}:${now.getMinutes()}.srt`
     saveFile(parser.toSrt(srt), name, 'text/plain')
-  };
+  }
 
   isRecording () {
     return this.props.recordings.get('state') === STATE_RECORDING
@@ -102,6 +126,14 @@ export class DeckRecordings extends React.Component {
   render () {
     return (
       <div>
+        <Player
+          onChange={this.updatePlayState}
+          onPlayAction={this.props.onPlayAction}
+          onToggleState={this.props.onToggleState}
+          recordings={this.props.recordings}
+          position={this.state.playPosition}
+          speed={this.state.playSpeed}
+          />
         <Modal
           contentLabel={'Recording'}
           isOpen={this.props.recordings.get('view') !== VIEW_NORMAL}
@@ -116,13 +148,26 @@ export class DeckRecordings extends React.Component {
             </div>
 
             {this.renderCurrentRecording()}
-            { /* this.renderPlayer() */ }
+            {this.renderPlayer()}
           </div>
         </Modal>
 
         {this.renderButton()}
       </div>
     )
+  }
+
+  renderPlayer () {
+    return (
+      <PlayerInterface
+        onPlayAction={this.props.onPlayAction}
+        onToggleState={this.props.onToggleState}
+        onChange={this.updatePlayState}
+        recordings={this.props.recordings}
+        position={this.state.playPosition}
+        speed={this.state.playSpeed}
+        />
+    );
   }
 
   renderCurrentRecording () {
@@ -147,7 +192,7 @@ export class DeckRecordings extends React.Component {
         <div>
           <p>State: <strong><Icon icon='videocam' /> recording</strong></p>
           <button
-            onClick={this.props.onToggleState}
+            onClick={this.toggleRecordingState}
           >
             Pause Recording <kbd>[CTRL + .]</kbd>
           </button>
@@ -161,7 +206,7 @@ export class DeckRecordings extends React.Component {
         <div>
           <button
             className={styles.button}
-            onClick={this.props.onToggleState}
+            onClick={this.toggleRecordingState}
           >
             <Icon icon='videocam' /> Start recording <kbd>[CTRL + .]</kbd>
           </button>

@@ -1,6 +1,6 @@
 // @flow
 
-import {STATE_NORMAL, STATE_RECORDING, VIEW_NORMAL, VIEW_ADMIN} from '../reducers.utils/recordings'
+import {STATE_NORMAL, STATE_RECORDING, STATE_PLAYING, VIEW_NORMAL, VIEW_ADMIN} from '../reducers.utils/recordings'
 
 import {
   RECORDING_STATE_TOGGLE, RECORDING_VIEW_TOGGLE, RECORDING_RESET, RECORDING_SET,
@@ -24,12 +24,21 @@ export default createReducer(fromJS({
   },
 
   [RECORDING_STATE_TOGGLE]: (state, action) => {
-    const map = {
+    const isPlayState = action.payload;
+
+    const recMap = {
       [STATE_NORMAL]: [STATE_RECORDING, VIEW_NORMAL],
-      [STATE_RECORDING]: [STATE_NORMAL, VIEW_ADMIN]
+      [STATE_RECORDING]: [STATE_NORMAL, VIEW_ADMIN],
+      [STATE_PLAYING]: [STATE_NORMAL, VIEW_NORMAL]
     }
 
-    const [newState, newView] = map[state.get('state')]
+    const playMap = {
+      [STATE_NORMAL]: [STATE_PLAYING, VIEW_NORMAL],
+      [STATE_RECORDING]: [STATE_NORMAL, VIEW_ADMIN],
+      [STATE_PLAYING]: [STATE_NORMAL, VIEW_NORMAL]
+    }
+
+    const [newState, newView] = isPlayState ? playMap[state.get('state')] : recMap[state.get('state')]
 
     let state2 = state
       .set('state', newState)
@@ -38,7 +47,7 @@ export default createReducer(fromJS({
     if (newState === STATE_RECORDING) {
       const rec = state.get('recordings')
       // set started to last recording or now.
-      const started = rec.size > 0 ? rec.get(rec.size - 1).get('timestamp') + 1000 + state.get('started') : Date.now()
+      const started = rec.size > 0 ? Date.now() - rec.get(rec.size - 1).get('timestamp') - 1000 : Date.now()
       state2 = state2.set('started', started)
     }
 

@@ -9,6 +9,7 @@ import _ from 'lodash'
 import React from 'react'
 import {render} from 'react-dom'
 import {Provider} from 'react-redux'
+import EventEmitter from 'event-emitter'
 
 import {resizer} from './components/Resizer/Resizer'
 import {getRunServerUrl} from './components/read/RunServerUrlState'
@@ -33,6 +34,8 @@ const slides = _
 Promise.all(slides).then((slides) => {
   const activeSlide = getActiveSlideState(slides)
 
+  const slideEvents = new EventEmitter()
+
   const store = deckStore({
     runServerUrl,
     presenceServerUrl,
@@ -41,11 +44,11 @@ Promise.all(slides).then((slides) => {
       slides: slides,
       back: back
     }
-  })
+  }, slideEvents)
 
   render(
     <Provider store={store}>
-      <DeckContainerWrapper />
+      <DeckContainerWrapper slideEvents={slideEvents} />
     </Provider>,
     $xpDeck
   )

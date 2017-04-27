@@ -38,8 +38,8 @@ function initStore (reducers, middlewares) {
   }
 }
 
-export function deckStore (initialState: any, globalEvents: any) {
-  return initStore(deck, [presence, recordings])(initialState)
+export function deckStore (initialState: any, slideEvents: any) {
+  return initStore(deck, [presence, recordings(slideEvents)])(initialState)
 }
 
 export function slideStore (initialState: any, globalEvents: any) {

@@ -18,6 +18,8 @@ export const WORK_MODE_EDIT_EDITOR_ANNOTATION = 'WORK_MODE_EDIT_EDITOR_ANNOTATIO
 export const DECK_SLIDE_CHANGE = 'DECK_SLIDE_CHANGE'
 // Forwarded slide action
 export const DECK_SLIDE_ACTION = 'DECK_SLIDE_ACTION'
+// Fired by a player (middleware converts it to proper action)
+export const DECK_PLAY_ACTION = 'DECK_PLAY_ACTION'
 
 // -- Recording actions
 export const RECORDING_VIEW_TOGGLE = 'RECORDING_VIEW_TOGGLE'

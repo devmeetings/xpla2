@@ -136,6 +136,13 @@ export class Editor extends React.Component {
     if (!this.state[name]) {
       this.createActiveEditorSession(nextProps)
     }
+
+    // Update content if changed
+    const content = nextProps.active.get('content')
+    const editSession = this.state[name]
+    if (editSession.getValue() !== content) {
+      editSession.setValue(content)
+    }
   }
 
   createActiveEditorSession (props) {

@@ -5,7 +5,7 @@ import localforage from 'localforage'
 
 import {STATE_RECORDING} from '../../reducers.utils/recordings'
 
-import {RECORDING_STATE_TOGGLE, RECORDING_RESET} from '../../actions'
+import {RECORDING_STATE_TOGGLE, RECORDING_RESET, DECK_PLAY_ACTION} from '../../actions'
 import {setRecordings} from '../../actions/deck'
 
 type StateT = any;
@@ -16,7 +16,7 @@ type StoreT = {
   dispatch: (ActionT) => void
 };
 
-export default (store: StoreT) => {
+export default (slideEvents: any) => (store: StoreT) => {
   const middleware = new RecordingsMiddleware(store)
 
   middleware.loadRecordings((recordings, started) => {
@@ -27,6 +27,13 @@ export default (store: StoreT) => {
 
   return (next: (ActionT) => StateT) => (action: ActionT) => {
     const ret = next(action)
+
+    if (action.type === DECK_PLAY_ACTION) {
+      console.log('Playing action: ', action.payload)
+      store.dispatch(action.payload)
+      slideEvents.emit('play.slideAction', action.payload)
+      return ret
+    }
 
     if (action.type === RECORDING_STATE_TOGGLE) {
       middleware.onToggleState()
@@ -72,7 +79,15 @@ class RecordingsMiddleware {
       }
 
       console.log(keys)
-      const recordings = keys.filter(key => key !== STARTED).map(key => localforage.getItem(key))
+      keys = keys.filter(key => key !== STARTED).sort((a, b) => {
+        const a1 = a.split(':')
+        const b1 = b.split(':')
+        console.log(a1, b1)
+        return parseInt(a1[1], 10) - parseInt(b1[1], 10)
+      })
+      console.log(keys)
+
+      const recordings = keys.map(key => localforage.getItem(key))
       recordings.push(localforage.getItem(STARTED))
       return Promise.all(recordings)
     }).then(recordings => {
