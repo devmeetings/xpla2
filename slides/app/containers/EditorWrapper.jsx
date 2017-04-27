@@ -19,8 +19,12 @@ class EditorContainer extends React.Component {
   }
 
   changeTabContent = (content) => {
+    const id = this.props.editorId
+    const editor = this.props.editors.get(id)
+
     this.props.actions.modifyActiveTabContent({
       editorId: this.props.editorId,
+      tabName: editor.getIn(['active', 'name']),
       content: content
     })
   }

@@ -16,7 +16,8 @@ type EventEmitterT = {
 
 const forwarded = [
   actions.COMMIT_AND_RUN_CODE_STARTED,
-  actions.CHANGE_ACTIVE_TAB
+  actions.CHANGE_ACTIVE_TAB,
+  actions.MODIFY_ACTIVE_TAB_CONTENT
 ]
 
 export default (globalEvents: EventEmitterT) => (store: StoreT) => {
