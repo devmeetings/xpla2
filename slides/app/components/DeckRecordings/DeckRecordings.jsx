@@ -77,29 +77,64 @@ export class DeckRecordings extends React.Component {
   }
 
   uploadSrt = (files: Array<File>) => {
-    const file = files[0]
-    if (!file) {
-      window.alert('No file!')
+    const srt = files.find(file => file.name.endsWith('.srt'))
+    const json = files.find(file => file.name.endsWith('.json'))
+    if (!srt || !json) {
+      window.alert('You need to upload both SRT and JSON files.')
+      console.error(files)
       return
     }
 
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      try {
-        const srt = parser.fromSrt(e.target.result, true)
-        const recordings = srt.map(rec => {
-          return {
-            timestamp: rec.startTime,
-            action: JSON.parse(rec.text)
-          }
-        })
-        const started = srt.length > 0 ? Date.now() - srt[srt.length - 1].endTime : 0
-        this.props.onSetRecordings({recordings, started})
-      } catch (e) {
-        window.alert(`Unable to read: ${e}`)
+    const recordings = new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        try {
+          const srt = parser.fromSrt(e.target.result, true)
+          const recordings = srt.map(rec => {
+            return {
+              timestamp: rec.startTime,
+              action: parseInt(rec.text, 10)
+            }
+          })
+          const started = srt.length > 0 ? Date.now() - srt[srt.length - 1].endTime : 0
+
+          resolve([recordings, started])
+        } catch (e) {
+          window.alert(`Unable to read: ${e}`)
+          reject(e)
+        }
       }
-    }
-    reader.readAsText(file)
+      reader.readAsText(srt)
+    })
+
+    const data = new Promise((resolve, reject) => {
+      const reader2 = new FileReader()
+      reader2.onload = (e) => {
+        try {
+          resolve(JSON.parse(e.target.result))
+        } catch (e) {
+          window.alert(`Unable to parse JSON: ${e}`)
+          reject(e)
+        }
+      }
+      reader2.readAsText(json)
+    })
+
+    Promise.all([recordings, data])
+      .then(([rec, json]) => {
+        let [recordings, started] = rec
+
+        recordings = recordings.map(rec => {
+          rec.action = json[rec.action - 1]
+          return rec
+        })
+
+        this.props.onSetRecordings({recordings, started})
+      })
+      .catch(e => {
+        window.alert('Error: ' + e)
+        console.error(e)
+      })
   }
 
   exportSrt = () => {
@@ -110,13 +145,15 @@ export class DeckRecordings extends React.Component {
         id,
         startTime: rec.timestamp,
         endTime: (recordings[id] || {}).timestamp - 1 || rec.timestamp + 1000,
-        text: JSON.stringify(rec.action)
+        text: `${id}`
       }
     })
+    const complete = JSON.stringify(recordings.map((rec) => rec.action))
     const title = nonNull(document.querySelector('title')).textContent
     const now = new Date()
-    const name = `${title}_${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}_${now.getHours()}:${now.getMinutes()}.srt`
-    saveFile(parser.toSrt(srt), name, 'text/plain')
+    const name = `${title}_${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}_${now.getHours()}:${now.getMinutes()}`
+    saveFile(parser.toSrt(srt), `${name}.srt`, 'text/plain')
+    saveFile(complete, `${name}.json`, 'application/json')
   }
 
   isRecording () {
