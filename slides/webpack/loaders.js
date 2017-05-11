@@ -66,10 +66,10 @@ if (DEBUG || TEST) {
     'postcss',
     'sass?' + sassParams.join('&')
   ].join('!'))
-  cssLoader = [
+  cssLoader = ExtractTextPlugin.extract('style', [
     'css',
     'postcss'
-  ].join('!')
+  ].join('!'))
 }
 
 var loaders = [
