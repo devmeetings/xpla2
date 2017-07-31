@@ -9,11 +9,9 @@ import styles from './DeckSlidesList.scss'
 const DEFAULT_NO_OF_SLIDES = 3
 
 export class DeckSlidesList extends React.Component {
-  constructor (...args) {
-    super(...args)
-    this.state = {
-      noOfSlidesToShow: DEFAULT_NO_OF_SLIDES
-    }
+  state = {
+    noOfSlidesToShow: DEFAULT_NO_OF_SLIDES,
+    presence: {}
   }
 
   showMore = () => {
@@ -28,6 +26,17 @@ export class DeckSlidesList extends React.Component {
         noOfSlidesToShow: DEFAULT_NO_OF_SLIDES
       })
       this._list.scrollLeft = 0
+    }
+
+    const clients = nextProps.presence.get('clients')
+    if (clients !== this.props.presence.get('clients')) {
+      const jsClients = clients.toJS()
+      const presence = {}
+      Object.keys(jsClients).map(client => {
+        const { currentSlide } = jsClients[client]
+        presence[currentSlide] = (presence[currentSlide] || 0) + 1
+      })
+      this.setState({ presence })
     }
   }
 
@@ -94,14 +103,30 @@ export class DeckSlidesList extends React.Component {
   renderSlide (slide) {
     const activeId = this.props.active.get('id')
     const id = slide.get('id')
+    const noOfPeople = this.state.presence[id] || 0
+    const presenceActive = this.props.presence.get('active') && noOfPeople > 0
 
     return (
       <li
         className={id === activeId ? styles.itemActive : styles.item}
         key={id}
       >
+        { presenceActive ? this.renderPeople(noOfPeople) : null }
         {this.renderSlideLink(slide)}
       </li>
+    )
+  }
+
+  renderPeople (noOfPeople) {
+    return (
+      <Tooltip
+        overlay={<span>{noOfPeople} persons on that slide</span>}
+        placement={'top'}
+        >
+        <span className={styles.people}>
+          { noOfPeople }
+        </span>
+      </Tooltip>
     )
   }
 
@@ -157,5 +182,9 @@ DeckSlidesList.propTypes = {
     id: React.PropTypes.string.isRequired,
     title: React.PropTypes.string.isRequired
   })).isRequired,
-  onSlideChange: React.PropTypes.func.isRequired
+  onSlideChange: React.PropTypes.func.isRequired,
+  presence: Props.contains({
+    active: React.PropTypes.bool.isRequired,
+    clients: Props.map.isRequired
+  }).isRequired
 }

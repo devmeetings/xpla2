@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import {Client} from 'nes/client'
 
-import {presenceClients, presenceClientSlideUpdate} from '../../actions/deckTracking'
+import {presenceConnection, presenceClients, presenceClientSlideUpdate} from '../../actions/deckTracking'
 import { DECK_SLIDE_CHANGE } from '../../actions'
 
 const forwarding = {
@@ -62,6 +62,15 @@ export default store => {
     timeout: 5000
   })
 
+  ws.onConnect = () => store.dispatch(presenceConnection({
+    active: true,
+    id: ws.id
+  }))
+  ws.onDisconnect = () => store.dispatch(presenceConnection({
+    active: false,
+    id: ws.id
+  }))
+
   ws.connect(err => {
     if (err) {
       console.error('Unable to connect to presence API.')
@@ -69,12 +78,11 @@ export default store => {
     }
 
     console.log(`[${ws.id}] Subscribing to ${origin}`)
-
     ws.subscribe(
       `/tracking/${origin}`,
       (message) => processIncoming(store, message),
       () => {
-        console.log(store.getState().getIn(['deck', 'active', 'id']))
+        console.log('Sending active slide: ', store.getState().getIn(['deck', 'active', 'id']))
         // Send current slide
         request(ws)(`/tracking/${origin}/slide`, {
           payload: {

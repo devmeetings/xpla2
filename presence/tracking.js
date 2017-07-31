@@ -9,13 +9,16 @@ class ConnectedClients {
     this.connectedClients = {};
   }
 
-  updateSlide (origin, client, slide) {
-    this.connectedClients[origin][client].currentSlide = slide;
+  updateSlide (origin, client, slide, annotation) {
+    const cl = this.connectedClients[origin][client];
+    cl.currentSlide = slide;
+    cl.annotation = annotation;
 
     this.server.publish(`/tracking/${origin}`, {
       type: SLIDE_UPDATE,
       client,
-      slide
+      slide,
+      annotation
     });
   }
 
@@ -23,7 +26,8 @@ class ConnectedClients {
     this.connectedClients[origin] = this.connectedClients[origin] || {};
     this.connectedClients[origin][client] = {
       active: true,
-      currentSlide: null
+      currentSlide: null,
+      annotation: 0
     };
 
     this.server.publish(`/tracking/${origin}`, {
@@ -55,14 +59,16 @@ module.exports = function tracking (server) {
     config: {
       validate: {
         payload: {
-          newSlideId: Joi.string().required()
+          newSlideId: Joi.string().required(),
+          annotation: Joi.number().default(-1)
         }
       },
       handler (req, reply) {
         const { origin } = req.params;
         const { id } = req.socket;
+        const { newSlideId, annotation } = req.payload;
 
-        clients.updateSlide(origin, id, req.payload.newSlideId);
+        clients.updateSlide(origin, id, newSlideId, annotation);
 
         return reply('OK');
       }
@@ -71,14 +77,14 @@ module.exports = function tracking (server) {
 
   server.subscription('/tracking/{origin}', {
     filter (path, message, options, next) {
-      next(message.client && options.socket.id !== message.client);
+      next(!message.client || options.socket.id !== message.client);
     },
     onSubscribe (socket, path, params, next) {
       const { origin } = params;
 
-      clients.newClient(origin, socket.id);
-
       next();
+
+      clients.newClient(origin, socket.id);
     },
     onUnsubscribe (socket, path, params, next) {
       const { origin } = params;

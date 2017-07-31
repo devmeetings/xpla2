@@ -165,11 +165,11 @@ export class Editor extends React.Component {
     const aceEditor = (
       <AceEditor
         commands={this.commands}
+        cursorPosition={session.cursorPosition}
         height='100%'
         name={`editor-${name}-${this.editorName}`}
         onChange={this.props.onTabContentChange}
         session={session}
-        cursorPosition={session.cursorPosition}
         theme='chrome'
         width='100%'
         />

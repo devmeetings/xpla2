@@ -1,5 +1,22 @@
 @import '../vars.scss';
 
+.people {
+  position: absolute;
+  font-family: monospace;
+  font-weight: bold;
+  top: 0;
+  left: 2px;
+  font-size: 0.5rem;
+  border-radius: 50%;
+  text-align: center;
+  display: block;
+  background: $brand-primary-light;
+  color: $color-inverse;
+  min-width: 0.5rem;
+  height: 0.5rem;
+  padding: 0.2rem;
+}
+
 .list {
 	$shadow: $border-small * 2;
   list-style-type: none;
@@ -21,18 +38,20 @@
   }
 }
 .item, .itemActive, .itemMore {
+  box-sizing: border-box;
+  position: relative;
   display: inline-block;
   padding: $padding;
   padding-top: $padding - $border;
   border-top: $border solid transparent;
   border-left: $border-small solid $color-disabled;
   transition: border $transition;
+  height: $slideslist-height;
 
   a {
     box-sizing: border-box;
     display: inline-block;
     cursor: pointer;
-    height: $slideslist-height;
     line-height: $slideslist-height - 2*$padding;
     width: 13vw;
     overflow: hidden;

@@ -46,19 +46,19 @@ export class PlayerInterface extends React.Component {
         Time [ms]:
         <input
           className={styles.smallInput}
-          type='number'
-          placeholder='Position'
-          value={this.props.position}
           onChange={this.updatePosition}
+          placeholder='Position'
+          type='number'
+          value={this.props.position}
         />
 
         Speed [1x]:
         <input
           className={styles.smallInput}
-          type='number'
-          placeholder='Speed'
-          value={this.props.speed}
           onChange={this.updateSpeed}
+          placeholder='Speed'
+          type='number'
+          value={this.props.speed}
         />
 
         {this.isPlaying() ? (

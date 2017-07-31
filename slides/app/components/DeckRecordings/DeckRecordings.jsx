@@ -167,8 +167,8 @@ export class DeckRecordings extends React.Component {
           onChange={this.updatePlayState}
           onPlayAction={this.props.onPlayAction}
           onToggleState={this.props.onToggleState}
-          recordings={this.props.recordings}
           position={this.state.playPosition}
+          recordings={this.props.recordings}
           speed={this.state.playSpeed}
           />
         <Modal
@@ -197,11 +197,11 @@ export class DeckRecordings extends React.Component {
   renderPlayer () {
     return (
       <PlayerInterface
+        onChange={this.updatePlayState}
         onPlayAction={this.props.onPlayAction}
         onToggleState={this.props.onToggleState}
-        onChange={this.updatePlayState}
-        recordings={this.props.recordings}
         position={this.state.playPosition}
+        recordings={this.props.recordings}
         speed={this.state.playSpeed}
         />
     )

@@ -1,3 +1,5 @@
+// @flow
+
 import {WORK_MODE_VIEW, WORK_MODE_DECK_EDIT} from '../reducers.utils/workMode'
 
 import {WORK_MODE_SWITCH, WORK_MODE_DECK_EDIT_TOGGLE} from '../actions'

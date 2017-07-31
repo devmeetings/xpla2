@@ -122,6 +122,7 @@ class DeckContainer extends React.Component {
           active={this.props.activeSlide}
           back={this.props.back}
           onSlideChange={this.onSlideChange}
+          presence={this.props.presence}
           slides={this.props.slides}
         />
       </div>
@@ -142,7 +143,8 @@ DeckContainer.propTypes = {
     slides: state.get('deck').get('slides'),
     activeSlide: state.get('deck').get('active'),
     back: state.get('deck').get('back'),
-    recordings: state.get('recordings')
+    recordings: state.get('recordings'),
+    presence: state.get('presence')
   }),
   dispatch => ({
     actions: bindActionCreators(DeckActions, dispatch)
