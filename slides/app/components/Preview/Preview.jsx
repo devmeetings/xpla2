@@ -120,7 +120,7 @@ export class Preview extends React.Component {
   }
 
   renderNewWindowButton () {
-    const { isServer, serverUrl, serverPort, runServerUrl } = this.props;
+    const { isServer, serverUrl, serverPort, runServerUrl } = this.props
     const [proto, host] = runServerUrl.split(':')
     const runServerUrlNoPort = `${proto}:${host}`
     const link = isServer
@@ -139,8 +139,8 @@ export class Preview extends React.Component {
   }
 
   renderLogsButton () {
-    const { isServer, runServerUrl, runId } = this.props;
-    const link = runServerUrl + '/api/results/' + runId;
+    const { isServer, runServerUrl, runId } = this.props
+    const link = runServerUrl + '/api/results/' + runId
 
     return (
       <a

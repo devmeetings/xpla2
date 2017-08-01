@@ -33,7 +33,7 @@ type PayloadT = {
   }]
 };
 
-function doFetch(url, payload) {
+function doFetch (url, payload) {
   return fetch(url, {
     credentials: 'same-origin',
     method: payload ? 'post' : 'get',
@@ -71,12 +71,12 @@ export const commitAndRunCode = (payload: PayloadT) => {
         if (!payload.isServer) {
           return data
         }
-        const { runId } = data;
+        const { runId } = data
         // fetch port and URL
         return Promise.all(
             [
               doFetch(`${payload.runServerUrl}/api/results/${runId}.json/port`),
-              doFetch(`${payload.runServerUrl}/api/results/${runId}.json/url`),
+              doFetch(`${payload.runServerUrl}/api/results/${runId}.json/url`)
             ].map(x => x.then(checkStatus).then(res => res.json()))
           )
           .then(results => {
@@ -87,7 +87,7 @@ export const commitAndRunCode = (payload: PayloadT) => {
           })
       })
       .then(data => {
-        const { runId, port, url } = data;
+        const { runId, port, url } = data
         clearTimeout(timeout)
         dispatch(commitAndRunCodeFinished({
           runId,
