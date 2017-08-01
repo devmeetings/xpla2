@@ -38,13 +38,15 @@ export default createReducer(Map({}), {
       )
   },
   [COMMIT_AND_RUN_CODE]: (previews, action) => {
-    const previewId = action.payload.previewId
+    const { previewId, runId, port, url } = action.payload
     const preview = previews.get(previewId)
 
     const newPreview = preview
       .set('isLoading', false)
       .set('isTakingLong', false)
-      .set('runId', action.payload.runId)
+      .set('runId', runId)
+      .set('port', port)
+      .set('url', url)
 
     return previews
       .set(previewId, newPreview)

@@ -120,10 +120,17 @@ export class Preview extends React.Component {
   }
 
   renderNewWindowButton () {
+    const { isServer, serverUrl, serverPort, runServerUrl } = this.props;
+    const [proto, host] = runServerUrl.split(':')
+    const runServerUrlNoPort = `${proto}:${host}`
+    const link = isServer
+      ? `${serverUrl || runServerUrlNoPort}:${serverPort}`
+      : runServerUrl + '/api/results/' + this.props.runId + '/' + this.props.file
+
     return (
       <a
         className={styles.newTabButton}
-        href={this.props.runServerUrl + '/api/results/' + this.props.runId + '/' + this.props.file}
+        href={link}
         target={'_blank'}
         >
         <Icon icon={'launch'} />
@@ -132,10 +139,13 @@ export class Preview extends React.Component {
   }
 
   renderLogsButton () {
+    const { isServer, runServerUrl, runId } = this.props;
+    const link = runServerUrl + '/api/results/' + runId;
+
     return (
       <a
         className={styles.logsButton}
-        href={this.props.runServerUrl + '/api/results/' + this.props.runId + '/_logs.html'}
+        href={isServer ? link : link + '/_logs.html'}
         target={'_blank'}
         title='Output logs'
         >
@@ -158,11 +168,19 @@ export class Preview extends React.Component {
   }
 }
 
+Preview.defaultProps = {
+  serverUrl: null,
+  serverPort: 3000
+}
+
 Preview.propTypes = {
   isLoading: React.PropTypes.bool.isRequired,
   isFresh: React.PropTypes.bool.isRequired,
   isTakingLong: React.PropTypes.bool.isRequired,
   isError: React.PropTypes.bool.isRequired,
+  isServer: React.PropTypes.bool.isRequired,
+  serverUrl: React.PropTypes.string,
+  serverPort: React.PropTypes.string,
   runId: React.PropTypes.string,
   file: React.PropTypes.string.isRequired,
   runServerUrl: React.PropTypes.string.isRequired,

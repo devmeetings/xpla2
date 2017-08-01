@@ -60,7 +60,7 @@ function getLogsFile (data, timestamp) {
 
               if (noOfChecks > 0) {
                 noOfChecks--;
-                setTimeout(checkNewVersion, 700 + (200 - noOfChecks * 4));
+                setTimeout(checkNewVersion, 700 + (10000 - noOfChecks * 200));
               }
             }, function () {
               setTimeout(checkNewVersion, 2000);

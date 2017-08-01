@@ -23,6 +23,7 @@ const commitAndRunCodeFinished = createAction(COMMIT_AND_RUN_CODE)
 
 type PayloadT = {
   previewId: number,
+  isServer: bool,
   runServerUrl: string,
   runnerName: string,
   skipCache: bool,
@@ -31,6 +32,17 @@ type PayloadT = {
     content: string
   }]
 };
+
+function doFetch(url, payload) {
+  return fetch(url, {
+    credentials: 'same-origin',
+    method: payload ? 'post' : 'get',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: payload && JSON.stringify(payload)
+  })
+}
 
 export const commitAndRunCode = (payload: PayloadT) => {
   return (dispatch: (any) => void) => {
@@ -45,31 +57,46 @@ export const commitAndRunCode = (payload: PayloadT) => {
       }))
     }, CODE_TIMEOUT)
 
-    fetch(`${payload.runServerUrl}/api/commitAndRun`, {
-      credentials: 'same-origin',
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        runnerName: payload.runnerName,
-        skipCache: payload.skipCache,
-        files: payload.files.map((file) => ({
-          name: file.name,
-          content: file.content
-        }))
-      })
+    doFetch(`${payload.runServerUrl}/api/commitAndRun`, {
+      runnerName: payload.runnerName,
+      skipCache: payload.skipCache,
+      files: payload.files.map((file) => ({
+        name: file.name,
+        content: file.content
+      }))
     })
       .then(checkStatus)
-      .then((response) => response.json())
-      .then((data) => {
+      .then(response => response.json())
+      .then(data => {
+        if (!payload.isServer) {
+          return data
+        }
+        const { runId } = data;
+        // fetch port and URL
+        return Promise.all(
+            [
+              doFetch(`${payload.runServerUrl}/api/results/${runId}.json/port`),
+              doFetch(`${payload.runServerUrl}/api/results/${runId}.json/url`),
+            ].map(x => x.then(checkStatus).then(res => res.json()))
+          )
+          .then(results => {
+            const [{ port }, { url }] = results
+            data.port = port
+            data.url = url
+            return data
+          })
+      })
+      .then(data => {
+        const { runId, port, url } = data;
         clearTimeout(timeout)
         dispatch(commitAndRunCodeFinished({
-          runId: data.runId,
+          runId,
+          port,
+          url,
           previewId: payload.previewId
         }))
       })
-      .catch((err) => {
+      .catch(err => {
         clearTimeout(timeout)
         dispatch(commitAndRunCodeError({
           previewId: payload.previewId,

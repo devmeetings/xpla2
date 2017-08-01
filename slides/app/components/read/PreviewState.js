@@ -5,6 +5,7 @@ export function getPreviewState (dom) {
   const runner = dom.getAttribute('runner') || 'html'
   const runOnStart = !dom.hasAttribute('no-run')
   const file = dom.getAttribute('file') || ''
+  const isServer = dom.hasAttribute('server')
 
   dom.id = id
 
@@ -13,6 +14,7 @@ export function getPreviewState (dom) {
     runner,
     runOnStart,
     file,
+    isServer,
     isFresh: false,
     isLoading: false,
     isError: false,

@@ -46,13 +46,15 @@ class PreviewContainer extends React.Component {
     const preview = this.props.previews.get(previewId)
     const runServerUrl = this.props.runServerUrl
 
+    const isServer = preview.get('isServer')
     const runnerName = preview.get('runner')
     const files = this.getFilesFromEditors()
 
     this.props.actions.commitAndRunCode({
-      runServerUrl: runServerUrl,
-      previewId: previewId,
-      runnerName: runnerName,
+      runServerUrl,
+      previewId,
+      isServer,
+      runnerName,
       files: files.toJS(),
       skipCache: !!force
     })
@@ -71,6 +73,9 @@ class PreviewContainer extends React.Component {
           isFresh={preview.get('isFresh')}
           isLoading={preview.get('isLoading')}
           isTakingLong={preview.get('isTakingLong')}
+          isServer={preview.get('isServer')}
+          serverUrl={preview.get('url')}
+          serverPort={preview.get('port')}
           onRun={this.runAction}
           previewId={id}
           runId={preview.get('runId')}
