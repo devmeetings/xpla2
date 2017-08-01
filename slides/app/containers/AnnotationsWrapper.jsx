@@ -171,7 +171,7 @@ class AnnotationsContainer extends React.Component {
     }
 
     const anno = newProps.annotations.get('currentAnnotation')
-    if (anno !== this.state.currentAnnotation) {
+    if (anno !== this.props.annotations.get('currentAnnotation')) {
       this.changeAnnotation(anno)
     }
 

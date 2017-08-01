@@ -12,6 +12,7 @@ const webpack = require('./workers/webpack');
 const dart = require('./workers/dart');
 const elm = require('./workers/elm');
 const react = require('./workers/react');
+const express = require('./workers/express');
 
 const runners = {
   html,
@@ -24,6 +25,7 @@ const runners = {
   dart,
   elm,
   react,
+  express,
   'html-jsx': htmlJsx,
   'html-babel': htmlJsx,
   'html-ts': htmlTs

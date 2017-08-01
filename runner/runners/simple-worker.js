@@ -5,6 +5,7 @@ module.exports = function createWorker (queueName) {
     const onData = (outputData) => {
       const timestamp = Date.now();
       const onlyOutput = !outputData.newFiles || !outputData.newFiles.length || !outputData.success;
+      const { port, url } = outputData;
 
       const newFiles = [
         {
@@ -17,7 +18,9 @@ module.exports = function createWorker (queueName) {
       return {
         success: outputData.success,
         timestamp: timestamp,
-        files: newFiles
+        files: newFiles,
+        port,
+        url
       };
     };
 

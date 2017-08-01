@@ -14,6 +14,7 @@ import './slide-go.html'
 import './slide-webpack.html'
 import './slide-dart.html'
 import './slide-elm.html'
+import './slide-express.html'
 
 import {nonNull} from './assert'
 import {initializeSlide} from './slide/slide'
