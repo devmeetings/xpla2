@@ -48,8 +48,6 @@ location /slides/dm-angular2/ {
 #               EXTERNAL                   #
 ############################################
 
-proxy_cache_path /var/cache/nginx/{{ server_name }}/one keys_zone={{ server_id }}one:20m;
-
 location /ext/convert/ {
   proxy_cache {{ server_id }}one;
   proxy_cache_valid 200 60m;
@@ -116,7 +114,7 @@ location /static {
   gzip_vary on;
   gzip_proxied any;
   gzip_comp_level 6;
-  gzip_types text/plain text/html text/css application/x-javascript text/javascript;
+  gzip_types text/plain text/css application/x-javascript text/javascript;
 
   expires 30m;
   add_header Cache-Control "public";

@@ -1,3 +1,5 @@
+proxy_cache_path /var/cache/nginx/{{ server_name }}/one keys_zone={{ server_id }}one:20m;
+
 upstream {{ server_id }} {
   server localhost:{{server_port}};
   keepalive 32;
