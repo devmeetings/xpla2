@@ -47,6 +47,10 @@
 
   &:hover {
     overflow-x: auto;
+
+    .item, .itemActive, .itemMore {
+      height: calc(#{$slideslist-height} - 15px);
+    }
   }
 }
 .item, .itemActive, .itemMore {
@@ -59,6 +63,7 @@
   border-left: $border-small solid $color-disabled;
   transition: border $transition;
   height: $slideslist-height;
+  overflow: hidden;
 
   a {
     box-sizing: border-box;
