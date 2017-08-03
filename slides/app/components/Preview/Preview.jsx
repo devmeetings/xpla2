@@ -122,9 +122,9 @@ export class Preview extends React.Component {
   renderNewWindowButton () {
     const { isServer, serverUrl, serverPort, runServerUrl } = this.props
     const [proto, host] = runServerUrl.split(':')
-    const runServerUrlNoPort = `${proto}:${host}`
+    const runServerUrlNoPort = `${host}`
     const link = isServer
-      ? `${serverUrl || runServerUrlNoPort}:${serverPort}`
+      ? `http://${serverUrl || runServerUrlNoPort}:${serverPort}`
       : runServerUrl + '/api/results/' + this.props.runId + '/' + this.props.file
 
     return (
@@ -170,7 +170,7 @@ export class Preview extends React.Component {
 
 Preview.defaultProps = {
   serverUrl: null,
-  serverPort: 3000
+  serverPort: '3000'
 }
 
 Preview.propTypes = {

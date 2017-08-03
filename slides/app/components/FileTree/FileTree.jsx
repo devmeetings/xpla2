@@ -99,8 +99,9 @@ export class FileTree extends React.Component {
       <div key={node.name}>
         <a
           className={isActive ? `${styles.leaf} ${styles.active}` : styles.leaf}
-          onClick={this.onFileChange.bind(this, node)}>
-          {node.name}
+          onClick={this.onFileChange.bind(this, node)}
+        >
+          <span>{node.name}</span>
           {this.renderBadge(node.file)}
         </a>
       </div>

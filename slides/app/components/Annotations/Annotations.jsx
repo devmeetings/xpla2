@@ -131,6 +131,13 @@ export class Annotations extends React.Component {
     )
   }
 
+  selectAnnotationWithFile = (file) => {
+    const name = file.get('name')
+    const anno = this.props.annotations.findIndex(elem => elem.get('fileName') === name)
+
+    this.props.onJumpTo(anno)
+  }
+
   renderWithTree (editors, editorActive, annotation) {
     return (
       <div className={'xp-slide'}>
@@ -138,7 +145,7 @@ export class Annotations extends React.Component {
           <FileTree
             active={editorActive}
             files={editors}
-            onChange={() => {}}
+            onChange={this.selectAnnotationWithFile}
             />
         </div>
         <div className={'xp-resize-column'} />
@@ -305,6 +312,7 @@ Annotations.propTypes = {
   })).isRequired,
   minAnno: React.PropTypes.number.isRequired,
   onRequestClose: React.PropTypes.func.isRequired,
+  onJumpTo: React.PropTypes.func.isRequired,
   onNext: React.PropTypes.func.isRequired,
   onPrev: React.PropTypes.func.isRequired,
   onReopen: React.PropTypes.func.isRequired,
