@@ -93,3 +93,4 @@
   environment:
     NODE_ENV: "production"
     PORT: "{{ presence_port }}"
+    LOGS: "/home/xplarunner/presence.log"

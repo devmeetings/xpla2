@@ -2,6 +2,12 @@
 
 const Joi = require('joi');
 
+const logger = require('./log');
+
+const log = (origin, client, data) => {
+  logger.info(`[${origin}] ${client} ${data}`);
+};
+
 const SLIDE_UPDATE = 'tracking:slideUpdate';
 const ACTIVITY_UPDATE = 'tracking:pageActive';
 const CLIENTS = 'tracking:clients';
@@ -17,6 +23,8 @@ class ConnectedClients {
     cl.currentSlide = slide;
     cl.annotation = annotation;
 
+    log(origin, client, `changes slide to ${slide}:${annotation}`);
+
     this.server.publish(`/tracking/${origin}`, {
       type: SLIDE_UPDATE,
       client,
@@ -27,6 +35,8 @@ class ConnectedClients {
 
   updateActive (origin, client, isActive) {
     this.connectedClients[origin][client].isActive = isActive;
+
+    log(origin, client, isActive ? `becomes active` : `becomes inactive`);
 
     this.server.publish(`/tracking/${origin}`, {
       type: ACTIVITY_UPDATE,
@@ -43,6 +53,8 @@ class ConnectedClients {
       annotation: 0
     };
 
+    log(origin, client, 'joins');
+
     this.server.publish(`/tracking/${origin}`, {
       type: CLIENTS,
       clients: this.clients(origin)
@@ -51,6 +63,8 @@ class ConnectedClients {
 
   removeClient (origin, client) {
     delete this.connectedClients[origin][client];
+
+    log(origin, client, 'leaves');
 
     this.server.publish(`/tracking/${origin}`, {
       type: CLIENTS,
