@@ -11,7 +11,6 @@ import {Icon} from '../Icon/Icon'
 import {AceEditor} from '../AceEditor/AceEditor'
 import {FileTree} from '../FileTree/FileTree'
 import {getModeForFilename} from '../Editor/Editor'
-import {isSmallScreen} from '../isSmallScreen'
 
 import {HtmlEditor} from '../HtmlEditor/HtmlEditor'
 
