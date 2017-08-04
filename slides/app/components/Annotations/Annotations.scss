@@ -27,11 +27,12 @@
   }
 
   &.fs {
-    top: 20px;
-    left: 20px;
-    bottom: 20px;
-    right: 20px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     max-height: 100%;
+    border: none;
   }
 
   @media (max-width: $small-screen) {
