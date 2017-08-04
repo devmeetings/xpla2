@@ -28,7 +28,7 @@ export class Annotations extends React.Component {
     )
     const nextButton = (
       <button
-        className={styles.button}
+        className={classnames(styles.button, styles.next)}
         onClick={this.props.onNext}
         >
         <Icon icon={'chevron-right'} /> Next
@@ -36,7 +36,7 @@ export class Annotations extends React.Component {
     )
     const closeButton = (
       <button
-        className={styles.button}
+        className={classnames(styles.button, styles.next)}
         onClick={this.props.onNext}
         >
         <Icon icon={'chevron-right'} /> Ok. I get it
