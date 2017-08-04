@@ -1,34 +1,5 @@
 @import '../vars.scss';
 
-.people {
-  position: absolute;
-  font-family: monospace;
-  font-weight: bold;
-  top: 0;
-  left: 2px;
-  font-size: 0.5rem;
-  border-radius: 50%;
-  text-align: center;
-  display: block;
-  background: $brand-primary-light;
-  color: $color-inverse;
-  min-width: 0.5rem;
-  height: 0.5rem;
-  padding: 0.2rem;
-  animation: fadein 0.4s;
-}
-
-@keyframes fadein {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
 .list {
 	$shadow: $border-small * 2;
   list-style-type: none;

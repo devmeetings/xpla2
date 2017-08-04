@@ -1,6 +1,9 @@
+// @flow
+
 const Joi = require('joi');
 
 const SLIDE_UPDATE = 'tracking:slideUpdate';
+const ACTIVITY_UPDATE = 'tracking:pageActive';
 const CLIENTS = 'tracking:clients';
 
 class ConnectedClients {
@@ -22,10 +25,21 @@ class ConnectedClients {
     });
   }
 
+  updateActive (origin, client, isActive) {
+    this.connectedClients[origin][client].isActive = isActive;
+
+    this.server.publish(`/tracking/${origin}`, {
+      type: ACTIVITY_UPDATE,
+      client,
+      isActive
+    });
+
+  }
+
   newClient (origin, client) {
     this.connectedClients[origin] = this.connectedClients[origin] || {};
     this.connectedClients[origin][client] = {
-      active: true,
+      isActive: true,
       currentSlide: null,
       annotation: 0
     };
@@ -69,6 +83,27 @@ module.exports = function tracking (server) {
         const { newSlideId, annotation } = req.payload;
 
         clients.updateSlide(origin, id, newSlideId, annotation);
+
+        return reply('OK');
+      }
+    }
+  });
+
+  server.route({
+    method: 'POST',
+    path: '/tracking/{origin}/isActive',
+    config: {
+      validate: {
+        payload: {
+          isActive: Joi.bool().required()
+        }
+      },
+      handler (req, reply) {
+        const { origin } = req.params;
+        const { id } = req.socket;
+        const { isActive } = req.payload;
+
+        clients.updateActive(origin, id, isActive);
 
         return reply('OK');
       }

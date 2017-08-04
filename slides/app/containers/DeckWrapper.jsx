@@ -16,11 +16,18 @@ import styles from './DeckWrapper.scss'
 class DeckContainer extends React.Component {
   componentDidMount () {
     window.addEventListener('keyup', this.onKey)
+    document.addEventListener('visibilitychange', this.onVisibilityChange)
   }
 
   componentWillUnmount () {
     window.removeEventListener('keyup', this.onKey)
+    document.removeEventListener('visibilitychange', this.onVisibilityChange)
   }
+
+  onVisibilityChange = () => {
+    const isActive = !document.hidden
+    this.props.actions.pageActive(isActive)
+  };
 
   onKey = (ev) => {
     const prevPage = [33]/* PGUP */
@@ -122,7 +129,6 @@ class DeckContainer extends React.Component {
           active={this.props.activeSlide}
           back={this.props.back}
           onSlideChange={this.onSlideChange}
-          presence={this.props.presence}
           slides={this.props.slides}
         />
       </div>
@@ -143,8 +149,7 @@ DeckContainer.propTypes = {
     slides: state.get('deck').get('slides'),
     activeSlide: state.get('deck').get('active'),
     back: state.get('deck').get('back'),
-    recordings: state.get('recordings'),
-    presence: state.get('presence')
+    recordings: state.get('recordings')
   }),
   dispatch => ({
     actions: bindActionCreators(DeckActions, dispatch)

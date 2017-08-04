@@ -1,13 +1,23 @@
 import _ from 'lodash'
 import {Client} from 'nes/client'
 
-import {presenceConnection, presenceClients, presenceClientSlideUpdate} from '../../actions/deckTracking'
-import { DECK_SLIDE_CHANGE } from '../../actions'
+import {
+  presenceConnection, presenceClients, presenceClientSlideUpdate, presenceClientActive
+} from '../../actions/deckTracking'
+import { DECK_SLIDE_CHANGE, DECK_PAGE_ACTIVE } from '../../actions'
 
 const forwarding = {
   [DECK_SLIDE_CHANGE] (request, origin, action) {
     request(`/tracking/${origin}/slide`, {
       payload: action.payload
+    })
+  },
+
+  [DECK_PAGE_ACTIVE] (request, origin, action) {
+    request(`/tracking/${origin}/isActive`, {
+      payload: {
+        isActive: action.payload
+      }
     })
   }
 }
@@ -19,6 +29,9 @@ function processIncoming (store, message) {
       return
     case 'tracking:slideUpdate':
       store.dispatch(presenceClientSlideUpdate(message))
+      return
+    case 'tracking:pageActive':
+      store.dispatch(presenceClientActive(message))
       return
     default:
       console.warn('Ignored message', message)

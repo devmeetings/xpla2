@@ -16,6 +16,7 @@ export const WORK_MODE_EDIT_EDITOR_ANNOTATION = 'WORK_MODE_EDIT_EDITOR_ANNOTATIO
 
 // Only in deck context
 export const DECK_SLIDE_CHANGE = 'DECK_SLIDE_CHANGE'
+export const DECK_PAGE_ACTIVE = 'DECK_PAGE_ACTIVE'
 // Forwarded slide action
 export const DECK_SLIDE_ACTION = 'DECK_SLIDE_ACTION'
 // Fired by a player (middleware converts it to proper action)
@@ -31,3 +32,4 @@ export const RECORDING_SET = 'RECORDING_SET'
 export const PRESENCE_CONNECTION = 'PRESENCE_CONNECTION'
 export const PRESENCE_CLIENTS = 'PRESENCE_CLIENTS'
 export const PRESENCE_CLIENT_SLIDE_UPDATE = 'PRESENCE_CLIENT_SLIDE_UPDATE'
+export const PRESENCE_CLIENT_ACTIVE = 'PRESENCE_CLIENT_ACTIVE'

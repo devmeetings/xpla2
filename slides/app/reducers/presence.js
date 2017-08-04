@@ -1,7 +1,7 @@
 // @flow
 
 import {
-  PRESENCE_CONNECTION, PRESENCE_CLIENTS, PRESENCE_CLIENT_SLIDE_UPDATE
+  PRESENCE_CONNECTION, PRESENCE_CLIENTS, PRESENCE_CLIENT_SLIDE_UPDATE, PRESENCE_CLIENT_ACTIVE
 } from '../actions'
 
 import {fromJS} from 'immutable'
@@ -29,6 +29,13 @@ export default createReducer(fromJS({
     return state
       .setIn(['clients', client, 'currentSlide'], slide)
       .setIn(['clients', client, 'annotation'], annotation)
+  },
+
+  [PRESENCE_CLIENT_ACTIVE]: (state, action) => {
+    const { client, isActive } = action.payload
+
+    return state
+      .setIn(['clients', client, 'isActive'], isActive)
   }
 
 })

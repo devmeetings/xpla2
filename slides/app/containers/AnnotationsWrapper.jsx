@@ -199,7 +199,7 @@ class AnnotationsContainer extends React.Component {
           isEditMode={this.isEditMode}
           isOpen={this.state.isOpen}
           minAnno={this.minAnno()}
-          onJumpTo= {anno => this.changeAnnotation(anno)}
+          onJumpTo={anno => this.changeAnnotation(anno)}
           onNext={() => this.changeAnnotation(anno + 1)}
           onPrev={() => this.changeAnnotation(anno - 1)}
           onReopen={() => this.changeAnnotation(anno === editorAnnotations.size ? anno - 1 : anno)}

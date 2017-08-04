@@ -36,6 +36,7 @@ var babel = 'babel?' + [
   'presets[]=latest',
   'presets[]=stage-0',
   'plugins[]=transform-runtime',
+  'plugins[]=transform-class-properties',
   'plugins[]=transform-decorators-legacy',
   'plugins[]=transform-flow-strip-types',
   'plugins[]=rewire'

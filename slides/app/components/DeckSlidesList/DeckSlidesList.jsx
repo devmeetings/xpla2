@@ -4,14 +4,15 @@ import Props from 'react-immutable-proptypes'
 import {Icon} from '../Icon/Icon'
 import Tooltip from '../Tooltip'
 
+import PresenceIndicator from '../../containers/PresenceIndicator'
+
 import styles from './DeckSlidesList.scss'
 
 const DEFAULT_NO_OF_SLIDES = 3
 
 export class DeckSlidesList extends React.Component {
   state = {
-    noOfSlidesToShow: DEFAULT_NO_OF_SLIDES,
-    presence: {}
+    noOfSlidesToShow: DEFAULT_NO_OF_SLIDES
   }
 
   showMore = () => {
@@ -27,17 +28,6 @@ export class DeckSlidesList extends React.Component {
       })
       this._list.scrollLeft = 0
     }
-
-    const clients = nextProps.presence.get('clients')
-    if (clients !== this.props.presence.get('clients')) {
-      const jsClients = clients.toJS()
-      const presence = {}
-      Object.keys(jsClients).map(client => {
-        const { currentSlide } = jsClients[client]
-        presence[currentSlide] = (presence[currentSlide] || 0) + 1
-      })
-      this.setState({ presence })
-    }
   }
 
   getSplittedSlides () {
@@ -51,13 +41,14 @@ export class DeckSlidesList extends React.Component {
 
     const after = slides.skipUntil(isActiveSlide)
     const hasMore = before.size !== beforeAll.size
+    const more = beforeAll.slice(0, hasMore ? beforeAll.size - noOfSlidesBeforeActive : 0)
 
     return {
-      before, after, hasMore
+      before, after, hasMore, more
     }
   }
 
-  renderMoreSlidesButton (hasMore) {
+  renderMoreSlidesButton (hasMore, slides) {
     if (!hasMore) {
       return
     }
@@ -70,6 +61,7 @@ export class DeckSlidesList extends React.Component {
             placement={'top'}
             >
             <div>
+              <PresenceIndicator slides={slides} />
               <Icon icon={'more-horiz'} size={'1em'} />
             </div>
           </Tooltip>
@@ -103,30 +95,15 @@ export class DeckSlidesList extends React.Component {
   renderSlide (slide) {
     const activeId = this.props.active.get('id')
     const id = slide.get('id')
-    const noOfPeople = this.state.presence[id] || 0
-    const presenceActive = this.props.presence.get('active') && noOfPeople > 0
 
     return (
       <li
         className={id === activeId ? styles.itemActive : styles.item}
         key={id}
       >
-        { presenceActive ? this.renderPeople(noOfPeople) : null }
+        <PresenceIndicator slide={slide} />
         {this.renderSlideLink(slide)}
       </li>
-    )
-  }
-
-  renderPeople (noOfPeople) {
-    return (
-      <Tooltip
-        overlay={<span>{noOfPeople} persons on that slide</span>}
-        placement={'top'}
-        >
-        <span className={styles.people}>
-          { noOfPeople }
-        </span>
-      </Tooltip>
     )
   }
 
@@ -165,7 +142,7 @@ export class DeckSlidesList extends React.Component {
         ref={(ul) => { this._list = ul }}
         >
         {this.renderBackButton()}
-        {this.renderMoreSlidesButton(slides.hasMore)}
+        {this.renderMoreSlidesButton(slides.hasMore, slides.more)}
         {this.renderSlides(slides.before)}
         {this.renderSlides(slides.after)}
       </ul>
@@ -182,9 +159,5 @@ DeckSlidesList.propTypes = {
     id: React.PropTypes.string.isRequired,
     title: React.PropTypes.string.isRequired
   })).isRequired,
-  onSlideChange: React.PropTypes.func.isRequired,
-  presence: Props.contains({
-    active: React.PropTypes.bool.isRequired,
-    clients: Props.map.isRequired
-  }).isRequired
+  onSlideChange: React.PropTypes.func.isRequired
 }

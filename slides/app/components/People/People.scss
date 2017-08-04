@@ -1,0 +1,65 @@
+@import '../vars.scss';
+
+.people {
+  position: absolute;
+  font-family: monospace;
+  font-weight: bold;
+  top: -3px;
+  left: -3px;
+  font-size: 0.6rem;
+  border-radius: 30%;
+  text-align: center;
+  display: block;
+  background: $color-text;
+  color: $color-inverse;
+  min-width: 0.5rem;
+  height: 0.5rem;
+  padding: 0.3rem;
+  line-height: 100%;
+
+  &.active {
+    background: $brand-primary-light;
+  }
+
+  &.odd {
+    animation: fadein 0.4s;
+  }
+
+  &.even {
+    animation: tada 0.4s;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tada {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%, 20% {
+    transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%, 50%, 70%, 90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%, 60%, 80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}

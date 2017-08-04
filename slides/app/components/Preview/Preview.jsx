@@ -121,7 +121,7 @@ export class Preview extends React.Component {
 
   renderNewWindowButton () {
     const { isServer, serverUrl, serverPort, runServerUrl } = this.props
-    const [proto, host] = runServerUrl.split(':')
+    const host = runServerUrl.split(':')[1]
     const runServerUrlNoPort = `${host}`
     const link = isServer
       ? `http://${serverUrl || runServerUrlNoPort}:${serverPort}`
