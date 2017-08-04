@@ -136,7 +136,7 @@ function deckToLink (deck, index) {
 function deckToHtml (options, name, slides) {
   return `
     <!DOCTYPE html>
-    <html xp-run-server-url="${options.runServer}">
+    <html xp-run-server-url="${options.runServer}" xp-presence-url="${options.presenceServer}">
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
@@ -174,7 +174,7 @@ function getEditorWidth (slide) {
 function tasksToHtml (options, slide) {
   return `
     <!DOCTYPE html>
-    <html xp-run-server-url="${options.runServer}">
+    <html xp-run-server-url="${options.runServer}" xp-presence-url="${options.presenceServer}">
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
@@ -222,7 +222,7 @@ function slideToHtml (options, slide) {
 
   return `
     <!DOCTYPE html>
-    <html xp-run-server-url="${options.runServer}">
+    <html xp-run-server-url="${options.runServer}" xp-presence-url="${options.presenceServer}">
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">

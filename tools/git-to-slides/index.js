@@ -15,6 +15,7 @@ const configModule = require('./config');
 const DEFAULT_OUTPUT = 'slides';
 const DEFAULT_RUNNER = 'auto';
 const DEFAULT_RUN_SERVER = 'https://xpla.org';
+const DEFAULT_PRESENCE_SERVER = 'wss://presence.xpla.org';
 const DEFAULT_RESOURCE_URL = 'https://xpla.org/static';
 const DEFAULT_SOFTWARE_VERSION = '3.0.0';
 
@@ -35,6 +36,7 @@ if (require.main === module) {
     .option('-e, --author-link [link]', 'Author link, twitter handle or e-mail address []', '')
     .option('-r, --runner [runner]', `Runner type [${DEFAULT_RUNNER}]`, DEFAULT_RUNNER)
     .option('-s, --run-server [url]', `Run server url, [${DEFAULT_RUN_SERVER}]`, DEFAULT_RUN_SERVER)
+    .option('-p, --presence-server [url]', `Presence server url, [${DEFAULT_PRESENCE_SERVER}]`, DEFAULT_PRESENCE_SERVER)
     .option('-o, --output [dir]', `Output directory [${DEFAULT_OUTPUT}]`, DEFAULT_OUTPUT)
     .option('-i, --ignore <patterns>', 'Comma separated list of filenames to ignore, []', val => val.split(','), [])
     .parse(process.argv);
@@ -54,6 +56,7 @@ if (require.main === module) {
       output: program.output,
       runner: program.runner,
       runServer: program.runServer,
+      presenceServer: program.presenceServer,
       resourceUrl: DEFAULT_RESOURCE_URL,
       version: DEFAULT_SOFTWARE_VERSION,
       name: program.name,
@@ -83,6 +86,7 @@ function readConfigFile (workingDir, cfg, program = {}) {
     program.link = config.link || program.link;
     program.runner = config.runner || program.runner;
     program.runServer = config.runServer || program.runServer;
+    program.presenceServer = config.presenceServer || program.presenceServer;
     program.ignore = config.ignore || program.ignore;
     program.author = config.author.name || program.author.name;
     program.authorLink = config.author.link || program.author.link;
