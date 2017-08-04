@@ -27,12 +27,11 @@
   }
 
   &.fs {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    top: 20px;
+    left: 20px;
+    bottom: 20px;
+    right: 20px;
     max-height: 100%;
-    border: none;
   }
 
   @media (max-width: $small-screen) {
@@ -56,7 +55,7 @@
 
   &.fs {
     right: 50%;
-    bottom: $slideslist-height*2;
+    bottom: calc(#{$slideslist-height*2} + 0.5rem);
   }
 
   @media (max-width: $small-screen) {

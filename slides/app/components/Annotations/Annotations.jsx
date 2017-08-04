@@ -135,7 +135,7 @@ export class Annotations extends React.Component {
       name: annotation.fileName
     })
 
-    if (editors.size > 1 && !isSmallScreen()) {
+    if (editors.size > 1) {
       return (
         <div className={styles.editor}>
           {this.renderWithTree(editors, editorActive, annotation)}
