@@ -1,25 +1,67 @@
 @import "../vars";
 
-@keyframes :global(fadein) {
+@keyframes fadein {
   from {opacity: 0.0;}
   to {opacity:1.0;}
 }
 
-:global .ReactModal__Overlay {
-  animation: fadein 0.2s ease-in;
-  bottom: $slideslist-height !important;
-}
-:global .ReactModal__Content {
-  @media (max-width: $small-screen) {
-    left: 5px !important;
-    right: 5px !important;
-    top: 25px !important;
-    bottom: 45px !important;
-    padding: 10px !important;
+.modal {
+  position: absolute;
+  top: 5%;
+  left: 10%;
+  right: 10%;
+  max-height: 95%;
+  bottom: 5%;
+  border: 1px solid #ccc;
+  background: #fff;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 0;
+  outline: none;
+  padding: 2rem;
+
+  &:not(.fs) {
+    @media (max-height: $small-screen-h) {
+      bottom: 10px !important;
+    }
   }
 
-  @media (max-height: $small-screen-h) {
+  &.fs {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    max-height: 100%;
+    border: none;
+  }
+
+  @media (max-width: $small-screen) {
+    left: 10px !important;
+    right: 10px !important;
+    top: 10px !important;
     bottom: 10px !important;
+    padding: 10px !important;
+  }
+}
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: $slideslist-height;
+  background-color: rgba(0, 0, 0, 0.40);
+  z-index: 1000;
+
+  animation: fadein 0.3s ease-in;
+
+  &.fs {
+    right: 50%;
+    bottom: $slideslist-height*2;
+  }
+
+  @media (max-width: $small-screen) {
+    right: 0 !important;
+    bottom: $slideslist-height !important;
   }
 }
 

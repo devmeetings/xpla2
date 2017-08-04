@@ -18,33 +18,6 @@ import {HtmlEditor} from '../HtmlEditor/HtmlEditor'
 import styles from './Annotations.scss'
 
 export class Annotations extends React.Component {
-  modalStyles = {
-    overlay: {
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: 'rgba(0, 0, 0, 0.40)',
-      zIndex: 1000
-    },
-    content: {
-      position: 'absolute',
-      top: '10%',
-      left: '17%',
-      right: '17%',
-      maxHeight: '90%',
-      bottom: '15%',
-      border: '1px solid #ccc',
-      background: '#fff',
-      overflow: 'auto',
-      WebkitOverflowScrolling: 'touch',
-      borderRadius: '0',
-      outline: 'none',
-      padding: '2rem'
-    }
-  };
-
   renderButtons (anno) {
     const prevButton = (
       <button
@@ -275,6 +248,8 @@ export class Annotations extends React.Component {
       [styles.reopenVisible]: !isOpen
     })
     const anno = this.props.currentAnnotation
+    const isFs = !this.props.isModal
+
     return (
       <div>
         <button
@@ -285,10 +260,11 @@ export class Annotations extends React.Component {
           <Icon icon='receipt' />
         </button>
         <Modal
+          className={classnames(styles.modal, {[styles.fs]: isFs})}
           contentLabel={this.props.title}
           isOpen={isOpen}
           onRequestClose={this.props.onRequestClose}
-          style={this.modalStyles}
+          overlayClassName={classnames(styles.modalOverlay, {[styles.fs]: isFs})}
           >
           {this.renderClose()}
           {this.renderAnnotation(anno)}
@@ -301,6 +277,7 @@ export class Annotations extends React.Component {
 
 Annotations.propTypes = {
   hasIntro: React.PropTypes.bool.isRequired,
+  isModal: React.PropTypes.bool.isRequired,
   title: React.PropTypes.string.isRequired,
   annotations: Props.listOf(Props.contains({
     order: React.PropTypes.number.isRequired,

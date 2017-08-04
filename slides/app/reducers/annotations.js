@@ -12,7 +12,8 @@ export default createReducer(fromJS({
   header: '',
   details: '',
   currentAnnotation: -1,
-  annotations: {}
+  annotations: {},
+  isModal: true
 }), {
   [SLIDE_CHANGE_ANNOTATION]: (annotations, action) => {
     return annotations.set('currentAnnotation', action.payload)

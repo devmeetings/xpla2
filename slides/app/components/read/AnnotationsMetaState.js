@@ -33,12 +33,14 @@ export function getAnnotationState (dom: Element) {
   const details = getHtml(dom, 'details')
   const annotations = readAnnotations(dom, 'aside')
   const title: ?string = null
+  const isModal = dom.hasAttribute('modal')
 
   return {
     title,
     header,
     details,
     currentAnnotation: -1,
-    annotations
+    annotations,
+    isModal
   }
 }

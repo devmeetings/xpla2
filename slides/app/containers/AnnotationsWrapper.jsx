@@ -197,6 +197,7 @@ class AnnotationsContainer extends React.Component {
           currentAnnotation={anno}
           hasIntro={!!details || this.isEditMode}
           isEditMode={this.isEditMode}
+          isModal={meta.get('isModal')}
           isOpen={this.state.isOpen}
           minAnno={this.minAnno()}
           onJumpTo={anno => this.changeAnnotation(anno)}
