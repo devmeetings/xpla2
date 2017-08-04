@@ -33,7 +33,6 @@ class ConnectedClients {
       client,
       isActive
     });
-
   }
 
   newClient (origin, client) {
