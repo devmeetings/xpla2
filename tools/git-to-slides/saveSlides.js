@@ -231,6 +231,7 @@ function slideToHtml (options, slide) {
   }
 
   const runner = slide.runner ? trim(slide.runner) : ((options.runner === 'auto') ? 'html' : options.runner);
+  const server = runner === 'express' ? 'server' : '';
   const editorWidth = getEditorWidth(slide);
 
   const editor = `
@@ -243,7 +244,7 @@ function slideToHtml (options, slide) {
 
   const preview = `
     <div class="xp-column"${slide.displayTree ? ' style="width: 35%"' : ''}>
-      <xp-preview runner="${runner}"${slide.preview ? ' file="' + trim(slide.preview) + '"' : ''}></xp-preview>
+      <xp-preview ${server} runner="${runner}"${slide.preview ? ' file="' + trim(slide.preview) + '"' : ''}></xp-preview>
     </div>
   `;
 
