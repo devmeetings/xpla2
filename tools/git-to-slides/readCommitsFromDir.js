@@ -97,7 +97,8 @@ function readFiles (dirObject, ignore) {
                 lineNo: 0,
                 numLines: content.split('\n').length
               }],
-              content: content
+              content: content,
+              rawContent: content
             };
           });
         })

@@ -4,6 +4,7 @@ const _ = require('lodash');
 
 const ANNOTATIONS_FILE = '_annotations.html';
 const TASKS_FILE = '_tasks.html';
+const IMAGES = 'resources/';
 const XP_TREE_FILE = '_xp-tree';
 const XP_NO_HIGHLIGHT_FILE = '_xp-no-highlight';
 const XP_RUNNER_FILE = '_xp-runner';
@@ -48,7 +49,8 @@ function convertCommitsToSlidesContent (commitsPerBranch) {
         .map((file) => {
           return {
             path: editorFilePath(slideName, file),
-            content: file.content
+            content: file.content,
+            rawContent: file.rawContent
           };
         });
 
@@ -83,6 +85,7 @@ function convertCommitsToSlidesContent (commitsPerBranch) {
       const allFiles = commit.newFiles.concat(commit.oldFiles);
       const annotations = getFile(commit.newFiles, ANNOTATIONS_FILE, '');
       const tasks = getFile(commit.newFiles, TASKS_FILE, false);
+      const image = getImage(commit.newFiles, IMAGES);
       const displayTree = hasFile(allFiles, XP_TREE_FILE);
       const displayPreview = !hasFile(allFiles, XP_NO_PREVIEW);
       const runner = getFile(allFiles, XP_RUNNER_FILE, false) || autoRunner(allFiles);
@@ -91,7 +94,7 @@ function convertCommitsToSlidesContent (commitsPerBranch) {
       const active = editors.length ? editors[0].id : undefined;
 
       // Push a slide if there are no tasks or more then one file is inside the commit.
-      if (!tasks || commit.newFiles > 1) {
+      if ((!image || commit.newFiles > 2) && (!tasks || commit.newFiles > 1)) {
         slidesContent.push({
           filesToSave,
           active,
@@ -104,6 +107,22 @@ function convertCommitsToSlidesContent (commitsPerBranch) {
           preview,
           title: msg.title,
           comment: msg.comment
+        });
+      }
+
+      if (image) {
+        const imageFilePath = editorFilePath(slideName, image);
+        slidesContent.push({
+          slideName,
+          image: imageFilePath,
+          annotations,
+          title: msg.title,
+          comment: msg.comment,
+          filesToSave: [{
+            path: imageFilePath,
+            content: image.content,
+            rawContent: image.rawContent
+          }]
         });
       }
 
@@ -165,6 +184,14 @@ function getFile (newFiles, fileName, defaultVal) {
     return defaultVal;
   }
   return file.content;
+}
+
+function getImage (newFiles, directory) {
+  const file = newFiles.filter(file => file.path.startsWith(directory))[0];
+  if (!file) {
+    return false;
+  }
+  return file;
 }
 
 function hasFile (newFiles, fileName) {

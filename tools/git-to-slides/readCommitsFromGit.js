@@ -119,7 +119,8 @@ function getOldFiles (tree, newFiles) {
           return {
             path: entry.path(),
             lines: [],
-            content: blob.content().toString()
+            content: blob.content().toString(),
+            rawContent: blob.content()
           };
         });
       });
@@ -183,7 +184,8 @@ function parsePatch (commit, patch, tree) {
     return {
       path: newFilePath,
       lines: data.lines,
-      content: data.blob.content().toString()
+      content: data.blob.content().toString(),
+      rawContent: data.blob.content()
     };
   });
 }

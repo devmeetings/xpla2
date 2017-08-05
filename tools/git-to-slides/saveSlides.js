@@ -50,7 +50,9 @@ function saveSlide (options, slide) {
     // Create dir
     mkdirp.sync(dir);
     // Write file
-    fs.writeFileSync(filePath, file.content);
+    fs.writeFileSync(filePath, file.rawContent, {
+      encoding: null
+    });
   });
   // Write slides
   fs.writeFileSync(path.join(options.output, slideFileName(slide)), slideToHtml(options, slide));
@@ -192,9 +194,40 @@ function tasksToHtml (options, slide) {
   `;
 }
 
+function imageToHtml (options, slide) {
+  return `
+    <!DOCTYPE html>
+    <html xp-run-server-url="${options.runServer}" xp-presence-url="${options.presenceServer}">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>${trim(slide.title)}</title>
+        <script src="${options.resourceUrl}/js/slide_loader.${options.version}.js"></script>
+      </head>
+
+      <body class="xp-slide">
+        <div class="xp-row center with-comments">
+          <img src="${slide.image}" style="max-width:90%;max-height:90%;display:block;margin:0 auto;"/>
+        </div>
+        <div class="xp-resize-row"></div>
+        <div class="xp-row comments">
+          <xp-annotations modal>
+            <header><h1>${trim(slide.comment)}</h1></header>
+            ${slide.annotations}
+          </xp-annotations>
+        </div>
+      </body>
+    </html>
+  `;
+}
+
 function slideToHtml (options, slide) {
   if (slide.tasks) {
     return tasksToHtml(options, slide);
+  }
+
+  if (slide.image) {
+    return imageToHtml(options, slide);
   }
 
   const runner = slide.runner ? trim(slide.runner) : ((options.runner === 'auto') ? 'html' : options.runner);
