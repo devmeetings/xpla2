@@ -105,7 +105,7 @@ function parseAnnotations (content, ext, fileName) {
     'html': HTML_LIKE,
     'elm': ELM_PATTERN
   }
-  const PATTERN = LINE_PATTERNS[ext]
+  const PATTERN = fileName === '_console' ? HASH_PATTERN : LINE_PATTERNS[ext]
   if (!PATTERN) {
     return {
       fileOrder: 9999,
