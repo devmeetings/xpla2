@@ -30,6 +30,10 @@ import 'brace/theme/chrome'
 import styles from './Editor.scss'
 
 export function getModeForFilename (name) {
+  if (name === '_console') {
+    return 'sh'
+  }
+
   const typeMap = {
     js: 'jsx',
     ts: 'typescript',
