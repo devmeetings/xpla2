@@ -10,7 +10,7 @@ export function getTasksState (dom, top) {
   // parse time
   const time = parseInt(dom.getAttribute('time'), 10)
   // parse tasks list
-  const tasks = getTasks(dom.querySelectorAll('li'));
+  const tasks = getTasks(dom.querySelectorAll('ol > li'));
   // remove tasks
   [].map.call(dom.querySelectorAll('ol'), el => el.parentNode.removeChild(el));
   [].map.call(dom.querySelectorAll('ul'), el => el.parentNode.removeChild(el))

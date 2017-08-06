@@ -12,7 +12,7 @@ export class TasksContainer extends React.Component {
     return this.props.tasks.map((task, idx) => {
       return (
         <li className={styles.task} key={idx}>
-          <span dangerouslySetInnerHTML={{__html: task.get('content')}} />
+          <div dangerouslySetInnerHTML={{__html: task.get('content')}} />
           <span className={`${styles.badge} ${styles[task.get('type')]}`}>{task.get('type')}</span>
         </li>
       )
