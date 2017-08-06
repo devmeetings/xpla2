@@ -19,6 +19,7 @@ const schema = Joi.object().keys({
   author: authorSchema,
   runner: Joi.string().description('One of allowed runners. NOTE per-slide settings may override this.'),
   runServer: Joi.string().description('Run server to use (Do not set if you don\'t know what it is)'),
+  presenceServer: Joi.string().description('Presence server to use (Do not set if you don\'t know what it is)'),
   ignore: Joi.array().items(Joi.string()).description('Array of files to ignore while generating slides.'),
   dirs: Joi.array().items(branchSchema).min(1).description('List of directories to process'),
   branches: Joi.array().items(branchSchema).min(1).description('List of branches to process')

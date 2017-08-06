@@ -3,6 +3,7 @@ import React from 'react'
 import Tooltip from '../Tooltip'
 
 import {HtmlResult} from '../HtmlResult/HtmlResult'
+import {ServerResult} from '../HtmlResult/ServerResult'
 import {Icon} from '../Icon/Icon'
 
 import styles from './Preview.scss'
@@ -21,11 +22,7 @@ export class Preview extends React.Component {
   }
 
   renderResultWindow () {
-    const runId = this.props.runId
-    const runServerUrl = this.props.runServerUrl
-    const isLoading = this.props.isLoading
-    const isError = this.props.isError
-    const file = this.props.file
+    const { runId, isError } = this.props
 
     if (isError) {
       return (
@@ -57,12 +54,39 @@ export class Preview extends React.Component {
     return (
       <div className={styles.previewWindow}>
         {this.renderAlert()}
-        <HtmlResult
-          file={file}
-          isLoading={isLoading}
-          runId={runId}
-          runServerUrl={runServerUrl}
-        />
+        {this.renderIframe()}
+      </div>
+    )
+  }
+
+  renderIframe () {
+    const { file, isLoading, runId, runServerUrl, isServer, serverPort } = this.props
+    const htmlResult = (
+      <HtmlResult
+        file={file}
+        isLoading={isLoading}
+        runId={runId}
+        runServerUrl={runServerUrl}
+      />
+    )
+
+    if (!isServer) {
+      return htmlResult
+    }
+
+    return (
+      <div className={styles.serverResult}>
+        <div className={'xp-row'} style={{height:'70%'}}>
+          <ServerResult
+            isLoading={isLoading}
+            runServerUrl={runServerUrl}
+            port={serverPort}
+          />
+        </div>
+        <div className={'xp-resize-row'} />
+        <div className={'xp-row'} style={{height:'30%'}}>
+          {htmlResult}
+        </div>
       </div>
     )
   }
@@ -180,7 +204,7 @@ Preview.propTypes = {
   isError: React.PropTypes.bool.isRequired,
   isServer: React.PropTypes.bool.isRequired,
   serverUrl: React.PropTypes.string,
-  serverPort: React.PropTypes.string,
+  serverPort: React.PropTypes.number,
   runId: React.PropTypes.string,
   file: React.PropTypes.string.isRequired,
   runServerUrl: React.PropTypes.string.isRequired,

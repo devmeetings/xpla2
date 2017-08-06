@@ -81,7 +81,7 @@ export const commitAndRunCode = (payload: PayloadT) => {
           )
           .then(results => {
             const [{ port }, { url }] = results
-            data.port = port
+            data.port = parseInt(port, 10)
             data.url = url
             return data
           })
