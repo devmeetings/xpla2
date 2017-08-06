@@ -80,7 +80,9 @@ rm -rf $LOG_FILE || true
 git clone "https://github.com/$TARGET_OWNER/$TARGET_REPO.git" $WORK_DIR
 cd $WORK_DIR
 
-for remote in `git branch -r `; do git branch --track $remote; done
+for remote in `git branch -r`; do
+  git branch --track "$remote";
+done
 
 if [ "x$BRANCHES" != "xnone" ]; then
   IFS=';' read -r -a branchnames <<< "$BRANCHES"
