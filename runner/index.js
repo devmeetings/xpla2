@@ -1,10 +1,11 @@
 'use strict';
 
-const Hapi = require('hapi');
 const Good = require('good');
+const Hapi = require('hapi');
+const Inert = require('inert');
 const Lout = require('lout');
 const Vision = require('vision');
-const Inert = require('inert');
+const h2o2 = require('h2o2');
 
 const Routes = require('./routes');
 
@@ -17,6 +18,9 @@ server.connection({
 });
 
 server.register([
+  {
+    register: h2o2
+  },
   Vision,
   Inert,
   {

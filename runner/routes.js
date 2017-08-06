@@ -191,6 +191,15 @@ module.exports = [
         })
         .catch(e => handleError(e, reply));
     }
+  },
+  {
+    method: 'GET',
+    path: '/proxy/{u}/{p}/{rest*}',
+    handler: {
+      proxy: {
+        uri: 'http://{u}:{p}/{rest}'
+      }
+    }
   }
 
 ];

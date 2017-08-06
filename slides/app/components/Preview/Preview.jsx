@@ -61,6 +61,8 @@ export class Preview extends React.Component {
 
   renderIframe () {
     const { file, isLoading, runId, runServerUrl, isServer, serverPort } = this.props
+    const serverUrl = this.serverUrl()
+
     const htmlResult = (
       <HtmlResult
         file={file}
@@ -81,9 +83,10 @@ export class Preview extends React.Component {
             isLoading={isLoading}
             runServerUrl={runServerUrl}
             port={serverPort}
+            url={serverUrl}
           />
         </div>
-        <div className={'xp-resize-row'} />
+        <div className={'xp-resize-row'} style={{borderTop: '1px solid #444'}}/>
         <div className={'xp-row'} style={{height:'30%'}}>
           {htmlResult}
         </div>
@@ -143,12 +146,19 @@ export class Preview extends React.Component {
     )
   }
 
-  renderNewWindowButton () {
-    const { isServer, serverUrl, serverPort, runServerUrl } = this.props
+  serverUrl () {
+    const { serverUrl, runServerUrl } = this.props
     const host = runServerUrl.split(':')[1]
-    const runServerUrlNoPort = `${host}`
+    const runServerUrlNoPort = `${host.substr(2)}`
+
+    return serverUrl || runServerUrlNoPort
+  }
+
+  renderNewWindowButton () {
+    const { isServer, serverPort, runServerUrl } = this.props
+    const serverUrl = this.serverUrl()
     const link = isServer
-      ? `http://${serverUrl || runServerUrlNoPort}:${serverPort}`
+      ? `http://${serverUrl}:${serverPort}`
       : runServerUrl + '/api/results/' + this.props.runId + '/' + this.props.file
 
     return (
@@ -194,7 +204,7 @@ export class Preview extends React.Component {
 
 Preview.defaultProps = {
   serverUrl: null,
-  serverPort: '3000'
+  serverPort: 3000
 }
 
 Preview.propTypes = {
