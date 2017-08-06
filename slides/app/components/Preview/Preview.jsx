@@ -78,16 +78,16 @@ export class Preview extends React.Component {
 
     return (
       <div className={styles.serverResult}>
-        <div className={'xp-row'} style={{height:'70%'}}>
+        <div className={'xp-row'} style={{ height: '70%' }}>
           <ServerResult
             isLoading={isLoading}
-            runServerUrl={runServerUrl}
             port={serverPort}
+            runServerUrl={runServerUrl}
             url={serverUrl}
           />
         </div>
-        <div className={'xp-resize-row'} style={{borderTop: '1px solid #444'}}/>
-        <div className={'xp-row'} style={{height:'30%'}}>
+        <div className={'xp-resize-row'} style={{ borderTop: '1px solid #444' }} />
+        <div className={'xp-row'} style={{ height: '30%' }}>
           {htmlResult}
         </div>
       </div>
