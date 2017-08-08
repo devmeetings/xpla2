@@ -13,6 +13,7 @@ const dart = require('./workers/dart');
 const elm = require('./workers/elm');
 const react = require('./workers/react');
 const express = require('./workers/express');
+const angularCli = require('./workers/angularCli');
 
 const runners = {
   html,
@@ -28,7 +29,8 @@ const runners = {
   express,
   'html-jsx': htmlJsx,
   'html-babel': htmlJsx,
-  'html-ts': htmlTs
+  'html-ts': htmlTs,
+  'angular-cli': angularCli
 };
 
 function getRunner (runnerName) {
