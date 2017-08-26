@@ -1,50 +1,4 @@
 ############################################
-#               SLIDES                     #
-############################################
-
-location /slides/react-redux/ {
-  proxy_pass http://wkwiatek.github.io/devmeeting-react-todoapp/;
-  proxy_set_header X-Real-IP $remote_addr;
-
-  location = /slides/react-redux/ {
-    proxy_pass http://wkwiatek.github.io/devmeeting-react-todoapp/;
-    proxy_set_header X-Real-IP $remote_addr;
-
-    # react-redux / 7843
-    auth_basic "Restricted";
-    auth_basic_user_file /etc/nginx/{{ server_name }}-htpasswd;
-  }
-}
-
-location /slides/angular2/ {
-  proxy_pass http://kapke.github.io/angular2-shop/;
-  proxy_set_header X-Real-IP $remote_addr;
-}
-
-location /slides/modernjs/ {
-  proxy_pass http://devmeetings.github.io/devmeeting-modernjs/;
-  proxy_set_header X-Real-IP $remote_addr;
-}
-
-location /slides/dm-angular2/program/ {
-  return 301 /slides/dm-angular2/program-devmeeting/;
-}
-
-location /slides/dm-angular2/program-devmeeting/ {
-  proxy_pass http://kapke.github.io/angular2-shop/program-devmeeting/;
-  proxy_set_header X-Real-IP $remote_addr;
-
-  # angular2 / angular2-wro / angular2-krk / angular2-waw / 5613
-  auth_basic "Restricted";
-  auth_basic_user_file /etc/nginx/{{ server_name }}-htpasswd;
-}
-
-location /slides/dm-angular2/ {
-  proxy_pass http://kapke.github.io/angular2-shop/;
-  proxy_set_header X-Real-IP $remote_addr;
-}
-
-############################################
 #               EXTERNAL                   #
 ############################################
 
@@ -139,4 +93,3 @@ error_page 502 /offline.html;
 location = /offline.html {
   root /srv/{{ server_name }}/static/;
 }
-
