@@ -68,7 +68,7 @@ location /static {
   gzip_vary on;
   gzip_proxied any;
   gzip_comp_level 6;
-  gzip_types text/plain text/css application/x-javascript text/javascript;
+  gzip_types text/plain text/css application/javascript application/x-javascript text/javascript;
 
   expires 30m;
   add_header Cache-Control "public";

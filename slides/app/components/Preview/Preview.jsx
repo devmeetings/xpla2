@@ -165,6 +165,7 @@ export class Preview extends React.Component {
       <a
         className={styles.newTabButton}
         href={link}
+        rel={'noopener'}
         target={'_blank'}
         >
         <Icon icon={'launch'} />
@@ -180,6 +181,7 @@ export class Preview extends React.Component {
       <a
         className={styles.logsButton}
         href={isServer ? link : link + '/_logs.html'}
+        rel={'noopener'}
         target={'_blank'}
         title='Output logs'
         >
