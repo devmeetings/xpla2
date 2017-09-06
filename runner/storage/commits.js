@@ -3,7 +3,7 @@
 const uuid = require('uuid');
 const db = require('./db');
 
-const mem = db();
+const mem = db('commits.json');
 
 function store (code) {
   const commitId = code.hash || uuid.v1();

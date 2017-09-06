@@ -1,11 +1,12 @@
 'use strict';
 
+const { loadDb, saveDb } = require('./fs');
+
 const REMOVE_CHUNK = 1024;
 const LIMIT = REMOVE_CHUNK * 32;
 
-module.exports = function newDb () {
-  const mem = {};
-  const memIds = [];
+module.exports = function newDb (name) {
+  const [mem, memIds] = loadDb(name);
   const pendingRemovals = new Set();
   const pendingCacheUpdates = new Set();
   let scheduledRemoval = false;
@@ -22,6 +23,7 @@ module.exports = function newDb () {
       });
       pendingRemovals.clear();
       scheduledRemoval = false;
+      saveDb(name, mem, memIds);
     }, 5000);
   }
 
@@ -53,6 +55,7 @@ module.exports = function newDb () {
       mem[id] = val;
       memIds.push(id);
 
+      saveDb(name, mem, memIds);
       if (memIds.length >= LIMIT) {
         // Remove couple of elements from the begining
         const removed = memIds.splice(0, REMOVE_CHUNK);

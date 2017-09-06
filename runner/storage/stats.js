@@ -2,7 +2,7 @@
 
 const db = require('./db');
 
-const mem = db();
+const mem = db('stats.json');
 
 function store (origin, data) {
   mem.store(origin, data);

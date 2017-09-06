@@ -3,7 +3,7 @@
 const uuid = require('uuid');
 const db = require('./db');
 
-const mem = db();
+const mem = db('runs.json');
 
 function store (runData, cacheId) {
   const runId = cacheId || uuid.v1();

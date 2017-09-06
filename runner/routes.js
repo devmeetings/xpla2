@@ -79,10 +79,15 @@ module.exports = [
   {
     method: 'GET',
     path: '/api/stats',
-    handler: (req, reply) => {
-      stats.get()
-        .then(reply)
-        .catch(e => handleError(e, reply));
+    config: {
+      json: {
+        space: 2
+      },
+      handler: (req, reply) => {
+        stats.get()
+          .then(reply)
+          .catch(e => handleError(e, reply));
+      }
     }
   },
   {
