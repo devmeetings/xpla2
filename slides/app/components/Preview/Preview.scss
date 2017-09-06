@@ -65,6 +65,7 @@
     }
   }
 }
+
 .runButton {
   @include button;
   @include colorButton($color-inverse, $brand-primary, $color-inverse, $brand-primary-light);
@@ -86,6 +87,18 @@
   color: $brand-primary;
   &:hover {
     color: $brand-primary-light;
+  }
+}
+.clearCacheButton {
+  @include button;
+  background: none;
+  opacity: 0;
+  color: $brand-primary-light;
+  transition: opacity $transition;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1.0;
   }
 }
 .loadingIcon {

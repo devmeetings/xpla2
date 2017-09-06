@@ -31,17 +31,34 @@ type PayloadT = {
     name: string,
     content: string
   }]
-};
+}
 
-function doFetch (url, payload) {
+type ClearPayloadT = PayloadT & {
+  runId: string
+}
+
+function doFetch (url, payload = null, method = null) {
   return fetch(url, {
+    mode: 'cors',
     credentials: 'same-origin',
-    method: payload ? 'post' : 'get',
+    method: method || (payload ? 'post' : 'get'),
     headers: {
       'Content-Type': 'application/json'
     },
     body: payload && JSON.stringify(payload)
   })
+}
+
+export const clearRunCache = (payload: ClearPayloadT) => {
+  return (dispatch: (any) => void) => {
+    doFetch(`${payload.runServerUrl}/api/results/${payload.runId}`, null, 'delete')
+      .then(() => {
+        commitAndRunCode(payload)(dispatch)
+      })
+      .catch(err => {
+        console.error('Cannot clear cache.', err)
+      })
+  }
 }
 
 export const commitAndRunCode = (payload: PayloadT) => {

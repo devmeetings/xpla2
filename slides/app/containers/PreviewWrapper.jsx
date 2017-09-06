@@ -41,24 +41,33 @@ class PreviewContainer extends React.Component {
     return files.toSetSeq().flatten(1)
   }
 
-  runAction = (force) => {
-    const previewId = this.props.previewId
+  runActionObject (force) {
+    const { previewId, runServerUrl } = this.props
     const preview = this.props.previews.get(previewId)
-    const runServerUrl = this.props.runServerUrl
 
     const isServer = preview.get('isServer')
     const runnerName = preview.get('runner')
     const files = this.getFilesFromEditors()
 
-    this.props.actions.commitAndRunCode({
+    return {
       runServerUrl,
       previewId,
       isServer,
       runnerName,
       files: files.toJS(),
       skipCache: !!force
-    })
-  };
+    }
+  }
+
+  runAction = (force) => {
+    this.props.actions.commitAndRunCode(this.runActionObject(force))
+  }
+
+  clearCache = (runId) => {
+    const obj = this.runActionObject(false)
+    obj.runId = runId
+    this.props.actions.clearRunCache(obj)
+  }
 
   render () {
     const id = this.props.previewId
@@ -75,6 +84,7 @@ class PreviewContainer extends React.Component {
           isServer={preview.get('isServer')}
           isTakingLong={preview.get('isTakingLong')}
           onRun={this.runAction}
+          onClearCache={this.clearCache}
           previewId={id}
           runId={preview.get('runId')}
           runServerUrl={runServerUrl}

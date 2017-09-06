@@ -134,6 +134,11 @@ export class Preview extends React.Component {
     this.props.onRun(forceRun)
   };
 
+  handleClearCache = () => {
+    const { runId } = this.props
+    this.props.onClearCache(runId)
+  }
+
   renderRunButton () {
     return (
       <button
@@ -190,11 +195,26 @@ export class Preview extends React.Component {
     )
   }
 
+  renderClearCacheButton () {
+    return (
+      <button
+        className={styles.clearCacheButton}
+        onClick={this.handleClearCache}
+        rel={'noopener'}
+        target={'_blank'}
+        title='Clear Cached Result'
+        >
+        <Icon icon={'clear'} />
+      </button>
+    )
+  }
+
   render () {
     return (
       <div className={styles.preview}>
         <div className={styles.previewBar}>
           {this.renderRunButton()}
+          {this.renderClearCacheButton()}
           {this.renderLogsButton()}
           {this.renderNewWindowButton()}
         </div>
@@ -220,5 +240,6 @@ Preview.propTypes = {
   runId: React.PropTypes.string,
   file: React.PropTypes.string.isRequired,
   runServerUrl: React.PropTypes.string.isRequired,
-  onRun: React.PropTypes.func.isRequired
+  onRun: React.PropTypes.func.isRequired,
+  onClearCache: React.PropTypes.func.isRequired
 }
