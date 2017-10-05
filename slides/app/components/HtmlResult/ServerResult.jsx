@@ -3,6 +3,31 @@ import React from 'react'
 import styles from './HtmlResult.scss'
 
 export class ServerResult extends React.Component {
+
+  state = {
+    url: ''
+  }
+
+  componentWillMount () {
+    this.updateUrl(this.props)
+  }
+
+  componentWillReceiveProps (newProps) {
+    this.updateUrl(newProps)
+  }
+
+  updateUrl (props) {
+    const { runServerUrl, port, url } = props
+    const frameSrc = `${runServerUrl}/proxy/${url}/${port}/`
+
+    if (this.state.frameSrc !== frameSrc) {
+      // Wait for the server to initialize.
+      setTimeout(() => {
+        this.setState({ frameSrc })
+      }, 1000)
+    }
+  }
+
   render () {
     const { runServerUrl, isLoading, port, url } = this.props
 
@@ -10,7 +35,7 @@ export class ServerResult extends React.Component {
       <iframe
         className={isLoading ? styles.resultLoading : styles.result}
         seamless
-        src={`${runServerUrl}/proxy/${url}/${port}/`}
+        src={this.state.frameSrc}
         />
     )
   }
