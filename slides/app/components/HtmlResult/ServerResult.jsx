@@ -4,7 +4,7 @@ import styles from './HtmlResult.scss'
 
 export class ServerResult extends React.Component {
   state = {
-    url: ''
+    frameSrc: ''
   }
 
   componentWillMount () {
@@ -19,10 +19,15 @@ export class ServerResult extends React.Component {
     const { runServerUrl, port, url } = props
     const frameSrc = `${runServerUrl}/proxy/${url}/${port}/`
 
-    if (this.state.frameSrc !== frameSrc) {
+    const idx = this.state.frameSrc.indexOf('?t=')
+    const currentSrc = idx > -1 ? this.state.frameSrc.substr(0, idx) : this.state.frameSrc
+    if (currentSrc !== frameSrc) {
       // Wait for the server to initialize.
       setTimeout(() => {
-        this.setState({ frameSrc })
+        this.setState({
+          // bust cache
+          frameSrc: `${frameSrc}?t=${Date.now()}`
+        })
       }, 1000)
     }
   }
