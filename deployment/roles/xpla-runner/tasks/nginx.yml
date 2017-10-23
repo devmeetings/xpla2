@@ -14,6 +14,12 @@
     src: "htpasswd"
     dest: "/etc/nginx/{{server_name}}-htpasswd"
 
+- name: Nginx | Creating dir
+  file:
+    path: /etc/nginx/xpla
+    state: directory
+    mode: 0755
+
 - name: Nginx | Copying Configuration
   template:
     src: nginx.services.tpl

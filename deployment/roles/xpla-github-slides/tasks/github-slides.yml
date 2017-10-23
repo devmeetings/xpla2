@@ -45,29 +45,33 @@
   args:
     chdir: "/srv/git.{{ server_name }}/github-to-slides"
 
+- name: Installing deps
+  apt:
+    pkg: libssl-dev
+    state: present
+
 - name: Installing Modules
   npm:
     production: yes
     path: "/srv/git.{{ server_name }}/git-to-slides"
 
 - name: Run On Startup
-  command: "pm2 startup -u xpla-ghslides && mv /etc/init.d/pm2-init.sh /etc/init.d/pm2-ghslides-{{ server_id }}.sh"
+  command: "pm2 startup -u xpla-ghslides --hp /home/xpla-ghslides"
   args:
-    creates: "/etc/init.d/pm2-ghslides-{{ server_id }}.sh"
     chdir: "/srv/git.{{ server_name }}/github-to-slides"
 
 - name: delete existing pm2 processes if running
   command: "pm2 delete xpla-ghslides"
   ignore_errors: True
-  sudo: yes
-  sudo_user: xpla-ghslides
+  become: yes
+  become_user: xpla-ghslides
 
 - name: start pm2 process
   command: 'pm2 start --name "xpla-ghslides" index.js'
   args:
     chdir: "/srv/git.{{ server_name }}/github-to-slides"
-  sudo: yes
-  sudo_user: xpla-ghslides
+  become: yes
+  become_user: xpla-ghslides
   environment:
     NODE_ENV: "production"
     PORT: "{{ gh_server_port }}"
