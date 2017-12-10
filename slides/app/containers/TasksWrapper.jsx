@@ -13,7 +13,7 @@ export class TasksContainer extends React.Component {
       return (
         <li className={styles.task} key={idx}>
           <div dangerouslySetInnerHTML={{__html: task.get('content')}} />
-          <span className={`${styles.badge} ${styles[task.get('type')]}`}>{task.get('type')}</span>
+          <div className={`${styles.badge} ${styles[task.get('type')]}`}>{task.get('type')}</div>
         </li>
       )
     }).toJS()

@@ -6,7 +6,7 @@
   line-height: 1.6;
 
   > div {
-    float: left;
+    display: inline-block;
 
     ul, ol {
       display: block !important;
