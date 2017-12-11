@@ -23,9 +23,11 @@ export function saveWorkspaceAsZip (imState: any) {
   const now = new Date()
   const name = `xpla_workspace_${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}_${now.getHours()}:${now.getMinutes()}.zip`
 
-  saveBlob(zip.generate({
-    type: 'blob'
-  }), name)
+  zip.generateAsync({ type: 'blob' })
+    .then(blob => saveBlob(blob, name))
+    .catch(err => {
+      throw err
+    })
 
   return imState
 };
