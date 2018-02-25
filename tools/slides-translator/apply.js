@@ -30,14 +30,14 @@ run(program.args[0], program.file || 'translations.po')
     process.exit(1)
   })
 
-async function run(dir, translations) {
+async function run (dir, translations) {
   const l = debug('run')
   const po = await util.promisify(PO.load)(translations)
 
   console.log(po.items)
 
   const fileToItems = po.items.reduce((fileToItems, item) => {
-    const replace = item.msgid;
+    const replace = item.msgid
     const find = item.comments[0]
     const file = item.references[0]
 
@@ -81,9 +81,8 @@ async function run(dir, translations) {
         return
       }
 
-      lines[found] = lines[found].replace(replace, translation);
+      lines[found] = lines[found].replace(replace, translation)
     })
-
 
     l(`Writing ${fileName}`)
     await writeFile(fileName, lines.join('\n'), 'utf8')

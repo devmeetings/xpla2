@@ -47,17 +47,21 @@ async function run (directory) {
   const results = await Promise.all(unique.map(async (file) => {
     return {
       name: file,
-      texts: await findTranslatableTexts(file),
-    };
+      texts: await findTranslatableTexts(file)
+    }
   }))
 
   l('Results: ', results)
+
+  const fileName = program.file || 'translations.po'
+
+  const existing = await getExistingTranslations(fileName)
 
   const po = new PO()
   po.comments = [
     `Translations for: ${dir}`,
     `Generated at: ${new Date().toString()}`
-  ];
+  ]
 
   results.forEach(file => {
     file.texts.map(text => {
@@ -66,21 +70,57 @@ async function run (directory) {
       item.msgid = text.id
       item.references = [file.name]
       item.comments = [text.match]
+      item.msgstr = existing(file.name, text.id)
 
       return item
     }).forEach(item => {
-      po.items.push(item);
+      po.items.push(item)
     })
   })
 
-  return await new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     l('saving translations')
-    po.save(program.file || 'translations.po', (err, res) => err ? reject(err) : resolve(res))
+    po.save(fileName, (err, res) => err ? reject(err) : resolve(res))
   })
 }
 
+async function getExistingTranslations (fileName) {
+  if (!fs.existsSync(fileName)) {
+    debug('run')(`Existing file not found: ${fileName}`)
+    return () => []
+  }
+
+  const po = await util.promisify(PO.load)(fileName)
+  const existing = {}
+  po.items.forEach(item => {
+    const file = item.references[0]
+    const id = item.msgid
+    const translation = item.msgstr[0]
+
+    if (translation) {
+      existing[file] = existing[file] || {}
+      existing[file][id] = translation
+    }
+  })
+
+  debug('run')('Existing translations', existing)
+
+  return (file, id) => {
+    const f = existing[file]
+    if (!f) {
+      return []
+    }
+
+    if (!f[id]) {
+      return []
+    }
+
+    return f[id]
+  }
+}
+
 async function discoverFiles (dir) {
-  const files = await util.promisify(fs.readdir)(dir);
+  const files = await util.promisify(fs.readdir)(dir)
   const toFullPath = (file) => path.join(dir, file)
 
   const otherFiles = await Promise.all(files
@@ -186,7 +226,6 @@ async function findTranslatableTexts (fileName) {
     .map(line => patterns.reduce((match, pattern) => match || line.match(pattern), false))
     .filter(x => x)
     .map(match => {
-
       return {
         id: match[6] || match[1],
         match: match[0]
@@ -203,7 +242,7 @@ async function findTranslatableTexts (fileName) {
   const $ = cheerio.load(content, cheerioOptions)
 
   // Find annotations
-  const annotations = $('xp-annotations details').html();
+  const annotations = $('xp-annotations details').html()
   if (annotations) {
     matches.push({
       id: annotations,
@@ -213,25 +252,36 @@ async function findTranslatableTexts (fileName) {
 
   // Asides
   $('aside').each((idx, el) => {
-    const $el = $(el);
-    const html = $el.html();
-    const file = $el.attr('file');
-    const order = $el.attr('order');
+    const $el = $(el)
+    const html = $el.html()
+    const file = $el.attr('file')
+    const order = $el.attr('order')
 
     matches.push({
       id: html,
-      match: `<aside[file=\"${file}\"][order=${order}]>`
+      match: `<aside[file="${file}"][order=${order}]>`
     })
   })
 
   // Title
-  const title = $('title').html();
+  const title = $('title').html()
   if (title) {
     matches.push({
       id: title,
       match: '<title>'
     })
   }
+
+  // tasks
+  $('xp-tasks  li').each((idx, el) => {
+    const $el = $(el)
+    const html = $el.html()
+
+    matches.push({
+      id: html,
+      match: `<xp-tasks li:nth-child(${idx + 1})>`
+    })
+  })
 
   return matches
 }
