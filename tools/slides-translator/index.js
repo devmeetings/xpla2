@@ -119,7 +119,7 @@ async function readHtmlFile (file) {
   }
 
   const dir = path.dirname(file)
-  const content = await util.promisify(fs.readFile)(file, 'utf-8')
+  const content = await util.promisify(fs.readFile)(file, 'utf8')
   const $ = cheerio.load(content, cheerioOptions)
   const getAttr = (name) => (idx, e) => $(e).attr(name)
   const notExternal = (url) => !url.startsWith('http')
@@ -180,7 +180,7 @@ async function findTranslatableTexts (fileName) {
   }
 
   // read file
-  const content = await util.promisify(fs.readFile)(fileName, 'utf-8')
+  const content = await util.promisify(fs.readFile)(fileName, 'utf8')
   const lines = content.split('\n')
   const matches = lines
     .map(line => patterns.reduce((match, pattern) => match || line.match(pattern), false))
@@ -203,11 +203,11 @@ async function findTranslatableTexts (fileName) {
   const $ = cheerio.load(content, cheerioOptions)
 
   // Find annotations
-  const annotations = $('xp-annotations').html();
+  const annotations = $('xp-annotations details').html();
   if (annotations) {
     matches.push({
       id: annotations,
-      match: '<xp-annotations>'
+      match: '<xp-annotations>details>'
     })
   }
 
@@ -216,10 +216,11 @@ async function findTranslatableTexts (fileName) {
     const $el = $(el);
     const html = $el.html();
     const file = $el.attr('file');
+    const order = $el.attr('order');
 
     matches.push({
       id: html,
-      match: `<aside file="${file}">`
+      match: `<aside[file=\"${file}\"][order=${order}]>`
     })
   })
 
