@@ -250,6 +250,15 @@ async function findTranslatableTexts (fileName) {
     })
   }
 
+  // Find header
+  const header = $('xp-annotations header').html()
+  if (header) {
+    matches.push({
+      id: header,
+      match: '<xp-annotations>header>'
+    })
+  }
+
   // Asides
   $('aside').each((idx, el) => {
     const $el = $(el)
