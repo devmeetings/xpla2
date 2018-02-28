@@ -45,7 +45,7 @@ async function run (dir, translations) {
     fileToItems[file].push({
       find,
       replace,
-      translation: item.msgstr[0] || item.msgid
+      translation: item.msgstr[0]
     })
 
     return fileToItems
@@ -63,6 +63,9 @@ async function run (dir, translations) {
 
     // process replacements
     replacements.forEach(({ find, replace, translation }) => {
+      if (!translation) {
+        return
+      }
       // special cases
       if (find.startsWith('<') && find.endsWith('>') && find[1] !== '!') {
         const selector = find.substr(1, find.length - 2)

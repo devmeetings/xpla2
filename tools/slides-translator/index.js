@@ -6,7 +6,7 @@ const fs = require('fs')
 const path = require('path')
 const util = require('util')
 
-const PO = require('pofile')
+const gettextParser = require('gettext-parser')
 const program = require('commander')
 
 const cheerioOptions = {
@@ -57,31 +57,41 @@ async function run (directory) {
 
   const existing = await getExistingTranslations(fileName)
 
-  const po = new PO()
-  po.comments = [
-    `Translations for: ${dir}`,
-    `Generated at: ${new Date().toString()}`
-  ]
+  const po = {
+    charset: "utf-8",
+    comments: [
+      `Translations for: ${dir}`,
+      `Generated at: ${new Date().toString()}`
+    ],
+    translations: {
+      '': {}
+    }
+  }
 
   results.forEach(file => {
     file.texts.map(text => {
-      const item = new PO.Item()
-
-      item.msgid = text.id
-      item.references = [file.name]
-      item.comments = [text.match]
-      item.msgstr = existing(file.name, text.id)
-
-      return item
-    }).forEach(item => {
-      po.items.push(item)
+      po.translations[''][text.id] = {
+        msgid: text.id,
+        msgstr: existing(file.name, text.id),
+        comments: {
+          translator: text.match,
+          reference: file.name
+        }
+      }
     })
   })
 
-  return new Promise((resolve, reject) => {
-    l('saving translations')
-    po.save(fileName, (err, res) => err ? reject(err) : resolve(res))
-  })
+  l('saving translations')
+  const cmp = gettextParser.po.compile(po)
+  await util.promisify(fs.writeFile)(fileName, cmp)
+
+  const trans = po.translations['']
+  Object.keys(trans)
+    .filter(key => trans[key].msgstr.length !== 0)
+    .forEach(key => delete trans[key])
+  l('saving new translations')
+  const cmp2 = gettextParser.po.compile(po)
+  await util.promisify(fs.writeFile)(`${fileName}.new`, cmp2)
 }
 
 async function getExistingTranslations (fileName) {
@@ -90,10 +100,11 @@ async function getExistingTranslations (fileName) {
     return () => []
   }
 
-  const po = await util.promisify(PO.load)(fileName)
+  const con = await util.promisify(fs.readFile)(fileName)
+  const po = gettextParser.po.parse(con)
   const existing = {}
-  po.items.forEach(item => {
-    const file = item.references[0]
+  Object.values(po.translations['']).forEach(item => {
+    const file = item.comments && item.comments.reference
     const id = item.msgid
     const translation = item.msgstr[0]
 
@@ -115,7 +126,7 @@ async function getExistingTranslations (fileName) {
       return []
     }
 
-    return f[id]
+    return [f[id]]
   }
 }
 
@@ -282,7 +293,7 @@ async function findTranslatableTexts (fileName) {
   }
 
   // tasks
-  $('xp-tasks  li').each((idx, el) => {
+  $('xp-tasks li').each((idx, el) => {
     const $el = $(el)
     const html = $el.html()
 
