@@ -34,6 +34,10 @@ class ConnectedClients {
   }
 
   updateActive (origin, client, isActive) {
+    if (this.connectedClients[origin][client]) {
+      return;
+    }
+
     this.connectedClients[origin][client].isActive = isActive;
 
     log(origin, client, isActive ? `becomes active` : `becomes inactive`);
