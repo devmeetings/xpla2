@@ -1,0 +1,3424 @@
+msgid ""
+msgstr "Content-Type: text/plain;\n"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/components/001-Start.html
+msgid ""
+"\n"
+"  <p>Rozpoczynamy od aplikacji do zarządzania zadaniami.</p>\n"
+"  <p>Dołożyliśmy prostą konfigurację webpacka.</p>\n"
+msgstr "\n <p> We start with an application to manage tasks. </ p> \n <p> We have made a simple webpack configuration. </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/components/001-Start.html
+msgid "<h1>Apka z zadaniami</h1>"
+msgstr "<h1> App with tasks </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/components/002-Dodawanie_zadania.html
+msgid ""
+"\n"
+"  <p>Wprowadźmy możliwość dodawania nowego zadania.</p>\n"
+msgstr "\n <p> Let's introduce the possibility of adding a new task. </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/components/002-Dodawanie_zadania.html
+msgid "<h1>Dodawanie nowego zadania</h1>"
+msgstr "<h1> Adding a new task </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/components/003-Vanilla.js.html
+msgid ""
+"\n"
+"  <p>Od komponentów oczekujemy:</p>\n"
+"  <ul style=\"text-align: left\">\n"
+"    <li>Izolacji - wygląda tak samo, nie zależy od innych, na dysku "
+"razem</li>\n"
+"    <li>Reużywalności - powinno się dać łatwo wykorzystać go ponownie</li>\n"
+"    <li>Kompozycji - tworzymy bardziej złożone komponenty z mniejszych</li>\n"
+"  </ul>\n"
+"  <p>Jak to realizujemy?</p>\n"
+"  <ul style=\"text-align: left\">\n"
+"    <li>Komponentowa struktura katalogów</li>\n"
+"    <li>Parametry wejściowe (<code>inputs / properties</code>)</li>\n"
+"    <li>Eventy (<code>outputy</code>)</li>\n"
+"    <li>Proste / Wspólne API</li>\n"
+"    <li>Wewnętrzny stan</li>\n"
+"  </ul>\n"
+msgstr "\n <p> From the components we expect: </ p> \n <ul style = \"text-align: left \"> \ n <li> Isolation - looks the same, does not depend on others, on the disk together </ li> \n <li> Re-usability - it should be easy to use again </ li> \n <li> Composition - we create more complex components from simple ones </ li> \n </ ul> \n <p> How do we achieve that? </ p> \n <ul style = \ "text-align: left \"> \n <li> Component directory structure </ li> \ n <li> Input parameters \(<code> inputs / properties </ code>) </ li> \n <li> Events (<code> outputs </ code>) </ li> \n <li> Simple / Common API </ li> \n <li> Internal state </ li > \n </ ul> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/components/003-Vanilla.js.html
+msgid "<h1>Komponenty Vanilla.js</h1>"
+msgstr "<h1> Vanilla.js components </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/components/004-React_Component.html
+msgid ""
+"\n"
+"  <p>A jak to wygląda w React?</p>\n"
+msgstr "\n <p> And what does it look like in React? </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/components/004-React_Component.html
+msgid "<h1>Minimalny komponent w React</h1>"
+msgstr "<h1> Minimum component in React </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/components/005-Angular_Component.html
+msgid ""
+"\n"
+"  <p>Zobaczmy jak wygląda podstawowy komponent w Angular 1.5</p>\n"
+msgstr "\n <p> Let's see what the basic component looks like in Angular 1.5 </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/components/005-Angular_Component.html
+msgid "<h1>Minimalny komponent w Angular 1.5</h1>"
+msgstr "<h1> The minimum component in Angular 1.5 </ h1>"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/components/006-React_-_Tasks.html
+msgid "<h1>Implementacja zadań w React</h1>"
+msgstr "<h1> Implementation of tasks in React </ h1>"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/components/007-Angular_1.5.html
+msgid "<h1>Implementacja w Angular 1.5</h1>"
+msgstr "<h1> Implementation in Angular 1.5 </ h1>"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/components/008-Angular2_Component.html
+msgid "<h1>Prosty komponent w Angular2</h1>"
+msgstr "<h1> A simple component in Angular2 </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/components/009-Angular_-_Tasks.html
+msgid ""
+"\n"
+"  <p>Implementacja apki do zadań w Angular2 i TypeScript</p>\n"
+msgstr "\n <p> Implementation of the application in Angular2 and TypeScript </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/components/009-Angular_-_Tasks.html
+msgid "<h1>Implementacja w Angular2</h1>"
+msgstr "<h1> Implementation in Angular2 </ h1>"
+
+# // Ładujemy główną stronę
+#: /home/tomusdrw/workspace/react-redux/components/001/index.js
+msgid "Ładujemy główną stronę"
+msgstr "We load the main page"
+
+# // I naszą aplikację
+#: /home/tomusdrw/workspace/react-redux/components/001/index.js
+msgid "I naszą aplikację"
+msgstr "And our application"
+
+#   // Nasz główny plik
+#: /home/tomusdrw/workspace/react-redux/components/001/webpack.config.js
+msgid "Nasz główny plik"
+msgstr "Our main file"
+
+#   //4/ Całośc będziemy budować do podkatalogu build
+#: /home/tomusdrw/workspace/react-redux/components/001/webpack.config.js
+msgid "Całośc będziemy budować do podkatalogu build"
+msgstr "We will build all of this to the build subdirectory"
+
+#     //11/ Dodajemy nasłuchiwanie na dodanie
+#: /home/tomusdrw/workspace/react-redux/components/002/src/components/AddTask/AddTask.js
+msgid "Dodajemy nasłuchiwanie na dodanie"
+msgstr "We're adding listeners for the addition"
+
+#       // Anulujemy domyślną akcję
+#: /home/tomusdrw/workspace/react-redux/components/002/src/components/AddTask/AddTask.js
+msgid "Anulujemy domyślną akcję"
+msgstr "We cancel the default action"
+
+#   //3/ Ten callback będzie nadpisywany wyżej
+#: /home/tomusdrw/workspace/react-redux/components/002/src/components/AddTask/AddTask.js
+msgid "Ten callback będzie nadpisywany wyżej"
+msgstr "This callback will be overwritten above"
+
+# //3/ Obsługujemy zdarzenie onNewTask
+#: /home/tomusdrw/workspace/react-redux/components/002/src/main.js
+msgid "Obsługujemy zdarzenie onNewTask"
+msgstr "We support the onNewTask event"
+
+# //3/ Komponenty możemy importować w dowolnym miejscu
+#: /home/tomusdrw/workspace/react-redux/components/003/src/main.js
+msgid "Komponenty możemy importować w dowolnym miejscu"
+msgstr "Components can be imported anywhere"
+
+# //3/ Tutaj symulujemy eventy wysyłane przez `AddTaskView` (outputs)
+#: /home/tomusdrw/workspace/react-redux/components/003/src/main.js
+msgid "Tutaj symulujemy eventy wysyłane przez `AddTaskView` (outputs)"
+msgstr "Here we simulate events sent by `AddTaskView` (outputs)"
+
+# // ... i renderujemy (wspólne api)
+#: /home/tomusdrw/workspace/react-redux/components/003/src/main.js
+msgid "i renderujemy (wspólne api)"
+msgstr "and we render (common api)"
+
+#     //2/ Dodajemy zależności dla Reacta
+#: /home/tomusdrw/workspace/react-redux/components/006/config.js
+msgid "Dodajemy zależności dla Reacta"
+msgstr "We add dependencies for React"
+
+# <!-- Całą aplikację też przenosimy do komponentu (spójność) -->
+#: /home/tomusdrw/workspace/react-redux/components/009/index.html
+msgid "Całą aplikację też przenosimy do komponentu (spójność) "
+msgstr "We also move the entire application to the component (consistency) "
+
+# // Pliki z komponentami Reactowymi mają rozszerzenie JSX
+#: /home/tomusdrw/workspace/react-redux/components/004/index.js
+msgid "Pliki z komponentami Reactowymi mają rozszerzenie JSX"
+msgstr "Files with React components have the JSX extension"
+
+# // Będziemy też renderować w DOM
+#: /home/tomusdrw/workspace/react-redux/components/004/src/main.jsx
+msgid "Będziemy też renderować w DOM"
+msgstr "We'll also render in the DOM"
+
+#   //6/ W konstruktorze ustawiamy początkowy stan 
+#: /home/tomusdrw/workspace/react-redux/components/004/src/main.jsx
+msgid "W konstruktorze ustawiamy początkowy stan "
+msgstr "In the constructor, set the initial state "
+
+# // Musimy jeszcze umieścić komponent w DOM
+#: /home/tomusdrw/workspace/react-redux/components/004/src/main.jsx
+msgid "Musimy jeszcze umieścić komponent w DOM"
+msgstr "We still need to place the component in the DOM"
+
+#     //1/ Dodajemy zależności dla angulara
+#: /home/tomusdrw/workspace/react-redux/components/008/config.js
+msgid "Dodajemy zależności dla angulara"
+msgstr "We add dependencies for Angular"
+
+# // Tworzymy nowy moduł
+#: /home/tomusdrw/workspace/react-redux/components/005/src/main.js
+msgid "Tworzymy nowy moduł"
+msgstr "We are creating a new module"
+
+# // Komponent jest po prostu klasą (logika)
+#: /home/tomusdrw/workspace/react-redux/components/005/src/main.js
+msgid "Komponent jest po prostu klasą (logika)"
+msgstr "The component is simply a class (logic)"
+
+#   //3/ W konstruktorze ustawiamy początkowy stan
+#: /home/tomusdrw/workspace/react-redux/components/005/src/main.js
+msgid "W konstruktorze ustawiamy początkowy stan"
+msgstr "In the constructor, set the initial state"
+
+# //2/ Wpinamy komponent do modułu
+#: /home/tomusdrw/workspace/react-redux/components/005/src/main.js
+msgid "Wpinamy komponent do modułu"
+msgstr "We plug the component into the module"
+
+# // Startujemy aplikację w angularze na całym dokumencie
+#: /home/tomusdrw/workspace/react-redux/components/005/src/main.js
+msgid "Startujemy aplikację w angularze na całym dokumencie"
+msgstr "We start the Angular application on the entire document"
+
+#   //10/ Standardowo obsługujemy zdarzenie wysyłania formularza
+#: /home/tomusdrw/workspace/react-redux/components/006/src/components/AddTask/AddTask.jsx
+msgid "Standardowo obsługujemy zdarzenie wysyłania formularza"
+msgstr "By default, we support the event of sending the form"
+
+#     // Wołamy callback z komponentu wyżej
+#: /home/tomusdrw/workspace/react-redux/components/006/src/components/AddTask/AddTask.jsx
+msgid "Wołamy callback z komponentu wyżej"
+msgstr "We call the function passed from the component above"
+
+#     // Operacje bezpośrednio na DOM nie są zalecane w React
+#: /home/tomusdrw/workspace/react-redux/components/006/src/components/AddTask/AddTask.jsx
+msgid "Operacje bezpośrednio na DOM nie są zalecane w React"
+msgstr "Operations directly on the DOM are not recommended in React"
+
+# // Komponenty reactowe rozszerzają `React.Component`
+#: /home/tomusdrw/workspace/react-redux/components/006/src/components/Task/Task.jsx
+msgid "Komponenty reactowe rozszerzają `React.Component`"
+msgstr "React components extend `React.Component`"
+
+#   //16/ Metoda `render` zwraca aktualną reprezentację naszego komponentu
+#: /home/tomusdrw/workspace/react-redux/components/006/src/components/Task/Task.jsx
+msgid "Metoda `render` zwraca aktualną reprezentację naszego komponentu"
+msgstr "The `render` method returns the current representation of our component"
+
+#     // W `this.props` dostajemy parametry (pochodzące z zewnatrz)
+#: /home/tomusdrw/workspace/react-redux/components/006/src/components/Task/Task.jsx
+msgid "W `this.props` dostajemy parametry (pochodzące z zewnatrz)"
+msgstr "In `this.props` we get parameters (coming from outside)"
+
+#     //7/ Renderujemy za pomocą JSX
+#: /home/tomusdrw/workspace/react-redux/components/006/src/components/Task/Task.jsx
+msgid "Renderujemy za pomocą JSX"
+msgstr "We render using JSX"
+
+# /* Wyświetlamy zmienne umieszczając w klamrach */
+#: /home/tomusdrw/workspace/react-redux/components/006/src/components/Task/Task.jsx
+msgid "Wyświetlamy zmienne umieszczając w klamrach "
+msgstr "We display variables by placing in braces "
+
+# // Żeby używać komponentów po prostu je importujemy
+#: /home/tomusdrw/workspace/react-redux/components/006/src/components/Tasks.jsx
+msgid "Żeby używać komponentów po prostu je importujemy"
+msgstr "To use components, we simply import them"
+
+#     //8 Tablicę możemy po prostu zmapować na komponenty
+#: /home/tomusdrw/workspace/react-redux/components/006/src/components/Tasks.jsx
+msgid "8 Tablicę możemy po prostu zmapować na komponenty"
+msgstr "8 An array can simply be mapped to components"
+
+# // We wszystkich plikach będziemy importować React
+#: /home/tomusdrw/workspace/react-redux/components/006/src/main.jsx
+msgid "We wszystkich plikach będziemy importować React"
+msgstr "We will import React in all files"
+
+# // Dodatkowo główny komponent musimy wyrenderować w DOM
+#: /home/tomusdrw/workspace/react-redux/components/006/src/main.jsx
+msgid "Dodatkowo główny komponent musimy wyrenderować w DOM"
+msgstr "In addition, the main component must be rendered in the DOM"
+
+#     //5/ Potrzebujemy trzymać aktualny stan i datę
+#: /home/tomusdrw/workspace/react-redux/components/006/src/main.jsx
+msgid "Potrzebujemy trzymać aktualny stan i datę"
+msgstr "We need to keep the current state and date"
+
+#   // Ta metoda jest częścią cyklu życia komponentu.
+#: /home/tomusdrw/workspace/react-redux/components/006/src/main.jsx
+msgid "Ta metoda jest częścią cyklu życia komponentu."
+msgstr "This method is part of the component's life cycle."
+
+#           // Ale musimy też wymusić ponowne renderowanie komponentu
+#: /home/tomusdrw/workspace/react-redux/components/006/src/main.jsx
+msgid "Ale musimy też wymusić ponowne renderowanie komponentu"
+msgstr "But we also have to force the re-rendering of the component"
+
+#     //5/ W intervale będziemy odświeżać czas 
+#: /home/tomusdrw/workspace/react-redux/components/009/src/main.ts
+msgid "W intervale będziemy odświeżać czas "
+msgstr "We will refresh the time periodically "
+
+#   //3/ Jeśli komponent przestaje być używany - czyścimy po sobie
+#: /home/tomusdrw/workspace/react-redux/components/006/src/main.jsx
+msgid "Jeśli komponent przestaje być używany - czyścimy po sobie"
+msgstr "If the component is no longer used - clean up"
+
+#   //4/ Tutaj dodajemy nowe zadanie i odświeżamy komponent
+#: /home/tomusdrw/workspace/react-redux/components/006/src/main.jsx
+msgid "Tutaj dodajemy nowe zadanie i odświeżamy komponent"
+msgstr "Here we add a new task and refresh the component"
+
+#     //17/ Renderujemy całą aplikację przekazując parametry i callbacki
+#: /home/tomusdrw/workspace/react-redux/components/006/src/main.jsx
+msgid "Renderujemy całą aplikację przekazując parametry i callbacki"
+msgstr "We render the entire application by passing parameters and callbacks"
+
+# // Renderowanie komponentu w określonym miejscu w DOM
+#: /home/tomusdrw/workspace/react-redux/components/006/src/main.jsx
+msgid "Renderowanie komponentu w określonym miejscu w DOM"
+msgstr "Rendering a component at a specific location in the DOM"
+
+# // Re-eksportujemy dla testów
+#: /home/tomusdrw/workspace/react-redux/components/007/src/components/Task/Task.js
+msgid "Re-eksportujemy dla testów"
+msgstr "We re-export for tests"
+
+# // Kontroler też wystawiamy dla testów
+#: /home/tomusdrw/workspace/react-redux/components/007/src/components/Task/Task.js
+msgid "Kontroler też wystawiamy dla testów"
+msgstr "The controller is also exported for testing"
+
+#   //6/ Tworzymy pomocniczą funkcję zwracającą przefiltrowane zadania
+#: /home/tomusdrw/workspace/react-redux/components/007/src/components/Tasks.js
+msgid "Tworzymy pomocniczą funkcję zwracającą przefiltrowane zadania"
+msgstr "We create a helper function that returns filtered tasks"
+
+# // Eksportujemy nazwę komponentu, aby móc go używać w templatach
+#: /home/tomusdrw/workspace/react-redux/components/007/src/components/Tasks.js
+msgid "Eksportujemy nazwę komponentu, aby móc go używać w templatach"
+msgstr "We export the name of the component to be able to use it in the templates"
+
+#   //5/ Deklarujemy parametry wejściowe
+#: /home/tomusdrw/workspace/react-redux/components/007/src/components/Tasks.js
+msgid "Deklarujemy parametry wejściowe"
+msgstr "We declare the input parameters"
+
+#   // Przypinamy klasę controllera (View-Model)
+#: /home/tomusdrw/workspace/react-redux/components/007/src/components/Tasks.js
+msgid "Przypinamy klasę controllera (View-Model)"
+msgstr "Attach the controller's class (View-Model)"
+
+#   // Wstrzykujemy zależności `Tasks` to zdefiniowane wyżej factory, a $scope to wewnętrzy serwis angulara
+#: /home/tomusdrw/workspace/react-redux/components/007/src/main.js
+msgid ""
+"Wstrzykujemy zależności `Tasks` to zdefiniowane wyżej factory, a $scope to "
+"wewnętrzy serwis angulara"
+msgstr "We inject the dependencies `Tasks` is the factory defined above, and $ scope is Angular's internal service"
+
+#     //2/ Zależności przypisujemy to `this`
+#: /home/tomusdrw/workspace/react-redux/components/007/src/main.js
+msgid "Zależności przypisujemy to `this`"
+msgstr "We assign dependencies to `this`"
+
+#     //2/ Stan komponentu też przypisujemy bezpośrednio do `this`
+#: /home/tomusdrw/workspace/react-redux/components/009/src/main.ts
+msgid "Stan komponentu też przypisujemy bezpośrednio do `this`"
+msgstr "We also assign the component status directly to `this`"
+
+#     //3/ A w momencie gdy jest niszczony musimy wyczyścić interval
+#: /home/tomusdrw/workspace/react-redux/components/007/src/main.js
+msgid "A w momencie gdy jest niszczony musimy wyczyścić interval"
+msgstr "And when it's destroyed, we need to clear the interval"
+
+#           // W przypadku angulara nie musimy jawnie informować o zmianach
+#: /home/tomusdrw/workspace/react-redux/components/009/src/main.ts
+msgid "W przypadku angulara nie musimy jawnie informować o zmianach"
+msgstr "In Angular, we do not have to explicitly inform about the changes"
+
+#       // Przez digest musimy poinformować o zmianie
+#: /home/tomusdrw/workspace/react-redux/components/007/src/main.js
+msgid "Przez digest musimy poinformować o zmianie"
+msgstr "We have to inform about the change by using digest"
+
+#   //17/ Definujemy template aplikacji (zwykły HTML)
+#: /home/tomusdrw/workspace/react-redux/components/007/src/main.js
+msgid "Definujemy template aplikacji (zwykły HTML)"
+msgstr "We define the application template (plain HTML)"
+
+# // Startujemy aplikację angularową na całym dokumencie
+#: /home/tomusdrw/workspace/react-redux/components/007/src/main.js
+msgid "Startujemy aplikację angularową na całym dokumencie"
+msgstr "We start the angular application on the entire document"
+
+#   // Selektor - jak użwamy go w DOM
+#: /home/tomusdrw/workspace/react-redux/components/008/src/main.ts
+msgid "Selektor - jak użwamy go w DOM"
+msgstr "Selector - how we use it in the DOM"
+
+#   //3/ Funkcja inkrementująca wartość
+#: /home/tomusdrw/workspace/react-redux/components/008/src/main.ts
+msgid "Funkcja inkrementująca wartość"
+msgstr "A function incrementing the value"
+
+# // Uruchamiamy aplikację
+#: /home/tomusdrw/workspace/react-redux/components/008/src/main.ts
+msgid "Uruchamiamy aplikację"
+msgstr "We launch the application"
+
+#   // Zamiast korzystać z pola `outputs` w `@Component` możemy użyć adnotacji `@Output`
+#: /home/tomusdrw/workspace/react-redux/components/009/src/components/AddTask/AddTask.ts
+msgid ""
+"Zamiast korzystać z pola `outputs` w `@Component` możemy użyć adnotacji "
+"`@Output`"
+msgstr "Instead of using the `outputs` field in `@Component` we can use the `@Output` annotation"
+
+#   // deklarujemy parametry wejściowe
+#: /home/tomusdrw/workspace/react-redux/components/009/src/components/Tasks.ts
+msgid "deklarujemy parametry wejściowe"
+msgstr "we declare the input parameters"
+
+#   // dyrektywy, których używamy
+#: /home/tomusdrw/workspace/react-redux/components/009/src/components/Tasks.ts
+msgid "dyrektywy, których używamy"
+msgstr "the directives we use"
+
+# // Bootstrap - uruchomi aplikację
+#: /home/tomusdrw/workspace/react-redux/components/009/src/main.ts
+msgid "Bootstrap - uruchomi aplikację"
+msgstr "Bootstrap - will launch the application"
+
+#   // Podajemy listę dyrektyw od których zależy...
+#: /home/tomusdrw/workspace/react-redux/components/009/src/main.ts
+msgid "Podajemy listę dyrektyw od których zależy..."
+msgstr "We give a list of directives that depend on..."
+
+#   //18/ ... i templatkę
+#: /home/tomusdrw/workspace/react-redux/components/009/src/main.ts
+msgid "i templatkę"
+msgstr "and template"
+
+#   //6/ W TS musimy deklarować wszystkie pola.
+#: /home/tomusdrw/workspace/react-redux/components/009/src/main.ts
+msgid "W TS musimy deklarować wszystkie pola."
+msgstr "In TS, we must declare all fields."
+
+#     // Przypisujemy zależności do `http`
+#: /home/tomusdrw/workspace/react-redux/components/009/src/main.ts
+msgid "Przypisujemy zależności do `http`"
+msgstr "We assign dependencies to `http`"
+
+# //5/ Definiujemy interfejs dla zadań
+#: /home/tomusdrw/workspace/react-redux/components/009/src/models/Tasks.ts
+msgid "Definiujemy interfejs dla zadań"
+msgstr "We define the interface for tasks"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/es6/001-System.js.html
+msgid ""
+"\n"
+"  <p>Upraszczamy konfigurację i będziemy wykorzystywać wyłącznie "
+"<code>System.js</code></p>\n"
+"  <p>Niezależnie od tego którą konwencje wybierasz i pomimo tego, że "
+"<code>System.js</code> pozwala\n"
+"    obsłużyć dowolny rodzaj modułów Twój kod powinien być spójny. "
+"Przepisujemy aplikację na CommonJS</p>\n"
+msgstr "\n <p> We simplify the configuration and use only <code> System.js </ code> </ p> \n <p> No matter which conventions you choose and even though <code> System.js </ code > allows  \n to handle any type of modules Your code should be consistent. We rewrite the application using CommonJS </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/es6/001-System.js.html
+msgid "<h1>Uproszczony setup z użyciem System.js</h1>"
+msgstr "<h1> Simplified setup using System.js </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/es6/002-Babel.html
+msgid ""
+"\n"
+"  <p>\n"
+"    W <code>system.js</code> możemy przetwarzać moduły zanim zostaną "
+"załadowane.\n"
+"    Pozwala nam to np. na użycie nowej składni ES6 / ES2015 nawet w "
+"przeglądarkach, które jeszcze jej nie wspierają.\n"
+"  </p>\n"
+"  <p>Aby korzystać z ES6 wpinamy <code>transpiler</code> - np. "
+"<code>Babel</code></p>\n"
+msgstr "\n <p> \n W <code> system.js </code> we can process modules before they load. \n This allows us to use the new ES6 / ES2015 syntax, even in browsers that do not support it yet. \n </ p> \n <p> To use ES6, we use <code> transpiler </code> - e.g. <code> Babel </code> </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/es6/002-Babel.html
+msgid "<h1>Transpilacja w locie przez Babel</h1>"
+msgstr "<h1> Babylon transplantation </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/es6/003-Babel_na_serwerze.html
+msgid ""
+"\n"
+"  <p>W praktyce najczęściej jednak transpilujemy kod przed wysłaniem go do "
+"przeglądarki.</p>\n"
+"  <p>Pozwala to na szybsze ładowanie i inkrementacyjną transpilację</p>\n"
+"  <p>W slajdach będziemy więc stosować składnię ES6, ale transpilacją przez "
+"<code>Babel</code> zajmie się serwer.</p>\n"
+msgstr "\n <p> In practice, however, we usually transpose the code before sending it to the browser. </p> \n <p> This allows for faster loading and incremental transpilation </p> \n <p> So we will use the ES6 syntax in the slides, but transpiling through <code> Babel </code> will be handled by the server. </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/es6/003-Babel_na_serwerze.html
+msgid "<h1>Transpilacja po stronie serwera</h1>"
+msgstr "<h1> Server-side transplanting </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/es6/004-Moduy.html
+msgid ""
+"\n"
+"  <p>Jedną z głównych nowości w ES6 / ES2015 jest ustandaryzowana składnia "
+"modułow</p>\n"
+"  <p>Więcej o modułach: <a "
+"href=\"http://www.2ality.com/2014/09/es6-modules-final.html\">http://www.2"
+"ality.com/2014/09/es6-modules-final.html</a></p>\n"
+msgstr "\n <p> One of the main innovations of ES6 / ES2015 is the standardized module syntax </p> \n <p> More about the modules: <a href =\"http://www.2ality.com/2014/09/ ES6-modules-final.html\"> http://www.2ality.com/2014/09/es6-modules-final.html </a> </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/es6/004-Moduy.html
+msgid "<h1>Tak wyglądają moduły w ES2015</h1>"
+msgstr "<h1> This is what modules in ES2015 </ h1> look like"
+
+# <aside[file="src/main.js"][order=1]>
+#: /home/tomusdrw/workspace/react-redux/es6/004-Moduy.html
+msgid ""
+"\n"
+"  <p>Moduły mogą definiować domyślny eksport (czyli eksport całego "
+"obiektu).</p>\n"
+msgstr "\n <p> Modules can define a default export (that is, export of the entire object). </ p> \n"
+
+# <aside[file="src/main.js"][order=2]>
+#: /home/tomusdrw/workspace/react-redux/es6/004-Moduy.html
+msgid ""
+"\n"
+"  <p>Mozna też eksportować z modułu pojedyncze funkcje / zmienne i w ten "
+"sposób je importować</p>\n"
+"  <p>Korzystając z <code>import {TaskView as View}</code> można też "
+"zmieniać lokalne nazwy.</p>\n"
+msgstr "\n <p> You can also export individual functions / variables from the module and import them as shown below</p> \n <p> By using <code> import {TaskView as View} </code> you can also change local names. </p> \n"
+
+# <aside[file="src/views/TasksView.js"][order=1]>
+#: /home/tomusdrw/workspace/react-redux/es6/004-Moduy.html
+msgid ""
+"\n"
+"  <p>\n"
+"    Moduły ES6 są kompatybilne z innymi formatami. Nowością jest "
+"<code>export default</code>.\n"
+"    Notacją <code>* as _</code> importujemy wszystkie funkcje z modułu i "
+"umieszczamy w zmiennej <code>_</code>\n"
+"  </p>\n"
+msgstr "\n <p> \n ES6 modules are compatible with other formats. A new thing is <code> export default </code>. \n With the <code> * as _ </code> notation we import all functions from the module and place them in the variable <code>_</ code> \n </p> \n"
+
+# <title>
+#: /home/tomusdrw/workspace/react-redux/vanilla/006-Moduy.html
+msgid "Moduły"
+msgstr "Modules"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/es6/005-Klasa_w_ES5.html
+msgid ""
+"\n"
+"  <p>JS nie ma specjalnej składni do klas, ale za to pozwala na "
+"dziedziczenie prototypowe, które pozwala je zaimplementować.</p>\n"
+"  <p>Zobaczmy jak wyglada składnia \"klasy\" w ES5</p>\n"
+msgstr "\\n <p> JS does not have a special syntax for classes, but allows for prototypal inheritance which allows to implement them. </p> \n <p> Let's see what the syntax \"class\" in ES5 looks like </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/es6/005-Klasa_w_ES5.html
+msgid "<h1>Tak wygląda klasa w ES5</h1>"
+msgstr "<h1> This is what the class in ES5 looks like </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/es6/006-Klasy_w_ES2015.html
+msgid ""
+"\n"
+"  <p>ES2015 wprowadza składnię do tworzenia klas, która pod spodem dalej "
+"korzysta z prototypów.</p>\n"
+msgstr "\n <p> ES2015 introduces syntax for creating classes that uses prototypes underneath. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/es6/006-Klasy_w_ES2015.html
+msgid "<h1>... a tak klasy w ES2015</h1>"
+msgstr "<h1> ... and so classes in ES2015 </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/es6/007-class_TasksView.html
+msgid ""
+"\n"
+"  <p>Przepiszmy teraz widok z użyciem klas.</p>\n"
+msgstr "\n <p> Now let's rewrite the view using classes. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/es6/007-class_TasksView.html
+msgid "<h1>TasksView jako klasa wygląda bardziej znajomo :)</h1>"
+msgstr "<h1> TasksView as a class looks more familiar:) </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/es6/008-const_i_let.html
+msgid ""
+"\n"
+"  <div style=\"text-align:left\">\n"
+"    <p>Problemem z <code>var</code> w JS jest zasięg funkcyjny. Czyli:</p>\n"
+"    <pre style=\"width: 90%; overflow: visible\">      console.log(k); // "
+"undefined (even in strict mode)\n"
+"\n"
+"      for (var k in [0, 1, 2]) {\n"
+"        ...     \n"
+"      }\n"
+"\n"
+"      console.log(k); // 2\n"
+"    </pre>\n"
+"    <p>ES2015 wprowadza nowe sposoby deklarowania zmiennych (i "
+"stałych).</p>\n"
+"  </div>\n"
+msgstr "\n <div style=\"text-align: left\"> \n <p> The problem with <code> var </code> in JS is the function scope. That is: </p> \n <pre style=\"width: 90%; overflow: visible \">\n console.log (k); // undefined (even in strict mode) \n\n for (var k in [0, 1, 2]) {\n ... \n} \n\n console.log (k); // 2 \n </pre> \n <p> ES2015 introduces new ways to declare variables (and constants). </p> \n </ div> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/es6/008-const_i_let.html
+msgid "<h1>Blokowe deklaracje zmiennych i stałych</h1>"
+msgstr "<h1> Block declarations of variables and constants </ h1>"
+
+# <aside[file="src/views/TasksView.js"][order=2]>
+#: /home/tomusdrw/workspace/react-redux/es6/008-const_i_let.html
+msgid ""
+"\n"
+"  <p>Zarówno <code>const</code> jak i <code>let</code> mają zasięg "
+"blokowy.</p>\n"
+msgstr "\n <p> Both <code> const </code> and <code> let </code> have a block scope. </p> \n"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/es6/009-Functional_JS.html
+msgid ""
+"\n"
+"  <p>W widoku przetwarzamy listę zadań na ich reprezentację w DOM.</p>\n"
+"  <p>Obecnie korzystamy z pętli, ale można zrobić to ładniej.</p>\n"
+msgstr "\n <p> In the view, we map a list of tasks to their representation in DOM. </ p> \n <p> We are currently using loops, but you can do it nicer. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/es6/009-Functional_JS.html
+msgid "<h1>'Functional JS'</h1>"
+msgstr "<h1> 'Functional JS' </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/es6/010-i_lambdy.html
+msgid ""
+"\n"
+"  <p>Możemy wykorzystać lambdy, które również pojawiają się w ES2015</p>\n"
+"  <p>Dodatkowo wyświetlmy nasz model w dwóch różnych miejscach. Za "
+"pierwszym razem wyświetlimy tylko aktywne zadania.</p>\n"
+msgstr "\n <p> We can use lambda, also introduced in ES2015 </ p> \n <p> Additionally, we display our model in two different places. The first time we display only active tasks. </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/es6/010-i_lambdy.html
+msgid ""
+"<h1>Dzięki funkcyjnemu podejściu w elegancki sposób operujemy na "
+"kolekcjach</h1>"
+msgstr "<h1> Thanks to the functional approach, we operate elegantly on collections </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/es6/011-Destructuring.html
+msgid ""
+"\n"
+"  <p>Kilka kolejnych nowości w ES2015.</p>\n"
+"  <p>Warto sprawdzić też jak wygląda debugowanie kodu z wygenerowanymi "
+"<em>Source Maps</em>.</p>\n"
+"  <p>\n"
+"    Dodatkowe zadania z ES2015 (Harmony): <a "
+"href=\"http://learnharmony.org/\">Learn Harmony</a>.\n"
+"  </p>\n"
+msgstr "\n <p> A few more new items in ES2015. </p> \n <p> It's also worth checking what the code debugging with generated <em> Source Maps </em> looks like. </p> \n <p> \n Additional tasks from ES2015 (Harmony): <a href=\"http://learnharmony.org/\">Learn Harmony </a>. \n </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/es6/011-Destructuring.html
+msgid "<h1>Destructuring Assignment i Template Strings</h1>"
+msgstr "<h1> Destructuring Assignment and Template Strings </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/es6/012-XMLHttpRequest.html
+msgid ""
+"\n"
+"  <p>Spróbujmy teraz asynchronicznie pobierać listę zadań z serwera.</p>\n"
+msgstr "\n <p> Now let's try to asynchronously retrieve a list of tasks from the server. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/es6/012-XMLHttpRequest.html
+msgid "<h1>Pobierania zadań za pomocą</h1>"
+msgstr "<h1> Downloading tasks using xmlhttprequest</ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/es6/013-Fetch.html
+msgid ""
+"\n"
+"  <p>API XMLHttpRequest nie jest zbyt przyjazne w użyciu. Przydałoby się "
+"dostawać po prostu <code>Promise</code></p>\n"
+"  <p>Utwórzmy funkcję pomocniczą, która ma prostsze API. Promisy są także "
+"częścią ES2015.</p>\n"
+msgstr "\n <p> The XMLHttpRequest API is not very friendly to use. It would be nice to just get <code> Promise </code> </p> \n <p> Let's create a helper function that has simpler API. Promises are also part of ES2015. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/es6/013-Fetch.html
+msgid "<h1>Funkcja pomocnicza fetch</h1>"
+msgstr "<h1> Helper function fetch </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/es6/014-Fetch_API.html
+msgid ""
+"\n"
+"  <p>\n"
+"    <code>Fetch API</code> jest już dostępne w niektórych przeglądarkach. \n"
+"    <a "
+"href=\"https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_"
+"Fetch\">Fetch@MDN</a>\n"
+"  </p>\n"
+msgstr "\n <p> \n <code> Fetch API </code> is already available in some browsers. \n <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch\"> Fetch @ MDN </a> \n </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/es6/014-Fetch_API.html
+msgid "<h1>Użycie Fetch API</h1>"
+msgstr "<h1> Use of the Fetch API </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/es6/015-Komponent_Task.html
+msgid ""
+"\n"
+"  <p>Spróbujmy ostylować aktywne zadanie i wydzielić widok pojedynczego "
+"zadania jako osobny moduł.</p>\n"
+msgstr "\n <p> Let's try to style the active task and extract the view of a single task as a separate module. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/es6/015-Komponent_Task.html
+msgid "<h1>Wydzielamy  jako osobny komponent</h1>"
+msgstr "<h1> Extract as a separate component </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/es6/016-Komponent_Task.html
+msgid ""
+"\n"
+"  <p>\n"
+"    Zależności między stylami i komponentem Task są zupełnie niejawne i "
+"opierają się na używaniu tych samych stringów w obu plikach.\n"
+"  </p>\n"
+"  <p>\n"
+"    Spróbujmy jakoś bardziej związać ze sobą te dwa pliki. Wydzielmy "
+"komponent <code>Task</code> wraz z kodem i stylami do osobnego pliku.\n"
+"  </p>\n"
+msgstr "\n <p> \n The dependencies between the styles and the Task component are completely implicit and are based on using the same strings in both files. \n </p> \n <p> \n Let's try to bind these two files somehow . We extract the <code> Task </code> component with the code and styles into a separate file. \n </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/es6/016-Komponent_Task.html
+msgid "<h1>Wprowadzamy komponent Task (logika + style)</h1>"
+msgstr "<h1> Introducing the Task component (logic + style) </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/es6/017-Komponenty.html
+msgid ""
+"\n"
+"  <p>\n"
+"    Niestety musimy teraz pamiętać, żeby dołączyć style. Co gdyby w pliku "
+"JS zaimportować to co jest potrzebne?\n"
+"  </p>\n"
+"  <p>\n"
+"    <code>System.js</code> wspiera plugin do ładowania plików innych niż "
+"JS. Np. możemy załadować CSS, JSONa, Text (HTML) czy obrazek.\n"
+"  </p>\n"
+"  <p><a href=\"https://github.com/systemjs/systemjs#plugins\">List pluginów "
+"do System.js</a></p>\n"
+msgstr "\n <p> \n Unfortunately, we must now remember to include styles. What if you could import what you need in the JS file? \n </p> \n <p> \n <code> System.js </code> supports the plugin to load non-JS files. For example, we can load CSS, JSON, Text (HTML) or image. \n </p> \n <p> <a href=\"https://github.com/systemjs/systemjs#plugins\"> List of plugins to System.js </a> </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/es6/017-Komponenty.html
+msgid "<h1>Architektura komponentowa</h1>"
+msgstr "<h1> Component Architecture </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/es6/018-Jasmine.html
+msgid ""
+"\n"
+"  <p>\n"
+"    Obecnie we wszystkich frameworkach dominujące jest podejście "
+"zorientowane na komponentach (zakres ich obowiązków jednak trochę się "
+"różni)\n"
+"  </p>\n"
+"  <p>\n"
+"    W jednym katalogu trzymamy wszystko co dotyczy danego komponentu - "
+"dzięki temu możemy go łatwo przemieszczać (wszystkie ścieżki relatywne). "
+"Komponent można też łatwo usunąć wraz  ze wszystkimi rzeczami, których "
+"używa. A co najważniejsze - ładując komponent on sam ładuje wszystko czego "
+"potrzebuje, więc ostatecznie nasza aplikacja (albo np. pojedyncza strona) "
+"będzie zawsze ładowała dokładnie tyle ile jest potrzebne.\n"
+"  </p>\n"
+msgstr "\n <p> \n The component-oriented approach is now dominant in all frameworks (they do differ in scope a bit though) \n </p>  \n <p> \n We keep everything related to a given component in one directory - thanks to this we can easily move it (all relative paths). The component can also be easily removed with all it's dependencies. And most importantly - when loading a component, it loads everything it needs, so at the end our application (or a single sub-page) will always load exactly as much as it is needed. \n </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/es6/018-Jasmine.html
+msgid "<h1>Testowanie przez Jasmine w podejściu komponentowym</h1>"
+msgstr "<h1> Jasmine testing in a component approach </ h1>"
+
+# //7/ Config zdecydowanie nam się upraszcza
+#: /home/tomusdrw/workspace/react-redux/es6/001/config.js
+msgid "Config zdecydowanie nam się upraszcza"
+msgstr "Config is much simpler now"
+
+#   //3/ Dopisujemy tylko ścieżkę do spaczkowanego lodasha
+#: /home/tomusdrw/workspace/react-redux/es6/001/config.js
+msgid "Dopisujemy tylko ścieżkę do spaczkowanego lodasha"
+msgstr "We only add the path to the pre-packaged lodash"
+
+# <!-- 6/ Ładujemy System.js i config -->
+#: /home/tomusdrw/workspace/react-redux/es6/001/index.html
+msgid "Ładujemy System.js i config "
+msgstr "We load System.js and config "
+
+# /// ... lub przypisujemy cały obiekt do `module.exports`
+#: /home/tomusdrw/workspace/react-redux/es6/001/js/views/TasksView.js
+msgid "lub przypisujemy cały obiekt do `module.exports`"
+msgstr "or we assign the whole object to `module.exports`"
+
+# /// System.js potrafi przetwarzać moduły w locie
+#: /home/tomusdrw/workspace/react-redux/es6/002/config.js
+msgid "System.js potrafi przetwarzać moduły w locie"
+msgstr "System.js can process modules on the fly"
+
+#   /// Jako transpiler możemy wybrać babel, traceur lub typescript
+#: /home/tomusdrw/workspace/react-redux/es6/002/config.js
+msgid "Jako transpiler możemy wybrać babel, traceur lub typescript"
+msgstr "As a transpiler, we can choose babel, traceur or typescript"
+
+#     /// Podajemy tylko ścieżkę do transpilera
+#: /home/tomusdrw/workspace/react-redux/es6/002/config.js
+msgid "Podajemy tylko ścieżkę do transpilera"
+msgstr "We give only the path to the transpiler"
+
+# <!-- Za pomocą babel będziemy mogli zamieniać kod pisany w >ES6 na ES5 (rozumiany przez przeglądarki) -->
+#: /home/tomusdrw/workspace/react-redux/es6/002/index.html
+msgid ""
+"Za pomocą babel będziemy mogli zamieniać kod pisany w >ES6 na ES5 "
+"(rozumiany przez przeglądarki) "
+msgstr "With babel we will be able to exchange the written code in ES6+ to ES5 (understood by browsers) "
+
+# //2/ Dzięki babel możemy korzystać z nowych rzeczy z ES2015...
+#: /home/tomusdrw/workspace/react-redux/es6/002/js/main.js
+msgid "Dzięki babel możemy korzystać z nowych rzeczy z ES2015..."
+msgstr "Thanks to babel, we can use new things from ES2015..."
+
+# /// ... takich jak stałe...
+#: /home/tomusdrw/workspace/react-redux/es6/002/js/main.js
+msgid "takich jak stałe..."
+msgstr "such as permanent..."
+
+#   /// Rezygnujemy z transpilera w przeglądarce na rzecz serwera
+#: /home/tomusdrw/workspace/react-redux/es6/003/config.js
+msgid "Rezygnujemy z transpilera w przeglądarce na rzecz serwera"
+msgstr "We give up the transpiler in the browser for the server"
+
+# // Importujemy cały moduł
+#: /home/tomusdrw/workspace/react-redux/es6/004/src/main.js
+msgid "Importujemy cały moduł"
+msgstr "We import the entire module"
+
+# // Lub tylko jeden z `eksportów` za pomocą `{..}`
+#: /home/tomusdrw/workspace/react-redux/es6/004/src/main.js
+msgid "Lub tylko jeden z `eksportów` za pomocą `{..}`"
+msgstr "Or only one of the `exports` with` {..} `"
+
+# // Używamy domyślnego eksportu (poprzednio `exports.getTasks = function()`)
+#: /home/tomusdrw/workspace/react-redux/es6/004/src/models/Tasks.js
+msgid "Używamy domyślnego eksportu (poprzednio `exports.getTasks = function()`)"
+msgstr "We use the default export (previously `exports.getTasks = function ()`)"
+
+#   // W ES6 możemy też używać skróconej formy definiowania funkcji w obiektach..
+#: /home/tomusdrw/workspace/react-redux/es6/004/src/models/Tasks.js
+msgid "W ES6 możemy też używać skróconej formy definiowania funkcji w obiektach.."
+msgstr "In ES6 we can also use a short form of defining functions in objects."
+
+# // Biblioteki, ktore nie mają `export default` importujemy tak:
+#: /home/tomusdrw/workspace/react-redux/es6/004/src/views/TasksView.js
+msgid "Biblioteki, ktore nie mają `export default` importujemy tak:"
+msgstr "Libraries that do not have `export default` are imported like this:"
+
+# //3/ A do prototypu dopisujemy rzeczy współdzielone przez wszystkie instancje
+#: /home/tomusdrw/workspace/react-redux/es6/005/src/models/Tasks.js
+msgid "A do prototypu dopisujemy rzeczy współdzielone przez wszystkie instancje"
+msgstr "And to the prototype we add items shared by all instances"
+
+# // Eksportujemy nową instancję stworzoną przez `new`
+#: /home/tomusdrw/workspace/react-redux/es6/005/src/models/Tasks.js
+msgid "Eksportujemy nową instancję stworzoną przez `new`"
+msgstr "We are exporting a new instance created by `new`"
+
+# //9/ A tak wygląda ta sama klasa w ES2015. Lepiej? :)
+#: /home/tomusdrw/workspace/react-redux/es6/006/src/models/Tasks.js
+msgid "A tak wygląda ta sama klasa w ES2015. Lepiej? :)"
+msgstr "And this is what the same class looks like in ES2015. Better? :)"
+
+# //3/ Zobaczmy w konsoli czy są jakieś różnice
+#: /home/tomusdrw/workspace/react-redux/es6/006/src/models/Tasks.js
+msgid "Zobaczmy w konsoli czy są jakieś różnice"
+msgstr "Let's see in the console if there are any differences"
+
+# // W modułach ES2015 możemy eksportować klasę
+#: /home/tomusdrw/workspace/react-redux/es6/007/src/views/TasksView.js
+msgid "W modułach ES2015 możemy eksportować klasę"
+msgstr "In ES2015 modules, we can export a class"
+
+#   //7/ W konstruktorze przypisujemy wartości
+#: /home/tomusdrw/workspace/react-redux/es6/007/src/views/TasksView.js
+msgid "W konstruktorze przypisujemy wartości"
+msgstr "We assign values ​​in the constructor"
+
+#   //8/ Ta funkcja przestała jednak być prywatna, więc zastosowaliśmy konwencję
+#: /home/tomusdrw/workspace/react-redux/es6/007/src/views/TasksView.js
+msgid "Ta funkcja przestała jednak być prywatna, więc zastosowaliśmy konwencję"
+msgstr "This function, however, is not private anymore, so we've used the convention"
+
+# // `const` tworzy stałą (nie można przypisać do niej wartości)
+#: /home/tomusdrw/workspace/react-redux/es6/008/src/models/Tasks.js
+msgid "`const` tworzy stałą (nie można przypisać do niej wartości)"
+msgstr "`const` creates a constant (you cannot re-assign a value to it)"
+
+# // `now = 5` // To jest błąd
+#: /home/tomusdrw/workspace/react-redux/es6/008/src/models/Tasks.js
+msgid "`now = 5` // To jest błąd"
+msgstr "`now = 5` // This is an error"
+
+# //6/ Ale to nie znaczy, że sama wartość jest niemutowalna
+#: /home/tomusdrw/workspace/react-redux/es6/008/src/models/Tasks.js
+msgid "Ale to nie znaczy, że sama wartość jest niemutowalna"
+msgstr "But that does not mean that the value itself is immutable"
+
+# //7/ Dalej można modyfikować tablicę.
+#: /home/tomusdrw/workspace/react-redux/es6/008/src/models/Tasks.js
+msgid "Dalej można modyfikować tablicę."
+msgstr "Then you can modify the table."
+
+#     //5/ Wartości, które się zmieniają deklarujemy przez `let`
+#: /home/tomusdrw/workspace/react-redux/es6/008/src/views/TasksView.js
+msgid "Wartości, które się zmieniają deklarujemy przez `let`"
+msgstr "Values ​​that change are declared by `let`"
+
+# // Możemy eksportować zarówno default jak i pojedyncze deklaracje
+#: /home/tomusdrw/workspace/react-redux/es6/009/src/models/Tasks.js
+msgid "Możemy eksportować zarówno default jak i pojedyncze deklaracje"
+msgstr "We can export both default and individual declarations"
+
+#   //3/ W ES2015 (a właś. to już w ES5) mamy też możliwość definiowania getterów
+#: /home/tomusdrw/workspace/react-redux/es6/009/src/models/Tasks.js
+msgid "W ES2015 (a właś. to już w ES5) mamy też możliwość definiowania getterów"
+msgstr "In ES2015 (actually already in ES5) we also have the option of defining getters"
+
+#     // Będziemy od razu przypisywać do DOM
+#: /home/tomusdrw/workspace/react-redux/es6/009/src/views/TasksView.js
+msgid "Będziemy od razu przypisywać do DOM"
+msgstr "We will immediately assign to the DOM"
+
+#       //2/ Korzystamy z `map` - przetwarzamy każdy element tablicy przez funkcję
+#: /home/tomusdrw/workspace/react-redux/es6/009/src/views/TasksView.js
+msgid "Korzystamy z `map` - przetwarzamy każdy element tablicy przez funkcję"
+msgstr "We use `map` - we process each element of the array by function"
+
+#       // Pojawia się problem z kontekstem - musimy go przekazać
+#: /home/tomusdrw/workspace/react-redux/es6/009/src/views/TasksView.js
+msgid "Pojawia się problem z kontekstem - musimy go przekazać"
+msgstr "There is a problem with the context - we have to pass it"
+
+#     //8/ Kilka kolejnych featurów z ES2015
+#: /home/tomusdrw/workspace/react-redux/es6/009/src/views/TasksView.js
+msgid "Kilka kolejnych featurów z ES2015"
+msgstr "A few more features from ES2015"
+
+#       //3/ Przefiltrujmy kolekcje w zależności od opcji
+#: /home/tomusdrw/workspace/react-redux/es6/010/src/views/TasksView.js
+msgid "Przefiltrujmy kolekcje w zależności od opcji"
+msgstr "Let's filter the collections depending on the options"
+
+#       //3/ Z lambdą kod staje się bardziej przejrzysty i nie ma problemu z kontekstem
+#: /home/tomusdrw/workspace/react-redux/es6/010/src/views/TasksView.js
+msgid "Z lambdą kod staje się bardziej przejrzysty i nie ma problemu z kontekstem"
+msgstr "With Lambda, the code becomes more clean and there is no problem with the context"
+
+#     //6/ Dzięki Template strings możemy nawet zrezygnować z naszego templatu.
+#: /home/tomusdrw/workspace/react-redux/es6/011/src/views/TasksView.js
+msgid "Dzięki Template strings możemy nawet zrezygnować z naszego templatu."
+msgstr "Thanks to Template strings we can even give up our template."
+
+# //15/ Pobierzmy dane z serwera za pomocą XMLHttpRequest
+#: /home/tomusdrw/workspace/react-redux/es6/012/src/main.js
+msgid "Pobierzmy dane z serwera za pomocą XMLHttpRequest"
+msgstr "Download the data from the server using XMLHttpRequest"
+
+# //9/ Model będzie teraz tylko eksportował klasę
+#: /home/tomusdrw/workspace/react-redux/es6/012/src/models/Tasks.js
+msgid "Model będzie teraz tylko eksportował klasę"
+msgstr "The model will now only export the class"
+
+#   //3/ Użyjemy settera, aby zapamiętać zadania
+#: /home/tomusdrw/workspace/react-redux/es6/012/src/models/Tasks.js
+msgid "Użyjemy settera, aby zapamiętać zadania"
+msgstr "We will use a setter to memorize the tasks"
+
+# //4/ 5. Używamy naszej pomocniczej funkcji
+#: /home/tomusdrw/workspace/react-redux/es6/013/src/main.js
+msgid "Używamy naszej pomocniczej funkcji"
+msgstr "We use our helper function"
+
+#         // 3. Odrzucamy jeśli jest jakiś błąd...
+#: /home/tomusdrw/workspace/react-redux/es6/013/src/main.js
+msgid "Odrzucamy jeśli jest jakiś błąd..."
+msgstr "We reject if there is any error..."
+
+#       // 4. ...i rozwiązujemy, jeśli wszystko OK (pomijamy błędy z JSONa)
+#: /home/tomusdrw/workspace/react-redux/es6/013/src/main.js
+msgid "...i rozwiązujemy, jeśli wszystko OK (pomijamy błędy z JSONa)"
+msgstr "... and we solve it if everything is OK (we skip errors from JSON)"
+
+# //6/ Okazuje się, że podobna funkcja jest już w przeglądarkach!
+#: /home/tomusdrw/workspace/react-redux/es6/014/src/main.js
+msgid "Okazuje się, że podobna funkcja jest już w przeglądarkach!"
+msgstr "It turns out that a similar function is already in browsers!"
+
+# /* 19/ Dodajmy trochę styli dla pojedynczego taska */
+#: /home/tomusdrw/workspace/react-redux/es6/015/css/styles.css
+msgid "Dodajmy trochę styli dla pojedynczego taska "
+msgstr "Let's add some styles for a single task "
+
+# //21/ Wydzielamy osobną klasę widoku zadania
+#: /home/tomusdrw/workspace/react-redux/es6/015/src/views/Task.js
+msgid "Wydzielamy osobną klasę widoku zadania"
+msgstr "We separate a task view class"
+
+# <!-- Musimy pamiętać, żeby je zaimportować :/! -->
+#: /home/tomusdrw/workspace/react-redux/es6/016/index.html
+msgid "Musimy pamiętać, żeby je zaimportować :/! "
+msgstr "We must remember to import them :/! "
+
+# /* 12/ Wydzieliliśmy style do osobnego pliku */
+#: /home/tomusdrw/workspace/react-redux/es6/016/src/components/Task/Task.css
+msgid "Wydzieliliśmy style do osobnego pliku "
+msgstr "We've separated the styles into a file "
+
+#     // Dodajemy plugin do ładowania cssów
+#: /home/tomusdrw/workspace/react-redux/es6/017/config.js
+msgid "Dodajemy plugin do ładowania cssów"
+msgstr "We add a plugin to load css"
+
+# <!-- Usuwamy wszystkie style komponentów -->
+#: /home/tomusdrw/workspace/react-redux/es6/017/index.html
+msgid "Usuwamy wszystkie style komponentów "
+msgstr "We remove all component styles "
+
+# // Importujemy style (bez from - import dla efektów ubocznych)
+#: /home/tomusdrw/workspace/react-redux/es6/017/src/components/Task/Task.js
+msgid "Importujemy style (bez from - import dla efektów ubocznych)"
+msgstr "We import styles (without from - import for side effects)"
+
+# <!-- 3/ Do uruchamiania testów skorzystamy z Jasmine -->
+#: /home/tomusdrw/workspace/react-redux/es6/018/index.test.html
+msgid "Do uruchamiania testów skorzystamy z Jasmine "
+msgstr "We will use Jasmine to run the tests "
+
+# <!-- 2/ Oczywiście testy bedziemy ładować w ten sam sposób co zwykły kod -->
+#: /home/tomusdrw/workspace/react-redux/es6/018/index.test.html
+msgid "Oczywiście testy bedziemy ładować w ten sam sposób co zwykły kod "
+msgstr "Of course, the tests will be loaded in the same way as regular code "
+
+# <!-- 6/ Musimy załadować wszystkie testy i uruchomić Jasmine -->
+#: /home/tomusdrw/workspace/react-redux/es6/018/index.test.html
+msgid "Musimy załadować wszystkie testy i uruchomić Jasmine "
+msgstr "We need to load all tests and run Jasmine "
+
+# // W teście po prostu importujemy nasz komponent...
+#: /home/tomusdrw/workspace/react-redux/es6/018/src/components/Task/Task.spec.js
+msgid "W teście po prostu importujemy nasz komponent..."
+msgstr "In the test, we simply import our component ..."
+
+#   //3/ ... i dokładamy kilka prostych testów
+#: /home/tomusdrw/workspace/react-redux/es6/018/src/components/Task/Task.spec.js
+msgid "i dokładamy kilka prostych testów"
+msgstr "and we're adding some simple tests"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/002_Angular App.html
+msgid ""
+"\n"
+"          <p>Rozpocznijmy z prostą listą todosów w Angular1.5</p>\n"
+"        "
+msgstr "\n <p> Let's start with a simple list of todos in Angular1.5 </p> \n                "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/003_Components.html
+msgid ""
+"\n"
+"          <h1>Prosta lista todosów</h1>\n"
+"        "
+msgstr "\n <h1> Simple todos list </h1> \n        "
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/003_Components.html
+msgid ""
+"\n"
+"          <p>Rozpocznijmy z prostą listą todosów w Angular1.5</p>\n"
+"          <p>Dzielimy komponenty na osobne moduły</p>\n"
+"        "
+msgstr "\n <p> Let's start with a simple list of todos in Angular1.5 </p> \n <p> We divide components into separate modules </p> \n                "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/004_state.html
+msgid ""
+"\n"
+"          <h1>Struktura naszego widoku i stanu wygląda tak.</h1>\n"
+"      "
+msgstr "\n <h1> The structure of our view and state looks like this. </h1> \n      "
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/005_Edit.html
+msgid ""
+"\n"
+"          <p>Chcielibyśmy, żeby nasze todosy były edytowalne.</p>\n"
+"        "
+msgstr "\n <p> We would like our todos to be editable. </p> \n                "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/005_Edit.html
+msgid ""
+"\n"
+"          <h1>Edytowalne todosy. Co stało się ze stanem?</h1>\n"
+"        "
+msgstr "\n <h1> Editable todos. What happened to the state? </H1> \n        "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/006_state-editable.html
+msgid ""
+"\n"
+"          <h1>Pojawił się dodatkowy stan w komponencie "
+"<code>Todo</code></h1>\n"
+"        "
+msgstr "\n <h1> There is an additional state in the <code> Todo </code> </h1> \n component        "
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/007_Validation.html
+msgid ""
+"\n"
+"          <p>Podczas edycji możemy zmienić nazwę na pusty string.</p>\n"
+"          <p>Dodajmy walidację, żeby todos miał co najmniej 4 znaki.</p>\n"
+"      \n"
+"    "
+msgstr "\n <p> When editing, we can change the name to an empty string. </p> \n <p> Let's add validation so that todos has at least 4 characters. </p> \n \n        "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/007_Validation.html
+msgid ""
+"\n"
+"          <h1>Dodanie walidacji komplikuje stan jeszcze bardziej.</h1>\n"
+"        "
+msgstr "\n <h1> Adding validation complicates the state even more. </h1> \n        "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/008_Validation_state.html
+msgid ""
+"\n"
+"          <h1>Stan aplikacji jest jeszcze bardziej porozrzucany (częściowo "
+"w Angularze)</h1>\n"
+"        "
+msgstr "\n <h1> Application status is even more scattered (partly in Angular) </h1> \n        "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/010_Second_view.html
+msgid ""
+"\n"
+"          <h3>Osobna lista todosów z własnym stanem.</h3> \n"
+"          <h3>Przy pisaniu kodu prawdopodobnie zaczęlibyśmy od tego.</h3>\n"
+"        "
+msgstr "\n <h3> A separate list of todos with their own state. </h3> \n <h3> We would probably start with this when writing the code. </h3> \n        "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/011_Moving.html
+msgid ""
+"\n"
+"          <h1>Później przesuwamy listę todosów do komponentu wyżej</h1> \n"
+"        "
+msgstr "\n <h1> Then we move the list of todos to the component above </h1> \n        "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/012_Moving_2.html
+msgid ""
+"\n"
+"          <h1>Ostatecznie cały stan znalazłby się w głównym "
+"komponencie</h1> \n"
+"        "
+msgstr "\n <h1> Ultimately, the whole state would be in the main component </h1> \n        "
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/014_io_code.html
+msgid ""
+"\n"
+"          <p>Zobaczmy jak zarządzanie stanem wygląda w implementacji "
+"Angular 1.5</p>\n"
+"        "
+msgstr "\n<p> Let's see how state management looks in Angular 1.5 implementation </p> \n                "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/014_io_code.html
+msgid ""
+"\n"
+"          <h1>Implementacja w Angular 1.5</h1>\n"
+"        "
+msgstr "\n <h1> Implementation in Angular 1.5 </h1> \n        "
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/015_io_code_react.html
+msgid ""
+"\n"
+"          <p>Zobaczmy jak to wygląda w React.</p>\n"
+"          <p>Kontrola nad stanem jest zrzucona dużo bardziej na nas niż w "
+"przypadku Angulara (ng-model vs lokalny stan)</p>\n"
+"        "
+msgstr "\n <p> Let's see how it looks in React. </p> \n <p> State management is more explicit than in the case of Angular (ng-model vs local state) </p> \n        "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/015_io_code_react.html
+msgid ""
+"\n"
+"          <h1>Implementacja w React</h1>\n"
+"        "
+msgstr "\n <h1> Implementation in React </h1> \n        "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/016_State_View_separate.html
+msgid ""
+"\n"
+"          <h2>Nieśmiały wniosek: Może stan od początku nie miał nic "
+"wspólnego z Twoją strukturą widoków?</h2>\n"
+"        "
+msgstr "\n <h2> Shy conclusion: Maybe from the beginning the state had nothing to do with your view structure? </h2> \n        "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/017_Communication.html
+msgid ""
+"\n"
+"          <h3>Workflow: Zmodyfikuj stan (poza widokiem) i nasłuchuj na "
+"zmiany.</h3> \n"
+"        "
+msgstr "\n <h3> Workflow: Modify the state (except view) and listen for changes. </h3> \n        "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/018_Communication_2.html
+msgid ""
+"\n"
+"          <h3>Możemy zrobić to bezpośrednio <code>Todo</code></h3>\n"
+"        "
+msgstr "\n <h3> We can do it directly <code> Todo </code> </h3> \n        "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/019_Communication_3_indirection.html
+msgid ""
+"\n"
+"          <h3>Jeśli dodatkowo zrobimy to niebezpośrednio (nie przez "
+"wywołanie funkcji na stanie)</h3> \n"
+"          <h3>To uzyskujemy ciekawe własności.</h3> \n"
+"        "
+msgstr "\n <h3> If we additionally do it indirectly (not by calling a function in the state) </h3> \n <h3> That we get interesting properties. </h3> \n        "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/020_Flux.html
+msgid ""
+"\n"
+"          <h3>I dokładnie o to chodzi w FLUX.</h3> \n"
+"        "
+msgstr "\n <h3> And that's exactly what FLUX is all about. </h3> \n        "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/021_Flux_vs_Redux.html
+msgid ""
+"\n"
+"          <h3>Redux vs FB Flux</h3> \n"
+"        "
+msgstr "\n <h3> Redux vs FB Flux </h3> \n        "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/flux-intro/022_Redux.html
+msgid ""
+"\n"
+"          <h3>And this is what Redux can do.</h3> \n"
+"        "
+msgstr "\n <h3> And this is what Redux can do. </h3> \n        "
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react/001-Starter.html
+msgid ""
+"\n"
+"  <h1>Pierwsza apka w React</h1>\n"
+"  <p>Będziemy pisać naszą pierwszą aplikację w Reakcie.</p>\n"
+"  <p>Rozpoczynamy od przygotowania podstawowego startera z ES2015.</p>\n"
+"  <br>\n"
+"  <p>Nasz starter obsługuje zarówno Webpacka jak i ładowanie przez "
+"System.js.</p>\n"
+msgstr "\n <h1> The first app in React </h1> \\ n <p> We will write our first application in React. </p> \n <p> We start with the preparation of the basic starter with ES2015. </p> \n < br> \n <p> Our starter supports both Webpack and loading by System.js. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react/001-Starter.html
+msgid "<h1>Starter ES2015 pod React + SystemJS/Webpack</h1>"
+msgstr "<h1> Starter ES2015 under React + SystemJS / Webpack </h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react/002-No-React.html
+msgid ""
+"\n"
+"  <p>Zbudujmy prostą aplikację, która będzie wyświetlała trochę tekstu i "
+"aktualny czas.</p>\n"
+"  <p>Zobaczmy jak wygląda w czystym JS</p>\n"
+msgstr "\n <p> Let's build a simple application that will display some text and the current time. </p> \n <p> Let's see how it looks in a clean JS </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react/002-No-React.html
+msgid "<h1>Komponent bez Reacta</h1>"
+msgstr "<h1> Component without React</ ​h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react/003-React_Way.html
+msgid ""
+"\n"
+"  <p>Obecnie aplikacja jest całkiem czytelna, ale co dwie sekundy "
+"zastępujemy wszystkie elementy nowymi, pomimo że część z nich w ogóle się "
+"nie zmienia!</p>\n"
+"  <p>Dodatkowo powoduje to problem z zarządzaniem zaznaczeniem, focusem czy "
+"wartością wpisaną w input.</p>\n"
+"  <p>Aby rozwiązać ten problem musielibyśmy uaktualniać tylko tę część DOM, "
+"która się zmienia, ale wtedy kod straciłby na czytelności.</p>\n"
+"  <br>\n"
+"  <p>React proponuje inne rozwiązanie.</p>\n"
+"  <p>Musimy zainstalować odpowiednie zależności:</p>\n"
+"  <pre>  $ npm i react react-dom -S\n"
+"  </pre>\n"
+msgstr "\n <p> Currently, the application is quite readable, but every two seconds we replace all elements with new ones, even though some of them do not change at all! </p> \n <p> Additionally, this causes a problem with selection, focus, or with the value entered in the input. </p> \n <p> To solve this problem, we would only need to update the part of the DOM that actually changes, but then the code would lose readability. </p> \n <br> \n <p> React proposes a different solution. </p> \n <p> We need to install the appropriate dependencies: </p> \n <pre> $ npm and react react-dom -S \n </ pre> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react/003-React_Way.html
+msgid "<h1>Pierwszy komponent w React</h1>"
+msgstr "<h1> The first component in React </h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react/004-State.html
+msgid ""
+"\n"
+"  <p>Dodajmy stan do komponentu, aby poprawnie obsłużyć "
+"re-renderowanie.</p>\n"
+msgstr "\n <p> Add a state to the component to properly handle re-rendering. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react/004-State.html
+msgid "<h1>Stateful Component</h1>"
+msgstr "<h1> Stateful Component </h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react/005-JSX.html
+msgid ""
+"\n"
+"  <p>Co tak naprawdę dzieje się z \"HTMLem\" pisanym w JSie (JSX)?</p>\n"
+"  <p><code>JSX</code> jest tylko cukrem syntaktycznym na "
+"<code>React.createElement</code>\n"
+"</p>"
+msgstr "\n <p> What really happens with \"HTML\" written in JSX (JSX)? </p> \n <p> <code> JSX </ code> is only syntactic sugar on <code> React. createElement </code> \n </p>"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react/005-JSX.html
+msgid "<h1>JSX Demystified</h1>"
+msgstr "<h1> JSX Demystified </h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react/006-Virtual_DOM.html
+msgid ""
+"\n"
+"  <p>Założenia Reacta:</p>\n"
+"  <ul>\n"
+"    <li>Operacje na drzewie DOM są kosztowne (w sensie czasu),</li>\n"
+"    <li>a minimalizowanie tych operacji jest trudne do implementacji.</li>\n"
+"  </ul>\n"
+"  <p>Skąd React wie, które części DOM należy re-renderować?</p>\n"
+"  <p>\n"
+"    Funkcja <code>render</code> nie zwraca gotowego HTML/DOM do wstawienia "
+"- zamiast tego zwracany jest <code>VirtualDOM</code>.\n"
+"  </p>\n"
+"  <p>VirtualDOM to lekka reprezentacja tego co chcemy, żeby znalazło się w "
+"drzewie DOM. React porównuje nowo zwróconą wartość z poprzednią i aplikuje "
+"tylko minimalną liczbę wymaganych zmian.</p>\n"
+msgstr "\n <p> React assumptions: </p> \n <ul> \n <li> Operations on the DOM tree are expensive (time-wise), </li> \n <li> and minimizing the number of these operations is difficult to implement. </li> \n </ ul> \n <p> Where does React know which parts of the DOM should be re-rendered? </p> \n <p> \n The <code> render </code> function does not returns the actual HTML / DOM to be inserted - instead <code> VirtualDOM </ code> is returned. \n </p> \n <p> VirtualDOM is a light representation of what we want to see in the DOM tree. React compares the newly returned value with the previous one and applies only the minimum number of changes required. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react/006-Virtual_DOM.html
+msgid "<h1>Najważniejszą częścią Reacta jest Virtual DOM</h1>"
+msgstr "<h1> The most important part of Reacta is Virtual DOM </h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react/007-Tasks_App.html
+msgid ""
+"\n"
+"  <p>Zobaczmy jak w React wygląda aplikacja z zadaniami.</p>\n"
+msgstr "\n <p> Let's see how the application with tasks looks like in React. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react/007-Tasks_App.html
+msgid "<h1>Aplikacja z zadaniami</h1>"
+msgstr "<h1> App with tasks </h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react/008-Osobny_komponent.html
+msgid ""
+"\n"
+"  <p>Nasz komponent zaczyna się robić duży. Warto byłoby go podzielić.</p>\n"
+"  <p>Spróbujmy wydzielić pojedyncze zadanie.</p>\n"
+msgstr "\n <p> Our component starts to get big. It would be worth dividing it. </p> \n <p> Let's try to separate a single task. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react/008-Osobny_komponent.html
+msgid "<h1>Wydzielamy komponent Task</h1>"
+msgstr "<h1> We're extracting the Task component </h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react/009-Smart__Dumb.html
+msgid ""
+"\n"
+"  <p>Główny komponent zajmuje się renderowaniem i zarządzaniem stanem - "
+"wydzielmy renderowanie.</p>\n"
+msgstr "\n <p> The main component deals with rendering and state management - let's split up rendering. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react/009-Smart__Dumb.html
+msgid "<h1>Smart & Dumb Components</h1>"
+msgstr "<h1> Smart & Dumb Components </h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react/010-Sortowanie_1.html
+msgid ""
+"\n"
+"  <p>\n"
+"    Jak poradzić sobie z obsługą zdarzeń w React?\n"
+"  </p>\n"
+"  <p>\n"
+"    Dodajmy sortowanie listy zadań.\n"
+"  </p>\n"
+msgstr "\n <p> \n How do you handle events in React? \n </p> \n <p> \n Let's add a list of tasks. \n </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react/010-Sortowanie_1.html
+msgid "<h1>Sortowanie zadań</h1>"
+msgstr "<h1> Sorting tasks </h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react/011-Sortowanie_2.html
+msgid ""
+"\n"
+"  <p>\n"
+"    Dodajemy obsługę zdarzeń.\n"
+"  </p>\n"
+msgstr "\n <p> \n We're adding event support. \n </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react/011-Sortowanie_2.html
+msgid "<h1>Sortowanie działa!</h1>"
+msgstr "<h1> Sorting works! </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react/012-Search.html
+msgid ""
+"\n"
+"  <p>\n"
+"    Dodatkowo obsłużmy filtrowanie listy.\n"
+"  </p>\n"
+msgstr "\n <p> \n Additionally, let's support filtering the list. \n </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react/012-Search.html
+msgid "<h1>Wyszukiwanie zadań.</h1>"
+msgstr "<h1> Search for jobs. </h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react/013-PropTypes.html
+msgid ""
+"\n"
+"  <p>\n"
+"    React pozwala na walidowanie danych przekazywanych do komponentów.\n"
+"  </p>\n"
+"  <p>Każdy komponent może zdefiniować jakich propsów oczekuje i jakie "
+"powinny być ich typy.</p>\n"
+"  <p>Więcej: <a "
+"href=\"https://facebook.github.io/react/docs/reusable-components.html\""
+">https://facebook.github.io/react/docs/reusable-components.html</a></p>\n"
+msgstr "\n <p> \n React allows validating data passed to components. \n </p> \n <p> Each component can define what props are expected and what their types should be. </p> \n <p> More: <a href=\"https://facebook.github.io/react/docs/reusable-components.html\"> https://facebook.github.io/react/docs/reusable-components.html < /a> </p> \n "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react/013-PropTypes.html
+msgid "<h1>Walidacja propsów</h1>"
+msgstr "<h1> Props validation </h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react/014-classnames.html
+msgid ""
+"\n"
+"  <p>Lepsza obsługa nadawania klas CSSowych jest w paczce "
+"<code>classnames</code></p>\n"
+"  <p>Zainstalujmy ją i zobaczmy jak można z niej skorzystać.</p>\n"
+"  <pre>$ npm i classnames -S</pre>\n"
+msgstr "\n <p> Better support for assigning CSS classes is in the <code> classnames </code> </p> package <p> Let's install it and see how it can be used. </p> \n <pre> $ npm and classnames -S </pre> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react/014-classnames.html
+msgid "<h1>Obsługa klas CSS</h1>"
+msgstr "<h1> Support for CSS classes </h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react/015-Data_Component.html
+msgid ""
+"\n"
+"  <p>Pobieranie, filtrowanie i sortowanie zadań są ze sobą ściśle "
+"związane.</p>\n"
+"  <p>Spróbujmy wydzielić komponent, który będzie zajmował się zarządzaniem "
+"tymi danymi.</p>\n"
+"  <p>Wykorzystamy dodatkowy hook z cyklu życia komponentu. Więcej: <a "
+"href=\"https://facebook.github.io/react/docs/component-specs.html#lifecycle-"
+"methods\">https://facebook.github.io/react/docs/component-specs.html#"
+"lifecycle-methods</a></p>\n"
+msgstr "\n <p> Downloading, filtering and sorting tasks are closely related. </p> \n <p> Let's try to isolate the component that will deal with managing this data. </p> \n <p> We will use an additional hook from the life cycle of the component. More: <a href=\"https://facebook.github.io/react/docs/component-specs.html#lifecycle-methods\"> https://facebook.github.io/react/docs/component- specs.html # lifecycle-methods </a> </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react/015-Data_Component.html
+msgid "<h1>Komponent zarządzający dostępem do danych</h1>"
+msgstr "<h1> Component managing data access </h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react/016-Context.html
+msgid ""
+"\n"
+"  <p>Przekazywanie pewnych propsów przez całą hierarchię komponentów może "
+"być uciążliwe.</p>\n"
+"  <p>React pozwala przekazywać parametry przez \"kontekst\". Zobaczmy jak "
+"można to zaimplementować.</p>\n"
+msgstr "\n <p> Passing certain props through the entire hierarchy of components can be cumbersome. </p> \n <p> React allows passing parameters via \"context \". Let's see how it can be implemented. </P> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react/016-Context.html
+msgid "<h1>Parametry przekazywane przez kontekst</h1>"
+msgstr "<h1> Parameters passed through context </h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react/017-PureComponent.html
+msgid ""
+"\n"
+"  <p>W React 15.3 pojawił się <code>React.PureComponent</code>.</p>\n"
+"  <p>Pozwala poprawić wydajność bezstanowych komponentów.</p>\n"
+msgstr "\n <p> In React 15.3, <code> React.PureComponent </code> appeared. </p> \n <p> Allows you to improve the performance of stateless components. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react/017-PureComponent.html
+msgid "<h1>PureComponent</h1>"
+msgstr "<H1> PureComponent </h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react/018-Higher-Order_Components.html
+msgid ""
+"\n"
+"  <p>Bardzo powszechnym patternem Reacta są tzw Higher-Order "
+"Components.</p>\n"
+"  <p>Tak naprawdę tworzymy fabrykę komponentów.</p>\n"
+msgstr "\n <p> A very common React pattern is the so-called Higher-Order Components. </p> \n <p> In fact, we're creating a component factory. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react/018-Higher-Order_Components.html
+msgid "<h1>Higher-Order Components</h1>"
+msgstr "<h1> Higher-Order Components </h1>"
+
+# //12/ Przygotowujemy konfigurację pod System.js
+#: /home/tomusdrw/workspace/react-redux/react/001/config.js
+msgid "Przygotowujemy konfigurację pod System.js"
+msgstr "We are preparing the configuration under System.js"
+
+# <!-- Miejsce na aplikację -->
+#: /home/tomusdrw/workspace/react-redux/react/001/index.html
+msgid "Miejsce na aplikację "
+msgstr "Place for the application "
+
+# <!-- Ładujemy polyfilla dla fetch (przyda się później) -->
+#: /home/tomusdrw/workspace/react-redux/react/001/index.html
+msgid "Ładujemy polyfilla dla fetch (przyda się później) "
+msgstr "We load polyfill for fetch (useful later) "
+
+# // Na razie używamy czytego JS żeby wyświetlić na stronie cokolwiek.
+#: /home/tomusdrw/workspace/react-redux/react/001/src/main.jsx
+msgid "Na razie używamy czytego JS żeby wyświetlić na stronie cokolwiek."
+msgstr "For now, we use Vanilla JS to display anything on the page."
+
+# //3/ Musimy re-renderować komponent co jakiś czas
+#: /home/tomusdrw/workspace/react-redux/react/002/src/main.jsx
+msgid "Musimy re-renderować komponent co jakiś czas"
+msgstr "We need to re-render the component from time to time"
+
+# //3/ Pomocnicza wstawiająca komponent do drzewa DOM
+#: /home/tomusdrw/workspace/react-redux/react/002/src/main.jsx
+msgid "Pomocnicza wstawiająca komponent do drzewa DOM"
+msgstr "Helper method inserting component to the DOM tree"
+
+# // React może być używany także poza przeglądarką, ale my potrzebujemy `react-dom`.
+#: /home/tomusdrw/workspace/react-redux/react/003/src/main.jsx
+msgid ""
+"React może być używany także poza przeglądarką, ale my potrzebujemy "
+"`react-dom`."
+msgstr "React can also be used outside the browser, but we need `react-dom`."
+
+# // Musimy określić gdzie wyrenderujemy nasz pierwszy komponent.
+#: /home/tomusdrw/workspace/react-redux/react/003/src/main.jsx
+msgid "Musimy określić gdzie wyrenderujemy nasz pierwszy komponent."
+msgstr "We need to determine where we will render our first component."
+
+# // 1. Komponent może być też klasą rozszerzającą `React.Component`...
+#: /home/tomusdrw/workspace/react-redux/react/004/src/main.jsx
+msgid "Komponent może być też klasą rozszerzającą `React.Component`..."
+msgstr "The component can also be a class extending `React.Component` ..."
+
+#   //3/ 4. Dzięki stage-0 możemy definiować pola bez użycia konstruktura
+#: /home/tomusdrw/workspace/react-redux/react/004/src/main.jsx
+msgid "Dzięki stage-0 możemy definiować pola bez użycia konstruktura"
+msgstr "Thanks to stage-0, we can define fields without using constructors"
+
+#   //12/ 2. ...zawierającą funkcję `render`
+#: /home/tomusdrw/workspace/react-redux/react/004/src/main.jsx
+msgid "...zawierającą funkcję `render`"
+msgstr "... containing the `render` function"
+
+#     // 3. Wartość czasu odczytujemy ze "stanu" komponentu
+#: /home/tomusdrw/workspace/react-redux/react/004/src/main.jsx
+msgid "Wartość czasu odczytujemy ze \"stanu\" komponentu"
+msgstr "We read the time from the \"state\" of the component"
+
+#   //8/ JSX to po prostu przyjemniejsza składnia na poniższy zapis
+#: /home/tomusdrw/workspace/react-redux/react/005/src/main.jsx
+msgid "JSX to po prostu przyjemniejsza składnia na poniższy zapis"
+msgstr "JSX is simply a more pleasant syntax for the following notation"
+
+#       // Wywołanie `setState` zmusza reacta do wywłoania `render`
+#: /home/tomusdrw/workspace/react-redux/react/006/src/main.jsx
+msgid "Wywołanie `setState` zmusza reacta do wywłoania `render`"
+msgstr "Calling `setState` forces React to call `render`"
+
+#   // Funkcja `render` powinna być "lekka" bo będzie często wywoływana
+#: /home/tomusdrw/workspace/react-redux/react/006/src/main.jsx
+msgid "Funkcja `render` powinna być \"lekka\" bo będzie często wywoływana"
+msgstr "The `render` function should be \"light\" because it will be called often"
+
+# /*12/ Kilka styli dla zadań */
+#: /home/tomusdrw/workspace/react-redux/react/012/css/styles.css
+msgid "Kilka styli dla zadań "
+msgstr "Several styles for tasks "
+
+#     // Musimy odświeżać aktualny czas...
+#: /home/tomusdrw/workspace/react-redux/react/007/src/main.jsx
+msgid "Musimy odświeżać aktualny czas..."
+msgstr "We need to refresh the current time..."
+
+#   //3/ ... i pamiętać o tym, żeby po sobie posprzątać
+#: /home/tomusdrw/workspace/react-redux/react/007/src/main.jsx
+msgid "i pamiętać o tym, żeby po sobie posprzątać"
+msgstr "and remember to clean up after ourselves"
+
+# //12/ Tworzymy "głupi" komponent, ktory nie ma własnego stanu.
+#: /home/tomusdrw/workspace/react-redux/react/009/src/components/TasksList.jsx
+msgid "Tworzymy \"głupi\" komponent, ktory nie ma własnego stanu."
+msgstr "We create a \"stupid\" component that does not have its own state."
+
+# //28/ Ten komponent odpowiada za zarządzanie stanem całej aplikacji.
+#: /home/tomusdrw/workspace/react-redux/react/009/src/containers/TasksContainer.jsx
+msgid "Ten komponent odpowiada za zarządzanie stanem całej aplikacji."
+msgstr "This component is responsible for managing the state of the entire application."
+
+#     //3/ Propsy możemy przekazać z użyciem operatora `spread`.
+#: /home/tomusdrw/workspace/react-redux/react/009/src/containers/TasksContainer.jsx
+msgid "Propsy możemy przekazać z użyciem operatora `spread`."
+msgstr "Props can be passed using the `spread` operator."
+
+# //3/ Upraszczamy główny plik, który tylko renderuje całość.
+#: /home/tomusdrw/workspace/react-redux/react/009/src/main.jsx
+msgid "Upraszczamy główny plik, który tylko renderuje całość."
+msgstr "We simplify the main file, which only renders the whole thing."
+
+# /* Przekazujemy aktualne sortowanie niżej */
+#: /home/tomusdrw/workspace/react-redux/react/010/src/components/TasksList.jsx
+msgid "Przekazujemy aktualne sortowanie niżej "
+msgstr "We pass current sorting below "
+
+# //8/ Pomocniczy komponent wyświetlający przyciski do sortowania.
+#: /home/tomusdrw/workspace/react-redux/react/010/src/components/TasksList.jsx
+msgid "Pomocniczy komponent wyświetlający przyciski do sortowania."
+msgstr "Helper component displaying sorting buttons"
+
+#     // Posortujmy listę zadań
+#: /home/tomusdrw/workspace/react-redux/react/010/src/containers/TasksContainer.jsx
+msgid "Posortujmy listę zadań"
+msgstr "Let's sort the list of tasks"
+
+# /* Przekazujemy aktualne sortowanie i callback niżej */
+#: /home/tomusdrw/workspace/react-redux/react/011/src/components/TasksList.jsx
+msgid "Przekazujemy aktualne sortowanie i callback niżej "
+msgstr "We pass current sorting and callback below "
+
+#     // Kopiujemy tablicę, żeby wymusić zmianę.
+#: /home/tomusdrw/workspace/react-redux/react/011/src/containers/TasksContainer.jsx
+msgid "Kopiujemy tablicę, żeby wymusić zmianę."
+msgstr "We copy the table to force the change."
+
+# //12/ Wyświetlamy komponent do filtrowania.
+#: /home/tomusdrw/workspace/react-redux/react/012/src/components/TasksList.jsx
+msgid "Wyświetlamy komponent do filtrowania."
+msgstr "We display the component for filtering."
+
+#         //3/ Musimy zapamiętać listę wszystkich zadań.
+#: /home/tomusdrw/workspace/react-redux/react/012/src/containers/TasksContainer.jsx
+msgid "Musimy zapamiętać listę wszystkich zadań."
+msgstr "We must remember the list of all tasks."
+
+#         //2/ Oraz ustawić przefiltrowaną i posortowana listę
+#: /home/tomusdrw/workspace/react-redux/react/012/src/containers/TasksContainer.jsx
+msgid "Oraz ustawić przefiltrowaną i posortowana listę"
+msgstr "And set up the filtered and sorted list"
+
+# // Dla komponentów w postaci klasy...
+#: /home/tomusdrw/workspace/react-redux/react/013/src/components/SortingButtons.jsx
+msgid "Dla komponentów w postaci klasy..."
+msgstr "For components in the form of a class ..."
+
+#   //4/ Możemy skorzystać z pól statycznych (stage-0)
+#: /home/tomusdrw/workspace/react-redux/react/013/src/components/SortingButtons.jsx
+msgid "Możemy skorzystać z pól statycznych (stage-0)"
+msgstr "We can use static fields (stage-0)"
+
+#   // Definiujemy jak ma wyglądać obiek zadania
+#: /home/tomusdrw/workspace/react-redux/react/013/src/components/Task.jsx
+msgid "Definiujemy jak ma wyglądać obiek zadania"
+msgstr "We define how the object of the task should look like"
+
+# // Importujemy paczkę
+#: /home/tomusdrw/workspace/react-redux/react/014/src/components/Task.jsx
+msgid "Importujemy paczkę"
+msgstr "We import the package"
+
+#   //3/ Definujemy klasy i warunki, kiedy powinny być dodane
+#: /home/tomusdrw/workspace/react-redux/react/014/src/components/Task.jsx
+msgid "Definujemy klasy i warunki, kiedy powinny być dodane"
+msgstr "We define classes and conditions when they should be added"
+
+#   //3/ Na dowolną zmianę po prostu zapisujemy nowy stan.
+#: /home/tomusdrw/workspace/react-redux/react/015/src/containers/TasksContainer.jsx
+msgid "Na dowolną zmianę po prostu zapisujemy nowy stan."
+msgstr "For any change, simply save the new state."
+
+# /* Tworzymy data-component przekazując aktualne filtrowanie/sortowanie i callback na zadania */
+#: /home/tomusdrw/workspace/react-redux/react/015/src/containers/TasksContainer.jsx
+msgid ""
+"Tworzymy data-component przekazując aktualne filtrowanie/sortowanie i "
+"callback na zadania "
+msgstr "We create data-component by providing current filtering / sorting and callback for tasks "
+
+# /*4/ Renderujemy listę */
+#: /home/tomusdrw/workspace/react-redux/react/015/src/containers/TasksContainer.jsx
+msgid "Renderujemy listę "
+msgstr "We're rendering a list "
+
+#     //3/ Musimy się upewnić, że cokolwiek się zmieniło! React będzie wołał tę funkcję przy każdej potencjalnej zmianie.
+#: /home/tomusdrw/workspace/react-redux/react/015/src/data/Tasks.jsx
+msgid ""
+"Musimy się upewnić, że cokolwiek się zmieniło! React będzie wołał tę "
+"funkcję przy każdej potencjalnej zmianie."
+msgstr "We need to make sure that whatever has changed! React will call this function for every potential change."
+
+#     // Zamiast ustawiać stan wołamy callback.
+#: /home/tomusdrw/workspace/react-redux/react/015/src/data/Tasks.jsx
+msgid "Zamiast ustawiać stan wołamy callback."
+msgstr "Instead of setting the state, we call a callback."
+
+#   //3/ Komponent, który używa kontekstu musi to zadeklarować
+#: /home/tomusdrw/workspace/react-redux/react/016/src/data/Tasks.jsx
+msgid "Komponent, który używa kontekstu musi to zadeklarować"
+msgstr "The component that uses the context must declare it"
+
+#   //2/ Wykorzystujemy parametr z kontekstu aby odwołać się do odpowiedniego URLa
+#: /home/tomusdrw/workspace/react-redux/react/016/src/data/Tasks.jsx
+msgid "Wykorzystujemy parametr z kontekstu aby odwołać się do odpowiedniego URLa"
+msgstr "We use the context parameter to refer to the appropriate URL"
+
+# //6/ Wrapujemy naszą apkę w kontekst (provider)
+#: /home/tomusdrw/workspace/react-redux/react/016/src/main.jsx
+msgid "Wrapujemy naszą apkę w kontekst (provider)"
+msgstr "We wrap our app in the context (provider)"
+
+#   //3/ Musimy powiedzieć jakiego typu będzie parametr przekazywany przez kontekst...
+#: /home/tomusdrw/workspace/react-redux/react/016/src/providers/UrlProvider.jsx
+msgid ""
+"Musimy powiedzieć jakiego typu będzie parametr przekazywany przez "
+"kontekst..."
+msgstr "We must say what type of parameter will be passed by the context ..."
+
+#   //4/ ... oraz jakich propsów oczekujemy
+#: /home/tomusdrw/workspace/react-redux/react/016/src/providers/UrlProvider.jsx
+msgid "oraz jakich propsów oczekujemy"
+msgstr "and what kind of props we expect"
+
+#   //5/ Ta funkcja zostanie wywołana aby pobrać kontekst.
+#: /home/tomusdrw/workspace/react-redux/react/016/src/providers/UrlProvider.jsx
+msgid "Ta funkcja zostanie wywołana aby pobrać kontekst."
+msgstr "This function will be called to retrieve the context."
+
+# // Zamiast rozszerzać `Component` rozszerzamy po prostu `PureComponent`.
+#: /home/tomusdrw/workspace/react-redux/react/018/src/components/SortingButtons.jsx
+msgid "Zamiast rozszerzać `Component` rozszerzamy po prostu `PureComponent`."
+msgstr "Instead of extending `Component`, we simply extend `PureComponent`."
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react-forms/001-Walidacja_z_uyciem_react-forms..html
+msgid ""
+"\n"
+"  <p>Zobaczmy w jaki sposób wykorzystać <code>react-form</code> do obsługi "
+"formularzy.</p>\n"
+"  <p><a href=\"https://react-form.js.org/#/\">Szczegółowe API "
+"react-form</a></p>\n"
+msgstr "\n <p> Let's see how to use <code> react-form </ code> to support forms. </ p> \n <p> <a href = \"https://react-form.js.org/\"> Detailed API react-form </a> </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react-forms/001-Walidacja_z_uyciem_react-forms..html
+msgid "<h1>Walidacja z użyciem react-forms.</h1>"
+msgstr "<h1> Validation with the use of react-forms. </h1>"
+
+# <title>
+#: /home/tomusdrw/workspace/react-redux/react-forms/001-Walidacja_z_uyciem_react-forms..html
+msgid "Walidacja z użyciem react-forms."
+msgstr "Validation with the use of react-forms."
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react-forms/002-Prompt.html
+msgid ""
+"\n"
+"  <p>Kiedy użytkownik zmieni coś inpucie i spróbuje opuścić stronę "
+"poprosimy go o potwierdzenie.</p>\n"
+"  <p>Dodajmy obsługę tego zachowania.</p>\n"
+msgstr "\n <p> When the user changes something and tries to leave the page, we will ask him for confirmation. </p> \n <p> Let's support this behavior. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react-forms/002-Prompt.html
+msgid "<h1>Prompt</h1>"
+msgstr "<H1> Prompt </h1>"
+
+# <xp-tasks li:nth-child(1)>
+#: /home/tomusdrw/workspace/react-redux/react-forms/003-Sprint_12.html
+msgid ""
+"\n"
+"      Zaimplementuj formularz dodawania nowego produktu lub formularz "
+"zamówienia.\n"
+"    "
+msgstr "\n Implement the new product adding form or order form. \n    "
+
+# <xp-tasks li:nth-child(2)>
+#: /home/tomusdrw/workspace/react-redux/react-forms/003-Sprint_12.html
+msgid ""
+"\n"
+"      Kliknięcie \"Submit\" powinno dodawać dane do globalnego stanu w "
+"Reduksie.\n"
+"    "
+msgstr "\n Click \ "Submit\" should add data to the global state in Redux. \n    "
+
+# //15/ Komponent wyświetlający formularz
+#: /home/tomusdrw/workspace/react-redux/react-forms/001/src/components/NewTaskForm.js
+msgid "Komponent wyświetlający formularz"
+msgstr "The component displaying the form"
+
+#     //8/ Renderujemy formularz i przekazujemy początkową wiadomość i handler.
+#: /home/tomusdrw/workspace/react-redux/react-forms/001/src/containers/NewTaskContainer.js
+msgid "Renderujemy formularz i przekazujemy początkową wiadomość i handler."
+msgstr "We render the form and forward the initial message and handler."
+
+# /* 5/ Wyświetlamy prompt jeżeli formularz jest "touched" */
+#: /home/tomusdrw/workspace/react-redux/react-forms/002/src/components/NewTaskForm.js
+msgid "Wyświetlamy prompt jeżeli formularz jest \"touched\" "
+msgstr "We display a prompt if the form is \"touched\" "
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react-lazyload/009-Lazy_loading_komponentw..html
+msgid ""
+"\n"
+"  <p>Poszczególne strony można ładować dopiero jak user na nie wejdzie.</p>\n"
+"  <p>Zobaczmy jak to zrobić.</p>\n"
+msgstr "\n <p> Individual pages can only be loaded as the user enters them. </p> \n <p> Let's see how to do it. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react-lazyload/009-Lazy_loading_komponentw..html
+msgid "<h1>Lazy loading komponentów.</h1>"
+msgstr "<h1> Lazy loading components. </h1>"
+
+# <title>
+#: /home/tomusdrw/workspace/react-redux/react-lazyload/009-Lazy_loading_komponentw..html
+msgid "Lazy loading komponentów."
+msgstr "Lazy loading components."
+
+# //14/ Komponent obsługujący loading. Dodatkowo może obsługiwać timeout.
+#: /home/tomusdrw/workspace/react-redux/react-lazyload/009/src/App.js
+msgid "Komponent obsługujący loading. Dodatkowo może obsługiwać timeout."
+msgstr "Component supporting loading. Additionally, it can support timeout."
+
+#   //5/ Jedna z opcji to użycie histori
+#: /home/tomusdrw/workspace/react-redux/react-router/007/src/containers/NewTaskContainer.js
+msgid "Jedna z opcji to użycie histori"
+msgstr "One of the options is to use history"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react-router/001-Minimal_project_with_create-react-app.html
+msgid ""
+"\n"
+"  <p>Rozpocznijmy z aplikacją opartą o <code>create-react-app</code> i "
+"wyświetlającą aktywności.</p>\n"
+msgstr "\n <p> Let's start with an application based on <code> create-react-app </code> and displaying activities. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react-router/001-Minimal_project_with_create-react-app.html
+msgid "<h1>Minimal project with create-react-app</h1>"
+msgstr "<h1> Minimal project with create-react-app </h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react-router/002-React_DOM_Router.html
+msgid ""
+"\n"
+"  <p>Co jeżeli nasza aplikacja potrzebuje wiele podstron?</p>\n"
+"  <p>Będziemy potrzebować Reactowy routing.</p>\n"
+msgstr "\n <p> What if our application needs multiple subppages? </p> \n <p> We will need React routing. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react-router/002-React_DOM_Router.html
+msgid "<h1>React DOM Router</h1>"
+msgstr "<h1> React DOM Router </h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react-router/003-Links.html
+msgid ""
+"\n"
+"  <p>Jak dodać linki do podstron?</p>\n"
+msgstr "\n <p> How to add links to sub-pages? </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react-router/003-Links.html
+msgid "<h1>Links</h1>"
+msgstr "<H1> Links </h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react-router/004-Obsuga_parametrw.html
+msgid ""
+"\n"
+"  <p>W jaki sposób obsłużyć parametry w URLu?</p>\n"
+msgstr "\n <p> How do you handle parameters in the URL? </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react-router/004-Obsuga_parametrw.html
+msgid "<h1>Obsługa parametrów</h1>"
+msgstr "<h1> Parameter handling </h1>"
+
+# <title>
+#: /home/tomusdrw/workspace/react-redux/react-router/004-Obsuga_parametrw.html
+msgid "Obsługa parametrów"
+msgstr "Parameter handling"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react-router/005-Dodawanie_aktywnoci.html
+msgid ""
+"\n"
+"  <p>Spróbujmy faktycznie obsłużyć formularz.</p>\n"
+"  <p>Pojawi się kilka ciekawych problemów.</p>\n"
+msgstr "\n <p> Let's try to actually handle the form. </ p> \n <p> Some interesting problems will appear. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react-router/005-Dodawanie_aktywnoci.html
+msgid "<h1>Dodawanie aktywności</h1>"
+msgstr "<h1> Adding activity </h1>"
+
+# <title>
+#: /home/tomusdrw/workspace/react-redux/react-router/005-Dodawanie_aktywnoci.html
+msgid "Dodawanie aktywności"
+msgstr "Adding activity"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react-router/006-Uaktualnianie_location.html
+msgid ""
+"\n"
+"  <p>Zamiast wprowadzać osobny stan możemy uaktualniać URL.</p>\n"
+msgstr "\n <p> Instead of entering a separate state, we can update the URL. </p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react-router/006-Uaktualnianie_location.html
+msgid "<h1>Uaktualnianie location</h1>"
+msgstr "<h1> Update location </h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react-router/007-Redirect.html
+msgid ""
+"\n"
+"  <p>Jak przekierować użytkownika do głównej strony?</p>\n"
+msgstr "\n <p> How do you redirect the user to the main page? </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react-router/007-Redirect.html
+msgid "<h1>Redirect</h1>"
+msgstr "<H1> Redirect </ h1>"
+
+# <xp-tasks li:nth-child(1)>
+#: /home/tomusdrw/workspace/react-redux/react-router/008-Sprint_9.html
+msgid ""
+"\n"
+"      Dodaj stronę \"Kontakt\" zawierającą dane kontaktowe.\n"
+"    "
+msgstr "\n Add a \ "Contact\" page with contact details. \n    "
+
+# <xp-tasks li:nth-child(2)>
+#: /home/tomusdrw/workspace/react-redux/react-router/008-Sprint_9.html
+msgid ""
+"\n"
+"      Wyświetl aktualny URL w stopce strony. Użyj <code>history</code>\n"
+"    "
+msgstr "\n Display the current URL in the footer of the page. Use <code> history </code> \n    "
+
+# <xp-tasks li:nth-child(3)>
+#: /home/tomusdrw/workspace/react-redux/react-router/008-Sprint_9.html
+msgid ""
+"\n"
+"      Dodaj stronę szczegółów produktu w swoim sklepie. Obsłuż parametr w "
+"URLu.\n"
+"    "
+msgstr "\n Add product detail page in your store. Handle the parameter in the URL. \n    "
+
+# <xp-tasks li:nth-child(4)>
+#: /home/tomusdrw/workspace/react-redux/react-router/008-Sprint_9.html
+msgid ""
+"\n"
+"      Użyj <code>Prompt</code>\n"
+"    "
+msgstr "\n Use <code> Prompt </code> \n    "
+
+# # Dodajmy paczkę do obsługi routera w przeglądarce.
+#: /home/tomusdrw/workspace/react-redux/react-router/002/console.sh
+msgid "Dodajmy paczkę do obsługi routera w przeglądarce."
+msgstr "Let's add a package to handle the router in the browser."
+
+# //2/ Potrzebujemy dwa kontenery między którymi będziemy się przełączać.
+#: /home/tomusdrw/workspace/react-redux/react-router/002/src/App.js
+msgid "Potrzebujemy dwa kontenery między którymi będziemy się przełączać."
+msgstr "We need two containers between which we will switch."
+
+# //8/ Tworzymy wrapper który przełącza kontenery.
+#: /home/tomusdrw/workspace/react-redux/react-router/002/src/App.js
+msgid "Tworzymy wrapper który przełącza kontenery."
+msgstr "We create a wrapper that switches containers."
+
+# //3/ Modyfikujemy index.js aby wyświetlać App
+#: /home/tomusdrw/workspace/react-redux/react-router/002/src/index.js
+msgid "Modyfikujemy index.js aby wyświetlać App"
+msgstr "We modify index.js to display the App"
+
+# //6/ Renderujemy prostą nawigację.
+#: /home/tomusdrw/workspace/react-redux/react-router/003/src/App.js
+msgid "Renderujemy prostą nawigację."
+msgstr "We render simple navigation."
+
+# //6/ Wyświetlamy zawartość parametu.
+#: /home/tomusdrw/workspace/react-redux/react-router/004/src/containers/NewTaskContainer.js
+msgid "Wyświetlamy zawartość parametu."
+msgstr "We display the contents of the parameter."
+
+#   //3/ W stanie będziemy trzymać aktualną wartość inputa
+#: /home/tomusdrw/workspace/react-redux/react-router/005/src/containers/NewTaskContainer.js
+msgid "W stanie będziemy trzymać aktualną wartość inputa"
+msgstr "In the state we will keep the current value of the input"
+
+#   //   przekopiować wartość z propsów.
+#: /home/tomusdrw/workspace/react-redux/react-router/005/src/containers/NewTaskContainer.js
+msgid "przekopiować wartość z propsów."
+msgstr "copy the value from props."
+
+#   //7/ Obsługa inputa.
+#: /home/tomusdrw/workspace/react-redux/react-router/005/src/containers/NewTaskContainer.js
+msgid "Obsługa inputa."
+msgstr "Input handling."
+
+#     //11/ Obsługa formularza.
+#: /home/tomusdrw/workspace/react-redux/react-router/005/src/containers/NewTaskContainer.js
+msgid "Obsługa formularza."
+msgstr "Form handling."
+
+#   //5/ Uaktualniamy historię.
+#: /home/tomusdrw/workspace/react-redux/react-router/006/src/containers/NewTaskContainer.js
+msgid "Uaktualniamy historię."
+msgstr "We're updating history."
+
+#     /// Wyciągamy bezpośrednio z props
+#: /home/tomusdrw/workspace/react-redux/react-router/006/src/containers/NewTaskContainer.js
+msgid "Wyciągamy bezpośrednio z props"
+msgstr "Pull out directly from props"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react-testing/001-Smoke_tests.html
+msgid ""
+"\n"
+"  <p>\n"
+"    Startujemy z lekko zmodyfikowanym kodem wygenerowanym przez "
+"<code>create-react-app</code>.\n"
+"    </p>\n"
+"    <p>\n"
+"      Starter generuje nam najprostszy z możliwych testów: \"Smoke test\"\n"
+"    </p>\n"
+msgstr "\n <p> \n We start with a slightly modified code generated by <code> create-react-app </ code>. \n </ p>  \n <p> \n Starter generates the simplest possible test: \"Smoke test\"\n </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react-testing/001-Smoke_tests.html
+msgid "<h1>Smoke tests</h1>"
+msgstr "<h1> Smoke tests </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react-testing/002-Snapshot_testing..html
+msgid ""
+"\n"
+"  <p>Drugi interesujący rodzaj testów to <code>Snapshot testing</code>.</p>\n"
+"  <p><code>Jest</code> automatycznie wygeneruje nam DOM wygenerowany przez "
+"komponent \n"
+"    i w kolejnych uruchomieniach będzie porównywał otrzymany wynik.\n"
+"    </p>\n"
+msgstr "\n <p> The second interesting type of tests is <code> Snapshot testing </ code>. </ p> \n <p> <code> Jest </ code> will automatically generate the DOM generated by the component \n and in subsequent runs it will compare the result obtained. \n </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react-testing/002-Snapshot_testing..html
+msgid "<h1>Snapshot testing.</h1>"
+msgstr "<h1> Snapshot testing. </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react-testing/003-Shallow_Renderer..html
+msgid ""
+"\n"
+"  <p><code>ShallowRendering</code> to kolejna ciekawa forma "
+"unit-testów.</p>\n"
+msgstr "\n <p> <code> ShallowRendering </ code> is another interesting form of unit tests. </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react-testing/003-Shallow_Renderer..html
+msgid "<h1>Shallow Renderer.</h1>"
+msgstr "<h1> Shallow Renderer. </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/react-testing/004-ShallowRender__actions.html
+msgid ""
+"\n"
+"  <p>Jak wywoływać kliknięcia?</p>\n"
+msgstr "\n <p> How do I trigger clicks? </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/react-testing/004-ShallowRender__actions.html
+msgid "<h1>ShallowRender + actions</h1>"
+msgstr "<h1> ShallowRender + actions </ h1>"
+
+# <xp-tasks li:nth-child(1)>
+#: /home/tomusdrw/workspace/react-redux/react-testing/005-Sprint_7.html
+msgid ""
+"\n"
+"      Dodaj smoke testy do wszystkich komponentów w swojej aplikacji.\n"
+"    "
+msgstr "\n Add smoke tests to all components in your application. \n    "
+
+# <xp-tasks li:nth-child(2)>
+#: /home/tomusdrw/workspace/react-redux/react-testing/005-Sprint_7.html
+msgid ""
+"\n"
+"      Dodaj snapshot testy do wszystkich komponentów.\n"
+"    "
+msgstr "\n Add snapshot tests to all components. \n    "
+
+# <xp-tasks li:nth-child(4)>
+#: /home/tomusdrw/workspace/react-redux/react-testing/005-Sprint_7.html
+msgid ""
+"\n"
+"      Użyj standardowego renderera DOM i zasymuluj kliknięcia w elementy.\n"
+"    "
+msgstr "\n Use the standard DOM renderer and simulate clicks on the elements. \n    "
+
+# //15/ Główny komponent
+#: /home/tomusdrw/workspace/react-redux/react-testing/001/src/App.js
+msgid "Główny komponent"
+msgstr "The main component"
+
+# //8/ Test pisze się równie szybko co smoke test.
+#: /home/tomusdrw/workspace/react-redux/react-testing/002/src/App.test.js
+msgid "Test pisze się równie szybko co smoke test."
+msgstr "The test is written as quickly as the smoke test."
+
+#   //3/ Zauważ, że test nie wymaga w ogóle DOM.
+#: /home/tomusdrw/workspace/react-redux/react-testing/002/src/App.test.js
+msgid "Zauważ, że test nie wymaga w ogóle DOM."
+msgstr "Note that the test does not require a DOM at all."
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/redux/001-React.html
+msgid ""
+"\n"
+"  <p>Rozpocznijmy z minimalną aplikacją w React</p>\n"
+msgstr "\n <p> Let's start with the minimum application in React </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/redux/001-React.html
+msgid "<h1>Minimalna apka React</h1>"
+msgstr "<h1> Minimum React React </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/redux/002-ReactRedux.html
+msgid ""
+"\n"
+"  <p>Użyjmy reduxa i stwórzmy <code>store</code>.</p>\n"
+msgstr "\n <p> Let's use redux and create <code> store </ code>. </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/redux/002-ReactRedux.html
+msgid "<h1>Minimalny React+Redux</h1>"
+msgstr "<h1> Minimal React + Redux </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/redux/003-combineReducers.html
+msgid ""
+"\n"
+"  <p>Spróbujmy rozbudować trochę aplikację.</p>\n"
+msgstr "\n <p> Let's try to expand the application a bit. </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/redux/003-combineReducers.html
+msgid "<h1>Wykorzystanie combineReducers</h1>"
+msgstr "<h1> Using combineReducers </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/redux/004-No_boilerplate.html
+msgid ""
+"\n"
+"  <p>Tym razem spróbujmy pozbyć się boilerplate kodu: "
+"<code>switch-case</code> i akcje.</p>\n"
+msgstr "\n <p> This time, let's try to get rid of the boilerplate code: <code> switch-case </ code> and actions. </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/redux/004-No_boilerplate.html
+msgid "<h1>Usuwamy boilerplate</h1>"
+msgstr "<h1> We remove boilerplate </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/redux/005-redux-thunk.html
+msgid ""
+"\n"
+"  <p>Jak sobie radzić z asynchronicznością?</p>\n"
+msgstr "\n <p> How to deal with asynchronous stuff? </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/redux/005-redux-thunk.html
+msgid "<h1>Obsługa asynchronicznych akcji w redux-thunk</h1>"
+msgstr "<h1> Support for asynchronous actions in redux-thunk </ h1>"
+
+# // Importujemy metodę connect z react-redux
+#: /home/tomusdrw/workspace/react-redux/redux/002/src/main.jsx
+msgid "Importujemy metodę connect z react-redux"
+msgstr "We import the connect method from react-redux"
+
+#     //7/ Ten komponent nie ma już żadnego stanu - wszystko wpada w props
+#: /home/tomusdrw/workspace/react-redux/redux/002/src/main.jsx
+msgid "Ten komponent nie ma już żadnego stanu - wszystko wpada w props"
+msgstr "This component has no state - everything falls into props"
+
+# //19/ Funkcja `connect` tworzy nowy komponent, który wie jak wykorzystać `store`
+#: /home/tomusdrw/workspace/react-redux/redux/002/src/main.jsx
+msgid "Funkcja `connect` tworzy nowy komponent, który wie jak wykorzystać `store`"
+msgstr "The `connect` function creates a new component that knows how to use the `store`"
+
+#   //3/ Tutaj mówimy jak zamienić stan na propsy
+#: /home/tomusdrw/workspace/react-redux/redux/002/src/main.jsx
+msgid "Tutaj mówimy jak zamienić stan na propsy"
+msgstr "Here we are talking about converting props"
+
+#   //14/ a tutaj definiujemy jakie akcje można wywołać 
+#: /home/tomusdrw/workspace/react-redux/redux/002/src/main.jsx
+msgid "a tutaj definiujemy jakie akcje można wywołać "
+msgstr "and here we define what actions can be called "
+
+# // Przekazujemy store do komponentu (powinniśmy użyć `Provider`)
+#: /home/tomusdrw/workspace/react-redux/redux/002/src/main.jsx
+msgid "Przekazujemy store do komponentu (powinniśmy użyć `Provider`)"
+msgstr "We pass the store to the component (we should use the `Provider`)"
+
+# // Eksportujemy stan na zewnątrz
+#: /home/tomusdrw/workspace/react-redux/redux/002/src/store.jsx
+msgid "Eksportujemy stan na zewnątrz"
+msgstr "We export the state to the outside"
+
+#   //4/ Tym razem ze stanu mapujemy dwie własności
+#: /home/tomusdrw/workspace/react-redux/redux/003/src/main.jsx
+msgid "Tym razem ze stanu mapujemy dwie własności"
+msgstr "This time we map two properties from the state"
+
+# // combineReducers pozwala podzielić stan na części
+#: /home/tomusdrw/workspace/react-redux/redux/003/src/store.jsx
+msgid "combineReducers pozwala podzielić stan na części"
+msgstr "combineReducers allows you to divide the status into parts"
+
+# //4/ Dzielimy stan na niezależne części i ich obsługą zajmują się dwie funkcje
+#: /home/tomusdrw/workspace/react-redux/redux/003/src/store.jsx
+msgid "Dzielimy stan na niezależne części i ich obsługą zajmują się dwie funkcje"
+msgstr "We divide the state into independent parts and handle them with two functions"
+
+# //6/ Dodajemy middleware - miejsce przez które przechodzi każda akcja
+#: /home/tomusdrw/workspace/react-redux/redux/003/src/store.jsx
+msgid "Dodajemy middleware - miejsce przez które przechodzi każda akcja"
+msgstr "We add middleware - the place that each action goes through"
+
+# //8/ Za każdym razem, kiedy inkrementujemy zmienną dodajemy też jednego taska
+#: /home/tomusdrw/workspace/react-redux/redux/003/src/store.jsx
+msgid "Za każdym razem, kiedy inkrementujemy zmienną dodajemy też jednego taska"
+msgstr "Each time we increment the variable, we also add one task"
+
+# //2/ Wydzielamy akcje do osobnego pliku ze stałymi
+#: /home/tomusdrw/workspace/react-redux/redux/005/src/actions.jsx
+msgid "Wydzielamy akcje do osobnego pliku ze stałymi"
+msgstr "We separate actions into a separate file with constants"
+
+# //12/ Dzięki tej funkcji nie musimy ręcznie tworzyć akcji
+#: /home/tomusdrw/workspace/react-redux/redux/004/src/main.jsx
+msgid "Dzięki tej funkcji nie musimy ręcznie tworzyć akcji"
+msgstr "Thanks to this function, we do not have to create actions manually"
+
+#     //5/ Używamy formatu FSA (Flux Standard Action)
+#: /home/tomusdrw/workspace/react-redux/redux/004/src/main.jsx
+msgid "Używamy formatu FSA (Flux Standard Action)"
+msgstr "We use the FSA format (Flux Standard Action)"
+
+# // Connect można też używać jako adnotacji
+#: /home/tomusdrw/workspace/react-redux/redux/004/src/main.jsx
+msgid "Connect można też używać jako adnotacji"
+msgstr "Connect can also be used as annotation"
+
+# //5/ Reducery zapisujemy w ten sposób
+#: /home/tomusdrw/workspace/react-redux/redux/004/src/store.jsx
+msgid "Reducery zapisujemy w ten sposób"
+msgstr "We write reducers in this way"
+
+# //8/ ... każda obsługiwana akcja to osobna funkcja
+#: /home/tomusdrw/workspace/react-redux/redux/004/src/store.jsx
+msgid "każda obsługiwana akcja to osobna funkcja"
+msgstr "every supported action is a separate function"
+
+# //8/ Ta pomocnicza funkcja pozwola nam tworzyć reducery.
+#: /home/tomusdrw/workspace/react-redux/redux/005/src/store.jsx
+msgid "Ta pomocnicza funkcja pozwola nam tworzyć reducery."
+msgstr "This helper function will allow us to create reducers."
+
+# //2/ Funkcje zwracające akcję nazwymay actionCreatorami
+#: /home/tomusdrw/workspace/react-redux/redux/005/src/actionCreators.jsx
+msgid "Funkcje zwracające akcję nazwymay actionCreatorami"
+msgstr "Functions that return an action are called actionCreators"
+
+# // Dodajemy asynchroniczną akcję
+#: /home/tomusdrw/workspace/react-redux/redux/005/src/actionCreators.jsx
+msgid "Dodajemy asynchroniczną akcję"
+msgstr "We add an asynchronous action"
+
+# //6/ Ta funkcja przypina dispatch do każdego creatora
+#: /home/tomusdrw/workspace/react-redux/redux/005/src/actionCreators.jsx
+msgid "Ta funkcja przypina dispatch do każdego creatora"
+msgstr "This function attaches the dispatch to each creator"
+
+#     //3/ W ES7 będzie to wyglądać lepiej dzięki `{...state}`
+#: /home/tomusdrw/workspace/react-redux/redux/005/src/store.jsx
+msgid "W ES7 będzie to wyglądać lepiej dzięki `{...state}`"
+msgstr "In ES7 this will look better with `{... state}`"
+
+#   //5/ Definiujemy nową akcję do obsługi rozpoczęcia pobierania
+#: /home/tomusdrw/workspace/react-redux/redux/005/src/store.jsx
+msgid "Definiujemy nową akcję do obsługi rozpoczęcia pobierania"
+msgstr "We define a new action to handle the start of the fetch"
+
+#   //5/ oraz skończonego pobierania
+#: /home/tomusdrw/workspace/react-redux/redux/005/src/store.jsx
+msgid "oraz skończonego pobierania"
+msgstr "and finish of fetch"
+
+# <xp-tasks li:nth-child(1)>
+#: /home/tomusdrw/workspace/react-redux/tasks/001-shop.html
+msgid ""
+"\n"
+"      Stwórz statyczny HTML i wyświetl pojedynczy produkt w sklepie (nazwa, "
+"obrazek, opis i cena). <br>\n"
+"      <small>Link do obrazków "
+"<code>https://xpla.org/ext/lorempixel/250/250/technics/1/</code>.</small>\n"
+"    "
+msgstr "\n Create static HTML and display a single product in the store (name, image, description and price). <br> \n <small> Link to images <code> https://xpla.org/ext/lorempixel/250/250/technics/1/ </ code>. </ small> \n    "
+
+# <xp-tasks li:nth-child(2)>
+#: /home/tomusdrw/workspace/react-redux/tasks/001-shop.html
+msgid ""
+"\n"
+"      Wygeneruj produkt za pomocą DOM API w JavaScriptcie\n"
+"    "
+msgstr "\n Generate the product using DOM API in JavaScript \n    "
+
+# <xp-tasks li:nth-child(3)>
+#: /home/tomusdrw/workspace/react-redux/tasks/001-shop.html
+msgid ""
+"\n"
+"      Wyświetl wiele produktów na podstawie tablicy z danymi.\n"
+"    "
+msgstr "\n Display multiple products based on the data table. \n    "
+
+# <xp-tasks li:nth-child(4)>
+#: /home/tomusdrw/workspace/react-redux/tasks/001-shop.html
+msgid ""
+"\n"
+"      Dodaj przycisk <code>Czytaj więcej</code> który rozszerzy widoczny "
+"opis produktu.\n"
+"    "
+msgstr "\n Add the <code> Read more </code> button which will expand the visible product description. \n    "
+
+# <xp-tasks li:nth-child(5)>
+#: /home/tomusdrw/workspace/react-redux/tasks/001-shop.html
+msgid ""
+"\n"
+"      Dodaj prostą wyszukiwarkę produktów (Wpisywanie w pole tekstowe "
+"powinno od razu filtrować produkty).\n"
+"    "
+msgstr "\n Add a simple product search engine (Entering the text field should immediately filter the products). \n    "
+
+# <xp-tasks li:nth-child(1)>
+#: /home/tomusdrw/workspace/react-redux/tasks/005-es6.html
+msgid ""
+"\n"
+"      Przepisz swój kod z użyciem ES6\n"
+"    "
+msgstr "\n Rewrite your code using ES6 \n    "
+
+# <xp-tasks li:nth-child(3)>
+#: /home/tomusdrw/workspace/react-redux/tasks/005-es6.html
+msgid ""
+"\n"
+"      Pobierz listę produktów asynchronicznie z użyciem <code>fetch</code>.\n"
+"    "
+msgstr "\n Download the list of products asynchronously using <code> fetch </ code>. \n    "
+
+# <xp-tasks li:nth-child(4)>
+#: /home/tomusdrw/workspace/react-redux/tasks/005-es6.html
+msgid ""
+"\n"
+"      Wydziel komponenty swojej aplikacji (<code>Produkt</code>, "
+"<code>Lista</code>) i umieść jako klasy w osobnych modułach.\n"
+"    "
+msgstr "\n Extract the components of your application (<code> Product </code>, <code> List </code>) and place them as classes in separate modules. \n    "
+
+# <xp-tasks li:nth-child(5)>
+#: /home/tomusdrw/workspace/react-redux/tasks/005-es6.html
+msgid ""
+"\n"
+"      Dodaj przyciski do sortowania produktów.\n"
+"    "
+msgstr "\n Add buttons to sort products. \n    "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/typescript/001-Initial_commit.html
+msgid "<h1>Initial commit</h1>"
+msgstr "<h1> Initial commit </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/typescript/002-tsconfig_i_systemjs.html
+msgid ""
+"\n"
+"  <p>Na początek potrzebujemy prostej struktury projektu.</p>\n"
+"  <p>Kluczowym plikiem jest <code>tsconfig.json</code>, w którym znajduje "
+"się konfiguracja dla TypeScript Compiler (<code>tsc</code>).</p>\n"
+"  <p>Pliki będziemy ładować korzystająć z SystemJS.</p>\n"
+msgstr "\n <p> At the beginning we need a simple project structure. </ p> \n <p> The key file is <code> tsconfig.json </ code>, which contains the configuration for TypeScript Compiler (<code> tsc </ code>). </ p> \n <p> The files will load using SystemJS. </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/typescript/002-tsconfig_i_systemjs.html
+msgid "<h1>Początkowa konfiguracja</h1>"
+msgstr "<h1> Initial configuration </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/typescript/003-interfejs_Coordinates.html
+msgid ""
+"\n"
+"  <p>Dzięki interfejsom możemy wymuszać obecnośc właściwości o danych "
+"typach i method przyjmujących określone argumenty oraz zwracające dane o "
+"określonym typie.</p>\n"
+msgstr "\n <p> Thanks to the interfaces, we can force the presence of properties with given types and method that accept specific arguments and return data of a specific type. </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/typescript/003-interfejs_Coordinates.html
+msgid "<h1>Utworzenie pierwszego interfejsu</h1>"
+msgstr "<h1> Create the first interface </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/typescript/004-klasa_Party.html
+msgid ""
+"\n"
+"  <p>TypeScript w naturalny sposób kładzie nacisk na typy, a przez to na "
+"podejście obiektowe.</p>\n"
+"  <p>Typy są jednak opcjonalne, a każda zmienna ma domyślny typ "
+"<code>any</code>.</p>\n"
+msgstr "\n <p> TypeScript naturally places emphasis on types and thus on object-oriented approach. </ p> \n <p> Types are optional, however, each variable has a default <code> any </ code> type. </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/typescript/004-klasa_Party.html
+msgid "<h1>Utworzenie pierwszej klasy</h1>"
+msgstr "<h1> Create a first class </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/typescript/005-interfejs_Component.html
+msgid ""
+"\n"
+"  <p>Interfejsy może wymusić na klasie go implementującej implementacje "
+"określonej metody.</p>\n"
+msgstr "\n <p> Interfaces can force the class implementing it to implement the specified method. </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/typescript/005-interfejs_Component.html
+msgid "<h1>Utworzenie interfejsu Component</h1>"
+msgstr "<h1> Create a Component interface </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/typescript/006-klasa_PartyList.html
+msgid ""
+"\n"
+"  <p>Klasy implementują interfejsy.</p>\n"
+msgstr "\n <p> Classes implement interfaces. </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/typescript/006-klasa_PartyList.html
+msgid "<h1>Utworzenie klasy PartyList</h1>"
+msgstr "<h1> Create a PartyList class </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/typescript/007-renderowanie_listy.html
+msgid ""
+"\n"
+"  <p>Dodamy teraz podstawową logikę do aplikacji, która pozwoli na "
+"renderowanie listy.</p>\n"
+msgstr "\n <p> We will now add the basic logic to the application that will allow the list to be rendered. </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/typescript/007-renderowanie_listy.html
+msgid "<h1>Dodanie podstawowej logiki</h1>"
+msgstr "<h1> Adding basic logic </ h1>"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/typescript/008-klasa_PartyForm.html
+msgid "<h1>Utworzenie klasy PartyForm</h1>"
+msgstr "<h1> Create PartyForm class </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/typescript/009-renderuj_PartyForm.html
+msgid ""
+"\n"
+"  <p>Wyrenderujmy formularz razem z listą.</p>\n"
+msgstr "\n <p> Let's render the form with the list. </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/typescript/009-renderuj_PartyForm.html
+msgid "<h1>Renderowanie PartyForm</h1>"
+msgstr "<h1> PartyForm Rendering </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/typescript/010-klasa_App.html
+msgid ""
+"\n"
+"  <p>W <code>main.ts</code> robi się już tłoczno. Przenieśmy logikę do "
+"osobnego komponentu.</p>\n"
+msgstr "\n <p> W <code> main.ts </ code> is already crowded. Let's move logic to a separate component. </ P> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/typescript/010-klasa_App.html
+msgid "<h1>Utworzenie App i przeniesienie tam logiki aplikacji</h1>"
+msgstr "<h1> Create App and transfer application logic to it </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/typescript/011-klasa_React.html
+msgid ""
+"\n"
+"  <p>Do obsługi zdarzeń będziemy potrzebowali czegoś bardziej finezyjnego. "
+"Zaimplementujmy własnego Reacta!</p>\n"
+msgstr "\n <p> We will need something more sophisticated to handle events. Let's implement your own Reacta! </ P> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/typescript/011-klasa_React.html
+msgid "<h1>Utwórz klasę React</h1>"
+msgstr "<h1> Create a React class </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/typescript/012-handleSubmit.html
+msgid ""
+"\n"
+"  <p>Dodajmy logikę odpowiadającą za dodanie nowej imprezy za pomocą "
+"formularza.</p>\n"
+msgstr "\n <p> Let's add logic for adding a new event using the form. </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/typescript/012-handleSubmit.html
+msgid "<h1>Logika obsługi formularza</h1>"
+msgstr "<h1> Form handling logic </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/typescript/013-eventListener.html
+msgid ""
+"\n"
+"  <p>Ostatnią rzeczą pozostaje implementacja `eventListener`.</p>\n"
+"  <p>Zwróć uwagę na to jak jedna klasa implementuje wiele interfejsów. "
+"Rozszerzać możemy jedynie jedną klasę (jak w ES6). Prawie jak Java!</p>\n"
+msgstr "\n <p> The last thing to do is implement the `eventListener`. </ p> \n <p> Note how one class implements many interfaces. We can only extend one class (as in ES6). Almost like Java! </ P> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/typescript/013-eventListener.html
+msgid "<h1>Implementacja eventListener</h1>"
+msgstr "<h1> eventListener implementation </ h1>"
+
+# <!--2/ Ładujemy SystemJS i jego konfiguracje -->
+#: /home/tomusdrw/workspace/react-redux/typescript/002/index.html
+msgid "Ładujemy SystemJS i jego konfiguracje "
+msgstr "We load SystemJS and its configurations "
+
+# <!--5/ Używamy SystemJS do ładowania głównego pliku -->
+#: /home/tomusdrw/workspace/react-redux/typescript/002/index.html
+msgid "Używamy SystemJS do ładowania głównego pliku "
+msgstr "We use SystemJS to load the main file "
+
+# //4/ Najprostrza konfiguracja musi jedynie uwzględniać główny moduł
+#: /home/tomusdrw/workspace/react-redux/typescript/002/system.config.js
+msgid "Najprostrza konfiguracja musi jedynie uwzględniać główny moduł"
+msgstr "The simplest configuration must only take into account the main module"
+
+# //4/ Pierwszy interfejs określający właściwości obiektu
+#: /home/tomusdrw/workspace/react-redux/typescript/004/app/coordinates.interface.ts
+msgid "Pierwszy interfejs określający właściwości obiektu"
+msgstr "The first interface defining the properties of the object"
+
+#   /// Deklaracje domyślnie publicznej właściwości obiektu o typie Coordinates
+#: /home/tomusdrw/workspace/react-redux/typescript/006/app/party.class.ts
+msgid "Deklaracje domyślnie publicznej właściwości obiektu o typie Coordinates"
+msgstr "Declarations of public by default property of the Coordinates type"
+
+#   //6/ Możemy iść na skróty i ustawić metodę jako publiczną już w definicji argumentów konstruktora
+#: /home/tomusdrw/workspace/react-redux/typescript/004/app/party.class.ts
+msgid ""
+"Możemy iść na skróty i ustawić metodę jako publiczną już w definicji "
+"argumentów konstruktora"
+msgstr "We can take shortcuts and set the method as public already in the definition of the constructor arguments"
+
+#     /// Jawna konwersja typów
+#: /home/tomusdrw/workspace/react-redux/typescript/004/app/party.class.ts
+msgid "Jawna konwersja typów"
+msgstr "Explicit type conversion"
+
+#   //3/ Zbuduj link do podglądu na Google Maps
+#: /home/tomusdrw/workspace/react-redux/typescript/004/app/party.class.ts
+msgid "Zbuduj link do podglądu na Google Maps"
+msgstr "Build a preview link on Google Maps"
+
+#   //3/ Pobierz datę w formacje YYYY-MM-DD
+#: /home/tomusdrw/workspace/react-redux/typescript/004/app/party.class.ts
+msgid "Pobierz datę w formacje YYYY-MM-DD"
+msgstr "Get the date in the YYYY-MM-DD formations"
+
+# //4/ Interfejs określający metodę
+#: /home/tomusdrw/workspace/react-redux/typescript/005/app/component.interface.ts
+msgid "Interfejs określający metodę"
+msgstr "The interface defining the method"
+
+#   /// Metoda render musi zwracać string
+#: /home/tomusdrw/workspace/react-redux/typescript/005/app/component.interface.ts
+msgid "Metoda render musi zwracać string"
+msgstr "The render method must return a string"
+
+# /// Klasa implementująca interface
+#: /home/tomusdrw/workspace/react-redux/typescript/006/app/party-list.class.ts
+msgid "Klasa implementująca interface"
+msgstr "The class that implements the interface"
+
+# //2/ Importuj zależności
+#: /home/tomusdrw/workspace/react-redux/typescript/011/app/main.ts
+msgid "Importuj zależności"
+msgstr "Import dependencies"
+
+# //3/ Stwórz i dodaj elementy do listy
+#: /home/tomusdrw/workspace/react-redux/typescript/007/app/main.ts
+msgid "Stwórz i dodaj elementy do listy"
+msgstr "Create and add items to the list"
+
+# //3/ Importujemy zależności
+#: /home/tomusdrw/workspace/react-redux/typescript/008/app/party-form.class.ts
+msgid "Importujemy zależności"
+msgstr "We import dependencies"
+
+# /// Utwórz instancje PartyForm
+#: /home/tomusdrw/workspace/react-redux/typescript/009/app/main.ts
+msgid "Utwórz instancje PartyForm"
+msgstr "Create PartyForm instances"
+
+# /// Renderuj aplikację
+#: /home/tomusdrw/workspace/react-redux/typescript/010/app/main.ts
+msgid "Renderuj aplikację"
+msgstr "Render the application"
+
+# /// Renderujemy aplikację
+#: /home/tomusdrw/workspace/react-redux/typescript/011/app/main.ts
+msgid "Renderujemy aplikację"
+msgstr "We are applying the application"
+
+#     //3/ Prosta funkcja renderująca
+#: /home/tomusdrw/workspace/react-redux/typescript/011/app/react.class.ts
+msgid "Prosta funkcja renderująca"
+msgstr "A simple rendering function"
+
+#     //5/ Uniwersalny handler dla wszystkich eventów 
+#: /home/tomusdrw/workspace/react-redux/typescript/011/app/react.class.ts
+msgid "Uniwersalny handler dla wszystkich eventów "
+msgstr "Universal handler for all events "
+
+#     ///Początkowe wyrenderowanie aplikacji
+#: /home/tomusdrw/workspace/react-redux/typescript/011/app/react.class.ts
+msgid "Początkowe wyrenderowanie aplikacji"
+msgstr "Initial rendering of the application"
+
+#   //4/ Możemy też ustawić parametry konstruktora jako właściwości prywatne
+#: /home/tomusdrw/workspace/react-redux/typescript/012/app/party-form.class.ts
+msgid "Możemy też ustawić parametry konstruktora jako właściwości prywatne"
+msgstr "We can also set the constructor parameters as private properties"
+
+#     /// Inne submity niż tego formularza nas nie interesują
+#: /home/tomusdrw/workspace/react-redux/typescript/012/app/party-form.class.ts
+msgid "Inne submity niż tego formularza nas nie interesują"
+msgstr "Other submits than this form do not interest us"
+
+#     /// Zapobiegaj wysłaniu formularza
+#: /home/tomusdrw/workspace/react-redux/typescript/012/app/party-form.class.ts
+msgid "Zapobiegaj wysłaniu formularza"
+msgstr "Prevent sending the form"
+
+#     /// Dodaj imprezę
+#: /home/tomusdrw/workspace/react-redux/typescript/012/app/party-form.class.ts
+msgid "Dodaj imprezę"
+msgstr "Add a party"
+
+#     /// Daj znać "Reactowi", że właśnie nadszedł czas na rerender
+#: /home/tomusdrw/workspace/react-redux/typescript/012/app/party-form.class.ts
+msgid "Daj znać \"Reactowi\", że właśnie nadszedł czas na rerender"
+msgstr "Let  "React" know that it's time to rerender"
+
+# /// Jedna klasa może implementować wiele interfejsów
+#: /home/tomusdrw/workspace/react-redux/typescript/013/app/app.class.ts
+msgid "Jedna klasa może implementować wiele interfejsów"
+msgstr "One class can implement multiple interfaces"
+
+#   //8/ Nasz eventListener zawsze musi zwracać Promise
+#: /home/tomusdrw/workspace/react-redux/typescript/013/app/app.class.ts
+msgid "Nasz eventListener zawsze musi zwracać Promise"
+msgstr "Our eventListener must always return a Promise"
+
+#       /// Wyrenderuj aplikację po zmianie jej stanu.
+#: /home/tomusdrw/workspace/react-redux/typescript/013/app/app.class.ts
+msgid "Wyrenderuj aplikację po zmianie jej stanu."
+msgstr "Render the application after changing its state."
+
+#     /// Nie renderuj aplikacji gdy żaden z listenerów nie może zmienić stanu.
+#: /home/tomusdrw/workspace/react-redux/typescript/013/app/app.class.ts
+msgid "Nie renderuj aplikacji gdy żaden z listenerów nie może zmienić stanu."
+msgstr "Do not render the application when none of the listener can change the state."
+
+# //3/ Interfejs określający metodę, która zwaraca Promise, który ma być rozwiązany bez wartości
+#: /home/tomusdrw/workspace/react-redux/typescript/013/app/event-handling.component.ts
+msgid ""
+"Interfejs określający metodę, która zwaraca Promise, który ma być "
+"rozwiązany bez wartości"
+msgstr "Interface specifying the method that will override the Promise to be resolved without value"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/vanilla/001-HTML5_SPA.html
+msgid "<h1>First SPA in HTML5</h1>"
+msgstr "<h1> First SPA in HTML5 </ h1>"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/vanilla/002-Model.html
+msgid "<h1>Let's add a 'Model' of our app</h1>"
+msgstr "<h1> Let's add a 'Model' of our app </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/vanilla/003-Widok_DOM.html
+msgid ""
+"\n"
+"  <p>Wyświetlimy widok korzystając z API DOM i iterując po naszym "
+"modelu.</p>\n"
+"  <p>Nasza aplikacja nie bierze pod uwagę upływającego czasu ani nie "
+"pozwala na zmianę stanu zadania.</p>\n"
+msgstr "\n <p> We will display the view using the DOM API and iterating over our model. </ p> \n <p> Our application does not take into account the elapsed time nor does it allow you to change the task status. </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/vanilla/003-Widok_DOM.html
+msgid "<h1>Wyświetlanie listy zadań z użyciem API DOM</h1>"
+msgstr "<h1> List of tasks using the DOM API </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/vanilla/004-Funkcje.html
+msgid ""
+"\n"
+"  <p>Podzielmy kod na kilka re-używalnych funkcji, aby w przyszłości "
+"łatwiej dodać kolejne opcje</p>\n"
+msgstr "\n <p> Let's divide the code into several re-usable functions, so that you can easily add more options in the future </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/vanilla/004-Funkcje.html
+msgid "<h1>Dzielimy kod na funkcje</h1>"
+msgstr "<h1> We share the code for functions </ h1>"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/vanilla/005-Wiele_Plikw.html
+msgid "<h1>Podział kodu na wiele plików</h1>"
+msgstr "<h1> Split code into multiple files </ h1>"
+
+# <title>
+#: /home/tomusdrw/workspace/react-redux/vanilla/005-Wiele_Plikw.html
+msgid "Wiele Plików"
+msgstr "Many Files"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/vanilla/006-Moduy.html
+msgid ""
+"\n"
+"  <p>\n"
+"    Gdy kod jest podzielony na wiele plików zaczynamy traktować je jako "
+"<code>Moduły</code>.\n"
+"  </p>\n"
+"  <p>\n"
+"    Nasze moduły powinny jednak mieć możliwość wystawienia tylko części "
+"funkcji / zmiennych na zewnątrz.\n"
+"  </p>\n"
+"  <p>\n"
+"    Zobaczmy jak można to zrobić.\n"
+"  </p>\n"
+msgstr "\n <p> \n When the code is divided into many files, we start treating them as <code> Modules </ code>. \n </ p> \n <p> \n Our modules should, however, have the option to only export part of the function / variables outside. \n </ p> \n <p> \n Let's see how you can do it. \n </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/vanilla/006-Moduy.html
+msgid "<h1>Organizacja kodu w moduły</h1>"
+msgstr "<h1> Organization of code in modules </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/vanilla/007-Namespacing.html
+msgid ""
+"\n"
+"  <p>Problem pojawia się kiedy modułów robi się coraz więcej.</p>\n"
+"  <p>Konflikty globalnych nazw zmiennych są trudne do uniknięcia, więc "
+"staramy się dostosować hierarchię modułów w aplikacji do struktury "
+"katalogów</p>\n"
+msgstr "\n <p> The problem occurs when there is more and more modules in the app. </ p> \n <p> Conflicts of global variable names are impossible to avoid, so we try to adjust the hierarchy of modules in the application to the directory structure </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/vanilla/007-Namespacing.html
+msgid "<h1>Module Pattern + Namespacing</h1>"
+msgstr "<h1> Module Pattern + Namespacing </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/vanilla/008-AMD.html
+msgid ""
+"\n"
+"  <p>O wiele lepszym rozwiązaniem jest użycie biblioteki do ładowania "
+"modułów (np. <code>require.js</code>)</p>\n"
+"  <p>Kod zorganizujemy w ustandaryzowane moduły <code>AMD</code> - "
+"Asynchronous Module Definition</p>\n"
+msgstr "\n <p> A much better solution is to use a module load library (eg <code> require.js </ code>) </ p> \n <p> We will organize the code into standardized modules <code> AMD </ code > - Asynchronous Module Definition </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/vanilla/008-AMD.html
+msgid "<h1>Require.js + AMD</h1>"
+msgstr "<h1> Require.js + AMD </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/vanilla/009-UMD.html
+msgid ""
+"\n"
+"  <p>Istnieją inne formaty modułów:</p>\n"
+"  <ul>\n"
+"    <li>AMD - stworzony dla przeglądarek (które tylko asynchronicznie "
+"potrafią załadować pliki)\n"
+"    </li><li>CommonJS - używany w nodejs\n"
+"    </li><li>UMD - pozwalający pisać moduły działające w obu ekosystemach "
+"(izomorficzny kod)\n"
+"  </li></ul>\n"
+"  <p>Najczęściej kod pisany jest konsekwentnie w jednym z formatów, a "
+"podczas kroku budowania wypuszczane są paczki np. w formacie UMD.</p><p>\n"
+"</p>"
+msgstr "\n <p> There are other formats of modules: </ p> \n <ul> \n <li> AMD - created for browsers (which only asynchronously can load files) \n </ li> <li> CommonJS - used in nodejs \n </ li> <li> UMD - allowing to write modules working in both ecosystems (isomorphic code) \n </ li> </ ul>  n <p> Most often, the code is consistently written in one of the formats, and building step, packages are released, e.g. in UMD format. </ p> <p> \n </ p>"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/vanilla/009-UMD.html
+msgid "<h1>Universal Module Definition</h1>"
+msgstr "<h1> Universal Module Definition </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/vanilla/010-Shim.html
+msgid ""
+"\n"
+"  <p>W AMD można bardzo dobrze zarządzać zależnościami od zewnętrznych "
+"bibliotek.</p>\n"
+"  <p>Każdy z modułów jawnie deklaruje jakich bibliotek używa - dzięki temu, "
+"biblioteka jest automatycznie ładowana tylko wtedy kiedy faktycznie jest "
+"potrzebna.</p>\n"
+"  <p>Na koniec zastanówmy się w jaki sposób ściągać biblioteki?</p>\n"
+msgstr "\n <p> In AMD you can easily manage dependencies of external libraries. </ p> \n <p> Each module explicitly declares which libraries it uses - thanks to this, the library is automatically loaded only when it is actually needed. </ p> \n <p> Finally, let's think about how to download the library? </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/vanilla/010-Shim.html
+msgid "<h1>Require.js z użyciem zewnętrznej biblioteki</h1>"
+msgstr "<h1> Require.js using an external library </ h1>"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/vanilla/011-Zalenoci.html
+msgid ""
+"\n"
+"  <p>\n"
+"    Istnieją narzędzia pozwalające zarządzać zależnościami. \n"
+"    Definiujemy zależności i wersje w jednym pliku, który jest na repo, ale "
+"same zależności ściągane są u każdego nie zależnie.\n"
+"  </p>\n"
+"  <h3>Bower</h3>\n"
+"  <p>Pobiera zależności z githuba - moduły powinny być przygotowane do "
+"użycia w przeglądarce (najlepiej UMD)</p>\n"
+"  <h3>NPM</h3>\n"
+"  <p>Node Package Manager - menadżer pakietów dla nodejs, coraz częściej "
+"używany do dystrybuowania także pakietów frontendowych. Korzysta z modułów "
+"w formacie CommonJS</p>\n"
+msgstr "\n <p> \n There are tools to manage dependencies. \n We define dependencies and versions in one file, which is on the repo, but the dependencies themselves are downloaded to everyone independently. \n </ p> \n <h3> Bower </ h3> \n <p> Retrieves the dependencies from github - modules should be ready for use in the browser (preferably UMD) </ p> \n <h3> NPM </ h3> \n <p> Node Package Manager - package manager for nodejs, increasingly popular to distribute frontend packages as well. Uses modules in CommonJS format </ p> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/vanilla/011-Zalenoci.html
+msgid "<h1>Jak zarządzać zależnościami - Bower lub NPM</h1>"
+msgstr "<h1> How to manage dependencies - Bower or NPM </ h1>"
+
+# <title>
+#: /home/tomusdrw/workspace/react-redux/vanilla/011-Zalenoci.html
+msgid "Zależności"
+msgstr "Dependencies"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/vanilla/012-System.js__JSPM.html
+msgid ""
+"\n"
+"  <p>\n"
+"    Następcą <code>require.js</code> wydaje się być <code>System.js</code> "
+"- loader, który potrafi obsługiwać dowolny rodzaj modułów i przetwarzać ich "
+"zawartość w locie.\n"
+"  </p>\n"
+"  <p>\n"
+"    <code>System.js</code> najczęsciej występuje razem z uniwersalnym "
+"menadżerem pakietów <code>JSPM</code>.\n"
+"    <code>JSPM</code> potrafi ściągać zależności z wielu źródeł (Github, "
+"NPM) i automatycznie uaktualnia konfigurację <code>System.js</code>.\n"
+"  </p>\n"
+"  <p>\n"
+"    Zainstalowanie i załadowanie <code>lodash</code> w projekcie ogranicza "
+"się do uruchomienia:\n"
+"  </p>\n"
+"  <pre>$ jspm install lodash</pre>\n"
+msgstr "\n <p> \n The successor of <code> require.js </ code> appears to be <code> System.js </ code> - loader, which can handle any type of module and process their content on the fly. \n < / p> \n <p> \n <code> System.js </ code> usually appears with the universal package manager <code> JSPM </ code>. \n <code> JSPM </ code> can pull dependencies from multiple sources (Github, NPM) and automatically updates the <code> System.js </ code> configuration. \n </ p> \n <p> \n Installing and loading <code> lodash </ code> in the project is limited to run: \n </ p> \n <pre> $ jspm install lodash </ pre> \n"
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/vanilla/012-System.js__JSPM.html
+msgid "<h1>Ładowanie przez System.js i zarządzanie przez JSPM</h1>"
+msgstr "<h1> Loading by System.js and managed by JSPM </ h1>"
+
+# <!-- 2. Załączamy nasz skrypt. Atrybut `defer` załaduje skrypt gdy cały DOM będzie gotowy. -->
+#: /home/tomusdrw/workspace/react-redux/vanilla/001/index.html
+msgid ""
+"Załączamy nasz skrypt. Atrybut `defer` załaduje skrypt gdy cały DOM będzie "
+"gotowy. "
+msgstr "We enclose our script. The `defer` attribute will load the script when the entire DOM is ready. "
+
+# <!-- 3. A tutaj będziemy renderować nasze SPA. -->
+#: /home/tomusdrw/workspace/react-redux/vanilla/001/index.html
+msgid "A tutaj będziemy renderować nasze SPA. "
+msgstr "And here we will render our SPA. "
+
+# // Na razie wypiszemy tylko info na konsolę
+#: /home/tomusdrw/workspace/react-redux/vanilla/001/js/main.js
+msgid "Na razie wypiszemy tylko info na konsolę"
+msgstr "For now, we'll only write info on the console"
+
+# // Używamy trybu `strict`
+#: /home/tomusdrw/workspace/react-redux/vanilla/002/js/main.js
+msgid "Używamy trybu `strict`"
+msgstr "We use the strict mode"
+
+# //14/ Przygotowujemy model zadań do wykonania
+#: /home/tomusdrw/workspace/react-redux/vanilla/002/js/main.js
+msgid "Przygotowujemy model zadań do wykonania"
+msgstr "We prepare a model for tasks"
+
+#     // zapisujemy nazwę zadania...
+#: /home/tomusdrw/workspace/react-redux/vanilla/002/js/main.js
+msgid "zapisujemy nazwę zadania..."
+msgstr "we save the name of the task ..."
+
+#     // oraz czas, w którym zostało rozpoczęte
+#: /home/tomusdrw/workspace/react-redux/vanilla/002/js/main.js
+msgid "oraz czas, w którym zostało rozpoczęte"
+msgstr "and the time at which it was started"
+
+#   //5/ a dla skończonych zadań trzymamy też timestamp ukończenia
+#: /home/tomusdrw/workspace/react-redux/vanilla/002/js/main.js
+msgid "a dla skończonych zadań trzymamy też timestamp ukończenia"
+msgstr "and for the finished tasks we also keep the timestamp of completion"
+
+# // Kolejnym krokiem będzie wyświetlenie zadań.
+#: /home/tomusdrw/workspace/react-redux/vanilla/002/js/main.js
+msgid "Kolejnym krokiem będzie wyświetlenie zadań."
+msgstr "The next step will be to display the tasks."
+
+# // Używamy `querySelector` aby znaleźć element w DOM
+#: /home/tomusdrw/workspace/react-redux/vanilla/003/js/main.js
+msgid "Używamy `querySelector` aby znaleźć element w DOM"
+msgstr "We use `querySelector` to find an element in the DOM"
+
+# //18/ Przeiterujemy po modelu aby stworzyć widok
+#: /home/tomusdrw/workspace/react-redux/vanilla/003/js/main.js
+msgid "Przeiterujemy po modelu aby stworzyć widok"
+msgstr "We iterate the model to create a view"
+
+#   //2/ ... wpisujemy zawartość (textContent!)...
+#: /home/tomusdrw/workspace/react-redux/vanilla/003/js/main.js
+msgid "wpisujemy zawartość (textContent!)..."
+msgstr "assign content (textContent!) ..."
+
+# // ... dzięki wynoszeniu (`hosting`) możemy z niej skorzystać pomimo, że nie została jeszcze zadeklarowana
+#: /home/tomusdrw/workspace/react-redux/vanilla/004/js/main.js
+msgid ""
+"dzięki wynoszeniu (`hosting`) możemy z niej skorzystać pomimo, że nie "
+"została jeszcze zadeklarowana"
+msgstr "thanks to (`hoisting`) we can use it even though it has not yet been declared"
+
+# <!--3/ Musimy pamiętać o załączeniu nowych plików. Skąd wiemy w jakiej kolejności? -->
+#: /home/tomusdrw/workspace/react-redux/vanilla/005/index.html
+msgid "Musimy pamiętać o załączeniu nowych plików. Skąd wiemy w jakiej kolejności? "
+msgstr "We must remember to attach new files. How do we know in which order? "
+
+# //3/ Wystawiamy nasz model na zewnątrz
+#: /home/tomusdrw/workspace/react-redux/vanilla/005/js/Tasks.js
+msgid "Wystawiamy nasz model na zewnątrz"
+msgstr "We set our model outside"
+
+# //14/ Może lepiej gdyby ta funkcja była prywatna?
+#: /home/tomusdrw/workspace/react-redux/vanilla/005/js/TasksView.js
+msgid "Może lepiej gdyby ta funkcja była prywatna?"
+msgstr "Maybe it would be better if this function was private?"
+
+#   // Zauważyliście, że korzystamy z globalnej zmiennej `now`?
+#: /home/tomusdrw/workspace/react-redux/vanilla/005/js/TasksView.js
+msgid "Zauważyliście, że korzystamy z globalnej zmiennej `now`?"
+msgstr "Have you noticed that we're using the global `now` variable?"
+
+# // ... i renderujemy używając naszego widoku
+#: /home/tomusdrw/workspace/react-redux/vanilla/005/js/main.js
+msgid "i renderujemy używając naszego widoku"
+msgstr "and we render using our view"
+
+# //26/ Możemy wykorzystać `Module Pattern` 
+#: /home/tomusdrw/workspace/react-redux/vanilla/006/js/Tasks.js
+msgid "Możemy wykorzystać `Module Pattern` "
+msgstr "We can use the `Module Pattern` "
+
+#   //2/ Te zmienne są teraz prywatne dla tego modułu...
+#: /home/tomusdrw/workspace/react-redux/vanilla/006/js/Tasks.js
+msgid "Te zmienne są teraz prywatne dla tego modułu..."
+msgstr "These variables are now private for this module ..."
+
+#   //5 ...a na zewnątrz eksportujemy tylko API
+#: /home/tomusdrw/workspace/react-redux/vanilla/006/js/Tasks.js
+msgid "5 ...a na zewnątrz eksportujemy tylko API"
+msgstr "5 ... and we only export APIs outside"
+
+#   // Nasz kod może się wykonać nawet gdy zostanie wykonany w innym kontekście.
+#: /home/tomusdrw/workspace/react-redux/vanilla/006/js/Tasks.js
+msgid "Nasz kod może się wykonać nawet gdy zostanie wykonany w innym kontekście."
+msgstr "Our code can be executed even if it is executed in a different context."
+
+# //35/ Stwórzmy konstruktor naszego widoku
+#: /home/tomusdrw/workspace/react-redux/vanilla/006/js/TasksView.js
+msgid "Stwórzmy konstruktor naszego widoku"
+msgstr "Let's create a constructor of our view"
+
+#   //10/ Hoisting możemy wykorzystać nawet po `return`
+#: /home/tomusdrw/workspace/react-redux/vanilla/006/js/TasksView.js
+msgid "Hoisting możemy wykorzystać nawet po `return`"
+msgstr "We can use hoisting even after `return`"
+
+#     // Czyścimy zawartość `$app` - możemy re-renderować wiele razy
+#: /home/tomusdrw/workspace/react-redux/vanilla/006/js/TasksView.js
+msgid "Czyścimy zawartość `$app` - możemy re-renderować wiele razy"
+msgstr "We clean the contents of `$app` - we can re-render many times"
+
+# //3/ I renderujemy całość co 500ms
+#: /home/tomusdrw/workspace/react-redux/vanilla/006/js/main.js
+msgid "I renderujemy całość co 500ms"
+msgstr "And render the whole thing every 500ms"
+
+# <!-- Wciąż musimy pamiętać o ładowaniu skryptów -->
+#: /home/tomusdrw/workspace/react-redux/vanilla/007/index.html
+msgid "Wciąż musimy pamiętać o ładowaniu skryptów "
+msgstr "We still have to remember about loading scripts "
+
+#   //5/ Korzystamy z pełnych ścieżek do modułów
+#: /home/tomusdrw/workspace/react-redux/vanilla/007/js/main.js
+msgid "Korzystamy z pełnych ścieżek do modułów"
+msgstr "We use full paths to modules"
+
+#   //3/ Uniezależniamy się od kolejności ładowania skryptów
+#: /home/tomusdrw/workspace/react-redux/vanilla/007/js/models/Tasks.js
+msgid "Uniezależniamy się od kolejności ładowania skryptów"
+msgstr "We are independent of the order in which scripts are loaded"
+
+# // W `require.js` mówimy, które moduły należy zaimportować
+#: /home/tomusdrw/workspace/react-redux/vanilla/008/js/main.js
+msgid "W `require.js` mówimy, które moduły należy zaimportować"
+msgstr "In `require.js`, we say which modules should be imported"
+
+# // Definiujemy nowy moduł, bez żadnych zależności
+#: /home/tomusdrw/workspace/react-redux/vanilla/008/js/models/Tasks.js
+msgid "Definiujemy nowy moduł, bez żadnych zależności"
+msgstr "We define a new module without any dependencies"
+
+#   //3/ Zwracamy publiczne API tego modułu
+#: /home/tomusdrw/workspace/react-redux/vanilla/008/js/models/Tasks.js
+msgid "Zwracamy publiczne API tego modułu"
+msgstr "We return the public API of this module"
+
+# //4/ Dla modułów bez zależności możemy pominąc pustą tablicę
+#: /home/tomusdrw/workspace/react-redux/vanilla/008/js/views/TasksView.js
+msgid "Dla modułów bez zależności możemy pominąc pustą tablicę"
+msgstr "For modules without dependencies, we can omit an empty array"
+
+#   //2/ Możemy też używać składni CommonJS (ale tylko jeśli moduły był już wcześniej załadowane)
+#: /home/tomusdrw/workspace/react-redux/vanilla/009/js/main.js
+msgid ""
+"Możemy też używać składni CommonJS (ale tylko jeśli moduły był już "
+"wcześniej załadowane)"
+msgstr "We can also use CommonJS syntax (but only if modules have already been loaded)"
+
+# <!-- Jako jedyną zależność ładujemy config -->
+#: /home/tomusdrw/workspace/react-redux/vanilla/010/index.html
+msgid "Jako jedyną zależność ładujemy config "
+msgstr "As the only dependency, we load config "
+
+#   //4/ Definiujemy co oznacza załadowanie modułu `lodash`
+#: /home/tomusdrw/workspace/react-redux/vanilla/010/js/config.js
+msgid "Definiujemy co oznacza załadowanie modułu `lodash`"
+msgstr "We define what does it mean to load 'lodash` module"
+
+#   //8/ Dla modułów, które nie sa przystosowane do AMD tworzymy shim - czyli...
+#: /home/tomusdrw/workspace/react-redux/vanilla/010/js/config.js
+msgid "Dla modułów, które nie sa przystosowane do AMD tworzymy shim - czyli..."
+msgstr "For modules that are not adapted to AMD, we create a shim..."
+
+#       // ... zależności wymagane przez moduł...
+#: /home/tomusdrw/workspace/react-redux/vanilla/010/js/config.js
+msgid "zależności wymagane przez moduł..."
+msgstr "dependencies required by the module..."
+
+#       // ... i jaką globalną zmienną eksportuje
+#: /home/tomusdrw/workspace/react-redux/vanilla/010/js/config.js
+msgid "i jaką globalną zmienną eksportuje"
+msgstr "and what global variable it exports"
+
+# // W module widoku deklarujemy zależność od globalnej biblioteki.
+#: /home/tomusdrw/workspace/react-redux/vanilla/010/js/views/TasksView.js
+msgid "W module widoku deklarujemy zależność od globalnej biblioteki."
+msgstr "In the view module, we declare dependency on the global library."
+
+#   //3/ Przepisujemy metodę render na templatkę lodashową...
+#: /home/tomusdrw/workspace/react-redux/vanilla/010/js/views/TasksView.js
+msgid "Przepisujemy metodę render na templatkę lodashową..."
+msgstr "We rewrite the render method using lodash template ..."
+
+#     // ... i używamy jej w metodzie render
+#: /home/tomusdrw/workspace/react-redux/vanilla/010/js/views/TasksView.js
+msgid "i używamy jej w metodzie render"
+msgstr "and we use it in the render method"
+
+#   // Główny plik do załadowania
+#: /home/tomusdrw/workspace/react-redux/vanilla/011/bower.json
+msgid "Główny plik do załadowania"
+msgstr "The main file to be loaded"
+
+#   //7/ Te rzeczy nie będą ściągane gdy ktoś skorzysta z `bower install`
+#: /home/tomusdrw/workspace/react-redux/vanilla/011/bower.json
+msgid "Te rzeczy nie będą ściągane gdy ktoś skorzysta z `bower install`"
+msgstr "These things will not be downloaded when someone uses `bower install`"
+
+#   //3/ Zależności w projekcie
+#: /home/tomusdrw/workspace/react-redux/vanilla/011/bower.json
+msgid "Zależności w projekcie"
+msgstr "Dependencies in the project"
+
+#   //5/ Możemy teraz załadować lodasha z naszego `bower_components`
+#: /home/tomusdrw/workspace/react-redux/vanilla/011/js/config.js
+msgid "Możemy teraz załadować lodasha z naszego `bower_components`"
+msgstr "We can now load the lodash from our `bower_components`"
+
+#   // Jeżeli ładujemy cały moduł to który plik należy wczytać (entry-point)
+#: /home/tomusdrw/workspace/react-redux/vanilla/011/package.json
+msgid "Jeżeli ładujemy cały moduł to który plik należy wczytać (entry-point)"
+msgstr "If we load the entire module, which one should be loaded (entry-point)"
+
+#   //3/ Definicja zależności naszego projektu. Dodajemy nowe przez `npm install <dep> --save`
+#: /home/tomusdrw/workspace/react-redux/vanilla/011/package.json
+msgid ""
+"Definicja zależności naszego projektu. Dodajemy nowe przez `npm install "
+"<dep> --save`"
+msgstr "Definition of dependencies of our project. We add new ones by `npm install <dep> --save`"
+
+#   // Zależności, które używane są tylko w developmencie (narzędzia)
+#: /home/tomusdrw/workspace/react-redux/vanilla/011/package.json
+msgid "Zależności, które używane są tylko w developmencie (narzędzia)"
+msgstr "Dependencies that are only used in development (tools)"
+
+# <!-- 5/ Ładujemy system.js, config i główny moduł -->
+#: /home/tomusdrw/workspace/react-redux/vanilla/012/index.html
+msgid "Ładujemy system.js, config i główny moduł "
+msgstr "We load system.js, config and main module "
+
+# /// Konfiguracja System.js przypomina tę z require.js
+#: /home/tomusdrw/workspace/react-redux/vanilla/012/js/config.js
+msgid "Konfiguracja System.js przypomina tę z require.js"
+msgstr "The System.js configuration resembles that of require.js"
+
+#   /// Definiujemy, że w ścieżkach do modułów pomijamy .js
+#: /home/tomusdrw/workspace/react-redux/vanilla/012/js/config.js
+msgid "Definiujemy, że w ścieżkach do modułów pomijamy .js"
+msgstr "We define that we skip .js in module paths"
+
+#   /// Nie korzystamy z transpilera (ale będziemy później :))
+#: /home/tomusdrw/workspace/react-redux/vanilla/012/js/config.js
+msgid "Nie korzystamy z transpilera (ale będziemy później :))"
+msgstr "We do not use the transpiler for n (but we will be later :))"
+
+#   //4/ JSPM potrafi pobierać pakiety z dowolnego źródła
+#: /home/tomusdrw/workspace/react-redux/vanilla/012/js/config.js
+msgid "JSPM potrafi pobierać pakiety z dowolnego źródła"
+msgstr "JSPM can download packages from any source"
+
+#   //5/ JSPM zarządza plikiem z konfiguracją i automatycznie dopisuje konfigurację dla ściąganych paczek
+#: /home/tomusdrw/workspace/react-redux/vanilla/012/js/config.js
+msgid ""
+"JSPM zarządza plikiem z konfiguracją i automatycznie dopisuje konfigurację "
+"dla ściąganych paczek"
+msgstr "JSPM manages the configuration file and automatically adds the configuration for the downloaded packages"
+
+#       //3/ Dla uproszczenia przykładu nie wszystkie zależności są dołączone (JSPM ściąga połowę internetów)
+#: /home/tomusdrw/workspace/react-redux/vanilla/012/js/config.js
+msgid ""
+"Dla uproszczenia przykładu nie wszystkie zależności są dołączone (JSPM "
+"ściąga połowę internetów)"
+msgstr "To simplify the example, not all dependencies are included (JSPM downloads half of the internet)"
+
+# //2/ System.js potrafi ładować dowolny typ modułów. Możemy od razu pisać w CommonJS!
+#: /home/tomusdrw/workspace/react-redux/vanilla/012/js/main.js
+msgid ""
+"System.js potrafi ładować dowolny typ modułów. Możemy od razu pisać w "
+"CommonJS!"
+msgstr "System.js can load any type of modules. We can write in CommonJS right away!"
+
+# // Ale AMD jest również obsługiwany.
+#: /home/tomusdrw/workspace/react-redux/vanilla/012/js/models/Tasks.js
+msgid "Ale AMD jest również obsługiwany."
+msgstr "But AMD is also supported."
+
+#   //7/ JSPM wpina swoją konfigurację w plik `package.json`
+#: /home/tomusdrw/workspace/react-redux/vanilla/012/package.json
+msgid "JSPM wpina swoją konfigurację w plik `package.json`"
+msgstr "JSPM plugs its configuration into the `package.json` file"
+
+#     /// Podajemy ścieżkę do pliku z configiem, bo JSPM sam tym plikiem zarządza
+#: /home/tomusdrw/workspace/react-redux/vanilla/012/package.json
+msgid "Podajemy ścieżkę do pliku z configiem, bo JSPM sam tym plikiem zarządza"
+msgstr "We give the path to the file with the config, because JSPM manages the file itself"
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/webpack-loaders/basic.html
+msgid ""
+"\n"
+"          <p>\n"
+"            Obecnie serwowanie wielu mały plików nie jest zbyt wydajne "
+"(nadzieja w HTTP2)</p>\n"
+"          <p>\n"
+"            Webpack jest narzędziem, które pozwala na połączenie "
+"(<code>bundle</code>) wszystkich zasobów w jeden plik.\n"
+"          </p>\n"
+"          <p>\n"
+"            Webpack jest też zintegrowany z serwerem developerskim.</p>\n"
+"        "
+msgstr "\n <p> \n Currently, serving many small files is not very efficient (hope in HTTP2) </ p> \n <p> \n Webpack is a tool that allows you to concatenate (<code> bundle </ code>) all resources in one file. \n </ p> \n <p> \n Webpack also has integrated development server. </ p> \ n        "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/webpack-loaders/basic.html
+msgid ""
+"\n"
+"          <h1>Minimalna konfiguracja webpack-dev-server.</h1>\n"
+"        "
+msgstr "\n <h1> Minimal webpack-dev-server configuration. </ h1> \n        "
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/webpack-loaders/slide-01.html
+msgid ""
+"\n"
+"          <p>Każdy ładowany przez webpacka plik możemy dodatkowo "
+"przetwarzać.</p>\n"
+"          <p>Np. możemy użyć <code>babel</code>, żeby nasz kod był "
+"kompatybilny ze starszymi wersjami przeglądarek.</p>\n"
+"        "
+msgstr "\n <p> Each loaded by webpack file can be further processed. </ p> \n <p> Eg. we can use <code> babel </ code> to make our code compatible with older versions of browsers. </ p> \n        "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/webpack-loaders/slide-01.html
+msgid ""
+"\n"
+"          <h1>Loaders</h1>\n"
+"        "
+msgstr "\n <h1> Loaders </ h1> \n        "
+
+# <title>
+#: /home/tomusdrw/workspace/react-redux/webpack-loaders/slide-01.html
+msgid ""
+"Użycie loaderów\n"
+"    "
+msgstr "Use of loaders \n    "
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/webpack-loaders/slide-02.html
+msgid ""
+"\n"
+"          <p>Podczas przygotowywania produkcyjnej wersji kodu, warto "
+"zminimalizować rozmiar paczki.</p>\n"
+"          <p>Wykorzystamy do tego webpackowe pluginy.</p>\n"
+"        "
+msgstr "\n <p> When preparing the production version of the code, it is worth minimizing the size of the package. </ p> \n <p> We will use the webpack plugins. </ p> \n        "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/webpack-loaders/slide-02.html
+msgid ""
+"\n"
+"          <h1>Build produkcyjny</h1>\n"
+"        "
+msgstr "\n <h1> Build production </ h1> \n        "
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/webpack-loaders/slide-03.html
+msgid ""
+"\n"
+"          <p>Webpack potrafi dodawać nie tylko moduły JS.</p>\n"
+"          <p>Możemy ładować dowolne pliki, np. obrazy.</p>\n"
+"        "
+msgstr "\n <p> Webpack can add not only JS modules. </ p> \n <p> We can load any files, e.g. images. </ p> \n        "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/webpack-loaders/slide-03.html
+msgid ""
+"\n"
+"          <h1>Więcej loaderów</h1>\n"
+"        "
+msgstr "\n <h1> More loaders </ h1> \n        "
+
+# <title>
+#: /home/tomusdrw/workspace/react-redux/webpack-loaders/slide-03.html
+msgid ""
+"Więcej loaderów\n"
+"    "
+msgstr "More loaders \n    "
+
+# <xp-annotations>details>
+#: /home/tomusdrw/workspace/react-redux/webpack-loaders/slide-04.html
+msgid ""
+"\n"
+"          <p>Webpack może także wczytywać fragmenty kodu "
+"asynchronicznie.</p>\n"
+"          <p>Oraz wydzielić wspólną część.</p>\n"
+"        "
+msgstr "\n <p> Webpack can also load code fragments asynchronously. </ p> \n <p> And extract a shared part. </ p> \n        "
+
+# <xp-annotations>header>
+#: /home/tomusdrw/workspace/react-redux/webpack-loaders/slide-04.html
+msgid ""
+"\n"
+"          <h1>Lazy loading</h1>\n"
+"        "
+msgstr "\n <h1> Lazy loading </ h1> \n        "
+
+# <xp-tasks li:nth-child(2)>
+#: /home/tomusdrw/workspace/react-redux/tasks/006-webpack.html
+msgid ""
+"\n"
+"      Dodaj ładowanie za pomocą <code>babel</code> i "
+"<code>babel-present-env</code>\n"
+"    "
+msgstr "\n Add loading with <code> babel </code> and <code> babel-present-env </code> \n    "
+
+# <xp-tasks li:nth-child(3)>
+#: /home/tomusdrw/workspace/react-redux/tasks/006-webpack.html
+msgid ""
+"\n"
+"      Skonfiguruj <code>UglifyJS</code> i załaduj obrazek za pomocą "
+"<code>file-loader</code>.\n"
+"    "
+msgstr "\n Configure <code> UglifyJS </code> and load the image using <code> file-loader </code>. \n    "
+
+# <xp-tasks li:nth-child(5)>
+#: /home/tomusdrw/workspace/react-redux/tasks/006-webpack.html
+msgid ""
+"\n"
+"      Dodaj dynamiczne ładowanie chunków.\n"
+"    "
+msgstr "\n Add dynamic chunk loading. \n    "
+
+#       //3/ Wyciąganie wspólnej części.
+#: /home/tomusdrw/workspace/react-redux/webpack-loaders/code/04/webpack.config.js
+msgid "Wyciąganie wspólnej części."
+msgstr "Extracting a common part."
+
