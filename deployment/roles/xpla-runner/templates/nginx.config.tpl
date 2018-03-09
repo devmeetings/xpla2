@@ -53,7 +53,7 @@ server {
   ssl_certificate_key /etc/letsencrypt/live/{{server_name}}/privkey.pem;
 
   location / {
-    proxy_pass http://{{ server_id }}/api/results/$hash;
+    proxy_pass http://{{ server_id }}/api/results/$hash$request_uri$is_args$args;
     proxy_set_header Host      $host;
     proxy_set_header X-Real-IP $remote_addr;
   }
