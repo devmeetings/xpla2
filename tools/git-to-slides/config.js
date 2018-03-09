@@ -6,6 +6,15 @@ const branchSchema = Joi.object().keys({
   description: Joi.string().regex(/^[a-z0-9._ -]+$/i).description('Description of branch/directory')
 });
 
+const slideSchema = Joi.object().keys({
+  name: Joi.string().regex(/^[a-z0-9._-]+$/i).required().description('Directory name of the slide'),
+  title: Joi.string().regex(/^[a-z0-9._ -]+$/i).description('Title of the slide')
+});
+
+const dirSchema = branchSchema.keys({
+  slides: Joi.array().items(slideSchema).min(1).description('Directories containing single slides')
+});
+
 const authorSchema = Joi.object().keys({
   name: Joi.string().description('Workshop author name'),
   link: Joi.string().description('Workshop author link/e-mail/twitter')
@@ -21,7 +30,7 @@ const schema = Joi.object().keys({
   runServer: Joi.string().description('Run server to use (Do not set if you don\'t know what it is)'),
   presenceServer: Joi.string().description('Presence server to use (Do not set if you don\'t know what it is)'),
   ignore: Joi.array().items(Joi.string()).description('Array of files to ignore while generating slides.'),
-  dirs: Joi.array().items(branchSchema).min(1).description('List of directories to process'),
+  dirs: Joi.array().items(dirSchema).min(1).description('List of directories to process'),
   branches: Joi.array().items(branchSchema).min(1).description('List of branches to process')
 }).xor('branches', 'dirs');
 

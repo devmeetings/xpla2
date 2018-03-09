@@ -18,7 +18,7 @@ if (!sourceDir || process.argv[2] !== '--dir') {
 
 function generateSlides (source, target) {
   const config = generator.readConfigFile(source, fs.existsSync(path.join(source, 'xpla.json')), {
-    branches: ['current=Current'],
+    branches: [{ name: 'current=Current' }],
     ignore: [],
     name: 'Devmeeting'
   });

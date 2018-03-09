@@ -19,28 +19,24 @@ module.exports = function readSlidesFromDir (dir, branches, ignore) {
       const dirs = getDirs(dir, files, branches);
       console.log('Directories', dirs.map(dir => dir.name));
 
-      return Promise.all(dirs.map(dir => readFiles(dir, ignored)));
+      return Promise.all(dirs.map(dir => {
+        return readCommits(dir, ignored)
+          .then(commits => ({
+            branch: dir.branch,
+            commits
+          }));
+      }));
     })
-    .then(dirsWithFiles => {
-      return dirsWithFiles.map(dirObject => {
-        return {
-          newFiles: dirObject.files,
-          oldFiles: [],
-          message: dirObject.title,
-          branch: dirObject.branch
-        };
-      });
-    })
-    .then(dirsAsCommits => {
-      return dirsAsCommits.reduce((memo, dir) => {
-        memo[dir.branch] = [dir];
+    .then(dirsWithCommits => {
+      return dirsWithCommits.reduce((memo, dir) => {
+        memo[dir.branch] = dir.commits;
         return memo;
       }, {});
     });
 };
 
 function getDirs (dir, files, branches) {
-  if (branches[0] === 'current=Current' && branches.length === 1) {
+  if (branches.length === 1 && branches[0].name === 'current=Current') {
     // Take all directories by default
     return files
       .filter(file => fs.statSync(path.join(dir, file)).isDirectory())
@@ -55,13 +51,14 @@ function getDirs (dir, files, branches) {
 
   return branches
     .map(branch => {
-      const [name, title, description] = branch.split('=');
+      const [name, title, description] = branch.name.split('=');
       return {
         name,
         title,
         description,
-        branch,
-        path: path.join(dir, name)
+        branch: branch.name,
+        path: path.join(dir, name),
+        slidesDirs: branch.slidesDirs
       };
     })
     .filter(d => {
@@ -72,6 +69,37 @@ function getDirs (dir, files, branches) {
 
       return true;
     });
+}
+
+function filesAsCommit(dirObject) {
+  return {
+    newFiles: dirObject.files,
+    oldFiles: [],
+    message: dirObject.title,
+    branch: dirObject.branch
+  };
+}
+
+function readCommits (dirObject, ignore) {
+  if (!dirObject.slidesDirs || dirObject.slidesDirs.length === 0) {
+    return readFiles(dirObject, ignore)
+      .then(filesAsCommit)
+      .then(commit => [commit]);
+  }
+
+  return Promise.all(dirObject.slidesDirs
+    .map(slide => {
+      const dirObj = {
+        name: slide.name,
+        title: slide.title,
+        description: '', // unused?
+        branch: dirObject.branch,
+        path: path.join(dirObject.path, slide.name)
+      };
+
+      return readFiles(dirObj, ignore)
+        .then(filesAsCommit)
+    }));
 }
 
 function readFiles (dirObject, ignore) {

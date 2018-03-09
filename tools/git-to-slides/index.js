@@ -92,10 +92,15 @@ function readConfigFile (workingDir, cfg, program = {}) {
     program.authorLink = config.author.link || program.author.link;
     if (config.branches) {
       program.fromDirs = false;
-      program.branches = config.branches.map(branch => `${branch.name}=${branch.title || branch.name}=${branch.description || ''}`);
+      program.branches = config.branches.map(branch => ({
+        name: `${branch.name}=${branch.title || branch.name}=${branch.description || ''}`
+      }));
     } else {
       program.fromDirs = true;
-      program.branches = config.dirs.map(dir => `${dir.name}=${dir.title || dir.name}=${dir.description || ''}`);
+      program.branches = config.dirs.map(dir => ({
+        name: `${dir.name}=${dir.title || dir.name}=${dir.description || ''}`,
+        slidesDirs: dir.slides
+      }));
     }
   }
 

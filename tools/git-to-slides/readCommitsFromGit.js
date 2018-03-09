@@ -13,7 +13,7 @@ module.exports = function readCommitsFromGit (dir, branches, ignore) {
 
   return Git.Repository.open(dir)
     .then(repo => {
-      if (branches[0] === 'current=Current' && branches.length === 1) {
+      if (branches.length === 1 && branches[0].name === 'current=Current') {
         return repo.getHeadCommit()
           .then(head => processCommit(head, ignored))
           .then(commits => ({
@@ -22,11 +22,11 @@ module.exports = function readCommitsFromGit (dir, branches, ignore) {
       }
 
       const branches2 = Promise.all(branches.map(branch => {
-        const split = branch.split('=');
+        const split = branch.name.split('=');
         return Git.Branch.lookup(repo, split[0], Git.Branch.BRANCH.ALL)
           .then(ref => ({
             branch: ref,
-            name: branch
+            name: branch.name
           }));
       }));
 
