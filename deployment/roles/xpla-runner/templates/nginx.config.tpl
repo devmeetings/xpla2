@@ -29,13 +29,34 @@ server {
 
 server {
   listen  443 ssl http2;
-  server_name {{server_name}} *.{{server_name}};
+  server_name {{server_name}};
 
   ssl on;
   ssl_certificate /etc/letsencrypt/live/{{server_name}}/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/{{server_name}}/privkey.pem;
 
   include xpla/{{server_name}}.config;
+
+  location /nginx_status {
+    # copied from http://blog.kovyrin.net/2006/04/29/monitoring-nginx-with-rrdtool/
+    stub_status on;
+    access_log   off;
+  }
+}
+
+server {
+  listen  443 ssl http2;
+  server_name ~^(?<hash>.+)\.{{server_name}}$;
+
+  ssl on;
+  ssl_certificate /etc/letsencrypt/live/{{server_name}}/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/{{server_name}}/privkey.pem;
+
+  location / {
+    proxy_pass http://{{ server_id }}/api/results/$hash;
+    proxy_set_header Host      $host;
+    proxy_set_header X-Real-IP $remote_addr;
+  }
 
   location /nginx_status {
     # copied from http://blog.kovyrin.net/2006/04/29/monitoring-nginx-with-rrdtool/

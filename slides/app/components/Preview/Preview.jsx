@@ -162,9 +162,14 @@ export class Preview extends React.Component {
   renderNewWindowButton () {
     const { isServer, serverPort, runServerUrl } = this.props
     const serverUrl = this.serverUrl()
+
+    const resultsLink = runServerUrl === 'https://xpla.org'
+      ? `https://${this.props.runId}.xpla.org/${this.props.file}`
+      : runServerUrl + '/api/results/' + this.props.runId + '/' + this.props.file
+
     const link = isServer
       ? `http://${serverUrl}:${serverPort}`
-      : runServerUrl + '/api/results/' + this.props.runId + '/' + this.props.file
+      : resultsLink
 
     return (
       <a
