@@ -71,7 +71,7 @@ function getDirs (dir, files, branches) {
     });
 }
 
-function filesAsCommit(dirObject) {
+function filesAsCommit (dirObject) {
   return {
     newFiles: dirObject.files,
     oldFiles: [],
@@ -98,7 +98,7 @@ function readCommits (dirObject, ignore) {
       };
 
       return readFiles(dirObj, ignore)
-        .then(filesAsCommit)
+        .then(filesAsCommit);
     }));
 }
 
