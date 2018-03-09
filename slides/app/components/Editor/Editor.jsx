@@ -42,7 +42,8 @@ export function getModeForFilename (name) {
     md: 'markdown',
     rs: 'rust',
     styl: 'stylus',
-    yml: 'yaml'
+    yml: 'yaml',
+    vue: 'html'
   }
 
   const parts = name.split('.')
