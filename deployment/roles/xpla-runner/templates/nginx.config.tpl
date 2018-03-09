@@ -67,7 +67,7 @@ server {
 
 server {
   listen 80;
-  server_name {{ server_name }} presence.{{server_name}} editor.{{server_name}} runner.{{server_name}};
+  server_name {{ server_name }} *.{{server_name}};
 
   include xpla/{{server_name}}.config;
 
