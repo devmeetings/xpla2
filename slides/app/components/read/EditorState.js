@@ -103,6 +103,7 @@ function parseAnnotations (content, ext, fileName) {
     'md': HASH_PATTERN.concat(HTML_LIKE),
     'styl': C_LIKE_PATTERNS,
     'html': HTML_LIKE.concat(C_LIKE_PATTERNS),
+    'vue': HTML_LIKE.concat(C_LIKE_PATTERNS),
     'elm': ELM_PATTERN
   }
   const PATTERN = fileName === '_console' ? HASH_PATTERN : LINE_PATTERNS[ext]
