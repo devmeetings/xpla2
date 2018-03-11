@@ -159,17 +159,21 @@ export class Preview extends React.Component {
     return serverUrl || runServerUrlNoPort
   }
 
-  renderNewWindowButton () {
-    const { isServer, serverPort, runServerUrl } = this.props
-    const serverUrl = this.serverUrl()
+  baseLink () {
+    const subdomainLinks = false
+    const { runServerUrl, runId } = this.props
 
-    const resultsLink = runServerUrl === 'https://xpla.org'
-      ? `https://${this.props.runId}.xpla.org/${this.props.file}`
-      : runServerUrl + '/api/results/' + this.props.runId + '/' + this.props.file
+    return (subdomainLinks && runServerUrl === 'https://xpla.org')
+      ? `https://${runId}.xpla.org/`
+      : `${runServerUrl}/api/results/${runId}/`
+  }
+
+  renderNewWindowButton () {
+    const { isServer, serverPort } = this.props
 
     const link = isServer
-      ? `http://${serverUrl}:${serverPort}`
-      : resultsLink
+      ? `http://${this.serverUrl()}:${serverPort}`
+      : this.baseLink() + this.props.file
 
     return (
       <a
@@ -184,13 +188,13 @@ export class Preview extends React.Component {
   }
 
   renderLogsButton () {
-    const { isServer, runServerUrl, runId } = this.props
-    const link = runServerUrl + '/api/results/' + runId
+    const { isServer } = this.props
+    const link = this.baseLink()
 
     return (
       <a
         className={styles.logsButton}
-        href={isServer ? link : link + '/_logs.html'}
+        href={isServer ? link : link + '_logs.html'}
         rel={'noopener'}
         target={'_blank'}
         title='Output logs'
