@@ -222,6 +222,15 @@ function imageToHtml (options, slide) {
 }
 
 function annotationsToHtml (options, slide) {
+  let slideContent = `
+    <header><h1>${trim(slide.comment)}</h1></header>
+    ${slide.annotations.replace(/details>/g, 'div>')}
+  `;
+
+  if (slide.annotations.indexOf('<section') !== -1) {
+    slideContent = slide.annotations;
+  }
+
   return `
     <!DOCTYPE html>
     <html xp-run-server-url="${options.runServer}" xp-presence-url="${options.presenceServer}">
@@ -234,8 +243,7 @@ function annotationsToHtml (options, slide) {
 
       <body class="xp-slide">
         <div class="xp-row center with-comments">
-          <header><h1>${trim(slide.comment)}</h1></header>
-          ${slide.annotations.replace(/details>/g, 'div>')}
+          ${slideContent}
         </div>
         <div class="xp-resize-row"></div>
         <div class="xp-row comments">

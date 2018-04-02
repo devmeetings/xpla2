@@ -85,6 +85,14 @@
           margin: 0;
         }
       }
+
+      > details {
+        display: none;
+      }
+
+      > section {
+        flex: 100%;
+      }
     }
 
     xp-annotations {
