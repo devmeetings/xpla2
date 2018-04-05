@@ -25,6 +25,7 @@ import 'brace/mode/stylus'
 import 'brace/mode/yaml'
 import 'brace/mode/dart'
 import 'brace/mode/elm'
+import 'brace/mode/toml'
 import 'brace/theme/chrome'
 
 import styles from './Editor.scss'

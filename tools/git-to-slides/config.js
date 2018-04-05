@@ -8,7 +8,7 @@ const branchSchema = Joi.object().keys({
 
 const slideSchema = Joi.object().keys({
   name: Joi.string().regex(/^[a-z0-9._-]+$/i).required().description('Directory name of the slide'),
-  title: Joi.string().regex(/^[a-z0-9._ -]+$/i).description('Title of the slide')
+  title: Joi.string().regex(/^.+$/i).description('Title of the slide')
 });
 
 const dirSchema = branchSchema.keys({
