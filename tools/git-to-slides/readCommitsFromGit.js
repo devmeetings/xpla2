@@ -22,7 +22,7 @@ module.exports = function readCommitsFromGit (dir, branches, ignore) {
       }
 
       const branches2 = Promise.all(branches.map(branch => {
-        console.log(branch)
+        console.log(branch);
         const split = branch.name.split('=');
         return Git.Branch.lookup(repo, split[0], Git.Branch.BRANCH.ALL)
           .then(ref => ({

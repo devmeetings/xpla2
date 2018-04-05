@@ -115,7 +115,7 @@ function readFiles (dirObject, ignore) {
       });
     })
     .then(files => {
-      console.log(files)
+      console.log(files);
       return Promise.all(files
         .filter(file => fs.statSync(file).isFile())
         .map(file => {
