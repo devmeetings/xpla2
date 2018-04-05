@@ -45,7 +45,7 @@ if (require.main === module) {
     process.exit(1);
   }
 
-  const branches = program.branches.map(name => ({ name }))
+  const branches = program.branches.map(name => name.name ? name : ({ name }))
   const commits = program.fromDirs
     ? readCommitsFromDir(process.cwd(), branches, program.ignore)
     : readCommitsFromGit(process.cwd(), branches, program.ignore)
