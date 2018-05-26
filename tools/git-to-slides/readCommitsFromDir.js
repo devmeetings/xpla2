@@ -7,7 +7,8 @@ const glob = require('glob');
 const IGNORE = [
   '.editorconfig',
   '.gitignore',
-  '.git'
+  '.git',
+  '**/node_modules/**'
 ];
 
 module.exports = function readSlidesFromDir (dir, branches, ignore) {

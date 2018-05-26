@@ -102,6 +102,8 @@ rm ../$SLIDES_WORKDIR -r || true
 mv slides ../$SLIDES_WORKDIR
 git checkout gh-pages || (echo "You need to create gh-pages branch first. (git checkout --orphan gh-pages)" && exit 10)
 rsync -a ../$SLIDES_WORKDIR/* .
+# Make sure the index.html is always copied
+cp ../$SLIDES_WORKDIR/index.html . || true
 git add .
 rm ../$SLIDES_WORKDIR -r
 # Commit
