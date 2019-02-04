@@ -13,6 +13,13 @@ timeout(time: 20, uint: 'MINUTES') {
         stage("Build") {
           sh "./deployment/build.sh"
         }
+
+        def isDeployingProd = env.BRANCH_NAME == "master"
+        if (isDeployingProd) {
+          stage("Deploy") {
+            sh 'ansible-playbook ./deployment/site.yml -i ./deployment/hosts'
+          }
+        }
       }
     } catch (err) {
       currentBuild.result = 'FAIL'
