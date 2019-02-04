@@ -9,7 +9,7 @@ timeout(time: 20, uint: 'MINUTES') {
     }
 
     try {
-      nvm(version: "10") {
+      nvm(version: "8") {
         stage("Build") {
           sh "./deployment/build.sh"
         }
