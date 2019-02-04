@@ -158,7 +158,7 @@ function parseAnnotations (content, ext, fileName) {
     }
   }
 
-  const sortedAnnotations = annotations.sort((a, b) => a.order - b.order);
+  const sortedAnnotations = annotations.sort((a, b) => a.order - b.order)
   if (fileOrder === 9999 && sortedAnnotations.length) {
     fileOrder = sortedAnnotations[0].order
   }
