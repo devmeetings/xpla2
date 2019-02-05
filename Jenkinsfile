@@ -16,8 +16,14 @@ timeout(time: 20, uint: 'MINUTES') {
 
         def isDeployingProd = env.BRANCH_NAME == "master"
         if (isDeployingProd) {
-          stage("Deploy") {
-            sh 'ansible-playbook ./deployment/site.yml -i ./deployment/hosts'
+
+          withCredentials([sshUserPrivateKey(
+              credentialsId: "4041a521-7700-4cac-9df5-b4001f739975",
+              keyFileVariable: "GITHUB_KEY"
+          )]) {
+            stage("Deploy") {
+              sh 'ansible-playbook ./deployment/site.yml -i ./deployment/hosts --key-file $GITHUB_KEY'
+            }
           }
         }
       }
