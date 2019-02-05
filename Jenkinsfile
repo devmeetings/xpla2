@@ -24,7 +24,7 @@ timeout(time: 20, uint: 'MINUTES') {
               keyFileVariable: "GITHUB_KEY"
           )]) {
             stage("Deploy") {
-              sh 'ansible-playbook ./deployment/site.yml -i ./deployment/hosts --extra-vars "xplarunner_version=${env.BUILD_NUMBER}" --key-file $GITHUB_KEY'
+              sh "ansible-playbook ./deployment/site.yml -i ./deployment/hosts --extra-vars \"xplarunner_version=${env.BUILD_NUMBER}\" --key-file $GITHUB_KEY"
             }
           }
         }
