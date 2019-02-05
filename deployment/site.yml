@@ -6,7 +6,6 @@
     server_port: 3030
     presence_port: 3031
     gh_server_port: 3035
-    xplarunner_version: 'lastSuccessfulBuild'
   roles:
     - xpla-runner
     - xpla-github-slides
