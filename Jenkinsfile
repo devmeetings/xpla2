@@ -12,6 +12,8 @@ timeout(time: 20, uint: 'MINUTES') {
       nvm(version: "8") {
         stage("Build") {
           sh "./deployment/build.sh"
+
+          archiveArtifacts artifacts: "*.tar.gz", fingerprint: true
         }
 
         def isDeployingProd = env.BRANCH_NAME == "master"

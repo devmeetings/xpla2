@@ -28,7 +28,7 @@
   when: xplarunner_version == 'lastSuccessfulBuild'
 
 - name: XplaRunner | Fetching app
-  command: "wget https://applejack.todr.me/job/XplaRunner/{{xplarunner_version}}/artifact/xplarunner.tar.gz --user builder --password 123Builder --auth-no-challenge -O /srv/_packages/xplarunner_{{xplarunner_version}}.tar.gz"
+  command: "wget https://jenkins.todr.me/job/devmeetings/job/xpla2/job/master/{{xplarunner_version}}/artifact/xplarunner.tar.gz --user builder --password iMrww5kiH7KougantqgtcjbxvuaT66 --auth-no-challenge -O /srv/_packages/xplarunner_{{xplarunner_version}}.tar.gz"
   args:
     creates: /srv/_packages/xplarunner_{{xplarunner_version}}.tar.gz
 
