@@ -94,6 +94,9 @@ module.exports = [
     method: 'POST',
     path: '/api/commits',
     config: {
+      payload: {
+        maxBytes: 10 * 1024 * 1024
+      },
       validate: {
         payload: {
           files: Joi.array().items(Joi.object({
@@ -114,6 +117,9 @@ module.exports = [
     method: 'POST',
     path: '/api/commitAndRun',
     config: {
+      payload: {
+        maxBytes: 10 * 1024 * 1024
+      },
       validate: {
         payload: {
           runnerName: runnerSchema(),
